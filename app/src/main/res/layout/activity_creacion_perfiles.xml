@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreacionPerfiles">
+
+    <EditText
+        android:id="@+id/EdtNombreCP"
+        android:layout_width="205dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="60dp"
+        android:ems="1"
+        android:hint=""
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <EditText
+        android:id="@+id/edtNombreCP"
+        android:layout_width="205dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:ems="5"
+        android:hint=""
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etdFechaNacimientoCP" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintEnd_toStartOf="@+id/btnAgregarFotos"
+        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnAgregarFotos"
+        android:layout_width="61dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="88dp"
+        android:drawableLeft="@drawable/ic_tomar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txvNombreCP"
+        android:layout_width="76dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="92dp"
+        android:text="Nombre :"
+        app:layout_constraintEnd_toStartOf="@+id/EdtNombreCP"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/txvFechaNacimientoCP"
+        android:layout_width="76dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="44dp"
+        android:text="Fecha Nacimiento:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvNombreCP" />
+
+    <TextView
+        android:id="@+id/txvNumeroChipCP"
+        android:layout_width="76dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="40dp"
+        android:text="Numero Chip :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvFechaNacimientoCP" />
+
+    <TextView
+        android:id="@+id/txvGenero"
+        android:layout_width="76dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="56dp"
+        android:text="Genero:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvNumeroChipCP" />
+
+    <EditText
+        android:id="@+id/etdFechaNacimientoCP"
+        android:layout_width="205dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toEndOf="@+id/txvFechaNacimientoCP"
+        app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP" />
+
+    <RadioButton
+        android:id="@+id/rbMacho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="28dp"
+        android:text="Macho"
+        app:layout_constraintEnd_toStartOf="@+id/rbHembra"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txvGenero"
+        app:layout_constraintTop_toBottomOf="@+id/edtNombreCP" />
+
+    <RadioButton
+        android:id="@+id/rbHembra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="76dp"
+        android:text="Hembra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtNombreCP" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
