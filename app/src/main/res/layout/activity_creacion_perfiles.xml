@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreacionPerfiles">
+    
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="145dp"
+        android:layout_height="158dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintEnd_toStartOf="@+id/btnAgregarFotos"
+        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnAgregarFotos"
+        android:layout_width="50dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="88dp"
+        android:drawableLeft="@drawable/ic_tomar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txvNombreCP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="15dp"
+        android:text="Nombre :"
+        app:layout_constraintEnd_toStartOf="@+id/EdtNombreCP"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <EditText
+        android:id="@+id/EdtNombreCP"
+        android:layout_width="205dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:ems="1"
+        android:hint=""
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+    <EditText
+        android:id="@+id/edtFechaNacimiento"
+        android:layout_width="192dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="60dp"
+        android:ems="1"
+        android:hint=""
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/edtNumeroChipCP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <RadioButton
+        android:id="@+id/rbHembra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="68dp"
+        android:text="Hembra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtNumeroChipCP" />
+
+    <TextView
+        android:id="@+id/txvFechaNacimientoCP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="64dp"
+        android:text="Fecha Nacimiento:"
+        app:layout_constraintEnd_toStartOf="@+id/edtFechaNacimiento"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvNombreCP" />
+
+    <EditText
+        android:id="@+id/edtNumeroChipCP"
+        android:layout_width="205dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="52dp"
+        android:ems="5"
+        android:hint=""
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="332dp" />
+
+    <RadioButton
+        android:id="@+id/rbMacho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="28dp"
+        android:text="Macho"
+        app:layout_constraintEnd_toStartOf="@+id/rbHembra"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toEndOf="@+id/txvGenero"
+        app:layout_constraintTop_toBottomOf="@+id/edtNumeroChipCP" />
+
+    <TextView
+        android:id="@+id/txvGenero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="40dp"
+        android:text="Genero:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvNumeroChipCP" />
+
+    <TextView
+        android:id="@+id/txvNumeroChipCP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
+        android:text="Numero Chip :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvFechaNacimientoCP" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
