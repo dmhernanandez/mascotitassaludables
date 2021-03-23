@@ -26,7 +26,7 @@
         android:layout_height="125dp"
         android:layout_marginTop="56dp"
         android:fontFamily="monospace"
-        android:text="Bienvenido , Mascotitas Saludables te ayuda en el cuidado de ese ser tan especial Tu mascota."
+        android:text="Bienvenido , Mascotitas en el cuidado de ese ser tan especial Tu mascota."
         android:textAlignment="center"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,14 +36,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="255dp"
-        android:layout_height="254dp"
+        android:layout_width="298dp"
+        android:layout_height="309dp"
 
         android:src="@drawable/imagen"
-        android:layout_marginBottom="348dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.213"
+        app:srcCompat="@drawable/imagen"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
@@ -51,10 +53,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        android:src="@drawable/imagen"
         android:text="+"
         android:textSize="40dp"
-        android:src="@drawable/imagen"
-        android:backgroundTint="@color/celeste"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.532"
@@ -62,5 +64,18 @@
 
         app:layout_constraintTop_toBottomOf="@+id/txvDirectorDescripcion"
         app:layout_constraintVertical_bias="0.396" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.93"
+        app:srcCompat="@drawable/ic_camera" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
