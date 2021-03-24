@@ -28,16 +28,28 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/btnAgregarFotos"
+        android:id="@+id/btnTomarFotos"
         android:layout_width="50dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="56dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="76dp"
-        android:drawableLeft="@drawable/ic_tomar"
+        android:drawableBottom="@drawable/ic_tomar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAgregarFoto"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:drawableBottom="@drawable/ic_buscar_imagen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/btnTomarFotos"
+        app:layout_constraintVertical_bias="0.036" />
 
     <TextView
         android:id="@+id/txvNombreCP"
@@ -56,95 +68,41 @@
         android:layout_height="47dp"
         android:ems="1"
         android:hint=""
+        android:layout_marginTop="1dp"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.677"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toEndOf="@+id/txvNombreCP"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.295" />
+        app:layout_constraintVertical_bias="0.292" />
 
-    <EditText
-        android:id="@+id/edtFechaNacimiento"
-        android:layout_width="157dp"
-        android:layout_height="38dp"
-        android:ems="1"
-        android:hint=""
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.317"
-        app:layout_constraintStart_toEndOf="@+id/txvFechaNacimientoCP"
-        app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
-        app:layout_constraintVertical_bias="0.123" />
-
-    <RadioButton
-        android:id="@+id/rbHembra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Hembra"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.905"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNumeroChipCP"
-        app:layout_constraintVertical_bias="0.161" />
 
     <TextView
         android:id="@+id/txvFechaNacimientoCP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:text="Fecha Nacimiento:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvNombreCP" />
 
     <EditText
-        android:id="@+id/edtNumeroChipCP"
-        android:layout_width="159dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="44dp"
-        android:ems="5"
+        android:id="@+id/edtFechaNacimiento"
+        android:layout_width="195dp"
+        android:layout_height="41dp"
+        android:ems="1"
         android:hint=""
         android:inputType="textPersonName"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
-        app:layout_constraintStart_toEndOf="@+id/txvNumeroChipCP"
-        app:layout_constraintTop_toBottomOf="@+id/edtFechaNacimiento"
-        app:layout_constraintVertical_bias="0.014"
-        tools:ignore="MissingConstraints" />
-
-    <RadioButton
-        android:id="@+id/rbMacho"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="28dp"
-        android:text="Macho"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rbHembra"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/txvGenero"
-        app:layout_constraintTop_toBottomOf="@+id/edtNumeroChipCP"
-        app:layout_constraintVertical_bias="0.161" />
-
-    <TextView
-        android:id="@+id/txvGenero"
-        android:layout_width="85dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="60dp"
-        android:text="Genero:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvNumeroChipCP"
-        app:layout_constraintVertical_bias="0.201" />
+        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintStart_toEndOf="@+id/txvFechaNacimientoCP"
+        app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
+        app:layout_constraintVertical_bias="0.024" />
 
     <TextView
         android:id="@+id/txvNumeroChipCP"
@@ -154,12 +112,122 @@
         android:text="Numero Chip :"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvFechaNacimientoCP"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.022" />
+
+    <EditText
+        android:id="@+id/edtNumeroChipCP"
+        android:layout_width="195dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="44dp"
+        android:ems="5"
+        android:hint=""
+
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toEndOf="@+id/txvNumeroChipCP"
+        app:layout_constraintTop_toBottomOf="@+id/edtFechaNacimiento"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
 
+    <TextView
+        android:id="@+id/txvGenero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="Genero:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvNumeroChipCP"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioButton
+        android:id="@+id/rbHembra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Hembra"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtNumeroChipCP"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioButton
+        android:id="@+id/rbMacho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="28dp"
+        android:text="Macho"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rbHembra"
+        app:layout_constraintHorizontal_bias="0.759"
+        app:layout_constraintStart_toEndOf="@+id/txvGenero"
+        app:layout_constraintTop_toBottomOf="@+id/edtNumeroChipCP"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txvEspecie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Especie:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvGenero"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spiEspecie"
+        android:layout_width="195dp"
+        android:layout_height="33dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintStart_toEndOf="@+id/txvEspecie"
+        app:layout_constraintTop_toBottomOf="@+id/rbMacho"
+        app:layout_constraintVertical_bias="0.086"
+        android:entries="@array/especie_items"
+        android:spinnerMode="dialog"
+        android:prompt="@string/especie_promts"/>
+
+    <TextView
+        android:id="@+id/txvRaza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Raza:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvEspecie"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <Spinner
+        android:id="@+id/spiRaza"
+        android:layout_width="195dp"
+        android:layout_height="33dp"
+        android:entries="@array/raza_items"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.626"
+        app:layout_constraintStart_toEndOf="@+id/txvRaza"
+        app:layout_constraintTop_toBottomOf="@+id/spiEspecie"
+        app:layout_constraintVertical_bias="0.077" />
 
 
 
