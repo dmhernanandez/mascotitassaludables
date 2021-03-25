@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Mascotitas Saludables</string>
 
-<!--    crear arreglo para llenar el spiner-->
+    <!--    crear arreglo para llenar el spiner-->
     <string-array name="especie_items">
         <item>Perro</item>
         <item>Gato</item>
     </string-array>
-<!--    crear etiqueta para el spinner-->
+    <!--    crear etiqueta para el spinner-->
     <string name="especie_promts">Seleccione</string>
 
     <string-array name="raza_items">
