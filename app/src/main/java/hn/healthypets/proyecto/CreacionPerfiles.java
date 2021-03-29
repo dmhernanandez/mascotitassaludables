@@ -46,10 +46,15 @@ public class CreacionPerfiles extends AppCompatActivity {
 
         btnTomarFotos.setOnClickListener(v -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (ActivityCompat.checkSelfPermission(CreacionPerfiles.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(CreacionPerfiles.this, Manifest.permission.CAMERA)
+                        == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CreacionPerfiles.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_GRANTED) {
                     irCamara();
                 } else {
-                    ActivityCompat.requestPermissions(CreacionPerfiles.this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
+                    ActivityCompat.requestPermissions(CreacionPerfiles.this,
+                            new String[]{Manifest.permission.CAMERA,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CAMERA);
                 }
             } else {
                 irCamara();
@@ -81,7 +86,6 @@ public class CreacionPerfiles extends AppCompatActivity {
 //        super.onActivityResult(requestCode, resultCode, data);
 //    }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_IMAGE_CAMERA) {
@@ -103,7 +107,6 @@ public class CreacionPerfiles extends AppCompatActivity {
 // INICIO DE PROCESO DE ALMACENAMIENTO EN DISPOSITIVO
 
     String currentPhotoPath;
-
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
