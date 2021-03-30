@@ -1,4 +1,4 @@
 package hn.healthypets.proyecto.database;
 
-public class Especies {
+public class Medicamento {
 }
