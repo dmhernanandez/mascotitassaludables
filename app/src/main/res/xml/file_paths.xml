@@ -2,6 +2,6 @@
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <external-path
         name="mis_imagenes"
-        path="Android/data/hn.healthypets.proyecto/files/Pictures" />
+        path="." />
 
 </paths>

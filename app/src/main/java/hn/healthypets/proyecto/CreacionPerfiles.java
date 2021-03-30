@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import java.util.Date;
 public class CreacionPerfiles extends AppCompatActivity {
     ImageView foto;
     Button btnTomarFotos;
+    String rutaImagen;
 
     private static final int REQUEST_PERMISSION_CAMERA = 100;
     private static final int REQUEST_IMAGE_CAMERA = 101;
@@ -73,56 +75,64 @@ public class CreacionPerfiles extends AppCompatActivity {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-    //    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        if (requestCode == REQUEST_IMAGE_CAMERA) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-//                foto.setImageBitmap(bitmap);
-//                Log.i("TAG", "Result =>" + bitmap);
-//
-//            }
-//        }
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAMERA) {
             if (resultCode == Activity.RESULT_OK) {
-                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                Bitmap bitmap = BitmapFactory.decodeFile(rutaImagen);
                 foto.setImageBitmap(bitmap);
                 Log.i("TAG", "Result=>" + bitmap);
             }
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void irCamara() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent, REQUEST_IMAGE_CAMERA);
+            File imagenArchivo = null;
+            try {
+                imagenArchivo = crearImagen();
+
+            } catch (IOException ex) {
+                Log.i("Error", ex.toString());
+            }
+            if (imagenArchivo != null) {
+                Uri fotoUri = FileProvider.getUriForFile(this, "hn.healthpets.proyecto.fileprovider", imagenArchivo);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+                startActivityForResult(intent, REQUEST_IMAGE_CAMERA);
+            }
         }
+    }
+
+    private File crearImagen() throws IOException {
+        String nombreImagen = "foto_";
+        File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
+
+        rutaImagen = imagen.getAbsolutePath();
+        return imagen;
     }
 // INICIO DE PROCESO DE ALMACENAMIENTO EN DISPOSITIVO
 
-    String currentPhotoPath;
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "Backup_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
-        Log.i("ruta", currentPhotoPath);
-        return image;
-    }
+//    String currentPhotoPath;
+//    private File createImageFile() throws IOException {
+//        // Create an image file name
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = "Backup_" + timeStamp + "_";
+//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//        File image = File.createTempFile(
+//                imageFileName,  /* prefix */
+//                ".jpg",         /* suffix */
+//                storageDir      /* directory */
+//        );
+//
+//        // Save a file: path for use with ACTION_VIEW intents
+//        currentPhotoPath = image.getAbsolutePath();
+//        Log.i("ruta", currentPhotoPath);
+//        return image;
+//    }
 
     static final int REQUEST_TAKE_PHOTO = 1;
 
