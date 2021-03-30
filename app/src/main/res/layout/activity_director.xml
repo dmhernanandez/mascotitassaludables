@@ -1,72 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+
     tools:layout_editor_absoluteX="207dp"
     tools:layout_editor_absoluteY="671dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".director">
+        tools:context=".director"
+        android:background="@drawable/inicio">
 
-        <TextView
-            android:id="@+id/txvDirectorTitulo"
-            android:layout_width="205dp"
-            android:layout_height="37dp"
-            android:fontFamily="@font/alegreya_bold"
-            android:text="Mascotitas Saludables"
-            android:textAlignment="center"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.573" />
 
-        <TextView
-            android:id="@+id/txvDirectorDescripcion"
-            android:layout_width="298dp"
-            android:layout_height="125dp"
-            android:layout_marginTop="56dp"
-            android:fontFamily="monospace"
-            android:text="Bienvenido , Mascotitas en el cuidado de ese ser tan especial Tu mascota."
-            android:textAlignment="center"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
 
+<!--       -->
+<!--       >-->
+
+
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/floatingActionButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:clickable="true"-->
+
+<!--            app:srcCompat="@drawable/ic_nuevo_perfil" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="298dp"
-            android:layout_height="309dp"
-
-            android:src="@drawable/imagen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.213"
-            app:srcCompat="@drawable/imagen"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/portada"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.887"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.93"
-            app:srcCompat="@drawable/ic_nuevo_perfil" />
+            android:layout_marginTop="450dp"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/questrial"
+            android:text="Bienvenido a Mascotitas Saludables" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textColor="#686262"
+            android:fontFamily="@font/questrial"
+            android:text="Para generar carnet de mascotas" />
+
+        <Button
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="550dp"
+            android:background="@drawable/btn_redondo"
+            android:drawableBottom="@drawable/ic_aniadir"/>
+    </RelativeLayout>
 </androidx.core.widget.NestedScrollView>
