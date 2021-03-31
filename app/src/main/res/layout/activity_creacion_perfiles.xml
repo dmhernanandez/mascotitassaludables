@@ -14,7 +14,7 @@
         tools:context=".CreacionPerfiles">
 
         <ImageView
-            android:id="@+id/fotoMascota"
+            android:id="@+id/imgFotoMascota"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/ic_imagen"
@@ -34,7 +34,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.327"
-            app:layout_constraintStart_toEndOf="@+id/fotoMascota"
+            app:layout_constraintStart_toEndOf="@+id/imgFotoMascota"
             app:layout_constraintTop_toBottomOf="@+id/btnTomarFotos"
             app:layout_constraintVertical_bias="0.042" />
 
@@ -47,7 +47,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.12"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fotoMascota" />
+            app:layout_constraintTop_toBottomOf="@+id/imgFotoMascota" />
 
         <EditText
             android:id="@+id/EdtNombreCP"
@@ -60,7 +60,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.515"
             app:layout_constraintStart_toEndOf="@+id/txvNombreCP"
-            app:layout_constraintTop_toBottomOf="@+id/fotoMascota"
+            app:layout_constraintTop_toBottomOf="@+id/imgFotoMascota"
             app:layout_constraintVertical_bias="0.06" />
 
         <TextView
@@ -234,7 +234,7 @@
             android:drawableBottom="@drawable/ic_tomar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toEndOf="@+id/fotoMascota"
+            app:layout_constraintStart_toEndOf="@+id/imgFotoMascota"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_camera" />
     </androidx.constraintlayout.widget.ConstraintLayout>
