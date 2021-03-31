@@ -75,6 +75,7 @@ public class CreacionPerfiles extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
 //            Bundle extras = data.getExtras();
+//            Bitmap imgBitmap = (Bitmap)extras.get("data")
             Bitmap imgBitmap = BitmapFactory.decodeFile(rutaImagen);
             imgFotoMascota.setImageBitmap(imgBitmap);
         }
