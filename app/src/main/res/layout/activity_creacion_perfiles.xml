@@ -15,7 +15,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgComprobacionVacunas"
             android:layout_width="145dp"
             android:layout_height="158dp"
             android:src="@drawable/ic_imagen"
@@ -28,7 +28,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <Button
-            android:id="@+id/btnTomarFotos"
+            android:id="@+id/imgbtnTomarFotosV"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="32dp"
@@ -36,19 +36,19 @@
             android:drawableBottom="@drawable/ic_tomar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.55"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imgComprobacionVacunas"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnAgregarFoto"
+            android:id="@+id/btnAgregarFotoV"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:drawableBottom="@drawable/ic_buscar_imagen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.189"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/btnTomarFotos"
+            app:layout_constraintStart_toEndOf="@+id/imgComprobacionVacunas"
+            app:layout_constraintTop_toBottomOf="@+id/imgbtnTomarFotosV"
             app:layout_constraintVertical_bias="0.041" />
 
         <TextView
@@ -60,7 +60,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.12"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas" />
 
 
         <EditText
@@ -74,7 +74,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.515"
             app:layout_constraintStart_toEndOf="@+id/txvNombreCP"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas"
             app:layout_constraintVertical_bias="0.06" />
 
         <TextView
