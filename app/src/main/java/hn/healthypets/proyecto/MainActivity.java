@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         Button boton = findViewById(R.id.button);
         Button nuevo = findViewById(R.id.nuevo);
         Button credencial = findViewById(R.id.btnCredencial);
+
+        //Creo la base de datos
         SingletonDB.getDatabase(this);
         boton.setOnClickListener(v -> {
             Intent intent = new Intent(this, CreacionPerfiles.class);

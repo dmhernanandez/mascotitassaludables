@@ -13,4 +13,5 @@
     <color name="fondo">#edfffe</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="listo">#91EC7B</color>
 </resources>
