@@ -58,11 +58,11 @@ public class CreacionPerfiles extends AppCompatActivity {
             try {
                 imagenArchivo = crearImagen();
 
-            }catch (IOException ex){
+            } catch (IOException ex) {
                 Log.e("Error", ex.toString());
 
             }
-            if(imagenArchivo != null){
+            if (imagenArchivo != null) {
                 Uri fotoUri = FileProvider.getUriForFile(this, "hn.healthypets.proyecto.fileprovider", imagenArchivo);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
                 startActivityForResult(intent, 1);
@@ -80,6 +80,7 @@ public class CreacionPerfiles extends AppCompatActivity {
             imgFotoMascota.setImageBitmap(imgBitmap);
         }
     }
+
     private File crearImagen() throws IOException {
         String nombreImagen = "foto_";
         File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
