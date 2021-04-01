@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         Button boton = findViewById(R.id.button);
         Button nuevo = findViewById(R.id.nuevo);
         Button credencial = findViewById(R.id.btnCredencial);
+        Button vacuna= findViewById(R.id.btnCredencial2);
 
         boton.setOnClickListener(v -> {
             Intent intent = new Intent(this, CreacionPerfiles.class);
@@ -30,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
         credencial.setOnClickListener(v -> {
             Intent intent3 = new Intent(this, perfiles.class);
             startActivity(intent3);
+        });
+
+        vacuna.setOnClickListener(v -> {
+
+            Intent intent4 =new Intent(this,vacunas.class);
+
+            startActivity(intent4);
+
         });
     }
 }

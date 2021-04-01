@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="207dp"
+    tools:layout_editor_absoluteY="671dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/vacuna"
+        tools:context=".vacunas">
+
+        <ImageView
+            android:id="@+id/imgComprobacionVacunas"
+            android:layout_width="145dp"
+            android:layout_height="158dp"
+            android:src="@drawable/ic_imagen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.301"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.08"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageButton
+            android:id="@+id/imgbtnTomarFotosV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_redondo_aqua"
+            android:src="@drawable/ic_camera_li"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.292"
+            app:layout_constraintStart_toEndOf="@+id/imgComprobacionVacunas"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.092" />
+
+        <ImageButton
+            android:id="@+id/imgbtnBuscarFotosV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/btn_redondo_aqua"
+            android:src="@drawable/ic_subir_imagen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toEndOf="@+id/imgComprobacionVacunas"
+            app:layout_constraintTop_toBottomOf="@+id/imgbtnTomarFotosV"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edtNombreVacuna"
+            android:layout_width="302dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="#000000"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas" />
+
+        <EditText
+            android:id="@+id/edtDescripcionVacuna"
+            android:layout_width="302dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/input_descripciones"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="Descripción"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="#000000"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionVacuna" />
+
+        <EditText
+            android:id="@+id/edtFechaAplicacionVacuna"
+            android:layout_width="302dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="Fecha de Aplicacion"
+            android:inputType="date"
+            android:padding="10dp"
+            android:textColorHint="#000000"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreVacuna" />
+
+        <Button
+            android:id="@+id/btnListoVacunas"
+            android:layout_width="113dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/btn_listo"
+            android:text="Listo"
+            app:icon="@drawable/ic_vector_listo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.009"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnCancelarVacuna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/btn_rectangular_cancelar"
+            android:text="cancelar"
+            app:icon="@drawable/ic_vector_cancelar"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.927"
+            app:layout_constraintStart_toEndOf="@+id/btnListoVacunas"
+            app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna" />
+
+        <Button
+            android:id="@+id/btnProximamenteVacuna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
+            android:background="@drawable/btn_rectangular_proxima"
+            android:text="Proxima"
+            app:icon="@drawable/ic_vector_proxima"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="382dp" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
