@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         nuevo.setOnClickListener(v -> {
 
-            Intent intent2 =new Intent(this,director.class);
+            Intent intent2 =new Intent(this, Director.class);
 
             startActivity(intent2);
 

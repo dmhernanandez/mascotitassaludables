@@ -13,7 +13,7 @@
         <activity android:name=".vacunas"></activity>
         <activity android:name=".perfiles" />
         <activity android:name=".CreacionPerfiles" />
-        <activity android:name=".director" />
+        <activity android:name=".Director" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
