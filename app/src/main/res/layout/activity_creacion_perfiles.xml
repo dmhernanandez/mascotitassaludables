@@ -205,6 +205,18 @@
             app:layout_constraintTop_toBottomOf="@+id/txvGenero"
             app:layout_constraintVertical_bias="0.017" />
 
+        <TextView
+            android:id="@+id/txvNombreEspecie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="68dp"
+            android:fontFamily="@font/questrial"
+            android:text="Nombre Especie"
+            android:textColor="#0B0B0B"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Spinner
             android:id="@+id/spiEspecie"
             android:layout_width="165dp"

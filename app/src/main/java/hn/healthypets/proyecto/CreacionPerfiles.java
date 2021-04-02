@@ -1,47 +1,50 @@
 package hn.healthypets.proyecto;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class CreacionPerfiles extends AppCompatActivity {
+public class CreacionPerfiles extends AppCompatActivity implements ModalDialogoEspecie.ModalDialogoListener {
 
-    Button btnTomarFotos;
+    ImageButton btnTomarFotos;
     ImageView imgFotoMascota;
     String rutaImagen;
+
+    private TextView textViewEspecie;
+    private ImageButton agregarEspecie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creacion_perfiles);
-        btnTomarFotos = findViewById(R.id.btnTomarFotos);
-        imgFotoMascota = findViewById(R.id.imgFotoMascota);
+        btnTomarFotos = findViewById(R.id.imgbtnTomarFotosCP);
+        imgFotoMascota = findViewById(R.id.imgCreacionPerfiles);
+
+        textViewEspecie = findViewById(R.id.txvNombreEspecie);
+        agregarEspecie = findViewById(R.id.imgbtnAgregarNuevaEspecie2);
+
+        agregarEspecie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirDialogo();
+            }
+        });
 
         btnTomarFotos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +52,16 @@ public class CreacionPerfiles extends AppCompatActivity {
                 abrirCamara();
             }
         });
+    }
+
+    public void abrirDialogo() {
+        ModalDialogoEspecie modalDialogoEspecie = new ModalDialogoEspecie();
+        modalDialogoEspecie.show(getSupportFragmentManager(), "example dialog");
+    }
+
+    @Override
+    public void applyText(String username) {
+        textViewEspecie.setText(username);
     }
 
     private void abrirCamara() {
