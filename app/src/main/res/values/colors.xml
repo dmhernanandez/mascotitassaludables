@@ -15,11 +15,11 @@
     <color name="celeste">#5e9be3</color>
     <color name="celesteClaro">#7AB1F2</color>
 
-
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="listo">#91EC7B</color>
-    <color name="cancelar">#E64C3C</color>
+    <color name="cancelar">#EC5C4D</color>
     <color name="agendar">#F0CF50</color>
+    <color name="aniadir">#6A8BFD</color>
 
 </resources>
