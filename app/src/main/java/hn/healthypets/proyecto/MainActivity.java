@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         credencial.setOnClickListener(v -> {
 
-            Intent intent3 =new Intent(this,perfiles.class);
+            Intent intent3 =new Intent(this, Perfiles.class);
 
             startActivity(intent3);
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         vacuna.setOnClickListener(v -> {
 
-            Intent intent4 =new Intent(this,vacunas.class);
+            Intent intent4 =new Intent(this, Vacunas.class);
 
             startActivity(intent4);
 

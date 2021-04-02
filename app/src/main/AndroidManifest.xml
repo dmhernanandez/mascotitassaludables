@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotitasSaludables">
-        <activity android:name=".vacunas"></activity>
-        <activity android:name=".perfiles" />
+        <activity android:name=".Vacunas"></activity>
+        <activity android:name=".Perfiles" />
         <activity android:name=".CreacionPerfiles" />
         <activity android:name=".Director" />
         <activity android:name=".MainActivity">
