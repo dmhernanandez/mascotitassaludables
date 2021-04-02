@@ -8,11 +8,12 @@
     tools:layout_editor_absoluteX="207dp"
     tools:layout_editor_absoluteY="671dp">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/vacuna"
-        tools:context=".vacunas">
+        tools:context=".Vacunas">
 
         <TextView
             android:id="@+id/textView6"
@@ -80,7 +81,7 @@
             android:hint="Firulais"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:textColorHint="@color/black"
+            android:textColorHint="#9E9C9C"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas" />
@@ -124,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/btn_rectangular_cancelar"
+            android:backgroundTint="@color/cancelar"
             android:text="cancelar"
             app:icon="@drawable/ic_vector_cancelar"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -137,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="108dp"
-            android:background="@drawable/btn_rectangular_proxima"
+            android:backgroundTint="@color/agendar"
             android:text="Proxima"
             app:icon="@drawable/ic_vector_proxima"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -150,7 +151,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
-            android:background="@drawable/btn_listo"
+            android:backgroundTint="@color/listo"
             android:text="Listo"
             app:icon="@drawable/ic_vector_listo"
             app:layout_constraintBottom_toBottomOf="parent"

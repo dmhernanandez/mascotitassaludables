@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         credencial.setOnClickListener(v -> {
 
-            Intent intent3 =new Intent(this,perfiles.class);
+            Intent intent3 =new Intent(this, Perfiles.class);
 
             startActivity(intent3);
 
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         vacuna.setOnClickListener(v -> {
 
-            Intent intent4 =new Intent(this,vacunas.class);
+            Intent intent4 =new Intent(this, Vacunas.class);
 
             startActivity(intent4);
 

@@ -6,8 +6,9 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="false"
@@ -18,20 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotitasSaludables">
         <provider
-            android:authorities="hn.healthypets.proyecto.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="hn.healthypets.proyecto.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".perfiles"/>
 
-
-        <activity android:name=".vacunas"/>
-
-
+        <activity android:name=".Vacunas"></activity>
+        <activity android:name=".Perfiles" />
         <activity android:name=".CreacionPerfiles" />
         <activity android:name=".Director" />
         <activity android:name=".MainActivity">
