@@ -13,19 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class ModalDialogoEspecie extends AppCompatDialogFragment {
-    EditText editTextEspecie;
-    ModalDialogoEspecieListener listenerEspecie;
+public class ModalDialogoRaza extends AppCompatDialogFragment {
+    EditText editTextRaza;
+    ModalDialogoRazaListener listenerRaza;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_dialog_especie, null);
+        View view = inflater.inflate(R.layout.layout_dialog_raza, null);
 
         builder.setView(view)
-                .setTitle("Agregar la Especie de tu Mascota")
+                .setTitle("Agregar la Raza de tu Mascota")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -35,11 +35,11 @@ public class ModalDialogoEspecie extends AppCompatDialogFragment {
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String especieMascota = editTextEspecie.getText().toString();
-                        listenerEspecie.applyTextEspecie(especieMascota);
+                        String razaMascota = editTextRaza.getText().toString();
+                        listenerRaza.applyTextRaza(razaMascota);
                     }
                 });
-        editTextEspecie = view.findViewById(R.id.editEspecieMascota);
+        editTextRaza = view.findViewById(R.id.editRazaMascota);
         return builder.create();
     }
 
@@ -47,13 +47,13 @@ public class ModalDialogoEspecie extends AppCompatDialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            listenerEspecie = (ModalDialogoEspecieListener) context;
+            listenerRaza = (ModalDialogoRazaListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "Debe implementar ModalDialogoEspecieListener");
+            throw new ClassCastException(context.toString() + "Debe implementar ModalDialogoRazaListener");
         }
     }
 
-    public interface ModalDialogoEspecieListener {
-        void applyTextEspecie(String especieMascota);
+    public interface ModalDialogoRazaListener{
+        void applyTextRaza(String razaMascota);
     }
 }

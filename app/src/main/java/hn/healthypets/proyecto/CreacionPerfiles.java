@@ -20,14 +20,17 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.IOException;
 
-public class CreacionPerfiles extends AppCompatActivity implements ModalDialogoEspecie.ModalDialogoListener {
+public class CreacionPerfiles extends AppCompatActivity implements ModalDialogoEspecie.ModalDialogoEspecieListener, ModalDialogoRaza.ModalDialogoRazaListener {
 
     ImageButton btnTomarFotos;
     ImageView imgFotoMascota;
     String rutaImagen;
 
-    private TextView textViewEspecie;
-    private ImageButton agregarEspecie;
+    TextView textViewEspecie;
+    ImageButton agregarEspecie;
+
+    TextView textViewRaza;
+    ImageButton agregarRaza;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +42,20 @@ public class CreacionPerfiles extends AppCompatActivity implements ModalDialogoE
         textViewEspecie = findViewById(R.id.txvNombreEspecie);
         agregarEspecie = findViewById(R.id.imgbtnAgregarNuevaEspecie2);
 
+        textViewRaza = findViewById(R.id.txvNombreRaza);
+        agregarRaza = findViewById(R.id.imgbtnAgregarNuevaRaza);
+
         agregarEspecie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirDialogo();
+                abrirDialogoEspecie();
+            }
+        });
+
+        agregarRaza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirDialogoRaza();
             }
         });
 
@@ -54,14 +67,24 @@ public class CreacionPerfiles extends AppCompatActivity implements ModalDialogoE
         });
     }
 
-    public void abrirDialogo() {
+    public void abrirDialogoEspecie() {
         ModalDialogoEspecie modalDialogoEspecie = new ModalDialogoEspecie();
-        modalDialogoEspecie.show(getSupportFragmentManager(), "example dialog");
+        modalDialogoEspecie.show(getSupportFragmentManager(), "especie dialog");
     }
 
     @Override
-    public void applyText(String username) {
-        textViewEspecie.setText(username);
+    public void applyTextEspecie(String especieMascota) {
+        textViewEspecie.setText(especieMascota);
+    }
+
+    public void abrirDialogoRaza() {
+        ModalDialogoRaza modalDialogoRaza = new ModalDialogoRaza();
+        modalDialogoRaza.show(getSupportFragmentManager(), "raza dialogo");
+    }
+
+    @Override
+    public void applyTextRaza(String razaMascota) {
+        textViewRaza.setText(razaMascota);
     }
 
     private void abrirCamara() {
@@ -70,10 +93,8 @@ public class CreacionPerfiles extends AppCompatActivity implements ModalDialogoE
             File imagenArchivo = null;
             try {
                 imagenArchivo = crearImagen();
-
             } catch (IOException ex) {
                 Log.e("Error", ex.toString());
-
             }
             if (imagenArchivo != null) {
                 Uri fotoUri = FileProvider.getUriForFile(this, "hn.healthypets.proyecto.fileprovider", imagenArchivo);
