@@ -12,7 +12,7 @@ public class EspecieConRaza {
     @Embedded public Especie especie;
     @Relation(
         parentColumn = "especieId",
-        entityColumn = "generoRazaId"
+        entityColumn = "razaEspecieId"
     )
     public List<Raza> especieRaza;
 

@@ -2,22 +2,21 @@ package hn.healthypets.proyecto.database.Entidades;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 /**
  * Esta clase coresponde a los tipos de Categoria de Medicamentos tales como Vacuna, desparasitante, vitamina, etc.
  * */
-@Entity
+@Entity (indices = {@Index(value = "nombreCategoria", unique = true)})
 public class CategoriaMedicamento {
     @PrimaryKey(autoGenerate = true)
     private int categoriaMedicamentoId;
 
-
-
     @NonNull
     private String nombreCategoria;
 
-    public CategoriaMedicamento(int categoriaMedicamentoId, @NonNull String nombreCategoria) {
-        this.categoriaMedicamentoId = categoriaMedicamentoId;
+    public CategoriaMedicamento(  int categoriaMedicamentoId,@NonNull String nombreCategoria) {
+        this.categoriaMedicamentoId=categoriaMedicamentoId;
         this.nombreCategoria = nombreCategoria;
     }
 

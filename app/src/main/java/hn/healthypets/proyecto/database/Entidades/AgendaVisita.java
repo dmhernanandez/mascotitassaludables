@@ -13,8 +13,7 @@ public class AgendaVisita {
    private  int tiempoAnticipacion;
    private  String observación;
 
-    public AgendaVisita(int agendaVisitaId, String nombreActividad, String fechaVencimiento, String horaVencimiento, int tiempoAnticipacion, String observación, int mascotaAgendaVisitaId, int visitaCatMedicamentoId) {
-        this.agendaVisitaId = agendaVisitaId;
+    public AgendaVisita( String nombreActividad, String fechaVencimiento, String horaVencimiento, int tiempoAnticipacion, String observación, int mascotaAgendaVisitaId, int visitaCatMedicamentoId) {
         this.nombreActividad = nombreActividad;
         this.fechaVencimiento = fechaVencimiento;
         this.horaVencimiento = horaVencimiento;

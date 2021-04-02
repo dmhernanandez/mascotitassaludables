@@ -2,24 +2,24 @@ package hn.healthypets.proyecto.database.Entidades;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 /**
  * Esta clase contiene atributos para almacenar razas de una especie.
  * */
-@Entity
+@Entity(indices = {@Index( value = "nombreRaza",unique = true)})
 public class Raza {
     @PrimaryKey(autoGenerate = true)
     private int razaId;
     @NonNull
     private String nombreRaza;
     //LLave foranea de la tabla
-    private int generoRazaId;
+    private int razaEspecieId;
 
-    public Raza(int razaId, @NonNull String nombreRaza, int generoRazaId) {
-        this.razaId = razaId;
+    public Raza( @NonNull String nombreRaza, int razaEspecieId) {
         this.nombreRaza = nombreRaza;
-        this.generoRazaId = generoRazaId;
+        this.razaEspecieId = razaEspecieId;
     }
 
     public int getRazaId() {
@@ -39,11 +39,11 @@ public class Raza {
         this.nombreRaza = nombreRaza;
     }
 
-    public int getGeneroRazaId() {
-        return generoRazaId;
+    public int getRazaEspecieId() {
+        return razaEspecieId;
     }
 
-    public void setGeneroRazaId(int generoRazaId) {
-        this.generoRazaId = generoRazaId;
+    public void setRazaEspecieId(int razaEspecieId) {
+        this.razaEspecieId = razaEspecieId;
     }
 }

@@ -4,6 +4,7 @@ import java.sql.Time;
 import java.util.Date;
 
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
  @Entity

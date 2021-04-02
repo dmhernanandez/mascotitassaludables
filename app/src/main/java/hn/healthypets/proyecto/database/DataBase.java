@@ -15,6 +15,8 @@ import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 import hn.healthypets.proyecto.database.Entidades.UnidadesMedida;
+import hn.healthypets.proyecto.database.dao.CategoriaMedicamentoDAO;
+import hn.healthypets.proyecto.database.dao.EspecieDAO;
 import hn.healthypets.proyecto.database.dao.MascotaDAO;
 
 //Escribimmos todas las entidades de la base de de datos
@@ -32,4 +34,8 @@ import hn.healthypets.proyecto.database.dao.MascotaDAO;
 //Creamos un patron singleton para nuestra base de datos
 public abstract class DataBase extends RoomDatabase {
 
+  public abstract MascotaDAO getMascotaDAO();
+
+  public abstract CategoriaMedicamentoDAO getCategoriaMedicamentoDADO();
+  public  abstract EspecieDAO getSpeciesDAO();
 }
