@@ -5,7 +5,9 @@ import androidx.room.Database;
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Especie;
+import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.EspecieDAO;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,8 +38,24 @@ public class MainActivity extends AppCompatActivity {
 
         nuevo.setOnClickListener(v -> {
             instanciaDB.getSpeciesDAO().insertSpecies(new Especie("Perro"));
+            instanciaDB.getSpeciesDAO().insertSpecies(new Especie("Gato"));
 
+            List<Especie> traer = instanciaDB.getSpeciesDAO().getAllSpecies();
+            for(int i=0;i<traer.size();i++)
+            {
+                //Log.i("especie1",String.valueOf(traer.get(i).getEspecieId()));
+            }
 
+            instanciaDB.getRazaDAO().insertRaza(new Raza("Siames",instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+            ,new Raza("Angora",instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato")),
+             new Raza("Sphynx",instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+            );
+
+            List<EspecieDAO.prueba> razasPorEspecie = instanciaDB.getSpeciesDAO().getAllRazaFromSpecie("Perro");
+            for(int i=0;i<razasPorEspecie.size();i++)
+            {
+                Log.i("especie",String.valueOf(razasPorEspecie.get(i).getNombre()));
+            }
 //            Intent intent2 = new Intent(this, director.class);
 //            startActivity(intent2);
 

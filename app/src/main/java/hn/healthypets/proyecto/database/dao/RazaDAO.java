@@ -18,6 +18,6 @@ import hn.healthypets.proyecto.database.Entidades.Raza;
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertRaza(Raza ... raza);
 
-    @Query("Select nombreRaza from Raza")
+    @Query("Select * from Raza")
     public List<Raza> getAllRace();
 }
