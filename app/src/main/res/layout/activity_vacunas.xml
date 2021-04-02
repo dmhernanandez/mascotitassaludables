@@ -80,7 +80,7 @@
             android:hint="Firulais"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:textColorHint="#9E9C9C"
+            android:textColorHint="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas" />
