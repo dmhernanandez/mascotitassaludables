@@ -23,10 +23,10 @@
             android:src="@drawable/ic_imagen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintHorizontal_bias="0.379"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.057"
+            app:layout_constraintVertical_bias="0.026"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageButton
@@ -41,7 +41,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/imgCreacionPerfiles"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.082" />
+            app:layout_constraintVertical_bias="0.038" />
 
         <ImageButton
             android:id="@+id/imgbtnBuscarFotosV"
@@ -235,6 +235,7 @@
             android:layout_height="32dp"
             android:background="@drawable/input_gris"
             android:entries="@array/especie_items"
+            android:padding="10dp"
             android:prompt="@string/especie_promts"
             android:spinnerMode="dialog"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -249,6 +250,7 @@
             android:layout_height="32dp"
             android:background="@drawable/input_gris"
             android:entries="@array/raza_items"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaRaza"
             app:layout_constraintHorizontal_bias="0.639"
@@ -274,20 +276,20 @@
             android:id="@+id/btnGuardarCP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="44dp"
             android:backgroundTint="@color/aniadir"
             android:text="añadir"
             app:icon="@drawable/ic_vector_aniadir"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/spiRaza"
-            app:layout_constraintVertical_bias="0.237" />
+            app:layout_constraintVertical_bias="0.051" />
 
         <Button
             android:id="@+id/btnCancelarVacuna"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="36dp"
+            android:layout_marginEnd="44dp"
             android:layout_marginBottom="120dp"
             android:backgroundTint="@color/cancelar"
             android:text="cancelar"
@@ -295,7 +297,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintTop_toBottomOf="@+id/spiRaza"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.222" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"

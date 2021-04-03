@@ -18,6 +18,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotitasSaludables">
+        <activity android:name=".Actividades"></activity>
+        <activity android:name=".Agenda" />
+        <activity android:name=".Medicamento" />
+        <activity android:name=".Historial" />
+        <activity android:name=".Desparacitante" />
+        <activity android:name=".Vacunas" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="hn.healthypets.proyecto.fileprovider"
@@ -28,7 +34,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Vacunas"></activity>
+
         <activity android:name=".Perfiles" />
         <activity android:name=".CreacionPerfiles" />
         <activity android:name=".Director" />

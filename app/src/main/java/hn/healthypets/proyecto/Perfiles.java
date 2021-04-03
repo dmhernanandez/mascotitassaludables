@@ -7,8 +7,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
-import com.bumptech.glide.request.RequestOptions;
 
 public class Perfiles extends AppCompatActivity {
 
@@ -16,7 +14,7 @@ public class Perfiles extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfiles);
-        ImageView poster =findViewById(R.id.imgvMascota);
+        ImageView poster =findViewById(R.id.imgvHisotiral);
 
         Glide.with(this)
                 .load(R.drawable.golden2)

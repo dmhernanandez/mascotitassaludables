@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="207dp"
+    tools:layout_editor_absoluteY="671dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_medicamento"
+        tools:context=".Medicamento">
+
+
+        <EditText
+            android:id="@+id/edtIndicacionesMedicamento"
+            android:layout_width="302dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="28dp"
+            android:background="@drawable/input_descripciones"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="Se Receta porque el animal no tiene apetito"
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView19"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnListoDesparacitante2"
+            android:layout_width="113dp"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/listo"
+            android:text="Listo"
+            app:icon="@drawable/ic_vector_listo"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante2"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
+            app:layout_constraintVertical_bias="0.355" />
+
+        <Button
+            android:id="@+id/btnCancelarDesparacitante2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:backgroundTint="@color/cancelar"
+            android:text="cancelar"
+            app:icon="@drawable/ic_vector_cancelar"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.879"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
+            app:layout_constraintVertical_bias="0.355" />
+
+        <EditText
+            android:id="@+id/edtFechaMedicamento"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="31/03/2021"
+            android:inputType="date"
+            android:padding="10dp"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <EditText
+            android:id="@+id/edtNombreDesparacitante2"
+            android:layout_width="302dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="28dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="Ratidina"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Nombre del Medicamento:"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.049" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Dosis:"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.152" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="256dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Cada Cuanto:"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/spiDosis"
+            app:layout_constraintVertical_bias="0.055" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="256dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Horas"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toEndOf="@+id/edtCadaDosis"
+            app:layout_constraintTop_toBottomOf="@+id/spiDosis"
+            app:layout_constraintVertical_bias="0.148" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="256dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Días"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/edtPorDosis"
+            app:layout_constraintTop_toBottomOf="@+id/textView16"
+            app:layout_constraintVertical_bias="0.28" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Por Cuantos Días:"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
+            app:layout_constraintVertical_bias="0.033" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Fecha y Hora que inicio"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtPorDosis"
+            app:layout_constraintVertical_bias="0.045" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Indicaciones"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtFechaMedicamento"
+            app:layout_constraintVertical_bias="0.096" />
+
+        <EditText
+            android:id="@+id/edtNumeroDosis"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="116dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="1"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edtCadaDosis"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="176dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="1"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edtPorDosis"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="176dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="1"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView15"
+            app:layout_constraintVertical_bias="0.019" />
+
+        <Spinner
+            android:id="@+id/spiDosis"
+            android:layout_width="165dp"
+            android:layout_height="40dp"
+            android:background="@drawable/input_gris"
+            android:entries="@array/dosis_items"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintStart_toEndOf="@+id/edtNumeroDosis"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante2"
+            app:layout_constraintVertical_bias="0.055" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="382dp" />
+
+        <EditText
+            android:id="@+id/edtHoraMedicamento"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="9:45"
+            android:inputType="time"
+            android:padding="10dp"
+            android:textColor="#9E9C9C"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toEndOf="@+id/edtFechaMedicamento"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="654dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

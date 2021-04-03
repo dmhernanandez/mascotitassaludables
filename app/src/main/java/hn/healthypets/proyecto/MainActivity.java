@@ -15,6 +15,7 @@ import android.widget.Button;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +27,17 @@ public class MainActivity extends AppCompatActivity {
         //Creo la base de datos
        DataBase  instanciaDB =   SingletonDB.getDatabase(this);
 
+        Button vacuna= findViewById(R.id.btnVacunas);
+        Button desparacitante=findViewById(R.id.btnDesparacitante);
+        Button historial=findViewById(R.id.btnHistorial);
+        Button medicamento=findViewById(R.id.btnMedicamento);
+        Button agenda=findViewById(R.id.btnAgenda);
+        Button actividades=findViewById(R.id.btnActividades);
 
         boton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, CreacionPerfiles.class);
+            Intent intent =new Intent(this,CreacionPerfiles.class);
             startActivity(intent);
+
         });
 
         nuevo.setOnClickListener(v -> {
@@ -55,11 +63,37 @@ public class MainActivity extends AppCompatActivity {
 //            Intent intent2 = new Intent(this, director.class);
 //            startActivity(intent2);
 
+            Intent intent2 =new Intent(this, Director.class);
+            startActivity(intent2);
         });
 
         credencial.setOnClickListener(v -> {
-            Intent intent3 = new Intent(this, Perfiles.class);
+            Intent intent3 =new Intent(this, Perfiles.class);
             startActivity(intent3);
         });
+
+
+        desparacitante.setOnClickListener(v -> {
+            Intent intent5 =new Intent(this, Desparacitante.class);
+            startActivity(intent5);
+        });
+        historial.setOnClickListener(v -> {
+            Intent intent6=new Intent(this, Historial.class);
+            startActivity(intent6);
+        });
+
+        medicamento.setOnClickListener(v -> {
+            Intent intent7 =new Intent(this, Medicamento.class);
+            startActivity(intent7);
+        });
+        agenda.setOnClickListener(v -> {
+            Intent intent8 =new Intent(this, Agenda.class);
+            startActivity(intent8);
+        });
+        actividades.setOnClickListener(v -> {
+            Intent intent9 =new Intent(this, Actividades.class);
+            startActivity(intent9);
+        });
+
     }
 }
