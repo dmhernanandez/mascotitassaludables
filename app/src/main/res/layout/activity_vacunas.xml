@@ -15,6 +15,7 @@
         android:background="@drawable/fondo_vacuna"
         tools:context=".Vacunas">
 
+
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
@@ -112,7 +113,7 @@
             android:ems="10"
             android:fontFamily="@font/questrial"
             android:hint="Se aplico la vacuna para prevenir la rabia"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -145,7 +146,7 @@
             app:icon="@drawable/ic_vector_proxima"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintHorizontal_bias="0.464"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna"
             app:layout_constraintVertical_bias="0.0" />

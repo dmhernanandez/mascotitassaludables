@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="207dp"
+    tools:layout_editor_absoluteY="671dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fondo_desparacitantes"
+            tools:context=".Desparacitante">
+
+                <!--        Se colocan las guias para que al rotar la pantalla no se pierda tanto el dise;o -->
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="28dp" />
+
+
+                <EditText
+                    android:id="@+id/edtFechaAplicacionDesparacitante"
+                    android:layout_width="302dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="68dp"
+                    android:background="@drawable/input_gris"
+                    android:ems="10"
+                    android:fontFamily="@font/questrial"
+                    android:hint="31/03/2021"
+                    android:inputType="date"
+                    android:padding="10dp"
+                    android:textColorHint="#9E9C9C"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="382dp" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/questrial"
+                    android:text="Ingrese Fecha de aplicacion:"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/edtFechaAplicacionDesparacitante"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintHorizontal_bias="0.151"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+
+                <EditText
+                    android:id="@+id/edtNombreDesparacitante"
+                    android:layout_width="302dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/input_gris"
+                    android:ems="10"
+                    android:fontFamily="@font/questrial"
+                    android:hint="Iverkan"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    android:textColorHint="#9E9C9C"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionDesparacitante"
+                    app:layout_constraintVertical_bias="0.026" />
+
+                <EditText
+                    android:id="@+id/edtPesoDesparacitante"
+                    android:layout_width="302dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="44dp"
+                    android:background="@drawable/input_gris"
+                    android:ems="10"
+                    android:hint="21.5"
+                    android:inputType="numberDecimal"
+                    android:padding="10dp"
+                    android:textColorHint="#9E9C9C"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/questrial"
+                    android:text="Ingrese Peso (kg):"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/edtPesoDesparacitante"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintHorizontal_bias="0.106"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <EditText
+                    android:id="@+id/edtObservacionesDesparacitante"
+                    android:layout_width="302dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/input_descripciones"
+                    android:ems="10"
+                    android:fontFamily="@font/questrial"
+                    android:hint="Se aplico la vacuna para prevenir la rabia"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp"
+                    android:textColorHint="#9E9C9C"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparacitante"
+                    app:layout_constraintVertical_bias="0.053" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/questrial"
+                    android:text="Ingrese Observaciones:"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintHorizontal_bias="0.126"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparacitante"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/questrial"
+                    android:text="Ingrese Nombre del desparacitante:"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/edtNombreDesparacitante"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintHorizontal_bias="0.208"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionDesparacitante"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <Button
+                    android:id="@+id/btnProximamenteDesparacitante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
+                    android:backgroundTint="@color/agendar"
+                    android:text="Proxima"
+                    app:icon="@drawable/ic_vector_proxima"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintVertical_bias="0.91" />
+
+                <Button
+                    android:id="@+id/btnListoDesparacitante"
+                    android:layout_width="113dp"
+                    android:layout_height="48dp"
+                    android:backgroundTint="@color/listo"
+                    android:text="Listo"
+                    app:icon="@drawable/ic_vector_listo"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                    app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintVertical_bias="0.252" />
+
+                <Button
+                    android:id="@+id/btnCancelarDesparacitante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/cancelar"
+                    android:text="cancelar"
+                    app:icon="@drawable/ic_vector_cancelar"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintHorizontal_bias="0.879"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintVertical_bias="0.252" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="656dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
