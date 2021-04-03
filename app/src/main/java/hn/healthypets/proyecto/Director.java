@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class director extends AppCompatActivity {
+public class Director extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

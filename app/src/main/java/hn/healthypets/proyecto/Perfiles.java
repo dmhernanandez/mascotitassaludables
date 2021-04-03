@@ -10,7 +10,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.request.RequestOptions;
 
-public class perfiles extends AppCompatActivity {
+public class Perfiles extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
