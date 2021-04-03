@@ -1,9 +1,7 @@
 package hn.healthypets.proyecto;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
 import hn.healthypets.proyecto.database.DataBase;
-import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Especie;
 import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.SingletonDB;
@@ -11,11 +9,9 @@ import hn.healthypets.proyecto.database.dao.EspecieDAO;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         credencial.setOnClickListener(v -> {
-            Intent intent3 = new Intent(this, perfiles.class);
+            Intent intent3 = new Intent(this, Perfiles.class);
             startActivity(intent3);
         });
     }
