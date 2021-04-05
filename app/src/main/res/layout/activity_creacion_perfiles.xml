@@ -6,15 +6,13 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:layout_editor_absoluteX="207dp"
-    tools:layout_editor_absoluteY="671dp" >
+    tools:layout_editor_absoluteY="671dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:background="@drawable/fondo_creacion_perfiles"
-
-        tools:context=".CreacionPerfiles">
-
+        android:background="@drawable/fondo_creacion_perfiles"
+        tools:context=".CreacionPerfiles2">
 
         <ImageView
             android:id="@+id/imgCreacionPerfiles"
@@ -23,65 +21,66 @@
             android:src="@drawable/ic_imagen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintHorizontal_bias="0.327"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.057"
+            app:layout_constraintVertical_bias="0.026"
             tools:srcCompat="@tools:sample/avatars" />
+
 
         <ImageButton
             android:id="@+id/imgbtnTomarFotosCP"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="64dp"
             android:background="@drawable/btn_redondo_aqua"
             android:src="@drawable/ic_camera_li"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.187"
             app:layout_constraintStart_toEndOf="@+id/imgCreacionPerfiles"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.082" />
+            app:layout_constraintVertical_bias="0.059" />
 
         <ImageButton
             android:id="@+id/imgbtnBuscarFotosV"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="64dp"
             android:layout_marginBottom="580dp"
-
             android:background="@drawable/btn_redondo_aqua"
             android:src="@drawable/ic_subir_imagen"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.187"
             app:layout_constraintStart_toEndOf="@+id/imgCreacionPerfiles"
             app:layout_constraintTop_toBottomOf="@+id/imgbtnTomarFotosCP"
-            app:layout_constraintVertical_bias="0.728" />
+            app:layout_constraintVertical_bias="0.466" />
 
         <ImageButton
             android:id="@+id/imgbtnAgregarNuevaRaza"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="204dp"
+            android:layout_marginEnd="56dp"
 
+            android:layout_marginBottom="204dp"
             android:background="@drawable/btn_redondo_celeste"
             android:src="@drawable/ic_vector_nuevoregistro"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgbtnAgregarNuevaEspecie2"
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageButton
             android:id="@+id/imgbtnAgregarNuevaEspecie2"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="268dp"
-
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="260dp"
             android:background="@drawable/btn_redondo_celeste"
             android:src="@drawable/ic_vector_nuevoregistro"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbHembra"
+            app:layout_constraintVertical_bias="0.892" />
 
         <TextView
             android:id="@+id/txvNombreCP"
@@ -92,30 +91,29 @@
             android:text="Ingrese Nombre :"
             android:textColor="#000000"
             app:layout_constraintBottom_toTopOf="@+id/EdtNombreCP"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="0.096"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/EdtNombreCP"
             android:layout_width="302dp"
-            android:layout_height="37dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="512dp"
             android:background="@drawable/input_gris"
-            android:ems="1"
+            android:ems="10"
             android:hint="Doggy"
             android:inputType="textPersonName"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="0.409"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.431"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas"
             app:layout_constraintVertical_bias="0.06" />
-
 
         <TextView
             android:id="@+id/txvFechaNacimientoCP"
@@ -126,9 +124,9 @@
             android:text="Ingrese Fecha Nacimiento:"
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toTopOf="@+id/etdFechaNacimiento"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="0.118"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.195"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
             app:layout_constraintVertical_bias="1.0" />
 
@@ -141,7 +139,7 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toTopOf="@+id/edtNumeroChip"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.158"
+            app:layout_constraintHorizontal_bias="0.146"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etdFechaNacimiento"
             app:layout_constraintVertical_bias="1.0" />
@@ -155,10 +153,10 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.141"
+            app:layout_constraintHorizontal_bias="0.13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
-            app:layout_constraintVertical_bias="0.069" />
+            app:layout_constraintVertical_bias="0.072" />
 
         <RadioButton
             android:id="@+id/rbHembra"
@@ -185,8 +183,6 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/rbHembra"
-            app:layout_constraintHorizontal_bias="0.949"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
             app:layout_constraintVertical_bias="0.049" />
 
@@ -200,7 +196,7 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.142"
+            app:layout_constraintHorizontal_bias="0.131"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txvGenero"
             app:layout_constraintVertical_bias="0.017" />
@@ -209,32 +205,31 @@
             android:id="@+id/txvNombreEspecie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="68dp"
             android:fontFamily="@font/questrial"
             android:text="Nombre Especie"
             android:textColor="#0B0B0B"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="33dp" />
 
         <TextView
             android:id="@+id/txvNombreRaza"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="124dp"
             android:fontFamily="@font/questrial"
             android:text="Nombre Raza"
             android:textColor="#0B0B0B"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="33dp" />
 
         <Spinner
             android:id="@+id/spiEspecie"
             android:layout_width="165dp"
-            android:layout_height="32dp"
+            android:layout_height="40dp"
             android:background="@drawable/input_gris"
             android:entries="@array/especie_items"
+            android:padding="10dp"
             android:prompt="@string/especie_promts"
             android:spinnerMode="dialog"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -246,15 +241,16 @@
         <Spinner
             android:id="@+id/spiRaza"
             android:layout_width="165dp"
-            android:layout_height="32dp"
+            android:layout_height="40dp"
             android:background="@drawable/input_gris"
             android:entries="@array/raza_items"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaRaza"
-            app:layout_constraintHorizontal_bias="0.639"
+            app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toEndOf="@+id/txvRaza"
             app:layout_constraintTop_toBottomOf="@+id/spiEspecie"
-            app:layout_constraintVertical_bias="0.142" />
+            app:layout_constraintVertical_bias="0.08" />
 
         <TextView
             android:id="@+id/txvRaza"
@@ -265,51 +261,39 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.136"
+            app:layout_constraintHorizontal_bias="0.125"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txvEspecie"
-            app:layout_constraintVertical_bias="0.188" />
+            app:layout_constraintVertical_bias="0.189" />
 
         <Button
             android:id="@+id/btnGuardarCP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
             android:backgroundTint="@color/aniadir"
             android:text="añadir"
             app:icon="@drawable/ic_vector_aniadir"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancelarVacuna"
+            app:layout_constraintHorizontal_bias="0.575"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spiRaza"
-            app:layout_constraintVertical_bias="0.237" />
+            app:layout_constraintVertical_bias="0.173" />
 
         <Button
             android:id="@+id/btnCancelarVacuna"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="36dp"
             android:layout_marginBottom="120dp"
             android:backgroundTint="@color/cancelar"
             android:text="cancelar"
             app:icon="@drawable/ic_vector_cancelar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.794"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spiRaza"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="29dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="385dp" />
+            app:layout_constraintVertical_bias="0.756" />
 
         <EditText
             android:id="@+id/etdFechaNacimiento"
@@ -322,9 +306,9 @@
             android:inputType="date"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="0.407"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.431"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP" />
 
         <EditText
@@ -338,11 +322,10 @@
             android:inputType="number"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="0.407"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.431"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etdFechaNacimiento" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

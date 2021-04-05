@@ -18,4 +18,35 @@
         <item>Grandanes</item>
         <item>Piquines</item>
     </string-array>
+
+    <string-array name="dosis_items">
+        <item>Seleccione</item>
+        <item>Tableta</item>
+        <item>Gotero</item>
+    </string-array>
+
+    <string-array name="hora_items">
+        <item>Seleccione</item>
+        <item>Hora</item>
+    </string-array>
+
+    <string-array name="TipoAgenda_items">
+        <item>Seleccione</item>
+        <item>Vacuna</item>
+        <item>Desparacitacion</item>
+        <item>Medicamento</item>
+    </string-array>
+
+    <string-array name="recordame_items">
+        <item>Seleccione</item>
+        <item>A la hora del evento</item>
+        <item>5 minutos antes</item>
+        <item>10 minutos antes</item>
+        <item>30 minutos antes</item>
+        <item>1 hora minutos antes</item>
+        <item>2 horas antes</item>
+        <item>1 dias antes</item>
+        <item>1 semana antes</item>
+
+    </string-array>
 </resources>
