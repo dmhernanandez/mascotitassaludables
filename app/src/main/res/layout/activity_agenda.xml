@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="207dp"
+    tools:layout_editor_absoluteY="671dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_agenda"
+        tools:context=".Agenda">
+
+        <Button
+            android:id="@+id/btnListoDesparacitante3"
+            android:layout_width="113dp"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/listo"
+            android:text="Listo"
+            app:icon="@drawable/ic_vector_listo"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.132"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento2"
+            app:layout_constraintVertical_bias="0.165" />
+
+        <Button
+            android:id="@+id/btnCancelarDesparacitante3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/cancelar"
+            android:text="cancelar"
+            app:icon="@drawable/ic_vector_cancelar"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.597"
+            app:layout_constraintStart_toEndOf="@+id/btnListoDesparacitante3"
+            app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento2"
+            app:layout_constraintVertical_bias="0.165" />
+
+        <EditText
+            android:id="@+id/edtIndicacionesMedicamento2"
+            android:layout_width="302dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="28dp"
+            android:background="@drawable/input_descripciones"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="Visita para inyectar al perro por la vacuna "
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView25"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edtFechaMedicamento2"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="28dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="31/03/2021"
+            android:inputType="date"
+            android:padding="10dp"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView22"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edtHoraMedicamento2"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="9:45"
+            android:inputType="time"
+            android:padding="10dp"
+            android:textColor="#9E9C9C"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toEndOf="@+id/edtFechaMedicamento"
+            app:layout_constraintTop_toBottomOf="@+id/textView22"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingresar Fecha y Hora: "
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/spiTipoAgenda"
+            app:layout_constraintVertical_bias="0.045" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Recordame: "
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtFechaMedicamento2"
+            app:layout_constraintVertical_bias="0.053" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Observaciones"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/spiRecordame"
+            app:layout_constraintVertical_bias="0.052" />
+
+        <Spinner
+            android:id="@+id/spiTipoAgenda"
+            android:layout_width="302dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="28dp"
+            android:background="@drawable/input_gris"
+            android:entries="@array/TipoAgenda_items"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView21"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Tipo de Tarea"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreActivida"
+            app:layout_constraintVertical_bias="0.032" />
+
+        <Spinner
+            android:id="@+id/spiRecordame"
+            android:layout_width="302dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="28dp"
+            android:background="@drawable/input_gris"
+            android:entries="@array/recordame_items"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView24"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edtNombreActivida"
+            android:layout_width="302dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="28dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="Toca Vacunar a Firulais"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView20"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Nombre de la Actividad:"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.048" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="382dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="658dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
