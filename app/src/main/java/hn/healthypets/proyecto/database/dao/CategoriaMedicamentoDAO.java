@@ -22,6 +22,7 @@ public interface CategoriaMedicamentoDAO {
     //En este caso podemos mandar a guardar varios categorias de medicamentos como un arreglo
     @Insert
     public void insertMedicinesCategories(CategoriaMedicamento ... categoriaMedicamentos);
+
     @Update
     public void actualizarCategoriaMedicamento(CategoriaMedicamento categoriaMedicamento);
 

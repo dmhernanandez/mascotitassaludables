@@ -25,8 +25,8 @@ public class ModalDialogoEspecie extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.layout_dialog_especie, null);
 
         builder.setView(view)
-                .setTitle("Agregar la Especie de tu Mascota")
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setTitle("Agregar la especie de tu mascota")
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

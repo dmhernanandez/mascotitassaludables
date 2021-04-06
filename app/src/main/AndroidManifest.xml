@@ -18,12 +18,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotitasSaludables">
-        <activity android:name=".Actividades"></activity>
-        <activity android:name=".Agenda" />
-        <activity android:name=".Medicamento" />
-        <activity android:name=".Historial" />
-        <activity android:name=".Desparacitante" />
-
         <activity
             android:name=".MenuLateral"
             android:label="@string/title_activity_menu_lateral"
@@ -41,10 +35,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-
-        <activity android:name=".Perfiles" />
-        <activity android:name=".CreacionPerfiles" />
-        <activity android:name=".Director" />
         <activity
             android:name=".Vacunas"
             android:screenOrientation="portrait" />
@@ -84,5 +74,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

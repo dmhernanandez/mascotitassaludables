@@ -13,10 +13,10 @@ import hn.healthypets.proyecto.database.Entidades.Mascota;
 @Dao
 public interface MascotaDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void insertarMascota(Mascota mascota);
+    public void insertNewPet(Mascota mascota);
 
     @Update
-    public void actualizarMascota(Mascota mascota);
+    public void updatePet(Mascota mascota);
 
     //Selecciona a todas Las mascotas y retorna un arreglo
     @Query("SELECT * FROM Mascota")

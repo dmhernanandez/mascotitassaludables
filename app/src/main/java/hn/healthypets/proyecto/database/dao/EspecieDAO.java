@@ -15,15 +15,17 @@ public interface EspecieDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertSpecies(Especie especie);
+
    @Query("SELECT * FROM Especie")
     public List<Especie> getAllSpecies();
 
-   @Query("SELECT * FROM especie WHERE especieNombre = :nombreEspecie")
+   @Query("SELECT especieId FROM especie WHERE especieNombre = :nombreEspecie")
    public int getIdSpeciesByName(String nombreEspecie);
 
    @Transaction
     @Query("SELECT r.nombreRaza AS nombre FROM Especie e JOIN Raza r on e.especieId= r.razaEspecieId WHERE e.especieNombre=:nombreRaza")
     public List<prueba> getAllRazaFromSpecie(String nombreRaza);
+
 
     static class prueba{
         private  String nombre;
