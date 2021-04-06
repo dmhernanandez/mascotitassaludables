@@ -19,6 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotitasSaludables">
 
+        <activity
+            android:name=".MenuLateral"
+            android:label="@string/title_activity_menu_lateral"
+            android:theme="@style/Theme.MascotitasSaludables.NoActionBar"></activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="hn.healthypets.proyecto.fileprovider"
