@@ -11,12 +11,13 @@ import hn.healthypets.proyecto.database.dao.EspecieDAO;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.Button;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+   DataBase instanciaDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,16 +31,10 @@ public class MainActivity extends AppCompatActivity {
         Button medicamento=findViewById(R.id.btnMedicamento);
         Button agenda=findViewById(R.id.btnAgenda);
         Button actividades=findViewById(R.id.btnActividades);
-
-        CategoriaMedicamento catmedicamento = new CategoriaMedicamento(1,"Paracetamol");
-
-        Log.i("prueba",catmedicamento.toString());
-        //Creo la base de datos
-       DataBase  instanciaDB =   SingletonDB.getDatabase(this);
-
-
+        //Obtenemos una instancia de la base de datos
+        instanciaDB= SingletonDB.getDatabase(this);
         boton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, CreacionPerfiles.class);
+            Intent intent =new Intent(this,CreacionPerfiles.class);
             startActivity(intent);
 
         });
@@ -78,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent3);
         });
 
+        vacuna.setOnClickListener(v -> {
+            Intent intent4 =new Intent(this, Vacunas.class);
+            startActivity(intent4);
+        });
 
         desparacitante.setOnClickListener(v -> {
             Intent intent5 =new Intent(this, Desparacitante.class);
@@ -102,4 +101,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        return true;
+    }
+
+
 }

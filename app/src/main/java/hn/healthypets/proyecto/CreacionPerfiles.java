@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,7 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class CreacionPerfiles extends AppCompatActivity implements ModalDialogoEspecie.ModalDialogoEspecieListener, ModalDialogoRaza.ModalDialogoRazaListener {
+public class CreacionPerfiles extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ModalDialogoEspecie.ModalDialogoEspecieListener, ModalDialogoRaza.ModalDialogoRazaListener {
 
     ImageButton btnTomarFotos;
     ImageView imgFotoMascota;
@@ -152,5 +153,16 @@ public class CreacionPerfiles extends AppCompatActivity implements ModalDialogoE
         File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
         rutaImagen = imagen.getAbsolutePath();
         return imagen;
+    }
+
+//Estos metodos se utilizan para obtener
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
