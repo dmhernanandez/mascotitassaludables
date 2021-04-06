@@ -13,11 +13,13 @@ import hn.healthypets.proyecto.database.Entidades.Raza;
 @Dao
  public  interface   RazaDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void insertRaza(Raza raza);
+    public void insertBreed(Raza raza);
 
+    /*Inserta una lista de*/
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void insertRaza(Raza ... raza);
+    public void insertBreeds(Raza ... raza);
 
+    /* Obtiene todas razas de los perros*/
     @Query("Select * from Raza")
-    public List<Raza> getAllRace();
+    public List<Raza> getAllBreeds();
 }

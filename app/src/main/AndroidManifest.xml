@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotitasSaludables">
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="hn.healthypets.proyecto.fileprovider"
@@ -28,10 +29,33 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Vacunas"></activity>
-        <activity android:name=".Perfiles" />
-        <activity android:name=".CreacionPerfiles" />
-        <activity android:name=".Director" />
+        <activity
+            android:name=".Vacunas"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Perfiles"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreacionPerfiles"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Director"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Actividades"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Agenda"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Desparacitante"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Historial"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Medicamento"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

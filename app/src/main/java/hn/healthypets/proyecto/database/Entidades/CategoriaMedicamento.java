@@ -1,12 +1,14 @@
 package hn.healthypets.proyecto.database.Entidades;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 /**
  * Esta clase coresponde a los tipos de Categoria de Medicamentos tales como Vacuna, desparasitante, vitamina, etc.
  * */
+
 @Entity (indices = {@Index(value = "nombreCategoria", unique = true)})
 public class CategoriaMedicamento {
     @PrimaryKey(autoGenerate = true)
@@ -36,4 +38,5 @@ public class CategoriaMedicamento {
     public void setNombreCategoria(@NonNull String nombreCategoria) {
         this.nombreCategoria = nombreCategoria;
     }
+
 }

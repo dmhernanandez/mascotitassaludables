@@ -2,6 +2,7 @@ package hn.healthypets.proyecto;
 
 import androidx.appcompat.app.AppCompatActivity;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Especie;
 import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.SingletonDB;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         Button agenda=findViewById(R.id.btnAgenda);
         Button actividades=findViewById(R.id.btnActividades);
 
+        CategoriaMedicamento catmedicamento = new CategoriaMedicamento(1,"Paracetamol");
+
+        Log.i("prueba",catmedicamento.toString());
         //Creo la base de datos
        DataBase  instanciaDB =   SingletonDB.getDatabase(this);
 
@@ -50,12 +54,13 @@ public class MainActivity extends AppCompatActivity {
                 //Log.i("especie1",String.valueOf(traer.get(i).getEspecieId()));
             }
 
-            instanciaDB.getRazaDAO().insertRaza(new Raza("Siames",instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
-            ,new Raza("Angora",instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato")),
-             new Raza("Sphynx",instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+            instanciaDB.getRazaDAO().insertBreeds(
+            new Raza("Siames", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+            ,new Raza("Angora", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato")),
+             new Raza("Sphynx", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
             );
 
-            List<EspecieDAO.prueba> razasPorEspecie = instanciaDB.getSpeciesDAO().getAllRazaFromSpecie("Perro");
+            List<EspecieDAO.prueba> razasPorEspecie = instanciaDB.getSpeciesDAO().getAllRazaFromSpecie("Dóberman");
             for(int i=0;i<razasPorEspecie.size();i++)
             {
                 Log.i("especie",String.valueOf(razasPorEspecie.get(i).getNombre()));

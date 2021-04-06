@@ -19,7 +19,6 @@
             android:id="@+id/edtIndicacionesMedicamento"
             android:layout_width="302dp"
             android:layout_height="80dp"
-            android:layout_marginStart="28dp"
             android:background="@drawable/input_descripciones"
             android:ems="10"
             android:fontFamily="@font/questrial"
@@ -28,9 +27,9 @@
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.532"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -43,31 +42,30 @@
             app:icon="@drawable/ic_vector_listo"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante2"
-            app:layout_constraintHorizontal_bias="0.506"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.688"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
-            app:layout_constraintVertical_bias="0.355" />
+            app:layout_constraintVertical_bias="0.333" />
 
         <Button
             android:id="@+id/btnCancelarDesparacitante2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
             android:backgroundTint="@color/cancelar"
             android:text="cancelar"
             app:icon="@drawable/ic_vector_cancelar"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.879"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.754"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
-            app:layout_constraintVertical_bias="0.355" />
+            app:layout_constraintVertical_bias="0.333" />
 
         <EditText
             android:id="@+id/edtFechaMedicamento"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="56dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/input_gris"
             android:ems="10"
@@ -77,14 +75,13 @@
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <EditText
             android:id="@+id/edtNombreDesparacitante2"
             android:layout_width="302dp"
             android:layout_height="40dp"
-            android:layout_marginStart="28dp"
             android:background="@drawable/input_gris"
             android:ems="10"
             android:fontFamily="@font/questrial"
@@ -93,8 +90,9 @@
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -109,26 +107,25 @@
             android:text="Ingrese Nombre del Medicamento:"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.208"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.049" />
+            app:layout_constraintVertical_bias="0.028" />
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/black"
             android:fontFamily="@font/questrial"
             android:text="Ingrese Dosis:"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.208"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.173"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.152" />
 
@@ -136,16 +133,15 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
             android:layout_marginBottom="256dp"
             android:backgroundTint="@color/black"
             android:fontFamily="@font/questrial"
             android:text="Ingrese Cada Cuanto:"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.208"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.205"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spiDosis"
             app:layout_constraintVertical_bias="0.055" />
 
@@ -162,8 +158,108 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toEndOf="@+id/edtCadaDosis"
-            app:layout_constraintTop_toBottomOf="@+id/spiDosis"
-            app:layout_constraintVertical_bias="0.148" />
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            app:layout_constraintVertical_bias="0.042" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Por Cuantos Días:"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.217"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
+            app:layout_constraintVertical_bias="0.033" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Fecha y Hora que inicio"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.262"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtPorDosis"
+            app:layout_constraintVertical_bias="0.044" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Indicaciones"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.175"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtFechaMedicamento"
+            app:layout_constraintVertical_bias="0.093" />
+
+        <EditText
+            android:id="@+id/edtNumeroDosis"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="1"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.409"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edtCadaDosis"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="204dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="1"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.169"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edtPorDosis"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:background="@drawable/input_gris"
+            android:ems="10"
+            android:fontFamily="@font/questrial"
+            android:hint="1"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.614"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView17"
@@ -176,110 +272,11 @@
             android:text="Días"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/edtPorDosis"
-            app:layout_constraintTop_toBottomOf="@+id/textView16"
-            app:layout_constraintVertical_bias="0.28" />
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/questrial"
-            android:text="Ingrese Por Cuantos Días:"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.208"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
-            app:layout_constraintVertical_bias="0.033" />
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/questrial"
-            android:text="Ingrese Fecha y Hora que inicio"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.208"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/edtPorDosis"
-            app:layout_constraintVertical_bias="0.045" />
-
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/questrial"
-            android:text="Indicaciones"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintHorizontal_bias="0.208"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/edtFechaMedicamento"
-            app:layout_constraintVertical_bias="0.096" />
-
-        <EditText
-            android:id="@+id/edtNumeroDosis"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="116dp"
-            android:background="@drawable/input_gris"
-            android:ems="10"
-            android:fontFamily="@font/questrial"
-            android:hint="1"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textColorHint="#9E9C9C"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/edtCadaDosis"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="176dp"
-            android:background="@drawable/input_gris"
-            android:ems="10"
-            android:fontFamily="@font/questrial"
-            android:hint="1"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textColorHint="#9E9C9C"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/textView14"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/edtPorDosis"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="176dp"
-            android:background="@drawable/input_gris"
-            android:ems="10"
-            android:fontFamily="@font/questrial"
-            android:hint="1"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textColorHint="#9E9C9C"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/textView15"
-            app:layout_constraintVertical_bias="0.019" />
+            app:layout_constraintVertical_bias="0.074" />
 
         <Spinner
             android:id="@+id/spiDosis"
@@ -289,25 +286,11 @@
             android:entries="@array/dosis_items"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
-            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toEndOf="@+id/edtNumeroDosis"
             app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante2"
             app:layout_constraintVertical_bias="0.055" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="28dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="382dp" />
 
         <EditText
             android:id="@+id/edtHoraMedicamento"
@@ -321,10 +304,12 @@
             android:inputType="time"
             android:padding="10dp"
             android:textColor="#9E9C9C"
-            app:layout_constraintEnd_toStartOf="@+id/guideline8"
-            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.266"
             app:layout_constraintStart_toEndOf="@+id/edtFechaMedicamento"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintTop_toBottomOf="@+id/textView18"
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"

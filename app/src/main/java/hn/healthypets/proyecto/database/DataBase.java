@@ -22,21 +22,20 @@ import hn.healthypets.proyecto.database.dao.RazaDAO;
 
 //Escribimmos todas las entidades de la base de de datos
 @Database(entities = {AgendaMedicamento.class,
-        AgendaVisita.class,
-        CategoriaMedicamento.class,
-        Especie.class,
-        Genero.class,
-        Mascota.class,
-        Medicamento.class,
-        Raza.class,
-        TipoDosis.class,
-        UnidadesMedida.class
-},version = 1)
+                      AgendaVisita.class,
+                      CategoriaMedicamento.class,
+                      Especie.class,
+                      Genero.class,
+                      Mascota.class,
+                      Medicamento.class,
+                      Raza.class,
+                      TipoDosis.class,
+                      UnidadesMedida.class
+},version = 1,exportSchema = false)
 //Creamos un patron singleton para nuestra base de datos
 public abstract class DataBase extends RoomDatabase {
 
   public abstract MascotaDAO getMascotaDAO();
-
   public abstract CategoriaMedicamentoDAO getCategoriaMedicamentoDADO();
   public  abstract EspecieDAO getSpeciesDAO();
   public abstract RazaDAO getRazaDAO();
