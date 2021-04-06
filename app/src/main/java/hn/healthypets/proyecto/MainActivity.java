@@ -10,6 +10,7 @@ import hn.healthypets.proyecto.database.dao.EspecieDAO;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.Button;
 
 import java.util.List;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         Button medicamento=findViewById(R.id.btnMedicamento);
         Button agenda=findViewById(R.id.btnAgenda);
         Button actividades=findViewById(R.id.btnActividades);
+
+
 
         boton.setOnClickListener(v -> {
             Intent intent =new Intent(this,CreacionPerfiles.class);
@@ -96,4 +99,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        return true;
+    }
+
+
 }

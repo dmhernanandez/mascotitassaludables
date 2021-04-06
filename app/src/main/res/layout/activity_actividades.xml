@@ -14,7 +14,6 @@
         android:background="@drawable/fondo_actividades"
         tools:context=".Actividades">
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/crdvHistorial"
             android:layout_width="358dp"
@@ -30,7 +29,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="360dp"
                 android:layout_height="154dp">
-
 
                 <TextView
                     android:id="@+id/txvNombrePerroActividad"
@@ -81,20 +79,6 @@
 
 
         </androidx.cardview.widget.CardView>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="28dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="382dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"

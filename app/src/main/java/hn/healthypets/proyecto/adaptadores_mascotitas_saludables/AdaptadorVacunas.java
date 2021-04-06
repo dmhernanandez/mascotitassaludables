@@ -12,17 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import hn.healthypets.proyecto.R;
-import hn.healthypets.proyecto.modelos_mascotitas_saludables.Vacuna;
+import hn.healthypets.proyecto.modelos_mascotitas_saludables.ModeloVacunas;
 
 public class AdaptadorVacunas extends RecyclerView.Adapter<AdaptadorVacunas.ViewHolder> {
-    private final ArrayList<Vacuna> vacunaArrayList;
+    private final ArrayList<ModeloVacunas> vacunaArrayList;
 
     @Override
     public int getItemCount() {
         return this.vacunaArrayList.size();
     }
 
-    public AdaptadorVacunas(ArrayList<Vacuna> vacunaArrayList) {
+    public AdaptadorVacunas(ArrayList<ModeloVacunas> vacunaArrayList) {
         this.vacunaArrayList = vacunaArrayList;
     }
 

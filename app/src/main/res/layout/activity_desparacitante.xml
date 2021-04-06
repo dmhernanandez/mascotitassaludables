@@ -17,19 +17,12 @@
 
                 <!--        Se colocan las guias para que al rotar la pantalla no se pierda tanto el dise;o -->
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="28dp" />
-
 
                 <EditText
                     android:id="@+id/edtFechaAplicacionDesparacitante"
                     android:layout_width="302dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="68dp"
+                    android:layout_marginTop="52dp"
                     android:background="@drawable/input_gris"
                     android:ems="10"
                     android:fontFamily="@font/questrial"
@@ -37,16 +30,10 @@
                     android:inputType="date"
                     android:padding="10dp"
                     android:textColorHint="#9E9C9C"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="382dp" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -57,10 +44,11 @@
                     android:text="Ingrese Fecha de aplicacion:"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toTopOf="@+id/edtFechaAplicacionDesparacitante"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.151"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2" />
-
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.235"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
                     android:id="@+id/edtNombreDesparacitante"
@@ -75,24 +63,26 @@
                     android:padding="10dp"
                     android:textColorHint="#9E9C9C"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.504"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionDesparacitante"
-                    app:layout_constraintVertical_bias="0.026" />
+                    app:layout_constraintVertical_bias="0.014" />
 
                 <EditText
                     android:id="@+id/edtPesoDesparacitante"
                     android:layout_width="302dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="44dp"
+                    android:layout_marginTop="36dp"
                     android:background="@drawable/input_gris"
                     android:ems="10"
                     android:hint="21.5"
                     android:inputType="numberDecimal"
                     android:padding="10dp"
                     android:textColorHint="#9E9C9C"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.504"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante" />
 
                 <TextView
@@ -104,9 +94,9 @@
                     android:text="Ingrese Peso (kg):"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toTopOf="@+id/edtPesoDesparacitante"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.106"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.179"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante"
                     app:layout_constraintVertical_bias="1.0" />
 
@@ -123,10 +113,11 @@
                     android:padding="10dp"
                     android:textColorHint="#9E9C9C"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.504"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparacitante"
-                    app:layout_constraintVertical_bias="0.053" />
+                    app:layout_constraintVertical_bias="0.015" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -137,9 +128,9 @@
                     android:text="Ingrese Observaciones:"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toTopOf="@+id/edtObservacionesDesparacitante"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.126"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.206"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparacitante"
                     app:layout_constraintVertical_bias="1.0" />
 
@@ -153,9 +144,9 @@
                     android:text="Ingrese Nombre del desparacitante:"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toTopOf="@+id/edtNombreDesparacitante"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.208"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.296"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionDesparacitante"
                     app:layout_constraintVertical_bias="1.0" />
 
@@ -168,10 +159,11 @@
                     android:text="Proxima"
                     app:icon="@drawable/ic_vector_proxima"
                     app:layout_constraintBottom_toTopOf="@+id/guideline6"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.452"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
-                    app:layout_constraintVertical_bias="0.91" />
+                    app:layout_constraintVertical_bias="0.55" />
 
                 <Button
                     android:id="@+id/btnListoDesparacitante"
@@ -182,10 +174,10 @@
                     app:icon="@drawable/ic_vector_listo"
                     app:layout_constraintBottom_toTopOf="@+id/guideline6"
                     app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante"
-                    app:layout_constraintHorizontal_bias="0.493"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintHorizontal_bias="0.518"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
-                    app:layout_constraintVertical_bias="0.252" />
+                    app:layout_constraintVertical_bias="0.158" />
 
                 <Button
                     android:id="@+id/btnCancelarDesparacitante"
@@ -195,11 +187,11 @@
                     android:text="cancelar"
                     app:icon="@drawable/ic_vector_cancelar"
                     app:layout_constraintBottom_toTopOf="@+id/guideline6"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.879"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.802"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
-                    app:layout_constraintVertical_bias="0.252" />
+                    app:layout_constraintVertical_bias="0.158" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline6"

@@ -23,7 +23,14 @@
         <activity android:name=".Medicamento" />
         <activity android:name=".Historial" />
         <activity android:name=".Desparacitante" />
-        <activity android:name=".Vacunas" />
+
+        <activity
+            android:name=".MenuLateral"
+            android:label="@string/title_activity_menu_lateral"
+            android:theme="@style/Theme.MascotitasSaludables.NoActionBar">
+
+        </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="hn.healthypets.proyecto.fileprovider"
@@ -38,6 +45,33 @@
         <activity android:name=".Perfiles" />
         <activity android:name=".CreacionPerfiles" />
         <activity android:name=".Director" />
+        <activity
+            android:name=".Vacunas"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Perfiles"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreacionPerfiles"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Director"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Actividades"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Agenda"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Desparacitante"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Historial"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Medicamento"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
