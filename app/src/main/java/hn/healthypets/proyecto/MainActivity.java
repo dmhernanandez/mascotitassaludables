@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         credencial.setOnClickListener(v -> {
             Intent intent3 = new Intent(this, Perfiles.class);
-
             startActivity(intent3);
         });
 

@@ -10,108 +10,117 @@
         android:id="@+id/nuevo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/botones"
         android:text="Bienvenida"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintVertical_bias="0.061" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crear perfil"
+        android:backgroundTint="@color/botones"
+        android:text="perfil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nuevo"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <Button
         android:id="@+id/btnCredencial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/botones"
         android:text="Credencial"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintVertical_bias="0.027" />
 
     <Button
         android:id="@+id/btnVacunas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/botones"
         android:text="vacunas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCredencial"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/btnDesparacitante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="despacitante"
+        android:backgroundTint="@color/botones"
+        android:text="desparasitante"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnVacunas"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.031" />
 
     <Button
         android:id="@+id/btnHistorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/botones"
         android:text="Historial"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDesparacitante"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.051" />
 
     <Button
         android:id="@+id/btnMedicamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/botones"
         android:text="Medicamento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnHistorial"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.074" />
 
     <Button
         android:id="@+id/btnAgenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/botones"
         android:text="Agenda"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMedicamento"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.098" />
 
     <Button
         android:id="@+id/btnActividades"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/botones"
         android:text="Actividades"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAgenda"
-        app:layout_constraintVertical_bias="0.368" />
+        app:layout_constraintVertical_bias="0.118" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
