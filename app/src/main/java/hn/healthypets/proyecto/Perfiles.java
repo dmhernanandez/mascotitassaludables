@@ -14,7 +14,7 @@ public class Perfiles extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfiles);
-        ImageView poster =findViewById(R.id.imgvHisotiral);
+        ImageView poster =findViewById(R.id.imgvMascotaPerfil);
 
         Glide.with(this)
                 .load(R.drawable.golden2)

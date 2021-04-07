@@ -25,6 +25,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
         android:text="perfil"
+        app:icon="@drawable/ic_amor_negro"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.455"
@@ -38,6 +40,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
         android:text="Credencial"
+        app:icon="@drawable/ic_tarjeta_de_identificacion_negro"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.452"
@@ -51,6 +55,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
         android:text="vacunas"
+        app:icon="@drawable/ic_vacuna_negro"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.462"
@@ -64,6 +70,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
         android:text="desparasitante"
+        app:icon="@drawable/ic_desparacitante_negro"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
@@ -77,12 +85,14 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
         android:text="Historial"
+        app:icon="@drawable/ic_informe_medico_negro"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDesparacitante"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <Button
         android:id="@+id/btnMedicamento"
@@ -90,12 +100,14 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
         android:text="Medicamento"
+        app:icon="@drawable/ic_medicamentos_negro"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnHistorial"
-        app:layout_constraintVertical_bias="0.074" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/btnAgenda"
@@ -103,12 +115,14 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
         android:text="Agenda"
+        app:icon="@drawable/ic_cuaderno_negro"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMedicamento"
-        app:layout_constraintVertical_bias="0.098" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <Button
         android:id="@+id/btnActividades"
@@ -116,11 +130,27 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
         android:text="Actividades"
+        app:icon="@drawable/ic_evento_negro"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAgenda"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintVertical_bias="0.115" />
+
+    <Button
+        android:id="@+id/btnMenuLateral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/botones"
+        android:text="Menu lateral"
+        app:iconSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnActividades"
+        app:layout_constraintVertical_bias="0.189" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         Button medicamento = findViewById(R.id.btnMedicamento);
         Button agenda = findViewById(R.id.btnAgenda);
         Button actividades = findViewById(R.id.btnActividades);
+        Button menu=findViewById(R.id.btnMenuLateral);
+
         //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
         boton.setOnClickListener(v -> {
@@ -94,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
         actividades.setOnClickListener(v -> {
             Intent intent9 = new Intent(this, Actividades.class);
             startActivity(intent9);
+        });
+        menu.setOnClickListener(v -> {
+            Intent intent10 = new Intent(this, MenuLateral.class);
+            startActivity(intent10);
         });
     }
 
