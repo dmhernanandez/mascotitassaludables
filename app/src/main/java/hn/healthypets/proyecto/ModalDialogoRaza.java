@@ -25,14 +25,14 @@ public class ModalDialogoRaza extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.layout_dialog_raza, null);
 
         builder.setView(view)
-                .setTitle("Agregar la Raza de tu Mascota")
+                .setTitle("Agregar la raza de tu mascota")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 })
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String razaMascota = editTextRaza.getText().toString();

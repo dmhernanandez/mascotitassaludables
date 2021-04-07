@@ -8,6 +8,8 @@ import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.Especie;
 import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.EspecieDAO;
+import hn.healthypets.proyecto.database.dao.RazaDAO;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,9 +26,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreacionPerfiles extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ModalDialogoEspecie.ModalDialogoEspecieListener, ModalDialogoRaza.ModalDialogoRazaListener {
@@ -44,7 +48,10 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     TextView textViewRaza;
     ImageButton agregarRaza;
     DataBase instanciaDB;
-
+    private ArrayList<String> arrayNombreRazas;
+    private ArrayList<String> arrayNombreEspecies;
+    private ArrayAdapter<String> adaptadorEspecie;
+    private ArrayAdapter<String> adaptadorRaza;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,18 +66,34 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         spiRaza = findViewById(R.id.spiRaza);
 
         especie = "";
+         arrayNombreRazas = new ArrayList<>();
+         arrayNombreEspecies = new ArrayList<>();
 
+         arrayNombreRazas.add("Seleccione raza");
+        disableSpinnerAndButton(spiRaza,agregarRaza);
+    //    adaptadorRaza = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,nombreRazas);
+       // spiRaza.setAdapter(adaptadorRaza);
+
+        /** ----- Spinner de especie ----- **/
+        spiEspecie.setOnItemSelectedListener(this);
         //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
 
-        //Se obtiene una lista de todas las especies de la base de datos y se guarda el nombre en un arreglo
-        List<Especie> especies = instanciaDB.getSpeciesDAO().getAllSpecies();
-        String listaEspecies[] = new String[especies.size()];
-        for (int i = 0; i < especies.size(); i++)
-            listaEspecies[i] = especies.get(i).getEspecieNombre();
+        /*Se obtiene una arreglo de todas las especies de la base de datos y se guarda el nombre en un arreglo*/
+        EspecieDAO.NombreEspecie[] especieNombres = instanciaDB.getSpeciesDAO().getAllNameSpecies();
 
-        //Agregamos al adaptador la lista de especies
-        spiEspecie.setAdapter(new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, listaEspecies));
+
+        //Cuando se agregan los nombres de las especies se empiezan agregar desde la posición 1 y que la  0 es ocupada por el valor default
+        for (int i = 0; i < especieNombres.length; i++)
+             arrayNombreEspecies.add(especieNombres[i].getNombreEspecie());
+
+        //Iniciamos el adaptador y pasamos la lista de elementos
+         startSpinnerValues(spiEspecie,arrayNombreEspecies,adaptadorEspecie);
+         spiRaza.setOnItemSelectedListener(this);
+
+
+
+
         agregarEspecie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,12 +101,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
             }
         });
 
-        agregarRaza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirDialogoRaza();
-            }
-        });
+        agregarRaza.setOnClickListener(v -> abrirDialogoRaza());
 
         btnTomarFotos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,14 +175,75 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         return imagen;
     }
 
-    //Estos metodos se utilizan para obtener
+    //Metodos para controlar eventos de los Spinners
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+     //   Toast.makeText(this, spiEspecie.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+
+         switch (parent.getId())
+         {
+             case R.id.spiEspecie:
+                 //Vericamos si la posicion seleccionada es mayor que cero, ya que el numero 0 es un valor por default
+                 //y no tiene ningun valor en la base de datos
+                 if(position>0)
+                 {
+
+                     //Desbloqueamos la base el sepinner de razas
+                     enableSpinnerAndButton(spiRaza,agregarRaza);
+                     List<RazaDAO.NombreRaza> razasPorEspecie = instanciaDB.getRazaDAO().getAllBreedsFromSpecie(parent.getSelectedItem().toString());
+                     String [] listaRazas = new String[razasPorEspecie.size()];
+
+                     for (int i = 0; i < razasPorEspecie.size(); i++) {
+                      listaRazas[i]=razasPorEspecie.get(i).toString();
+                     // adaptadorRaza. add(listaRazas[i]=razasPorEspecie.get(i).toString());
+                     }
+                      adaptadorRaza.addAll(listaRazas);
+                     adaptadorRaza.notifyDataSetChanged();
+
+             //  startSpinnerValues(spiRaza,listaRazas,adaptadorRaza);
+
+                 }
+                 else
+                     disableSpinnerAndButton(spiRaza,agregarRaza);
+             break;
+             case R.id.spiRaza:
+                 Toast.makeText(this,parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+             break;
+         }
+
+
 
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+    /**
+     * disableSpinnerAndButton() y enableSpinnerAndButton
+     * Estos metodos tienen la función de deshabilitar y deshabilitar el spinner y el boton de agregar razas sino
+     * se ha seleccionado una especie a la cual pertenezcan las razas
+     * */
+    private void disableSpinnerAndButton(Spinner spinner, ImageButton button)
+    {
+        button.setEnabled(false);
+        spinner.setEnabled(false);
+    }
+
+
+    private void enableSpinnerAndButton(Spinner spinner, ImageButton button)
+    {
+        button.setEnabled(true);
+        spinner.setEnabled(true);
+    }
+
+    /**
+     * Con este metodo llenamos los Spinners pasando la lista de valores que vamos agregar y el adaptador
+     * */
+    private void startSpinnerValues(Spinner spinner, ArrayList<String> valores, ArrayAdapter<String> adapter)
+    {
+        //Inicializamos el adaptador y lo agregamos al Spinner
+        adapter=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,valores);
+        spinner.setAdapter(adapter);
+    }
+
 }

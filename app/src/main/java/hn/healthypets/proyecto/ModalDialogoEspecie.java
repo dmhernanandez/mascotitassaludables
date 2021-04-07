@@ -32,7 +32,7 @@ public class ModalDialogoEspecie extends AppCompatDialogFragment {
 
                     }
                 })
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String especieMascota = editTextEspecie.getText().toString();

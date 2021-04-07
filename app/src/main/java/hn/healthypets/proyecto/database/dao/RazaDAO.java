@@ -8,6 +8,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import hn.healthypets.proyecto.database.Entidades.Raza;
 
 @Dao
@@ -22,4 +23,27 @@ import hn.healthypets.proyecto.database.Entidades.Raza;
     /* Obtiene todas razas de los perros*/
     @Query("Select * from Raza")
     public List<Raza> getAllBreeds();
+
+    /* Obtiene todas razas de los perros*/
+    @Query("Select nombreRaza from Raza")
+    public NombreRaza[] getAllNamesBreeds();
+
+   @Transaction
+   @Query("SELECT r.nombreRaza AS nombreRaza FROM Especie e JOIN Raza r on e.especieId= r.razaEspecieId WHERE e.especieNombre=:nombreRaza")
+   public List<NombreRaza> getAllBreedsFromSpecie(String nombreRaza);
+
+   //Clase POJO para devolver un arreglo de String con el nombre la raza de acuerdo al id de la especie o tambien se usa para devolver todas
+   // los nombres de especies que existen`
+   static class NombreRaza {
+      private  String nombreRaza;
+
+      public void setNombreRaza(String nombreRaza) {
+         this.nombreRaza = nombreRaza;
+      }
+
+      public String getNombreRaza() {
+         return nombreRaza;
+      }
+   }
+
 }

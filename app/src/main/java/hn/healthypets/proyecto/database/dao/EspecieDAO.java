@@ -8,7 +8,6 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 import hn.healthypets.proyecto.database.Entidades.Especie;
-import hn.healthypets.proyecto.database.relacionesTablas.EspecieConRaza;
 
 @Dao
 public interface EspecieDAO {
@@ -16,26 +15,29 @@ public interface EspecieDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertSpecies(Especie especie);
 
+    //Optiene todos los campos de la tabla especie
    @Query("SELECT * FROM Especie")
     public List<Especie> getAllSpecies();
+
+   //Obtiene solo el nombre del de la especie
+    @Query("SELECT especieNombre AS nombreEspecie from Especie")
+    public NombreEspecie[] getAllNameSpecies();
 
    @Query("SELECT especieId FROM especie WHERE especieNombre = :nombreEspecie")
    public int getIdSpeciesByName(String nombreEspecie);
 
-   @Transaction
-    @Query("SELECT r.nombreRaza AS nombre FROM Especie e JOIN Raza r on e.especieId= r.razaEspecieId WHERE e.especieNombre=:nombreRaza")
-    public List<prueba> getAllRazaFromSpecie(String nombreRaza);
 
+    //Clase POJO para devolver un arreglo de String con el nombre la especie unicamente
+    static class NombreEspecie{
+        private String nombreEspecie;
 
-    static class prueba{
-        private  String nombre;
-
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
+        public String getNombreEspecie() {
+            return nombreEspecie;
         }
 
-        public String getNombre() {
-            return nombre;
+        public void setNombreEspecie(String nombreEspecie) {
+            this.nombreEspecie = nombreEspecie;
         }
     }
+
 }
