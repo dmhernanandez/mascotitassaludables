@@ -21,9 +21,7 @@
         <activity
             android:name=".MenuLateral"
             android:label="@string/title_activity_menu_lateral"
-            android:theme="@style/Theme.MascotitasSaludables.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.MascotitasSaludables.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -74,4 +72,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>
