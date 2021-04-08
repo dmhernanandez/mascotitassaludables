@@ -2,16 +2,12 @@ package hn.healthypets.proyecto;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -29,8 +25,6 @@ public class Vacunas extends AppCompatActivity {
     ImageButton btnTomarFotos;
     ImageView imgFotoVacuna;
     String rutaImagen;
-    private static final int REQUEST_PERMISSION_CAMERA = 100;
-    private static final int REQUEST_IMAGE_CAMERA = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +46,7 @@ public class Vacunas extends AppCompatActivity {
         btnTomarFotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        abrirCamara();
-                    } else {
-                        ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
-                    }
-                } else {
-                    abrirCamara();
-                }
+                abrirCamara();
             }
         });
     }
