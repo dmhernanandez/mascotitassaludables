@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fondo_creacion_perfiles"
-        tools:context=".ui.gallery.PerfilesFragment">
+        tools:context=".Fragments.PerfilesFragment">
 
         <ImageView
             android:id="@+id/imgCreacionPerfiles"

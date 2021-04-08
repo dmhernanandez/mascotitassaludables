@@ -7,19 +7,35 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="hn.healthypets.proyecto.ui.home.HomeFragment"
+        android:name="hn.healthypets.proyecto.Fragments.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_perfiles2"
+            app:destination="@id/nav_perfiles" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_perfiles"
-        android:name="hn.healthypets.proyecto.ui.gallery.PerfilesFragment"
-        android:label="perfiles"
+        android:name="hn.healthypets.proyecto.Fragments.PerfilesFragment"
+        android:label="Perfiles"
         tools:layout="@layout/fragment_perfiles" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="hn.healthypets.proyecto.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_actividades"
+        android:name="hn.healthypets.proyecto.Fragments.ActividadesFragment"
+        android:label="Actividades"
+        tools:layout="@layout/fragment_actividades" />
+
+    <fragment
+        android:id="@+id/nav_historial"
+        android:name="hn.healthypets.proyecto.Fragments.HistorialFragment"
+        android:label="Historial"
+        tools:layout="@layout/fragment_historial" />
+
+    <fragment
+        android:id="@+id/nav_agenda"
+        android:name="hn.healthypets.proyecto.Fragments.AgendaFragment"
+        android:label="Agenda"
+        tools:layout="@layout/fragment_agenda" />
 </navigation>

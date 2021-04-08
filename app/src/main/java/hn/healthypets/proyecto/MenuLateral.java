@@ -1,11 +1,8 @@
 package hn.healthypets.proyecto;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -34,7 +31,11 @@ public class MenuLateral extends AppCompatActivity {
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_perfiles, R.id.nav_slideshow)
+                R.id.nav_home,
+                R.id.nav_perfiles,
+                R.id.nav_actividades,
+                R.id.nav_historial,
+                R.id.nav_agenda)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -48,6 +49,7 @@ public class MenuLateral extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_lateral, menu);
         return true;
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {

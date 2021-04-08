@@ -1,4 +1,4 @@
-package hn.healthypets.proyecto.ui.gallery;
+package hn.healthypets.proyecto.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,12 +10,13 @@ import androidx.fragment.app.Fragment;
 
 import hn.healthypets.proyecto.R;
 
-public class PerfilesFragment extends Fragment {
+public class ActividadesFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_perfiles, container, false);
+
+        View root = inflater.inflate(R.layout.fragment_actividades, container, false);
 
         return root;
     }

@@ -8,6 +8,7 @@
             android:id="@+id/nav_actividades"
             android:icon="@drawable/ic_evento_negro"
             android:title="Actividades" />
+
         <item
             android:id="@+id/nav_perfiles"
             android:icon="@drawable/ic_amor_negro"
