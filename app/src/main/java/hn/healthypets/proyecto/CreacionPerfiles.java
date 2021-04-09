@@ -58,9 +58,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_creacion_perfiles);
         btnTomarFotos = findViewById(R.id.imgbtnTomarFotosCP);
         imgFotoMascota = findViewById(R.id.imgCreacionPerfiles);
-        textViewEspecie = findViewById(R.id.txvNombreEspecie);
         agregarEspecie = findViewById(R.id.imgbtnAgregarNuevaEspecie2);
-        textViewRaza = findViewById(R.id.txvNombreRaza);
         agregarRaza = findViewById(R.id.imgbtnAgregarNuevaRaza);
         spiEspecie = findViewById(R.id.spiEspecie);
         spiRaza = findViewById(R.id.spiRaza);

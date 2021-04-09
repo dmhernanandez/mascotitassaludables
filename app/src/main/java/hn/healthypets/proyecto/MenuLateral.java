@@ -35,10 +35,12 @@ public class MenuLateral extends AppCompatActivity {
                 R.id.nav_perfiles,
                 R.id.nav_actividades,
                 R.id.nav_historial,
-                R.id.nav_agenda)
+                R.id.nav_agenda,
+                R.id.nav_credencial)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        navController.navigate(R.id.nav_perfiles);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }

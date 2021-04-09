@@ -38,4 +38,10 @@
         android:name="hn.healthypets.proyecto.Fragments.AgendaFragment"
         android:label="Agenda"
         tools:layout="@layout/fragment_agenda" />
+
+    <fragment
+        android:id="@+id/nav_credencial"
+        android:name="hn.healthypets.proyecto.Fragments.CredencialesFragment"
+        android:label="Credencial"
+        tools:layout="@layout/fragment_credenciales" />
 </navigation>
