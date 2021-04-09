@@ -1,8 +1,10 @@
 package hn.healthypets.proyecto.adaptadores_mascotitas_saludables;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,9 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import java.util.ArrayList;
 
+import hn.healthypets.proyecto.CreacionPerfiles;
+import hn.healthypets.proyecto.MainActivity;
+import hn.healthypets.proyecto.MenuRegistro;
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.database.Entidades.Mascota;
 
@@ -36,6 +41,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
         TextView txvNombrePerfil;
         TextView txvNumeroChipPerfil;
         ImageView imgMascotaPerfil;
+        Button btnControlPerfil;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -43,6 +49,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
             txvNombrePerfil = itemView.findViewById(R.id.txvNombrePerfil);
             txvNumeroChipPerfil = itemView.findViewById(R.id.txvNumeroChipPerfil);
             imgMascotaPerfil = itemView.findViewById(R.id.imgvMascotaPerfil);
+            btnControlPerfil = itemView.findViewById(R.id.btnControlPerfil);
         }
     }
 
@@ -57,17 +64,26 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Mascota mascota= mascotaArrayList.get(position);
-        String nombre=mascota.getNombre();
-        String fecha=mascota.getFechaNacimiento();
+        Mascota mascota = mascotaArrayList.get(position);
+        String nombre = mascota.getNombre();
+        String fecha = mascota.getFechaNacimiento();
 
 
-        holder.txvNombrePerfil.setText("Nombre: " +nombre);
-        holder.txvNumeroChipPerfil.setText("Fecha: "+fecha);
+        holder.txvNombrePerfil.setText("Nombre: " + nombre);
+        holder.txvNumeroChipPerfil.setText("Fecha: " + fecha);
 
         Glide.with(holder.itemView)
                 .load(R.drawable.golden3)
                 .transform(new CircleCrop())
                 .into(holder.imgMascotaPerfil);
+
+        holder.btnControlPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), MenuRegistro.class);
+
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 }

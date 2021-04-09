@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotitasSaludables">
+        <activity android:name=".MenuRegistro"></activity>
         <activity
             android:name=".MenuLateral"
             android:label="@string/title_activity_menu_lateral"
