@@ -1,16 +1,6 @@
 package hn.healthypets.proyecto;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
-import hn.healthypets.proyecto.database.DataBase;
-import hn.healthypets.proyecto.database.Entidades.Especie;
-import hn.healthypets.proyecto.database.Entidades.Raza;
-import hn.healthypets.proyecto.database.SingletonDB;
-import hn.healthypets.proyecto.database.dao.EspecieDAO;
-import hn.healthypets.proyecto.database.dao.RazaDAO;
-
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,93 +12,147 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+import androidx.lifecycle.Observer;
+import hn.healthypets.proyecto.Utilidades.DateTime;
+import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.Especie;
+import hn.healthypets.proyecto.database.Entidades.Raza;
+import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.EspecieDAO;
+import hn.healthypets.proyecto.database.dao.RazaDAO;
 
 public class CreacionPerfiles extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ModalDialogoEspecie.ModalDialogoEspecieListener, ModalDialogoRaza.ModalDialogoRazaListener {
 
-    ImageButton btnTomarFotos;
-    ImageView imgFotoMascota;
-    String rutaImagen;
-    String especie;
-    TextView textViewEspecie;
-    ImageButton agregarEspecie;
-
-    Spinner spiEspecie;
-    Spinner spiRaza;
-
-    TextView textViewRaza;
-    ImageButton agregarRaza;
-    DataBase instanciaDB;
-    private ArrayList<String> arrayNombreRazas;
-    private ArrayList<String> arrayNombreEspecies;
+    private ImageButton btnTomarFotos;
+    private ImageView imgFotoMascota;
+    private String rutaImagen;
+    private String especie;
+    private TextView textViewEspecie;
+    private ImageButton agregarEspecie;
+    private Spinner spiEspecie;
+    private Spinner spiRaza;
+    private EditText edtFechaNaciento;
+    private ImageButton agregarRaza;
+    private DataBase instanciaDB;
+    private DateTime fechaHora;
+    private RadioButton rbtnMacho;
+    private RadioButton rbtnHembra;
+    private RadioGroup rgpGrupoGenero;
+    private static ArrayList<String> arrayNombreRazas;
+    private static ArrayList<String> arrayNombreEspecies;
     private ArrayAdapter<String> adaptadorEspecie;
     private ArrayAdapter<String> adaptadorRaza;
+    private SimpleDateFormat  formatoFecha;
+    private int postionItem;
+    private  String accion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creacion_perfiles);
-        btnTomarFotos = findViewById(R.id.imgbtnTomarFotosCP);
-        imgFotoMascota = findViewById(R.id.imgCreacionPerfiles);
-        textViewEspecie = findViewById(R.id.txvNombreEspecie);
-        agregarEspecie = findViewById(R.id.imgbtnAgregarNuevaEspecie2);
-        textViewRaza = findViewById(R.id.txvNombreRaza);
-        agregarRaza = findViewById(R.id.imgbtnAgregarNuevaRaza);
-        spiEspecie = findViewById(R.id.spiEspecie);
-        spiRaza = findViewById(R.id.spiRaza);
+        //Inicializamos todos los elementos
+        init();
 
-        especie = "";
-         arrayNombreRazas = new ArrayList<>();
-         arrayNombreEspecies = new ArrayList<>();
-
-         arrayNombreRazas.add("Seleccione raza");
-        disableSpinnerAndButton(spiRaza,agregarRaza);
-    //    adaptadorRaza = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,nombreRazas);
-       // spiRaza.setAdapter(adaptadorRaza);
+            /** ----- Spinner raza -----**/
+           spiRaza.setOnItemSelectedListener(this);
+           arrayNombreRazas.add("Seleccione raza");
+           startSpinnerValues(spiRaza,arrayNombreRazas,adaptadorRaza);
 
         /** ----- Spinner de especie ----- **/
         spiEspecie.setOnItemSelectedListener(this);
-        //Obtenemos una instancia de la base de datos
-        instanciaDB = SingletonDB.getDatabase(this);
+        arrayNombreEspecies.add("Seleccione especie");
+        startSpinnerValues(spiEspecie,arrayNombreEspecies,adaptadorEspecie);
+        spiRaza.setOnItemSelectedListener(this);
 
-        /*Se obtiene una arreglo de todas las especies de la base de datos y se guarda el nombre en un arreglo*/
-        EspecieDAO.NombreEspecie[] especieNombres = instanciaDB.getSpeciesDAO().getAllNameSpecies();
+        /**Se obtiene una Array de todas las especies de la base de datos y se guarda el nombre en un arreglo.
+         * Ademas se agrega un Observer que notificara cuano hayan cambios para que la interfaz se recarga automaticamente cada vez que exista un cambio
+         * */
+                 instanciaDB.getSpeciesDAO().getAllNameSpecies().observe(CreacionPerfiles.this,
+                new Observer<List<EspecieDAO.NombreEspecie>>() {
+                    @Override
+                    public void onChanged(List<EspecieDAO.NombreEspecie> nombreEspecies) {
+
+                        arrayNombreEspecies.clear();
+
+                        for(int i=0;i<nombreEspecies.size();i++)
+                        {
+                            Log.i("prueba",nombreEspecies.get(i).getNombreEspecie()+" "+String.valueOf(postionItem));
+                            if(nombreEspecies.get(i).getNombreEspecie() =="Perro")
+                            {
+                                postionItem=i;
+                                Log.i("prueba",nombreEspecies.get(i).getNombreEspecie()+" "+String.valueOf(postionItem));
+                            }
+
+                           arrayNombreEspecies.add(i,nombreEspecies.get(i).getNombreEspecie());
+
+                        }
+                        arrayNombreEspecies.add(0,"Seleccione especie");
 
 
-        //Cuando se agregan los nombres de las especies se empiezan agregar desde la posición 1 y que la  0 es ocupada por el valor default
-        for (int i = 0; i < especieNombres.length; i++)
-             arrayNombreEspecies.add(especieNombres[i].getNombreEspecie());
+                    }
+                });
+        spiEspecie.setSelection(postionItem);
 
-        //Iniciamos el adaptador y pasamos la lista de elementos
-         startSpinnerValues(spiEspecie,arrayNombreEspecies,adaptadorEspecie);
-         spiRaza.setOnItemSelectedListener(this);
+        instanciaDB.getRazaDAO().getAllBreedsFromSpecie("Perro").observe(CreacionPerfiles.this,
+                new Observer<List<RazaDAO.NombreRaza>>() {
+                    @Override
+                    public void onChanged(List<RazaDAO.NombreRaza> nombreRazas) {
+                        arrayNombreRazas.clear();
+                        for(RazaDAO.NombreRaza raza : nombreRazas)
+                        {
+                            arrayNombreRazas.add(raza.getNombreRaza());
+                        }
+                        arrayNombreRazas.add(0,"Seleccione raza");
+                    }
+                });
+
+         //Hinabilitamos el Spinner de raza ya que esta depende de la especie y mientras no hay una seleccionada no tiene sentido estar habilidado
+        // disableSpinnerAndButton(spiRaza,agregarRaza);
 
 
 
-
+        /** EVENTOS DE LOS COMPONENTES  **/
         agregarEspecie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirDialogoEspecie();
+                 abrirDialogoEspecie();
             }
         });
 
         agregarRaza.setOnClickListener(v -> abrirDialogoRaza());
 
-        btnTomarFotos.setOnClickListener(new View.OnClickListener() {
+        btnTomarFotos.setOnClickListener(v -> abrirCamara());
+
+        edtFechaNaciento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirCamara();
+             //Obtenemos la fecha de la del dia actual
+                DatePickerDialog dialogoFecha= new DatePickerDialog(CreacionPerfiles.this, (view, year, month, dayOfMonth) ->
+                        edtFechaNaciento.setText(fechaHora.formato(dayOfMonth,month,year)),DateTime.anio,DateTime.mes,DateTime.diaDelMes);
+                dialogoFecha.show();
             }
         });
+
+
+
+
     }
 
     //Abre el dialogo para recibir una nueva especie
@@ -119,24 +163,38 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void applyTextEspecie(String especieMascota) {
-        //Se guarda la especie de la mascota que envio el usuario
-        especie = especieMascota;
-        instanciaDB.getSpeciesDAO().insertSpecies(new Especie(especieMascota));
-        //textViewEspecie.setText(especieMascota);
+        /**
+         * Se valida que no esta vacio el campo, en caso de tener valores, este se guarda en la base de datos
+         * y tambien se guarda en la variable "especie" para que por medio de ella obtner el id  y mostrar o guardar razas
+         * pertenecientes a esa raza
+         * **/
+        if(!especieMascota.isEmpty())
+        {
+            especie = especieMascota;
+            //Guarda la especie
+            instanciaDB.getSpeciesDAO().insertSpecies(new Especie(especieMascota));
+        }
     }
 
     public void abrirDialogoRaza() {
         ModalDialogoRaza modalDialogoRaza = new ModalDialogoRaza();
-        modalDialogoRaza.show(getSupportFragmentManager(), "raza dialogo");
+        modalDialogoRaza.show(getSupportFragmentManager(), "Seleccione una raza");
+
     }
 
     @Override
     public void applyTextRaza(String razaMascota) {
-        //Se guarda la especie de la mascota que envio el usuario
-        if (!especie.isEmpty())
+      /** Se valida que no este vacio el campo, en caso contrario se obtiene el valor y se guarda en la base de datos,
+       * pero tambien por medio de la variabe "especie" se hace una consulta a la base de datos para obtener su id y asi
+       * asociarlo con esa raza en especifico
+       **/
+        if (!razaMascota.isEmpty())
+        {
             instanciaDB.getRazaDAO().insertBreed(new Raza(razaMascota,
-                    instanciaDB.getSpeciesDAO().getIdSpeciesByName(especie)));
-//        textViewRaza.setText(razaMascota);
+            instanciaDB.getSpeciesDAO().getIdSpeciesByName(especie)));
+
+        }
+
     }
 
     private void abrirCamara() {
@@ -167,14 +225,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         }
     }
 
-    private File crearImagen() throws IOException {
-        String nombreImagen = "foto_";
-        File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
-        rutaImagen = imagen.getAbsolutePath();
-        return imagen;
-    }
-
     //Metodos para controlar eventos de los Spinners
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -183,31 +233,41 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
          switch (parent.getId())
          {
              case R.id.spiEspecie:
-                 //Vericamos si la posicion seleccionada es mayor que cero, ya que el numero 0 es un valor por default
-                 //y no tiene ningun valor en la base de datos
+                 /**Vericamos si la posicion seleccionada es mayor que cero, ya que el numero 0 es un valor por default
+                 y no tiene ningun valor en la base de datos*/
                  if(position>0)
                  {
-
+                    especie=parent.getSelectedItem().toString();
                      //Desbloqueamos la base el sepinner de razas
                      enableSpinnerAndButton(spiRaza,agregarRaza);
-                     List<RazaDAO.NombreRaza> razasPorEspecie = instanciaDB.getRazaDAO().getAllBreedsFromSpecie(parent.getSelectedItem().toString());
-                     String [] listaRazas = new String[razasPorEspecie.size()];
-
-                     for (int i = 0; i < razasPorEspecie.size(); i++) {
-                      listaRazas[i]=razasPorEspecie.get(i).toString();
-                     // adaptadorRaza. add(listaRazas[i]=razasPorEspecie.get(i).toString());
-                     }
-                      adaptadorRaza.addAll(listaRazas);
-                     adaptadorRaza.notifyDataSetChanged();
-
-             //  startSpinnerValues(spiRaza,listaRazas,adaptadorRaza);
-
                  }
-                 else
-                     disableSpinnerAndButton(spiRaza,agregarRaza);
+//                 else
+//                     disableSpinnerAndButton(spiRaza,agregarRaza);
+
+                 /**Establecemos un observador para obtener las razas por especie seleccianada, en esta caso este se encarga de actualizar
+                  * cada vez que agreguemos una nueva raza
+                  * */
+                 instanciaDB.getRazaDAO().getAllBreedsFromSpecie(parent.getSelectedItem().toString()).observe(CreacionPerfiles.this,
+                         new Observer<List<RazaDAO.NombreRaza>>() {
+                             @Override
+                             public void onChanged(List<RazaDAO.NombreRaza> nombreRazas) {
+                                 arrayNombreRazas.clear();
+                                 for(RazaDAO.NombreRaza raza : nombreRazas)
+                                 {
+                                     arrayNombreRazas.add(raza.getNombreRaza());
+                                 }
+                                 arrayNombreRazas.add(0,"Seleccione raza");
+                             }
+                         });
+                /**
+                 * Cada vez que se selecciona una especie se recarga las razas pertenecientes a esa especie, por tanto el primer item seleccionado sea el cero
+                 * ya que es el valor por defecto "Seleccione raza", que le indica al usuario que hacer
+                 * */
+                 spiRaza.setSelection(0);
+
+
              break;
              case R.id.spiRaza:
-                 Toast.makeText(this,parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
              break;
          }
 
@@ -218,6 +278,59 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
+    /**
+     * Con este metodo llenamos los Spinners pasando la lista de valores que vamos agregar y el adaptador
+     * */
+    private void startSpinnerValues(Spinner spinner, ArrayList<String> valores, ArrayAdapter<String> adapter)
+    {
+        //Inicializamos el adaptador y lo agregamos al Spinner
+        adapter=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,valores);
+        spinner.setAdapter(adapter);
+    }
+
+     /** Inicializa todos los objetos**/
+    private void init()
+    {
+        btnTomarFotos = findViewById(R.id.imgbtnTomarFotosCP);
+        imgFotoMascota = findViewById(R.id.imgCreacionPerfiles);
+        agregarEspecie = findViewById(R.id.imgbtnAgregarNuevaEspecie2);
+        agregarRaza = findViewById(R.id.imgbtnAgregarNuevaRaza);
+        spiEspecie = findViewById(R.id.spiEspecie);
+        spiRaza = findViewById(R.id.spiRaza);
+        edtFechaNaciento=findViewById(R.id.edtFechaNacimiento);
+        rbtnHembra=findViewById(R.id.rbHembra);
+        rbtnMacho = findViewById(R.id.rbMacho);
+        rgpGrupoGenero=findViewById(R.id.rbgGrupoGenero);
+        rbtnMacho.setSelected(true);
+        //Creamos una instancia para obtener fechas y horas
+        fechaHora = new DateTime();
+        formatoFecha= new SimpleDateFormat("dd/MM/yyyy");
+        edtFechaNaciento.setText(formatoFecha.format(new Date()));
+        especie = "";
+        accion="nuevo";
+
+        arrayNombreRazas = new ArrayList<>();
+        arrayNombreEspecies = new ArrayList<>();
+
+        /** Se obtiene una instancia de la base de datos*/
+        instanciaDB = SingletonDB.getDatabase(this);
+    }
+
+
+    private File crearImagen() throws IOException {
+        String nombreImagen = "foto_";
+        File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
+        rutaImagen = imagen.getAbsolutePath();
+
+        Log.i("ruta",rutaImagen);
+        Log.i("ruta",imagen.getCanonicalPath());
+        return imagen;
+    }
+
+
     /**
      * disableSpinnerAndButton() y enableSpinnerAndButton
      * Estos metodos tienen la función de deshabilitar y deshabilitar el spinner y el boton de agregar razas sino
@@ -235,15 +348,4 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         button.setEnabled(true);
         spinner.setEnabled(true);
     }
-
-    /**
-     * Con este metodo llenamos los Spinners pasando la lista de valores que vamos agregar y el adaptador
-     * */
-    private void startSpinnerValues(Spinner spinner, ArrayList<String> valores, ArrayAdapter<String> adapter)
-    {
-        //Inicializamos el adaptador y lo agregamos al Spinner
-        adapter=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,valores);
-        spinner.setAdapter(adapter);
-    }
-
 }

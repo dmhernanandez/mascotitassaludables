@@ -1,7 +1,6 @@
 package hn.healthypets.proyecto.database;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.room.Room;
 

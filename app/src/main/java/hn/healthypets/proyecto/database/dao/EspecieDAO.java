@@ -2,11 +2,11 @@ package hn.healthypets.proyecto.database.dao;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import hn.healthypets.proyecto.database.Entidades.Especie;
 
 @Dao
@@ -21,7 +21,8 @@ public interface EspecieDAO {
 
    //Obtiene solo el nombre del de la especie
     @Query("SELECT especieNombre AS nombreEspecie from Especie")
-    public NombreEspecie[] getAllNameSpecies();
+    public LiveData<List<NombreEspecie>> getAllNameSpecies();
+
 
    @Query("SELECT especieId FROM especie WHERE especieNombre = :nombreEspecie")
    public int getIdSpeciesByName(String nombreEspecie);

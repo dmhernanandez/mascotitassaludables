@@ -1,21 +1,17 @@
 package hn.healthypets.proyecto;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import hn.healthypets.proyecto.database.DataBase;
-import hn.healthypets.proyecto.database.Entidades.Especie;
-import hn.healthypets.proyecto.database.Entidades.Raza;
-import hn.healthypets.proyecto.database.SingletonDB;
-import hn.healthypets.proyecto.database.dao.EspecieDAO;
-import hn.healthypets.proyecto.database.dao.RazaDAO;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.widget.Button;
 
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.Especie;
+import hn.healthypets.proyecto.database.Entidades.Raza;
+import hn.healthypets.proyecto.database.SingletonDB;
 
 public class MainActivity extends AppCompatActivity {
     DataBase instanciaDB;
@@ -37,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
+
         boton.setOnClickListener(v -> {
             Intent intent = new Intent(this, CreacionPerfiles.class);
             startActivity(intent);
@@ -56,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                     , new Raza("Angora", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato")),
                     new Raza("Sphynx", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
             );
-
 
 
             Intent intent2 = new Intent(this, Director.class);
