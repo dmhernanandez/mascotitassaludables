@@ -33,9 +33,10 @@
 
         <ImageView
             android:id="@+id/imgComprobacionVacunas"
-            android:layout_width="145dp"
-            android:layout_height="158dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:src="@drawable/ic_imagen"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.349"
