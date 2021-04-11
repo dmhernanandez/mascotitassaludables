@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -42,7 +44,7 @@ public class Vacunas extends AppCompatActivity {
     ImageButton buscarImagen;
     ImageButton btnTomarFotos;
     ImageView imgFotoVacuna;
-    String rutaImagen;
+    Button ok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,65 +57,69 @@ public class Vacunas extends AppCompatActivity {
         imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
         buscarImagen = findViewById(R.id.imgbtnBuscarFotosV);
 
-        buscarImagen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /**Aqui obtenemos los permisos para entrar a la GALERIA*/
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta linea se verifica el permiso para la version de android en el dispositivo en tiempo de ejecucion*/
-                    if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                        metodosImagenes.openGallery(Vacunas.this);
-                    } else {
-                        ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CODE);
-                    }
-                } else {
+        ok = findViewById(R.id.btnListoVacunas);
+
+        buscarImagen.setOnClickListener((v) -> {
+            /**Aquí obtenemos los permisos para entrar a la GALERIA*/
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
+                if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     metodosImagenes.openGallery(Vacunas.this);
+                } else {
+                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CODE);
                 }
+            } else {
+                metodosImagenes.openGallery(Vacunas.this);
             }
         });
 
-        btnTomarFotos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /**Aqui obtenemos los permisos para USAR la camara del dispositivo*/
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta linea se verifica el permiso para la version de android en el dispositivo en tiempo de ejecucion*/
-                    if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        metodosImagenes.goToCamera(Vacunas.this);
-                    } else {
-                        ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
-                    }
-                } else {
+        btnTomarFotos.setOnClickListener((v) -> {
+            /**Aquí obtenemos los permisos para USAR la cámara del dispositivo*/
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
+                if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     metodosImagenes.goToCamera(Vacunas.this);
+                } else {
+                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
                 }
+            } else {
+                metodosImagenes.goToCamera(Vacunas.this);
             }
+        });
+
+        ok.setOnClickListener((v) -> {
+            /**Aquí usamos el método que creamos para obtener la imágen*/
+            Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
+            String ruta = metodosImagenes.guardarImagen(getApplicationContext(), imagen, imagen);
+            Toast.makeText(getApplicationContext(), ruta, Toast.LENGTH_LONG).show();
         });
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        /**Aca abrimos el cuadro de dialogo para poder habilitar los permisos,
-         * Si el usuario acepta los permisos, habilitara la camara o la galeria*/
+        /**Acá abrimos el cuadro de dialogo para poder habilitar los permisos,
+         * Si el usuario acepta los permisos, habilitará la cámara o la galería*/
         if (requestCode == REQUEST_PERMISSION_CODE) {
             if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 metodosImagenes.openGallery(Vacunas.this);
             } else {
-                Toast.makeText(this, "Necesita todos los permisos", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
             }
         }
         if (requestCode == REQUEST_PERMISSION_CAMERA) {
             if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 metodosImagenes.goToCamera(Vacunas.this);
             } else {
-                Toast.makeText(this, "Necesita habilitar los permisos", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         /**Verificar si los permisos son correctos.
-         * En esta parte lo que hacemos es guardar
-         * la imagen*/
+         * En esta parte lo que hacemos es crear la ruta
+         * para guardar la imágen*/
         if (requestCode == REQUEST_IMAGE_GALLERY) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 /**Obtenemos la ruta de la imagen*/
@@ -121,63 +127,15 @@ public class Vacunas extends AppCompatActivity {
                 imgFotoVacuna.setImageURI(photo);
                 Log.i("TAG", "Result: " + photo);
             } else {
-                Toast.makeText(this, "No selecciono ninguna foto", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "No seleccionó ninguna foto", Toast.LENGTH_LONG).show();
             }
         } else {
             if (requestCode == REQUEST_IMAGE_CAMERA) {
                 if (resultCode == Activity.RESULT_OK) {
                     imgFotoVacuna.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
+                    Toast.makeText(getApplicationContext(), metodosImagenes.getRutaImagen(), Toast.LENGTH_LONG).show();
                 }
             }
         }
     }
-//
-//    /**
-//     * Metodo para poder accesar a la galeria del dispositivo
-//     */
-//    private void openGallery() {
-//        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT); /**Con ACTION_GET_CONTENT, obtenemos la foto de la galeria*/
-//        galleryIntent.setType("image/*");
-//        startActivityForResult(galleryIntent, REQUEST_IMAGE_GALLERY);
-//    }
-//
-//    /**
-//     * Metodo para poder accesar a la camara del dispositivo
-//     */
-//    private void goToCamera() {
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); /**ACTION_IMAGE_CAPTURE, es como una API que nos dibujara la interfaz, para acceder a la camara*/
-//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-//            File photoFile = null;
-//            try {
-//                photoFile = crearImagen();
-//            } catch (IOException ex) {
-//                Log.e("Error", ex.toString());
-//            }
-//            if (photoFile != null) {
-//                Uri photoUri = FileProvider.getUriForFile(
-//                        this,
-//                        "hn.healthypets.proyecto.fileprovider",
-//                        photoFile);
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-//                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
-//            }
-//        }
-//    }
-//
-//    /**
-//     * Metodo para crear el archivo temporal de la camara,
-//     * para luego ser guardada en el dispositivo
-//     */
-//    private File crearImagen() throws IOException {
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(new Date());
-//        String imgFileName = "IMG_" + timeStamp + "_"; //IMG_202104101111
-//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-//        File image = File.createTempFile(
-//                imgFileName,
-//                ".jpg",
-//                storageDir
-//        );
-//        rutaImagen = image.getAbsolutePath();
-//        return image;
-//    }
 }
