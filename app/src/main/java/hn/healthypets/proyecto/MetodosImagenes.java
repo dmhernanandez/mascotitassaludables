@@ -14,8 +14,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import androidx.core.content.FileProvider;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,8 +22,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.core.content.FileProvider;
+
 public class MetodosImagenes {
+    public static final int REQUEST_PERMISSION_CODE = 100;
     public static final int REQUEST_IMAGE_GALLERY = 101;
+    public static final int REQUEST_PERMISSION_CAMERA = 102;
     public static final int REQUEST_IMAGE_CAMERA = 103;
 
     private String rutaImagen;

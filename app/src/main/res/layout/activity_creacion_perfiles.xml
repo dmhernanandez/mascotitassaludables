@@ -89,7 +89,7 @@
             android:fontFamily="@font/questrial"
             android:text="Ingrese Nombre :"
             android:textColor="#000000"
-            app:layout_constraintBottom_toTopOf="@+id/EdtNombreCP"
+            app:layout_constraintBottom_toTopOf="@+id/edtNombreMascota"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.166"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
-            android:id="@+id/EdtNombreCP"
+            android:id="@+id/edtNombreMascota"
             android:layout_width="302dp"
             android:layout_height="40dp"
             android:layout_marginBottom="512dp"
@@ -126,7 +126,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.195"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreMascota"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -295,7 +295,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.431"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP" />
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreMascota" />
 
         <EditText
             android:id="@+id/edtNumeroChip"

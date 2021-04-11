@@ -5,7 +5,7 @@ public class Validacion {
     /**Este metodo se utiliza para validar si todos los campos contienen valores
      *NOTA: los nombres se utilizan en ingles ya que son mas cortos que en español
      * */
-    public boolean fieldsAreNotEmpty(String ... fields)
+    public static boolean fieldsAreNotEmpty(String ... fields)
     {
         boolean request=true;
         for (String field: fields) {
