@@ -22,4 +22,25 @@ public interface MascotaDAO {
     @Query("SELECT * FROM Mascota")
     public List<Mascota> getAllPets();
 
+
+   @Query("SELECT count(*) FROM Mascota")
+    public int getNumbersPets();
+
+    //Esta clase se utiliza  para devolver la cantidad de filas de la tabla mascotas
+    static class NumberPets {
+
+        private int numberPets;
+        public NumberPets(int numberPets) {
+            this.numberPets = numberPets;
+        }
+
+        public int getNumberPets() {
+            return numberPets;
+        }
+
+        public void setNumberPets(int numberPets) {
+            this.numberPets = numberPets;
+        }
+    }
+
 }

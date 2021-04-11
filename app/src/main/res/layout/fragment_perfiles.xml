@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fondo_creacion_perfiles"
-        tools:context=".CreacionPerfiles2">
+        tools:context=".Fragments.PerfilesFragment">
 
         <ImageView
             android:id="@+id/imgCreacionPerfiles"
@@ -79,10 +79,27 @@
             android:src="@drawable/ic_vector_nuevoregistro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbHembra"
             app:layout_constraintVertical_bias="0.892" />
 
         <TextView
             android:id="@+id/txvNombreCP"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/EdtNombreCP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/txvNombreCP2"
             android:layout_width="128dp"
             android:layout_height="17dp"
             android:layout_marginTop="20dp"
@@ -91,7 +108,7 @@
             android:textColor="#000000"
             app:layout_constraintBottom_toTopOf="@+id/EdtNombreCP"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintHorizontal_bias="0.201"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
             app:layout_constraintVertical_bias="0.0" />
@@ -103,7 +120,7 @@
             android:layout_marginBottom="512dp"
             android:background="@drawable/input_gris"
             android:ems="10"
-            android:hint="Doggy"
+            android:hint="Eje.Doggy"
             android:inputType="textPersonName"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
@@ -122,9 +139,25 @@
             android:fontFamily="@font/questrial"
             android:text="Ingrese Fecha Nacimiento:"
             android:textColor="#0B0B0B"
-            app:layout_constraintBottom_toTopOf="@+id/edtFechaNacimiento"
+            app:layout_constraintBottom_toTopOf="@+id/etdFechaNacimiento"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.195"
+            app:layout_constraintHorizontal_bias="0.236"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txvFechaNacimientoCP2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/etdFechaNacimiento"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
             app:layout_constraintVertical_bias="1.0" />
@@ -140,7 +173,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.146"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtFechaNacimiento"
+            app:layout_constraintTop_toBottomOf="@+id/etdFechaNacimiento"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -152,42 +185,53 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.13"
+            app:layout_constraintHorizontal_bias="0.157"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
             app:layout_constraintVertical_bias="0.072" />
 
-        <RadioGroup
-            android:id="@+id/rbgGrupoGenero"
+        <TextView
+            android:id="@+id/txvGenero2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.186"
-            app:layout_constraintStart_toEndOf="@+id/txvGenero"
+            app:layout_constraintHorizontal_bias="0.115"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
-            app:layout_constraintVertical_bias="0.009">
+            app:layout_constraintVertical_bias="0.072" />
 
-            <RadioButton
-                android:id="@+id/rbHembra"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/questrial"
-                android:text="Hembra"
-                android:textSize="12sp" />
+        <RadioButton
+            android:id="@+id/rbHembra"
+            android:layout_width="91dp"
+            android:layout_height="31dp"
+            android:fontFamily="@font/questrial"
+            android:text="Hembra"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.765"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
+            app:layout_constraintVertical_bias="0.049" />
 
-            <RadioButton
-                android:id="@+id/rbMacho"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-               android:layout_marginLeft="15dp"
-                android:fontFamily="@font/questrial"
-                android:text="Macho"
-                android:textSize="12sp" />
-        </RadioGroup>
+        <RadioButton
+            android:id="@+id/rbMacho"
+            android:layout_width="73dp"
+            android:layout_height="31dp"
+            android:layout_marginEnd="28dp"
+
+            android:fontFamily="@font/questrial"
+            android:text="Macho"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rbHembra"
+            app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
+            app:layout_constraintVertical_bias="0.049" />
 
         <TextView
             android:id="@+id/txvEspecie"
@@ -199,12 +243,26 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.131"
+            app:layout_constraintHorizontal_bias="0.159"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txvGenero"
             app:layout_constraintVertical_bias="0.017" />
 
-
+        <TextView
+            android:id="@+id/txvEspecie2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txvGenero"
+            app:layout_constraintVertical_bias="0.017" />
 
         <Spinner
             android:id="@+id/spiEspecie"
@@ -217,9 +275,10 @@
             android:spinnerMode="dialog"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaEspecie2"
+            app:layout_constraintHorizontal_bias="0.307"
             app:layout_constraintStart_toEndOf="@+id/txvEspecie"
-            app:layout_constraintTop_toBottomOf="@+id/rbgGrupoGenero"
-            app:layout_constraintVertical_bias="0.088" />
+            app:layout_constraintTop_toBottomOf="@+id/rbMacho"
+            app:layout_constraintVertical_bias="0.083" />
 
         <Spinner
             android:id="@+id/spiRaza"
@@ -279,17 +338,14 @@
             app:layout_constraintVertical_bias="0.756" />
 
         <EditText
-            android:id="@+id/edtFechaNacimiento"
+            android:id="@+id/etdFechaNacimiento"
             android:layout_width="302dp"
             android:layout_height="40dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/input_gris"
             android:ems="10"
-            android:inputType="date"
-            android:focusable="false"
-            android:clickable="true"
-            android:maxLines="1"
             android:hint="31/03/2021"
+            android:inputType="date"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintEnd_toEndOf="parent"
@@ -304,14 +360,14 @@
             android:layout_marginTop="28dp"
             android:background="@drawable/input_gris"
             android:ems="10"
-            android:hint="00000"
+            android:hint="Eje.00000"
             android:inputType="number"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.431"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtFechaNacimiento" />
+            app:layout_constraintTop_toBottomOf="@+id/etdFechaNacimiento" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

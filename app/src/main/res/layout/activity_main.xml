@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.035" />
 
     <Button
-        android:id="@+id/btnDesparacitante"
+        android:id="@+id/btnDesparacitanteMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
@@ -91,11 +91,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDesparacitante"
+        app:layout_constraintTop_toBottomOf="@+id/btnDesparacitanteMenu"
         app:layout_constraintVertical_bias="0.045" />
 
     <Button
-        android:id="@+id/btnMedicamento"
+        android:id="@+id/btnMedicamentoMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/botones"
@@ -121,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMedicamento"
+        app:layout_constraintTop_toBottomOf="@+id/btnMedicamentoMenu"
         app:layout_constraintVertical_bias="0.049" />
 
     <Button

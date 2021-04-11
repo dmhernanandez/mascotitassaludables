@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fondo_agenda"
-        tools:context=".Agenda">
+        tools:context=".Fragments.AgendaFragment">
 
         <Button
             android:id="@+id/btnListoDesparacitante3"
@@ -21,12 +21,12 @@
             android:backgroundTint="@color/listo"
             android:text="Listo"
             app:icon="@drawable/ic_vector_listo"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.241"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento2"
-            app:layout_constraintVertical_bias="0.095" />
+            app:layout_constraintVertical_bias="0.166" />
 
         <Button
             android:id="@+id/btnCancelarDesparacitante3"
@@ -35,22 +35,22 @@
             android:backgroundTint="@color/cancelar"
             android:text="cancelar"
             app:icon="@drawable/ic_vector_cancelar"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.215"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toEndOf="@+id/btnListoDesparacitante3"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento2"
-            app:layout_constraintVertical_bias="0.095" />
+            app:layout_constraintVertical_bias="0.166" />
 
         <EditText
             android:id="@+id/edtIndicacionesMedicamento2"
-            android:layout_width="301dp"
-            android:layout_height="97dp"
+            android:layout_width="302dp"
+            android:layout_height="80dp"
             android:layout_marginStart="28dp"
             android:background="@drawable/input_descripciones"
             android:ems="10"
             android:fontFamily="@font/questrial"
-            android:hint="Eje.Visita para inyectar al perro por la vacuna "
+            android:hint="Visita para inyectar al perro por la vacuna "
             android:inputType="textMultiLine"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
@@ -73,10 +73,11 @@
             android:inputType="date"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toStartOf="@+id/edtHoraMedicamento2"
-            app:layout_constraintHorizontal_bias="0.771"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+            app:layout_constraintTop_toBottomOf="@+id/textView22"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/edtHoraMedicamento2"
@@ -90,9 +91,11 @@
             android:inputType="time"
             android:padding="10dp"
             android:textColor="#9E9C9C"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/edtFechaMedicamento"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+            app:layout_constraintTop_toBottomOf="@+id/textView22"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView22"
@@ -163,7 +166,7 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.175"
+            app:layout_constraintHorizontal_bias="0.169"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNombreActivida"
             app:layout_constraintVertical_bias="0.029" />
@@ -177,7 +180,7 @@
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.522"
+            app:layout_constraintHorizontal_bias="0.541"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView24"
             app:layout_constraintVertical_bias="0.0" />
@@ -189,7 +192,7 @@
             android:background="@drawable/input_gris"
             android:ems="10"
             android:fontFamily="@font/questrial"
-            android:hint="Eje.Toca Vacunar a Firulais"
+            android:hint="Toca Vacunar a Firulais"
             android:inputType="textPersonName"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
@@ -210,10 +213,17 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.272"
+            app:layout_constraintHorizontal_bias="0.263"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.025" />
+            app:layout_constraintVertical_bias="0.048" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="658dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
