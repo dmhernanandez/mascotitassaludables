@@ -8,6 +8,7 @@ import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -36,6 +37,8 @@ public class Vacunas extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_CAMERA = 102;
     private static final int REQUEST_IMAGE_CAMERA = 103;
 
+    MetodosImagenes metodosImagenes = new MetodosImagenes();
+
     ImageButton buscarImagen;
     ImageButton btnTomarFotos;
     ImageView imgFotoVacuna;
@@ -58,12 +61,12 @@ public class Vacunas extends AppCompatActivity {
                 /**Aqui obtenemos los permisos para entrar a la GALERIA*/
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta linea se verifica el permiso para la version de android en el dispositivo en tiempo de ejecucion*/
                     if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                        openGallery();
+                        metodosImagenes.openGallery(Vacunas.this);
                     } else {
                         ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CODE);
                     }
                 } else {
-                    openGallery();
+                    metodosImagenes.openGallery(Vacunas.this);
                 }
             }
         });
@@ -74,12 +77,12 @@ public class Vacunas extends AppCompatActivity {
                 /**Aqui obtenemos los permisos para USAR la camara del dispositivo*/
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta linea se verifica el permiso para la version de android en el dispositivo en tiempo de ejecucion*/
                     if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        goToCamera();
+                        metodosImagenes.goToCamera(Vacunas.this);
                     } else {
                         ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
                     }
                 } else {
-                    goToCamera();
+                    metodosImagenes.goToCamera(Vacunas.this);
                 }
             }
         });
@@ -91,21 +94,20 @@ public class Vacunas extends AppCompatActivity {
          * Si el usuario acepta los permisos, habilitara la camara o la galeria*/
         if (requestCode == REQUEST_PERMISSION_CODE) {
             if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openGallery();
+                metodosImagenes.openGallery(Vacunas.this);
             } else {
                 Toast.makeText(this, "Necesita todos los permisos", Toast.LENGTH_LONG).show();
             }
         }
         if (requestCode == REQUEST_PERMISSION_CAMERA) {
             if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                goToCamera();
+                metodosImagenes.goToCamera(Vacunas.this);
             } else {
                 Toast.makeText(this, "Necesita habilitar los permisos", Toast.LENGTH_LONG).show();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -124,58 +126,58 @@ public class Vacunas extends AppCompatActivity {
         } else {
             if (requestCode == REQUEST_IMAGE_CAMERA) {
                 if (resultCode == Activity.RESULT_OK) {
-                    imgFotoVacuna.setImageURI(Uri.parse(rutaImagen));
+                    imgFotoVacuna.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
                 }
             }
         }
     }
-
-    /**
-     * Metodo para poder accesar a la galeria del dispositivo
-     */
-    private void openGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT); /**Con ACTION_GET_CONTENT, obtenemos la foto de la galeria*/
-        galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent, REQUEST_IMAGE_GALLERY);
-    }
-
-    /**
-     * Metodo para poder accesar a la camara del dispositivo
-     */
-    private void goToCamera() {
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); /**ACTION_IMAGE_CAPTURE, es como una API que nos dibujara la interfaz, para acceder a la camara*/
-        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = crearImagen();
-            } catch (IOException ex) {
-                Log.e("Error", ex.toString());
-            }
-            if (photoFile != null) {
-                Uri photoUri = FileProvider.getUriForFile(
-                        this,
-                        "hn.healthypets.proyecto.fileprovider",
-                        photoFile);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
-            }
-        }
-    }
-
-    /**
-     * Metodo para crear el archivo temporal de la camara,
-     * para luego ser guardada en el dispositivo
-     */
-    private File crearImagen() throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(new Date());
-        String imgFileName = "IMG_" + timeStamp + "_"; //IMG_202104101111
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imgFileName,
-                ".jpg",
-                storageDir
-        );
-        rutaImagen = image.getAbsolutePath();
-        return image;
-    }
+//
+//    /**
+//     * Metodo para poder accesar a la galeria del dispositivo
+//     */
+//    private void openGallery() {
+//        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT); /**Con ACTION_GET_CONTENT, obtenemos la foto de la galeria*/
+//        galleryIntent.setType("image/*");
+//        startActivityForResult(galleryIntent, REQUEST_IMAGE_GALLERY);
+//    }
+//
+//    /**
+//     * Metodo para poder accesar a la camara del dispositivo
+//     */
+//    private void goToCamera() {
+//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); /**ACTION_IMAGE_CAPTURE, es como una API que nos dibujara la interfaz, para acceder a la camara*/
+//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+//            File photoFile = null;
+//            try {
+//                photoFile = crearImagen();
+//            } catch (IOException ex) {
+//                Log.e("Error", ex.toString());
+//            }
+//            if (photoFile != null) {
+//                Uri photoUri = FileProvider.getUriForFile(
+//                        this,
+//                        "hn.healthypets.proyecto.fileprovider",
+//                        photoFile);
+//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+//                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Metodo para crear el archivo temporal de la camara,
+//     * para luego ser guardada en el dispositivo
+//     */
+//    private File crearImagen() throws IOException {
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(new Date());
+//        String imgFileName = "IMG_" + timeStamp + "_"; //IMG_202104101111
+//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//        File image = File.createTempFile(
+//                imgFileName,
+//                ".jpg",
+//                storageDir
+//        );
+//        rutaImagen = image.getAbsolutePath();
+//        return image;
+//    }
 }
