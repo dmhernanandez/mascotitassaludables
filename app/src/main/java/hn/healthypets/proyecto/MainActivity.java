@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Button nuevo = findViewById(R.id.nuevo);
         Button credencial = findViewById(R.id.btnCredencial);
         Button vacuna = findViewById(R.id.btnVacunas);
-        Button desparacitante = findViewById(R.id.btnDesparacitante);
+        Button desparacitante = findViewById(R.id.btnDesparacitanteMenu);
         Button historial = findViewById(R.id.btnHistorial);
-        Button medicamento = findViewById(R.id.btnMedicamento);
+        Button medicamento = findViewById(R.id.btnMedicamentoMenu);
         Button agenda = findViewById(R.id.btnAgenda);
         Button actividades = findViewById(R.id.btnActividades);
         Button menu=findViewById(R.id.btnMenuLateral);

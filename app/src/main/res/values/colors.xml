@@ -15,8 +15,7 @@
     <color name="celeste">#5e9be3</color>
     <color name="celesteClaro">#7AB1F2</color>
 
-    <color name="AntesClick">#F58F62</color>
-    <color name="Click">#EBDB50</color>
+    <color name="botones_menu">#E0FFFF</color>
 
     <color name="botones">#37C8E8</color>
     <color name="black">#FF000000</color>

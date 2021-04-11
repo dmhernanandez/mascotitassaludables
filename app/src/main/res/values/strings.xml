@@ -6,6 +6,13 @@
         <item>Perro</item>
         <item>Gato</item>
     </string-array>
+
+    <string-array name="historial_items">
+        <item>Seleccione</item>
+        <item>Vacunas</item>
+        <item>Desparasitantes</item>
+        <item>Medicamento</item>
+    </string-array>
     <!--    crear etiqueta para el spinner-->
     <string name="especie_promts">Seleccione</string>
 

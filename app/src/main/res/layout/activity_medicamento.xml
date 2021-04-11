@@ -28,7 +28,7 @@
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.532"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19"
             app:layout_constraintVertical_bias="0.0" />
@@ -42,7 +42,7 @@
             app:icon="@drawable/ic_vector_listo"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante2"
-            app:layout_constraintHorizontal_bias="0.688"
+            app:layout_constraintHorizontal_bias="0.881"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
             app:layout_constraintVertical_bias="0.333" />
@@ -85,13 +85,13 @@
             android:background="@drawable/input_gris"
             android:ems="10"
             android:fontFamily="@font/questrial"
-            android:hint="Ratidina"
+            android:hint="ejem. Ratidina"
             android:inputType="textPersonName"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintHorizontal_bias="0.532"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             app:layout_constraintVertical_bias="0.0" />
@@ -201,10 +201,10 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.175"
+            app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtFechaMedicamento"
-            app:layout_constraintVertical_bias="0.093" />
+            app:layout_constraintVertical_bias="0.087" />
 
         <EditText
             android:id="@+id/edtNumeroDosis"
@@ -290,7 +290,7 @@
             app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toEndOf="@+id/edtNumeroDosis"
             app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante2"
-            app:layout_constraintVertical_bias="0.055" />
+            app:layout_constraintVertical_bias="0.078" />
 
         <EditText
             android:id="@+id/edtHoraMedicamento"

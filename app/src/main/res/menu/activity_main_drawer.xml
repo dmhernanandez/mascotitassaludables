@@ -17,10 +17,10 @@
             android:id="@+id/nav_historial"
             android:icon="@drawable/ic_informe_medico_negro"
             android:title="Historial" />
-        <item
-            android:id="@+id/nav_agenda"
-            android:icon="@drawable/ic_cuaderno_negro"
-            android:title="Agenda" />
+<!--        <item-->
+<!--            android:id="@+id/nav_agenda"-->
+<!--            android:icon="@drawable/ic_cuaderno_negro"-->
+<!--            android:title="Agenda" />-->
         <item
             android:id="@+id/nav_credencial"
             android:icon="@drawable/ic_tarjeta_de_identificacion_negro"

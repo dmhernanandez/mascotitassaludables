@@ -84,6 +84,22 @@
 
         <TextView
             android:id="@+id/txvNombreCP"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/EdtNombreCP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/txvNombreCP2"
             android:layout_width="128dp"
             android:layout_height="17dp"
             android:layout_marginTop="20dp"
@@ -92,7 +108,7 @@
             android:textColor="#000000"
             app:layout_constraintBottom_toTopOf="@+id/EdtNombreCP"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintHorizontal_bias="0.201"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
             app:layout_constraintVertical_bias="0.0" />
@@ -104,7 +120,7 @@
             android:layout_marginBottom="512dp"
             android:background="@drawable/input_gris"
             android:ems="10"
-            android:hint="Doggy"
+            android:hint="Eje.Doggy"
             android:inputType="textPersonName"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
@@ -125,7 +141,23 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toTopOf="@+id/etdFechaNacimiento"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.195"
+            app:layout_constraintHorizontal_bias="0.236"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txvFechaNacimientoCP2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/etdFechaNacimiento"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/EdtNombreCP"
             app:layout_constraintVertical_bias="1.0" />
@@ -153,7 +185,22 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.13"
+            app:layout_constraintHorizontal_bias="0.157"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
+            app:layout_constraintVertical_bias="0.072" />
+
+        <TextView
+            android:id="@+id/txvGenero2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
             app:layout_constraintVertical_bias="0.072" />
@@ -196,7 +243,23 @@
             android:textColor="#0B0B0B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.131"
+            app:layout_constraintHorizontal_bias="0.159"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txvGenero"
+            app:layout_constraintVertical_bias="0.017" />
+
+        <TextView
+            android:id="@+id/txvEspecie2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txvGenero"
             app:layout_constraintVertical_bias="0.017" />
@@ -212,9 +275,10 @@
             android:spinnerMode="dialog"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaEspecie2"
+            app:layout_constraintHorizontal_bias="0.307"
             app:layout_constraintStart_toEndOf="@+id/txvEspecie"
             app:layout_constraintTop_toBottomOf="@+id/rbMacho"
-            app:layout_constraintVertical_bias="0.088" />
+            app:layout_constraintVertical_bias="0.083" />
 
         <Spinner
             android:id="@+id/spiRaza"
@@ -296,7 +360,7 @@
             android:layout_marginTop="28dp"
             android:background="@drawable/input_gris"
             android:ems="10"
-            android:hint="00000"
+            android:hint="Eje.00000"
             android:inputType="number"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"

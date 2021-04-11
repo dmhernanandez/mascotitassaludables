@@ -16,7 +16,8 @@ tools:layout_editor_absoluteY="671dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/crdvHistorial"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:layout_height="154dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"

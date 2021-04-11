@@ -18,18 +18,18 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crdvHistorial"
-            android:layout_width="358dp"
+            android:layout_width="match_parent"
             android:layout_height="154dp"
+            android:layout_marginHorizontal="20dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.05">
+            app:layout_constraintVertical_bias="0.135">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="360dp"
+                android:layout_width="370dp"
                 android:layout_height="154dp">
 
 
@@ -81,6 +81,38 @@
 
 
         </androidx.cardview.widget.CardView>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/input_gris"
+
+            android:entries="@array/historial_items"
+            android:padding="10dp"
+            android:prompt="@string/especie_promts"
+            app:layout_constraintBottom_toTopOf="@+id/crdvHistorial"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.862"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="Seleccione un filtro: "
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/crdvHistorial"
+            app:layout_constraintEnd_toStartOf="@+id/spinner"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
