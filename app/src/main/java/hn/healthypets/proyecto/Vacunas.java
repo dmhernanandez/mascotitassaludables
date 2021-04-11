@@ -34,10 +34,6 @@ import java.util.IllegalFormatCodePointException;
 import java.util.Locale;
 
 public class Vacunas extends AppCompatActivity {
-    private static final int REQUEST_PERMISSION_CODE = 100;
-    private static final int REQUEST_IMAGE_GALLERY = 101;
-    private static final int REQUEST_PERMISSION_CAMERA = 102;
-    private static final int REQUEST_IMAGE_CAMERA = 103;
 
     MetodosImagenes metodosImagenes = new MetodosImagenes();
 
@@ -65,7 +61,7 @@ public class Vacunas extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     metodosImagenes.openGallery(Vacunas.this);
                 } else {
-                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CODE);
+                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MetodosImagenes.REQUEST_PERMISSION_CODE);
                 }
             } else {
                 metodosImagenes.openGallery(Vacunas.this);
@@ -78,7 +74,7 @@ public class Vacunas extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     metodosImagenes.goToCamera(Vacunas.this);
                 } else {
-                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
+                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.CAMERA}, MetodosImagenes.REQUEST_PERMISSION_CAMERA);
                 }
             } else {
                 metodosImagenes.goToCamera(Vacunas.this);
@@ -89,7 +85,7 @@ public class Vacunas extends AppCompatActivity {
             /**Aquí usamos el método que creamos para obtener la imágen*/
             Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
             String ruta = metodosImagenes.guardarImagen(getApplicationContext(), imagen, imagen);
-            Toast.makeText(getApplicationContext(), ruta, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Imagen obtenida con éxito :)", Toast.LENGTH_LONG).show();
         });
     }
 
@@ -97,14 +93,14 @@ public class Vacunas extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         /**Acá abrimos el cuadro de dialogo para poder habilitar los permisos,
          * Si el usuario acepta los permisos, habilitará la cámara o la galería*/
-        if (requestCode == REQUEST_PERMISSION_CODE) {
+        if (requestCode == MetodosImagenes.REQUEST_PERMISSION_CODE) {
             if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 metodosImagenes.openGallery(Vacunas.this);
             } else {
                 Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
             }
         }
-        if (requestCode == REQUEST_PERMISSION_CAMERA) {
+        if (requestCode == MetodosImagenes.REQUEST_PERMISSION_CAMERA) {
             if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 metodosImagenes.goToCamera(Vacunas.this);
             } else {
@@ -120,7 +116,7 @@ public class Vacunas extends AppCompatActivity {
         /**Verificar si los permisos son correctos.
          * En esta parte lo que hacemos es crear la ruta
          * para guardar la imágen*/
-        if (requestCode == REQUEST_IMAGE_GALLERY) {
+        if (requestCode == MetodosImagenes.REQUEST_IMAGE_GALLERY) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 /**Obtenemos la ruta de la imagen*/
                 Uri photo = data.getData();
@@ -130,10 +126,10 @@ public class Vacunas extends AppCompatActivity {
                 Toast.makeText(this, "No seleccionó ninguna foto", Toast.LENGTH_LONG).show();
             }
         } else {
-            if (requestCode == REQUEST_IMAGE_CAMERA) {
+            if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA) {
                 if (resultCode == Activity.RESULT_OK) {
                     imgFotoVacuna.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
-                    Toast.makeText(getApplicationContext(), metodosImagenes.getRutaImagen(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Fotografía tomada con éxito :)", Toast.LENGTH_LONG).show();
                 }
             }
         }

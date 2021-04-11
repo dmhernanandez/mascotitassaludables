@@ -25,7 +25,9 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MetodosImagenes {
+    public static final int REQUEST_PERMISSION_CODE = 100;
     public static final int REQUEST_IMAGE_GALLERY = 101;
+    public static final int REQUEST_PERMISSION_CAMERA = 102;
     public static final int REQUEST_IMAGE_CAMERA = 103;
 
     private String rutaImagen;
