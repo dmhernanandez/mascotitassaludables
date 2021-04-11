@@ -1,14 +1,141 @@
 package hn.healthypets.proyecto;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.IllegalFormatCodePointException;
+import java.util.Locale;
 
 public class Vacunas extends AppCompatActivity {
+    private static final int REQUEST_PERMISSION_CODE = 100;
+    private static final int REQUEST_IMAGE_GALLERY = 101;
+    private static final int REQUEST_PERMISSION_CAMERA = 102;
+    private static final int REQUEST_IMAGE_CAMERA = 103;
+
+    MetodosImagenes metodosImagenes = new MetodosImagenes();
+
+    ImageButton buscarImagen;
+    ImageButton btnTomarFotos;
+    ImageView imgFotoVacuna;
+    Button ok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacunas);
+
+        btnTomarFotos = findViewById(R.id.imgbtnTomarFotosV);
+        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
+
+        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
+        buscarImagen = findViewById(R.id.imgbtnBuscarFotosV);
+
+        ok = findViewById(R.id.btnListoVacunas);
+
+        buscarImagen.setOnClickListener((v) -> {
+            /**Aquí obtenemos los permisos para entrar a la GALERIA*/
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
+                if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    metodosImagenes.openGallery(Vacunas.this);
+                } else {
+                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_CODE);
+                }
+            } else {
+                metodosImagenes.openGallery(Vacunas.this);
+            }
+        });
+
+        btnTomarFotos.setOnClickListener((v) -> {
+            /**Aquí obtenemos los permisos para USAR la cámara del dispositivo*/
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
+                if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    metodosImagenes.goToCamera(Vacunas.this);
+                } else {
+                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
+                }
+            } else {
+                metodosImagenes.goToCamera(Vacunas.this);
+            }
+        });
+
+        ok.setOnClickListener((v) -> {
+            /**Aquí usamos el método que creamos para obtener la imágen*/
+            Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
+            String ruta = metodosImagenes.guardarImagen(getApplicationContext(), imagen, imagen);
+            Toast.makeText(getApplicationContext(), ruta, Toast.LENGTH_LONG).show();
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        /**Acá abrimos el cuadro de dialogo para poder habilitar los permisos,
+         * Si el usuario acepta los permisos, habilitará la cámara o la galería*/
+        if (requestCode == REQUEST_PERMISSION_CODE) {
+            if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                metodosImagenes.openGallery(Vacunas.this);
+            } else {
+                Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
+            }
+        }
+        if (requestCode == REQUEST_PERMISSION_CAMERA) {
+            if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                metodosImagenes.goToCamera(Vacunas.this);
+            } else {
+                Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**Verificar si los permisos son correctos.
+         * En esta parte lo que hacemos es crear la ruta
+         * para guardar la imágen*/
+        if (requestCode == REQUEST_IMAGE_GALLERY) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                /**Obtenemos la ruta de la imagen*/
+                Uri photo = data.getData();
+                imgFotoVacuna.setImageURI(photo);
+                Log.i("TAG", "Result: " + photo);
+            } else {
+                Toast.makeText(this, "No seleccionó ninguna foto", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            if (requestCode == REQUEST_IMAGE_CAMERA) {
+                if (resultCode == Activity.RESULT_OK) {
+                    imgFotoVacuna.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
+                    Toast.makeText(getApplicationContext(), metodosImagenes.getRutaImagen(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 }
