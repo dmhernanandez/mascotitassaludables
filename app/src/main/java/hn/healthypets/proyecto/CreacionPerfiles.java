@@ -1,4 +1,4 @@
-package hn.healthypets.proyecto;
+:package hn.healthypets.proyecto;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -38,13 +38,14 @@ import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.database.dao.EspecieDAO;
 import hn.healthypets.proyecto.database.dao.RazaDAO;
+import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
-public class CreacionPerfiles extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ModalDialogoEspecie.ModalDialogoEspecieListener, ModalDialogoRaza.ModalDialogoRazaListener {
+public class CreacionPerfiles extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ModalDialogoEspecie.ModalDialogoEspecieListener, ModalDialogoRaza.ModalDialogoRazaListener
+{
 
     private ImageButton btnTomarFotos;
     private ImageView imgFotoMascota;
     private String rutaImagen;
-    private String especie;
     private TextView textViewEspecie;
     private ImageButton agregarEspecie;
     private Spinner spiEspecie;
@@ -61,8 +62,16 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     private ArrayAdapter<String> adaptadorEspecie;
     private ArrayAdapter<String> adaptadorRaza;
     private SimpleDateFormat  formatoFecha;
-    private int postionItem;
-    private  String accion;
+    /**Estas variables de utilizan para determinar la posicion en la que se encuentra un elemento cuando se esta actualizando
+     * para asi seleccionarlo
+     * */
+    private int postionItemEspecie;
+    private int postionItemRaza;
+
+    /**Se utilizan para validar que tipo de accion se realizara en la actividad, estos datos se reciben del intent**/
+    private  int accion;
+    private String especie;
+    private String raza;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,58 +79,69 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         //Inicializamos todos los elementos
         init();
 
-            /** ----- Spinner raza -----**/
-           spiRaza.setOnItemSelectedListener(this);
-           arrayNombreRazas.add("Seleccione raza");
-           startSpinnerValues(spiRaza,arrayNombreRazas,adaptadorRaza);
-
-        /** ----- Spinner de especie ----- **/
-        spiEspecie.setOnItemSelectedListener(this);
-        arrayNombreEspecies.add("Seleccione especie");
-        startSpinnerValues(spiEspecie,arrayNombreEspecies,adaptadorEspecie);
-        spiRaza.setOnItemSelectedListener(this);
-
-        /**Se obtiene una Array de todas las especies de la base de datos y se guarda el nombre en un arreglo.
+        /**
+         * ESTE METODO SE EJECUTA DESPUES DE QUE LA APLICACION PASA AL ESTADO RESUMED Y QUE ES UNA CONSULTA ASINCRONA Y NO SE REALIZA
+         * EN EL HILO PRINCIPAL O EN LA EJECUCI0N DEL onCreate
+         * Se obtiene una Array de todas las especies de la base de datos y se guarda el nombre en un arreglo.
          * Ademas se agrega un Observer que notificara cuano hayan cambios para que la interfaz se recarga automaticamente cada vez que exista un cambio
          * */
-                 instanciaDB.getSpeciesDAO().getAllNameSpecies().observe(CreacionPerfiles.this,
+         instanciaDB.getSpeciesDAO().getAllNameSpecies().observe(CreacionPerfiles.this,
                 new Observer<List<EspecieDAO.NombreEspecie>>() {
                     @Override
                     public void onChanged(List<EspecieDAO.NombreEspecie> nombreEspecies) {
 
-                        arrayNombreEspecies.clear();
+                       /** Evaluamos que tipo de accion se realiza para  seleccionar el dato que se esta actualizando o
+                        * simplemente llenar el espiner en caso de querer guardar una nueva mascota*/
+                       arrayNombreEspecies.clear();
 
-                        for(int i=0;i<nombreEspecies.size();i++)
-                        {
-                            Log.i("prueba",nombreEspecies.get(i).getNombreEspecie()+" "+String.valueOf(postionItem));
-                            if(nombreEspecies.get(i).getNombreEspecie() =="Perro")
-                            {
-                                postionItem=i;
-                                Log.i("prueba",nombreEspecies.get(i).getNombreEspecie()+" "+String.valueOf(postionItem));
-                            }
+                      switch (accion)
+                      {
+                          case Constantes.GUARDAR:
 
-                           arrayNombreEspecies.add(i,nombreEspecies.get(i).getNombreEspecie());
+                              for(int i=0;i<nombreEspecies.size();i++)
+                              {
+                                  arrayNombreEspecies.add(i,nombreEspecies.get(i).getNombreEspecie());
+                              }
+                          break;
+                          case Constantes.ACTUALIZAR:
+                              /**En caso de ser una actualización se busca el valor que coincide con la lista para
+                               * seleccionarlo y asi asegurarnos que el usuario vea el valor que tenia guardado previamente*/
+                              for(int i=0;i<nombreEspecies.size();i++)
+                              {
+                                  if(nombreEspecies.get(i).getNombreEspecie().equals(especie))
+                                  {
+                                      postionItemEspecie =i+1;
+                                  }
+                                  arrayNombreEspecies.add(i,nombreEspecies.get(i).getNombreEspecie());
+                              }
+                              break;
 
-                        }
+                      }
+
+                      /**Independientemente si es una actualizacion o un se esta guardando una nueva mascota siempre se agrega
+                       * un valor por defecto en la primera posicion del array. Adememas  positionItemEspecie  se utiliza para
+                       * seleccionar un elemente en caso de que la accion se guardar el valor de este es de 0*/
                         arrayNombreEspecies.add(0,"Seleccione especie");
 
+                        spiEspecie.setSelection(postionItemEspecie);
 
                     }
                 });
-        spiEspecie.setSelection(postionItem);
 
-        instanciaDB.getRazaDAO().getAllBreedsFromSpecie("Perro").observe(CreacionPerfiles.this,
-                new Observer<List<RazaDAO.NombreRaza>>() {
-                    @Override
-                    public void onChanged(List<RazaDAO.NombreRaza> nombreRazas) {
-                        arrayNombreRazas.clear();
-                        for(RazaDAO.NombreRaza raza : nombreRazas)
-                        {
-                            arrayNombreRazas.add(raza.getNombreRaza());
-                        }
-                        arrayNombreRazas.add(0,"Seleccione raza");
-                    }
-                });
+//        instanciaDB.getRazaDAO().getAllBreedsFromSpecie(especie).observe(CreacionPerfiles.this,
+//                new Observer<List<RazaDAO.NombreRaza>>() {
+//                    @Override
+//                    public void onChanged(List<RazaDAO.NombreRaza> nombreRazas) {
+//                        arrayNombreRazas.clear();
+//                        for(RazaDAO.NombreRaza raza : nombreRazas)
+//                        {
+//                            arrayNombreRazas.add(raza.getNombreRaza());
+//                        }
+//                        arrayNombreRazas.add(0,"Seleccione raza");
+//                    }
+//                });
+
+
 
          //Hinabilitamos el Spinner de raza ya que esta depende de la especie y mientras no hay una seleccionada no tiene sentido estar habilidado
         // disableSpinnerAndButton(spiRaza,agregarRaza);
@@ -153,7 +173,8 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
 
 
-    }
+    }//Fin del metodo onCreate
+
 
     //Abre el dialogo para recibir una nueva especie
     public void abrirDialogoEspecie() {
@@ -184,9 +205,9 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void applyTextRaza(String razaMascota) {
-      /** Se valida que no este vacio el campo, en caso contrario se obtiene el valor y se guarda en la base de datos,
-       * pero tambien por medio de la variabe "especie" se hace una consulta a la base de datos para obtener su id y asi
-       * asociarlo con esa raza en especifico
+      /** Se valida que no este vacio el nombre de raza, si tiene valores se obtiene el valor y se guarda en la base de datos.
+       * Tambien por medio de la variabe "especie" se hace una consulta a la base de datos para obtener su id y asi
+       * asociarlo la raza a una especie
        **/
         if (!razaMascota.isEmpty())
         {
@@ -228,7 +249,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     //Metodos para controlar eventos de los Spinners
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-     //   Toast.makeText(this, spiEspecie.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
 
          switch (parent.getId())
          {
@@ -237,43 +257,66 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                  y no tiene ningun valor en la base de datos*/
                  if(position>0)
                  {
-                    especie=parent.getSelectedItem().toString();
-                     //Desbloqueamos la base el sepinner de razas
+                       //Desbloqueamos la base el sepinner de razas
                      enableSpinnerAndButton(spiRaza,agregarRaza);
-                 }
-//                 else
-//                     disableSpinnerAndButton(spiRaza,agregarRaza);
+                     /**Establecemos un observador para obtener las razas por especie seleccianada, en esta caso este se encarga de actualizar
+                      * cada vez que agreguemos una nueva raza
+                      * */
+                     instanciaDB.getRazaDAO().getAllBreedsFromSpecie(parent.getSelectedItem().toString()).observe(CreacionPerfiles.this,
+                             new Observer<List<RazaDAO.NombreRaza>>() {
+                                 @Override
+                                 public void onChanged(List<RazaDAO.NombreRaza> nombreRazas) {
+                                     arrayNombreRazas.clear();
+                                     /**Este metodo esta asociado a un Observer que decta cuando se han cambiado los datos  para actualizar
+                                      * de forma asincrona, por tal razan validdamos cuando es guardar  y cuando es actualizar en caso de ser
+                                      * "guardar" entonces solo actualiza el spinner raza cuando se selecciona una especie */
+                                     if (accion == Constantes.GUARDAR) {
+                                         for (RazaDAO.NombreRaza raza : nombreRazas) {
+                                             arrayNombreRazas.add(raza.getNombreRaza());
+                                         }
+                                         arrayNombreRazas.add(0, "Seleccione raza");
+                                     }
+                                     else if (accion == Constantes.ACTUALIZAR) {
+                                         for(int i=0;i<nombreRazas.size();i++)
+                                         {
+                                             if(nombreRazas.get(i).getNombreRaza().equals(raza))
+                                             {
+                                                 /**Se obtiene la posición y se le suma 1 porque el 0 es el valor por defecto*/
+                                                 postionItemRaza =i+1;
+                                             }
+                                             arrayNombreRazas.add(i,nombreRazas.get(i).getNombreRaza());
+                                         }
+                                     }
 
-                 /**Establecemos un observador para obtener las razas por especie seleccianada, en esta caso este se encarga de actualizar
-                  * cada vez que agreguemos una nueva raza
-                  * */
-                 instanciaDB.getRazaDAO().getAllBreedsFromSpecie(parent.getSelectedItem().toString()).observe(CreacionPerfiles.this,
-                         new Observer<List<RazaDAO.NombreRaza>>() {
-                             @Override
-                             public void onChanged(List<RazaDAO.NombreRaza> nombreRazas) {
-                                 arrayNombreRazas.clear();
-                                 for(RazaDAO.NombreRaza raza : nombreRazas)
-                                 {
-                                     arrayNombreRazas.add(raza.getNombreRaza());
+                                     /** Independientemente si es actualizacion o se esta guardando la opcion por default siempre va e
+                                      * existir por eso se coloca al final de las evaluaciones*/
+                                     arrayNombreRazas.add(0,"Seleccione Raza");
+                                     spiRaza.setSelection(postionItemRaza);
+                                     /** Se resetea esta posición con el objetivo que la proxima vez que seleccione una nueva especie y
+                                      * no coincida con la raza, el valor por defecto se seleccione*/
+                                     postionItemRaza=0;
                                  }
-                                 arrayNombreRazas.add(0,"Seleccione raza");
-                             }
-                         });
-                /**
-                 * Cada vez que se selecciona una especie se recarga las razas pertenecientes a esa especie, por tanto el primer item seleccionado sea el cero
-                 * ya que es el valor por defecto "Seleccione raza", que le indica al usuario que hacer
-                 * */
-                 spiRaza.setSelection(0);
+                             });
+                     /**
+                      * Cada vez que se selecciona una especie se recarga las razas pertenecientes a esa especie, por tanto el primer item seleccionado sea el cero
+                      * ya que es el valor por defecto "Seleccione raza", que le indica al usuario que hacer
+                      * */
+
+                 }
+                 else
+                 {
+                     spiRaza.setSelection(0);
+                     disableSpinnerAndButton(spiRaza,agregarRaza);
+
+                 }
 
 
-             break;
-             case R.id.spiRaza:
+
              break;
          }
+    }// fin de onItemSelected
 
 
-
-    }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -309,13 +352,39 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         formatoFecha= new SimpleDateFormat("dd/MM/yyyy");
         edtFechaNaciento.setText(formatoFecha.format(new Date()));
         especie = "";
-        accion="nuevo";
+
 
         arrayNombreRazas = new ArrayList<>();
         arrayNombreEspecies = new ArrayList<>();
 
         /** Se obtiene una instancia de la base de datos*/
         instanciaDB = SingletonDB.getDatabase(this);
+
+
+        /** Se asigna al Spinner de raza un evento de escucha, un array con la list**/
+        spiRaza.setOnItemSelectedListener(this);
+        arrayNombreRazas.add("Seleccione raza");
+        startSpinnerValues(spiRaza,arrayNombreRazas,adaptadorRaza);
+
+        /** Se asigna al Spinner de especie un evento de escucha, ademas se le agrega un adaptador con  **/
+        spiEspecie.setOnItemSelectedListener(this);
+        arrayNombreEspecies.add("Seleccione especie");
+        startSpinnerValues(spiEspecie,arrayNombreEspecies,adaptadorEspecie);
+
+
+        /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
+        Intent intentValues= getIntent();
+        accion=intentValues.getIntExtra(Constantes.TAG_ACCION,Constantes.GUARDAR);
+        if(accion==Constantes.GUARDAR){
+            disableSpinnerAndButton(spiRaza,agregarRaza);
+        }
+        else if(accion==Constantes.ACTUALIZAR)
+        {
+
+        }
+        accion=Constantes.ACTUALIZAR;
+        especie="Perro";
+        raza="Pitbull";
     }
 
 
@@ -348,4 +417,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         button.setEnabled(true);
         spinner.setEnabled(true);
     }
+
+    /**Con estos metodos llamamo*/
 }

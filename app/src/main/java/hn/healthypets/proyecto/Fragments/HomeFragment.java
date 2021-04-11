@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import hn.healthypets.proyecto.CreacionPerfiles;
 import hn.healthypets.proyecto.R;
 
@@ -27,7 +26,8 @@ public class HomeFragment extends Fragment {
             //        PARA ABRIR DE UN FRAGMENTE A UNA ACTIVITY
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),CreacionPerfiles.class);
+               // NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.nav_perfiles);
+                Intent intent = new Intent(getContext(), CreacionPerfiles.class);
                 startActivity(intent);
             }
 
