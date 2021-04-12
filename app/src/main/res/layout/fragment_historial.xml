@@ -48,91 +48,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-
-        <!--        CARD VIEW PARA LAS VACUNAS-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/crdvVacunaHistorial"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHistorial"
             android:layout_width="match_parent"
-            android:layout_height="154dp"
-            android:layout_marginHorizontal="20dp"
-            app:cardBackgroundColor="#FEF9E7"
-            app:cardCornerRadius="20dp"
+            android:layout_height="685dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.135">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="370dp"
-                android:layout_height="154dp">
-
-
-                <TextView
-                    android:id="@+id/txvNombreMascota"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/questrial"
-                    android:text="NombreMascota"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.371"
-                    app:layout_constraintStart_toEndOf="@+id/imgvMascotaPerfil"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.185" />
-
-                <TextView
-                    android:id="@+id/txvNombreVacuna"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/questrial"
-                    android:text="Desparacitante Iverkan"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.432"
-                    app:layout_constraintStart_toEndOf="@+id/imgvMascotaPerfil"
-                    app:layout_constraintTop_toBottomOf="@+id/txvNombreMascota"
-                    app:layout_constraintVertical_bias="0.273" />
-
-                <ImageView
-                    android:id="@+id/imgvMascotaPerfil"
-                    android:layout_width="131dp"
-                    android:layout_height="127dp"
-                    android:soundEffectsEnabled="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.065"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.301"
-                    tools:srcCompat="@tools:sample/avatars" />
-
-                <TextView
-                    android:id="@+id/txvFechaAplicacionVacuna"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/questrial"
-                    android:text="Fecha aplicacion 31-03-2021"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.35"
-                    app:layout_constraintStart_toEndOf="@+id/imgvMascotaPerfil"
-                    app:layout_constraintTop_toBottomOf="@+id/txvNombreVacuna"
-                    app:layout_constraintVertical_bias="0.421" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="8dp"
+            tools:ignore="MissingConstraints" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

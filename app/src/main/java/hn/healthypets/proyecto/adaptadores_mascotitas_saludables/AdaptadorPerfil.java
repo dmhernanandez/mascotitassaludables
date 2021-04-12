@@ -71,7 +71,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
         holder.txvNumeroChipPerfil.setText("Fecha: " + fecha);
 
         Glide.with(holder.itemView)
-                .load(R.drawable.golden3)
+                .load(R.drawable.default_credencial)
                 .transform(new CircleCrop())
                 .into(holder.imgMascotaPerfil);
 

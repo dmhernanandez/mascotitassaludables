@@ -15,6 +15,7 @@ import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.ModeloVacunas;
 
 public class AdaptadorVacunas extends RecyclerView.Adapter<AdaptadorVacunas.ViewHolder> {
+
     private final ArrayList<ModeloVacunas> vacunaArrayList;
 
     @Override
