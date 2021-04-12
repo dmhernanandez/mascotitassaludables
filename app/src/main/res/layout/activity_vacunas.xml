@@ -16,6 +16,21 @@
         tools:context=".Vacunas">
 
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="Ingrese Descripción:"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/edtDescripcionVacuna"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.198"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionVacuna"
+            app:layout_constraintVertical_bias="1.0" />
+
         <ImageView
             android:id="@+id/imgComprobacionVacunas"
             android:layout_width="170dp"
@@ -73,36 +88,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/questrial"
-            android:text="Ingrese Descripción:"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/edtDescripcionVacuna"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.198"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionVacuna"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/holo_red_dark"
-            android:fontFamily="@font/questrial"
-            android:text="*"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toTopOf="@+id/edtNombreVacuna"
-            app:layout_constraintEnd_toStartOf="@+id/textView10"
-            app:layout_constraintHorizontal_bias="0.964"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas"
             app:layout_constraintVertical_bias="1.0" />
 
@@ -154,8 +139,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionVacuna" />
 
-        <TextView
-            android:id="@+id/textView5"
+        <Button
+            android:id="@+id/btnCancelarVacuna"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
@@ -164,7 +149,22 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/edtFechaAplicacionVacuna"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.275"
+            app:layout_constraintHorizontal_bias="0.465"
+            app:layout_constraintStart_toEndOf="@+id/btnListoVacunas"
+            app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnProximaVacuna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:backgroundTint="@color/agendar"
+            android:text="Proxima"
+            app:icon="@drawable/ic_vector_proxima"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.464"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNombreVacuna"
             app:layout_constraintVertical_bias="1.0" />
@@ -194,10 +194,10 @@
             app:icon="@drawable/ic_vector_cancelar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.432"
-            app:layout_constraintStart_toEndOf="@+id/btnListoVacunas"
-            app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.183"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas"
+            app:layout_constraintVertical_bias="1.0" />
 
         <EditText
             android:id="@+id/edtFechaAplicacionVacuna"

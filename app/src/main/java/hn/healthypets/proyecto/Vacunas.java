@@ -1,16 +1,28 @@
 package hn.healthypets.proyecto;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -24,21 +36,30 @@ public class Vacunas extends AppCompatActivity {
 
     MetodosImagenes metodosImagenes = new MetodosImagenes();
 
-    ImageButton buscarImagen;
-    ImageButton btnTomarFotos;
-    ImageView imgFotoVacuna;
-    Button ok;
+    private ImageView imgFotoVacuna;
+    private ImageButton btnTomarFotos;
+    private ImageButton buscarImagen;
+    private EditText edtNombreVacuna;
+    private EditText edtFechaVacuna;
+    private EditText edtDescripVacuna;
+    private Button ok;
+    private Button btnCancel;
+    private Button btnProxima;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacunas);
 
+        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
         btnTomarFotos = findViewById(R.id.imgbtnTomarFotosV);
-        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
-        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
         buscarImagen = findViewById(R.id.imgbtnBuscarFotosV);
+        edtNombreVacuna = findViewById(R.id.edtNombreVacuna);
+        edtFechaVacuna = findViewById(R.id.edtFechaAplicacionVacuna);
+        edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
         ok = findViewById(R.id.btnListoVacunas);
+        btnCancel = findViewById(R.id.btnCancelarVacuna);
+        btnProxima = findViewById(R.id.btnProximaVacuna);
 
         buscarImagen.setOnClickListener((v) -> {
             /**Aquí obtenemos los permisos para entrar a la GALERIA*/
@@ -70,7 +91,7 @@ public class Vacunas extends AppCompatActivity {
             /**Aquí usamos el método que creamos para obtener la imágen*/
             Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
             String ruta = metodosImagenes.guardarImagen(getApplicationContext(), imagen, imagen);
-            Toast.makeText(getApplicationContext(), ruta, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Imagen obtenida con éxito :)", Toast.LENGTH_LONG).show();
         });
     }
 
@@ -114,7 +135,7 @@ public class Vacunas extends AppCompatActivity {
             if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA) {
                 if (resultCode == Activity.RESULT_OK) {
                     imgFotoVacuna.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
-                    Toast.makeText(getApplicationContext(), metodosImagenes.getRutaImagen(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Fotografía tomada con éxito :)", Toast.LENGTH_LONG).show();
                 }
             }
         }

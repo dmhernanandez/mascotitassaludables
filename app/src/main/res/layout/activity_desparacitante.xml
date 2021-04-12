@@ -18,53 +18,6 @@
                 <!--        Se colocan las guias para que al rotar la pantalla no se pierda tanto el dise;o -->
 
 
-                <TextView
-                    android:id="@+id/txvGenero3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/questrial"
-                    android:text="*"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView3"
-                    app:layout_constraintHorizontal_bias="0.981"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.035" />
-
-
-                <TextView
-                    android:id="@+id/txvGenero4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="1dp"
-                    android:fontFamily="@font/questrial"
-                    android:text="*"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView7"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionDesparacitante"
-                    app:layout_constraintVertical_bias="0.02" />
-
-                <TextView
-                    android:id="@+id/txvGenero6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/questrial"
-                    android:text="*"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/edtPesoDesparacitante"
-                    app:layout_constraintEnd_toStartOf="@+id/textView9"
-                    app:layout_constraintHorizontal_bias="0.981"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante"
-                    app:layout_constraintVertical_bias="1.0" />
-
                 <EditText
                     android:id="@+id/edtFechaAplicacionDesparacitante"
                     android:layout_width="302dp"
@@ -92,13 +45,13 @@
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toTopOf="@+id/edtFechaAplicacionDesparacitante"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintHorizontal_bias="0.235"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
-                    android:id="@+id/edtNombreDesparacitante"
+                    android:id="@+id/edtNombreDesparasitante"
                     android:layout_width="302dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="28dp"
@@ -109,13 +62,14 @@
                     android:inputType="textPersonName"
                     android:padding="10dp"
                     android:textColorHint="#9E9C9C"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionDesparacitante" />
 
                 <EditText
-                    android:id="@+id/edtPesoDesparacitante"
+                    android:id="@+id/edtPesoDesparasitante"
                     android:layout_width="302dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="36dp"
@@ -128,7 +82,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparasitante" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -138,15 +92,15 @@
                     android:fontFamily="@font/questrial"
                     android:text="Ingrese Peso (kg):"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/edtPesoDesparacitante"
+                    app:layout_constraintBottom_toTopOf="@+id/edtPesoDesparasitante"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.205"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante"
+                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparasitante"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
-                    android:id="@+id/edtObservacionesDesparacitante"
+                    android:id="@+id/edtObservacionesDesparasitante"
                     android:layout_width="302dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="28dp"
@@ -160,6 +114,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparasitante"
+                    app:layout_constraintVertical_bias="0.015" />
                     app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparacitante" />
 
                 <TextView
@@ -170,11 +126,11 @@
                     android:fontFamily="@font/questrial"
                     android:text="Ingrese Observaciones:"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintBottom_toTopOf="@+id/edtObservacionesDesparasitante"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.206"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparacitante"
+                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparasitante"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
@@ -186,12 +142,27 @@
                     android:fontFamily="@font/questrial"
                     android:text="Ingrese Nombre del desparacitante:"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/edtNombreDesparacitante"
+                    app:layout_constraintBottom_toTopOf="@+id/edtNombreDesparasitante"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.34"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionDesparacitante"
                     app:layout_constraintVertical_bias="1.0" />
+
+                <Button
+                    android:id="@+id/btnProximamenteDesparacitante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
+                    android:backgroundTint="@color/agendar"
+                    android:text="Proxima"
+                    app:icon="@drawable/ic_vector_proxima"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.452"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparasitante"
+                    app:layout_constraintVertical_bias="0.55" />
 
                 <Button
                     android:id="@+id/btnListoDesparacitante"
@@ -204,8 +175,8 @@
                     app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante"
                     app:layout_constraintHorizontal_bias="0.561"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
-                    app:layout_constraintVertical_bias="0.048" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparasitante"
+                    app:layout_constraintVertical_bias="0.158" />
 
                 <Button
                     android:id="@+id/btnCancelarDesparacitante"
@@ -218,8 +189,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.798"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
-                    app:layout_constraintVertical_bias="0.045" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparasitante"
+                    app:layout_constraintVertical_bias="0.158" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="656dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

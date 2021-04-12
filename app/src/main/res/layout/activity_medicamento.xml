@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -40,7 +41,7 @@
             android:backgroundTint="@color/listo"
             android:text="Listo"
             app:icon="@drawable/ic_vector_listo"
-            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante2"
             app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +55,7 @@
             android:backgroundTint="@color/cancelar"
             android:text="cancelar"
             app:icon="@drawable/ic_vector_cancelar"
-            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.798"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +66,6 @@
             android:id="@+id/edtFechaMedicamento"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:layout_marginStart="56dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/input_gris"
             android:ems="10"
@@ -74,7 +74,8 @@
             android:inputType="date"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.26"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -241,10 +242,11 @@
             android:text="Horas"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/edtCadaDosis"
             app:layout_constraintTop_toBottomOf="@+id/textView14"
-            app:layout_constraintVertical_bias="0.042" />
+            app:layout_constraintVertical_bias="0.044" />
 
         <TextView
             android:id="@+id/textView15"
@@ -299,7 +301,7 @@
             android:ems="10"
             android:fontFamily="@font/questrial"
             android:hint="1"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textAlignment="center"
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -323,7 +325,7 @@
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.169"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14"
             app:layout_constraintVertical_bias="0.0" />
