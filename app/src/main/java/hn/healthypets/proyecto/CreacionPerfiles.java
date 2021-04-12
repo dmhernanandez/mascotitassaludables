@@ -185,7 +185,20 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
 
         btnSeleccionarFoto.setOnClickListener((v) -> {
-            /**Aquí obtenemos los permisos para entrar a la GALERIA*/
+            /** Se valida que tenga permisos para acceder a la galeria de ser asi lo envia a la galeria*/
+            if(metodosImagenes.checkPermissionGallery(CreacionPerfiles.this))
+            {
+                metodosImagenes.openGallery(CreacionPerfiles.this);
+            }
+            /**De lo contrario los solicita y luego se valida en el metodo on onRequestPermissonCode*/
+            else
+            {
+                metodosImagenes.requestPermissionFromUser(
+                        CreacionPerfiles.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        MetodosImagenes.REQUEST_PERMISSION_GALLERY
+                );
+            }
 
         });
 
@@ -212,7 +225,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         /** Se validan los permisos devueltos de la socilicitud y en caso de ser haber sido aceptados por el usuario
-         * se envia a la camara o la galeriaa */
+         *  el metodo validateRequestPermissionCode envia a la actividad solicitada, de acuerdo con el identificador*/
         metodosImagenes.validateRequestPermissionCode(requestCode,permissions,grantResults,CreacionPerfiles.this);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
@@ -225,13 +238,23 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         {
             case MetodosImagenes.REQUEST_IMAGE_CAMERA:
                 /** Se obtiene le bitmap par mostrarlo pero sin guardarlo aun*/
-                 bitmapImage =(Bitmap) data.getExtras().get("data");
-                 imgFotoMascota.setImageBitmap(bitmapImage);
+                if (resultCode == RESULT_OK && data != null)
+                {
+                    bitmapImage =(Bitmap) data.getExtras().get("data");
+                    imgFotoMascota.setImageBitmap(bitmapImage);
+                }
+
 
             break;
             case MetodosImagenes.REQUEST_IMAGE_GALLERY:
-                Bitmap bitmapImage =(Bitmap) data.getExtras().get("data");
-                imgFotoMascota.setImageBitmap(bitmapImage);
+
+                /** Primero convertimos el recurso pasado obtennido por medio de un URI*/
+                if(resultCode == RESULT_OK && data != null)
+                {
+                    bitmapImage= metodosImagenes.getBitmapFromUri(this,data.getData());
+                    imgFotoMascota.setImageBitmap(bitmapImage);
+                }
+
 
                 break;
         }

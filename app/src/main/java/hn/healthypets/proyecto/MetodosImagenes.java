@@ -12,13 +12,17 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -52,52 +56,10 @@ public class MetodosImagenes {
     /**
      * Método para poder accesar a la cámara del dispositivo
      */
-//    public void goToCamera(Activity activity) {
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); /**ACTION_IMAGE_CAPTURE, es como una API que nos dibujará la interfaz, para acceder a la cámara*/
-//        if (cameraIntent.resolveActivity(activity.getPackageManager()) != null) {
-//            File photoFile = null;
-//            try {
-//                photoFile = crearImagen(activity);
-//            } catch (IOException ex) {
-//                Log.e("Error", ex.toString());
-//            }
-//            /**Directorio donde se guardará la imágen*/
-//            if (photoFile != null) {
-//                Uri photoUri = FileProvider.getUriForFile(
-//                        activity,
-//                        "hn.healthypets.proyecto.fileprovider",
-//                        photoFile);
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-//                activity.startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
-//            }
-//        }
-//    }
     public void goToCamera(Activity activity) {
         /**ACTION_IMAGE_CAPTURE, es como una API que nos dibujará la interfaz, para acceder a la cámara*/
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
         activity.startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
-//        //Validamos si hay un resultado para nuestro intent en este caso seri validar si hay una camara
-//        if (cameraIntent.resolveActivity(activity.getPackageManager()) != null) {
-//            File photoFile = null;
-//            try {
-//                photoFile = crearImagen(activity);
-//
-//            } catch (IOException ex) {
-//                Log.e("Error", ex.toString());
-//            }
-//            /**Directorio donde se guardará la imágen*/
-//            if (photoFile != null)
-//            {
-//                Uri photoUri = FileProvider.getUriForFile(
-//                        activity,
-//                        "hn.healthypets.proyecto.fileprovider",
-//                        photoFile);
-//
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-//                activity.startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
-//            }
-//        }
     }
 
     /**
@@ -208,6 +170,29 @@ public class MetodosImagenes {
         return permissionStorage;
     }
 
+    public boolean checkPermissionGallery(Activity activity)
+    {
+         boolean permissionGallery=false;
+        /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución
+         * en caso de ser mayor que la version 10 o Nougat
+         * */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                permissionGallery=true;
+            }
+            else
+            {
+               permissionGallery=false;
+            }
+        }
+        else
+        {
+            permissionGallery=true;
+        }
+        return  permissionGallery;
+    }
+
     private void savePhoto(Activity activity,Bitmap bitmap) {
 
         /** Se obtiene la ruta principal del direcotorio de imagenes privado de la aplicación, de manera que no seran
@@ -238,8 +223,10 @@ public class MetodosImagenes {
          * Una vez que tenemos lista la secuencia de salida procedemos a comprimir nuestro mapa de bits
          * estableciendo el formato de compresion, la calidad y la secuencia de salida de bytes, "fOut"
          * acepta bytes de salida enviados por el metodo "compress".
+         *
+         * se crea una variable booleana para para  determinar si se guardo correctamente
          * */
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+       boolean a=  bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
 
         try {
             /** Vacía la secuencia de salida "fOut" y obliga a escribir los bytes de salida almacenados en búfer.*/
@@ -249,7 +236,6 @@ public class MetodosImagenes {
             fOut.close();
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
 
@@ -297,7 +283,7 @@ public class MetodosImagenes {
 
     }
 
-
+/** Este metodo se llama cuando se necesita pedir un permiso en caso que no este concedido*/
     public void requestPermissionFromUser(Activity activity, String typePermision, int identifier)
     {
         //Si los permisos no estan dados se solicitan al usuario
@@ -306,4 +292,42 @@ public class MetodosImagenes {
                 new String[]{typePermision},
                 identifier);
     }
+
+    /** Con este metodo convertimos un recurso pasado por uri a un bitmap*/
+    public Bitmap getBitmapFromUri (Activity activity, Uri uri )  {
+        Bitmap image = null;
+        try {
+        ParcelFileDescriptor parcelFileDescriptor = activity.getContentResolver ().openFileDescriptor( uri ,"r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor . getFileDescriptor ();
+        image = BitmapFactory. decodeFileDescriptor ( fileDescriptor );
+
+            parcelFileDescriptor . close ();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image ;
+    }
+//    private void setPic(ImageView imageView) {
+//        // Se optienen las dimensiones del imageview
+//        int targetW = imageView.getWidth();
+//        int targetH = imageView.getHeight();
+//
+//        //
+//        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+//        bmOptions.inJustDecodeBounds = true;
+//
+//        int photoW = bmOptions.outWidth;
+//        int photoH = bmOptions.outHeight;
+//
+//        // Determine how much to scale down the image
+//        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+//
+//        // Decode the image file into a Bitmap sized to fill the View
+//        bmOptions.inJustDecodeBounds = false;
+//        bmOptions.inSampleSize = scaleFactor;
+//        bmOptions.inPurgeable = true;
+//
+//        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+//        imageView.setImageBitmap(bitmap);
+//    }
 }
