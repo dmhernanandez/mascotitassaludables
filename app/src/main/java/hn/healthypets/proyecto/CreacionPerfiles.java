@@ -3,10 +3,8 @@ package hn.healthypets.proyecto;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,7 +26,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import hn.healthypets.proyecto.Utilidades.DateTime;
 import hn.healthypets.proyecto.Utilidades.Validacion;
@@ -77,8 +74,9 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
      * Se utilizan para validar que tipo de accion se realizara en la actividad, estos datos se reciben del intent
      **/
     private int accion;
-    private String especie;
+    private String especie = "";
     private String raza;
+    private Bitmap bitmapImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,12 +148,10 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
         agregarRaza.setOnClickListener(v -> abrirDialogoRaza());
 
-        btnTomarFotos.setOnClickListener(v -> metodosImagenes.goToCamera(CreacionPerfiles.this));
-
         edtFechaNaciento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Obtenemos la fecha de la del dia actual
+                //Utilizamos este metodo par obtenener los datos
                 DatePickerDialog dialogoFecha = new DatePickerDialog(CreacionPerfiles.this, (view, year, month, dayOfMonth) ->
                         edtFechaNaciento.setText(fechaHora.formato(dayOfMonth, month, year)), anio, mes, dia);
                 dialogoFecha.show();
@@ -177,8 +173,9 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
 
                 boolean validacion = Validacion.fieldsAreNotEmpty(edtNombreMascota.getText().toString(),
-                        "perro", "");
+                        "HOLA", "JFAFJAF");
                 if (validacion) {
+                    metodosImagenes.checkPermissionStorage(CreacionPerfiles.this);
                     Toast.makeText(CreacionPerfiles.this, "ESTAN TODOS LOS CAMPOS LLENAMOS", Toast.LENGTH_SHORT).show();
                 } else
 
@@ -189,35 +186,25 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
         btnSeleccionarFoto.setOnClickListener((v) -> {
             /**Aquí obtenemos los permisos para entrar a la GALERIA*/
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
-            {
-                if (ActivityCompat.checkSelfPermission(CreacionPerfiles.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-                {
-                    metodosImagenes.openGallery(CreacionPerfiles.this);
-                }
-                else
-                 {
-                    ActivityCompat.requestPermissions(CreacionPerfiles.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MetodosImagenes.REQUEST_PERMISSION_GALLERY);
-                 }
-            }
-            else
-            {
-                metodosImagenes.openGallery(CreacionPerfiles.this);
-            }
+            if
         });
 
         btnTomarFotos.setOnClickListener((v) -> {
-//            /**Aquí obtenemos los permisos para USAR la cámara del dispositivo*/
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
-//                if (ActivityCompat.checkSelfPermission(CreacionPerfiles.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-//                    metodosImagenes.goToCamera(CreacionPerfiles.this);
-//                } else {
-//                    ActivityCompat.requestPermissions(CreacionPerfiles.this, new String[]{Manifest.permission.CAMERA}, MetodosImagenes.REQUEST_PERMISSION_CAMERA);
-//                }
-//            } else {
-//                metodosImagenes.goToCamera(CreacionPerfiles.this);
-//            }
-          metodosImagenes.checkPermissionCamera(CreacionPerfiles.this);
+            /** Se valida que tenga permisos para tomar fotos de ser asi lo envia a la camara*/
+         if(metodosImagenes.checkPermissionCamera(CreacionPerfiles.this))
+         {
+             metodosImagenes.goToCamera(CreacionPerfiles.this);
+         }
+         /**De lo contrario los solicita y luego se valida en el metodo on onRequestPermissonCode*/
+         else
+         {
+             metodosImagenes.requestPermissionFromUser(
+                     CreacionPerfiles.this,
+                     Manifest.permission.CAMERA,
+                     MetodosImagenes.REQUEST_PERMISSION_CAMERA
+             );
+         }
+
         });
     }//Fin de onCreate
 
@@ -233,38 +220,23 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /**Verificar si los permisos son correctos.
-         * En esta parte lo que hacemos es crear la ruta
-         * para guardar la imágen*/
-        Toast.makeText(this, "Entro "+String.valueOf(requestCode) , Toast.LENGTH_LONG).show();
+       /** Cuando se ejecuta el metodo startActivyForResult deposita los resultados en este metodo*/
         switch (requestCode)
         {
-
             case MetodosImagenes.REQUEST_IMAGE_CAMERA:
-
-             Bitmap bitmap =(Bitmap) data.getExtras().get("data");
-             imgFotoMascota.setImageBitmap(bitmap);
+                /** Se obtiene le bitmap par mostrarlo pero sin guardarlo aun*/
+                 bitmapImage =(Bitmap) data.getExtras().get("data");
+                 imgFotoMascota.setImageBitmap(bitmapImage);
 
             break;
+            case MetodosImagenes.REQUEST_IMAGE_GALLERY:
+                Bitmap bitmapImage =(Bitmap) data.getExtras().get("data");
+                imgFotoMascota.setImageBitmap(bitmapImage);
+
+                break;
         }
-//        if (requestCode == MetodosImagenes.REQUEST_IMAGE_GALLERY) {
-//            if (resultCode == Activity.RESULT_OK && data != null) {
-//                /**Obtenemos la ruta de la imagen*/
-//                Uri photo = data.getData();
-//                imgFotoMascota.setImageURI(photo);
-//                Log.i("TAG", "Result: " + photo);
-//            } else {
-//                Toast.makeText(this, "No seleccionó ninguna foto", Toast.LENGTH_LONG).show();
-//            }
-//        } else {
-//            if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA && resultCode== RESULT_OK) {
-//                //Bundle extras = data.getExtras();
-////                Bitmap imageBitmap = (Bitmap) extras.get("data");
-////                imgFotoMascota.setImageBitmap(imageBitmap);
-//                   // imgFotoMascota.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
-//                    Toast.makeText(getApplicationContext(), metodosImagenes.getRutaImagen(), Toast.LENGTH_LONG).show();
-//            }
-//        }
+
+
     }
 
 
@@ -361,7 +333,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                                      arrayNombreRazas.add(0,"Seleccione Raza");
                                      spiRaza.setSelection(postionItemRaza);
                                      /** Se resetea esta posición con el objetivo que la proxima vez que seleccione una nueva especie y
-                                      * no coincida con la raza, el valor por defecto se seleccione*/
+                                      * no tenga razas relacionadas en la base de datos, el valor por defecto se seleccione*/
                                      postionItemRaza=0;
                                  }
                              });
@@ -373,6 +345,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                  }
                  else
                  {
+                     /**Se selecciona el valor po defecto*/
                      spiRaza.setSelection(0);
                      disableSpinnerAndButton(spiRaza,agregarRaza);
 
@@ -391,7 +364,8 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
 
     /**
-     * Con este metodo llenamos los Spinners pasando la lista de valores que vamos agregar y el adaptador
+     * Con este metodo llenamos los Spinners pasando la lista de valores que vamos agregar y el adaptador que los
+     * y el adaptador
      * */
     private void startSpinnerValues(Spinner spinner, ArrayList<String> valores, ArrayAdapter<String> adapter)
     {
@@ -416,13 +390,10 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         rgpGrupoGenero=findViewById(R.id.rbgGrupoGenero);
         edtNombreMascota= findViewById(R.id.edtNombreMascota);
         rbtnMacho.setSelected(true);
-        //Creamos una instancia para obtener fechas y horas
-        fechaHora = new DateTime();
-        formatoFecha= new SimpleDateFormat("dd/MM/yyyy");
         metodosImagenes =new MetodosImagenes();
         btnGuardar = findViewById(R.id.btnGuardarCP);
         especie = "";
-
+        fechaHora = new DateTime();
 
         arrayNombreRazas = new ArrayList<>();
         arrayNombreEspecies = new ArrayList<>();
@@ -475,17 +446,15 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
 
     /**
-     * disableSpinnerAndButton() y enableSpinnerAndButton
-     * Estos metodos tienen la función de deshabilitar y deshabilitar el spinner y el boton de agregar razas sino
-     * se ha seleccionado una especie a la cual pertenezcan las razas
+     * disableSpinnerAndButton() y enableSpinnerAndButton()
+     * Estos metodos tienen la función de deshabilitar y habilitar el spinner y el boton de "agregar razas" sino
+     * se ha seleccionado una especie a la cual pertenezcan las razas.
      * */
     private void disableSpinnerAndButton(Spinner spinner, ImageButton button)
     {
         button.setEnabled(false);
         spinner.setEnabled(false);
     }
-
-
     private void enableSpinnerAndButton(Spinner spinner, ImageButton button)
     {
         button.setEnabled(true);

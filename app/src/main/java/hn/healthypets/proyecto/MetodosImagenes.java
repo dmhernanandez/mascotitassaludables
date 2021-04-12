@@ -1,3 +1,4 @@
+
 package hn.healthypets.proyecto;
 /**
  * Con esta Clase lo que hacemos es establecer todas las funciones relacionadas
@@ -14,12 +15,14 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -30,6 +33,7 @@ import androidx.core.app.ActivityCompat;
 public class MetodosImagenes {
     public static final int REQUEST_PERMISSION_GALLERY = 100;
     public static final int REQUEST_PERMISSION_CAMERA = 102;
+    public static final int REQUEST_PERMISION_WRITE_STORAGE=104;
     public static final int REQUEST_IMAGE_GALLERY = 101;
     public static final int REQUEST_IMAGE_CAMERA = 103;
 
@@ -40,7 +44,7 @@ public class MetodosImagenes {
      * Método para poder accesar a la galería del dispositivo
      */
     public void openGallery(Activity activity) {
-        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT); /**Con ACTION_GET_CONTENT, obtenemos la foto de la galería*/
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK); /**Con ACTION_GET_CONTENT, obtenemos la foto de la galería*/
         galleryIntent.setType("image/*");
         activity.startActivityForResult(Intent.createChooser(galleryIntent,"Seleccione una imagen"), REQUEST_IMAGE_GALLERY);
     }
@@ -72,25 +76,28 @@ public class MetodosImagenes {
         /**ACTION_IMAGE_CAPTURE, es como una API que nos dibujará la interfaz, para acceder a la cámara*/
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        //Validamos si hay un resultado para nuestro intent en este caso seri validar si hay una camara
-        if (cameraIntent.resolveActivity(activity.getPackageManager()) != null) {
-            activity.startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
+        activity.startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
+//        //Validamos si hay un resultado para nuestro intent en este caso seri validar si hay una camara
+//        if (cameraIntent.resolveActivity(activity.getPackageManager()) != null) {
 //            File photoFile = null;
 //            try {
 //                photoFile = crearImagen(activity);
+//
 //            } catch (IOException ex) {
 //                Log.e("Error", ex.toString());
 //            }
 //            /**Directorio donde se guardará la imágen*/
-//            if (photoFile != null) {
+//            if (photoFile != null)
+//            {
 //                Uri photoUri = FileProvider.getUriForFile(
 //                        activity,
 //                        "hn.healthypets.proyecto.fileprovider",
 //                        photoFile);
+//
 //                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
 //                activity.startActivityForResult(cameraIntent, REQUEST_IMAGE_CAMERA);
 //            }
-        }
+//        }
     }
 
     /**
@@ -107,7 +114,7 @@ public class MetodosImagenes {
      * para luego ser guardada en el dispositivo
      */
     public File crearImagen(Context context) throws IOException {
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(new Date());
+
         String imgFileName = generarNombre("IMG_CAMERA_");
         File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
@@ -132,8 +139,8 @@ public class MetodosImagenes {
         /**Directorio donde se guardará la imágen*/
         File dirImages = contextWrapper.getDir("Imagenes", Context.MODE_PRIVATE);
         File myPath = new File(
-                dirImages,
-                generarNombre("IMG_GALLERY_")
+                        dirImages,
+                  generarNombre("IMG_GALLERY_")
                         + ".jpg");
         FileOutputStream fos = null;
         try {
@@ -150,59 +157,106 @@ public class MetodosImagenes {
     }
 
     /** Con este metodo validamos si ya se otorgraron los permisos de la camara de ser así se retorna un valor booleano*/
-    public void checkPermissionCamera(Activity activity)
+    public boolean checkPermissionCamera(Activity activity)
     {
+        boolean permisionCamara=false;
         /**Se valida que versión del SKD que sea igual o pesterior a la version Marshmello, de ser así, pedirá los permisos en tiempo de
          * ejecución*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            /** Valida que si los permisos ya estan habilitados, si ya estan habilitados entoces lo envia a la camara para poder tomar la
+            /** Valida que si los permisos ya estan habilitados, si ya estan habilitados, devuelve un valor true
              * foto*/
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
             {
-               goToCamera(activity);
+                permisionCamara=true;
+               //goToCamera(activity);
             }
             else
             {
-                //Si los permisos no estan dados se solicitan al usuario
-                ActivityCompat.requestPermissions(
-                                            activity,
-                                            new String[]{Manifest.permission.CAMERA},
-                                            REQUEST_PERMISSION_CAMERA);
+                permisionCamara=false;
             }
+        }
+        else/** Si la version es inferior los permisos fueron aceptados al descargar la aplicación y el permiso es true*/
+        {
+            permisionCamara=true;
+        }
+        return permisionCamara;
+    }
+
+    public boolean checkPermissionStorage(Activity activity)
+    {
+        boolean permissionStorage=false;
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                /** Valida que si los permisos ya estan habilitados, si ya estan habilitados entoces permissionStorage = true
+                 * de lo contrario  el permissionStorage = false
+                 * foto*/
+                if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                {
+                   permissionStorage=true;
+                }
+                else
+                {
+                   permissionStorage=false;
+                }
+            }
+
         }
         else/** Si la version es inferior los permisos fueron aceptados al descargar la aplicación*/
         {
-           goToCamera(activity);
+            permissionStorage=true;
+        }
+        return permissionStorage;
+    }
+
+    private void savePhoto(Activity activity,Bitmap bitmap) {
+
+        /** Se obtiene la ruta principal del direcotorio de imagenes privado de la aplicación, de manera que no seran
+         * visibles en la galería*/
+        String path = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath();
+        OutputStream fOut = null;
+
+        /** Con este archivo se crea el directoria ni no existe*/
+        File fileFolder = new File(path, "Camera");
+        /** Si el archivo no se creo, se intenta creearlo nuevamente*/
+        if (!fileFolder.exists()) {
+            fileFolder.mkdirs();
+        }
+
+        rutaImagen= "IMG_20210412_11-42-50_.jpeg";
+        /** Se crea un archivo al cual se mandaran los bits por medio de FileOutputStream*/
+        File filePhoto = new File(fileFolder,rutaImagen );
+
+        try {
+            /** Se crea una secuencia de salida de archivo para escribir en el archivo representado por el objeto especificado
+             * en este caso filePhoto*/
+            fOut = new FileOutputStream(filePhoto);
+        } catch (FileNotFoundException e) {
+            Log.i("error","Archivo no econtrado: "+e.getMessage());
+        }
+
+        /**
+         * Una vez que tenemos lista la secuencia de salida procedemos a comprimir nuestro mapa de bits
+         * estableciendo el formato de compresion, la calidad y la secuencia de salida de bytes, "fOut"
+         * acepta bytes de salida enviados por el metodo "compress".
+         * */
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+
+        try {
+            /** Vacía la secuencia de salida "fOut" y obliga a escribir los bytes de salida almacenados en búfer.*/
+            fOut.flush();
+
+            /** Cierra la secuencia de salida y libera los recursos del sistema asociados a la secuencia "fOut" **/
+            fOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
     }
 
-    public void checkPermissionStorage(Activity activity)
+    /** Este metodo se utiliza se invoca en le mtedo onRequestPermisionCode*/
+    public boolean validateRequestPermissionCode(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults,Activity activity)
     {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            /** Valida que si los permisos ya estan habilitados, si ya estan habilitados entoces lo envia a la camara para poder tomar la
-             * foto*/
-            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
-            {
-                goToCamera(activity);
-            }
-            else
-            {
-                //Si los permisos no estan dados se solicitan al usuario
-                ActivityCompat.requestPermissions(
-                        activity,
-                        new String[]{Manifest.permission.CAMERA},
-                        REQUEST_PERMISSION_CAMERA);
-            }
-        }
-        else/** Si la version es inferior los permisos fueron aceptados al descargar la aplicación*/
-        {
-            goToCamera(activity);
-        }
-    }
-
-    /** Este metodo se utiliza se invoca cuando */
-    public void validateRequestPermissionCode(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults,Activity activity)
-    {
+        boolean permissionRequest=false;
         /**
          * Se valida si el usuario dio los permisos, de ser asi lo envia la GALERIA o la CAMARA
          **/
@@ -227,9 +281,29 @@ public class MetodosImagenes {
                     Toast.makeText(activity, "Acceso a galeria denegado", Toast.LENGTH_LONG).show();
                 }
             break;
+            case REQUEST_PERMISION_WRITE_STORAGE:
+                if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    permissionRequest=true;
+                } else
+                {
+                    permissionRequest=false;
+                }
+            break;
         }
-
+        /** Esta variable se usa solo para validar si se dio el permiso de almacenar en cambio de los otros metdos si los
+         * permisos se otorgaron los lleva directamente a las acciones*/
+       return permissionRequest;
 
     }
 
+
+    public void requestPermissionFromUser(Activity activity, String typePermision, int identifier)
+    {
+        //Si los permisos no estan dados se solicitan al usuario
+        ActivityCompat.requestPermissions(
+                activity,
+                new String[]{typePermision},
+                identifier);
+    }
 }
