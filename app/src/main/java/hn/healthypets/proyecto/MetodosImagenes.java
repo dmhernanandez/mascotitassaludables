@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,12 +28,13 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 public class MetodosImagenes {
-    public static final int REQUEST_PERMISSION_CODE = 100;
-    public static final int REQUEST_IMAGE_GALLERY = 101;
+    public static final int REQUEST_PERMISSION_GALLERY = 100;
     public static final int REQUEST_PERMISSION_CAMERA = 102;
+    public static final int REQUEST_IMAGE_GALLERY = 101;
     public static final int REQUEST_IMAGE_CAMERA = 103;
 
     private String rutaImagen;
+    private Bitmap bitmap;
 
     /**
      * Método para poder accesar a la galería del dispositivo
@@ -174,10 +176,59 @@ public class MetodosImagenes {
         }
     }
 
+    public void checkPermissionStorage(Activity activity)
+    {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            /** Valida que si los permisos ya estan habilitados, si ya estan habilitados entoces lo envia a la camara para poder tomar la
+             * foto*/
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
+            {
+                goToCamera(activity);
+            }
+            else
+            {
+                //Si los permisos no estan dados se solicitan al usuario
+                ActivityCompat.requestPermissions(
+                        activity,
+                        new String[]{Manifest.permission.CAMERA},
+                        REQUEST_PERMISSION_CAMERA);
+            }
+        }
+        else/** Si la version es inferior los permisos fueron aceptados al descargar la aplicación*/
+        {
+            goToCamera(activity);
+        }
+    }
 
     /** Este metodo se utiliza se invoca cuando */
     public void validateRequestPermissionCode(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults,Activity activity)
     {
+        /**
+         * Se valida si el usuario dio los permisos, de ser asi lo envia la GALERIA o la CAMARA
+         **/
+        switch (requestCode)
+        {
+            case REQUEST_PERMISSION_GALLERY:
+                if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    openGallery(activity);
+                }
+                else
+                {
+                    Toast.makeText(activity, "Acceso a camara denegado", Toast.LENGTH_LONG).show();
+                }
+            break;
+            case REQUEST_PERMISSION_CAMERA:
+                if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    goToCamera(activity);
+                } else
+                {
+                    Toast.makeText(activity, "Acceso a galeria denegado", Toast.LENGTH_LONG).show();
+                }
+            break;
+        }
+
 
     }
 

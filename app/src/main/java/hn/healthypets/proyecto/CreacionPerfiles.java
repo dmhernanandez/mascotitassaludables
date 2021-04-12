@@ -1,16 +1,13 @@
 package hn.healthypets.proyecto;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -200,7 +197,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                 }
                 else
                  {
-                    ActivityCompat.requestPermissions(CreacionPerfiles.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MetodosImagenes.REQUEST_PERMISSION_CODE);
+                    ActivityCompat.requestPermissions(CreacionPerfiles.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MetodosImagenes.REQUEST_PERMISSION_GALLERY);
                  }
             }
             else
@@ -220,29 +217,16 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 //            } else {
 //                metodosImagenes.goToCamera(CreacionPerfiles.this);
 //            }
-            metodosImagenes.checkPermissionCamera(CreacionPerfiles.this);
+          metodosImagenes.checkPermissionCamera(CreacionPerfiles.this);
         });
     }//Fin de onCreate
 
     /**Este metodo recive los valores de respuesta al solicitar los permisos*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        /**Acá abrimos el cuadro de dialogo para poder habilitar los permisos,
-         * Si el usuario acepta los permisos, habilitará la cámara o la galería*/
-        if (requestCode == MetodosImagenes.REQUEST_PERMISSION_CODE) {
-            if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                metodosImagenes.openGallery(CreacionPerfiles.this);
-            } else {
-                Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
-            }
-        }
-        if (requestCode == MetodosImagenes.REQUEST_PERMISSION_CAMERA) {
-            if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                metodosImagenes.goToCamera(CreacionPerfiles.this);
-            } else {
-                Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
-            }
-        }
+        /** Se validan los permisos devueltos de la socilicitud y en caso de ser haber sido aceptados por el usuario
+         * se envia a la camara o la galeriaa */
+        metodosImagenes.validateRequestPermissionCode(requestCode,permissions,grantResults,CreacionPerfiles.this);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
@@ -252,24 +236,35 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         /**Verificar si los permisos son correctos.
          * En esta parte lo que hacemos es crear la ruta
          * para guardar la imágen*/
-        if (requestCode == MetodosImagenes.REQUEST_IMAGE_GALLERY) {
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                /**Obtenemos la ruta de la imagen*/
-                Uri photo = data.getData();
-                imgFotoMascota.setImageURI(photo);
-                Log.i("TAG", "Result: " + photo);
-            } else {
-                Toast.makeText(this, "No seleccionó ninguna foto", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA && resultCode== RESULT_OK) {
-                //Bundle extras = data.getExtras();
-//                Bitmap imageBitmap = (Bitmap) extras.get("data");
-//                imgFotoMascota.setImageBitmap(imageBitmap);
-                   // imgFotoMascota.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
-                    Toast.makeText(getApplicationContext(), metodosImagenes.getRutaImagen(), Toast.LENGTH_LONG).show();
-            }
+        Toast.makeText(this, "Entro "+String.valueOf(requestCode) , Toast.LENGTH_LONG).show();
+        switch (requestCode)
+        {
+
+            case MetodosImagenes.REQUEST_IMAGE_CAMERA:
+
+             Bitmap bitmap =(Bitmap) data.getExtras().get("data");
+             imgFotoMascota.setImageBitmap(bitmap);
+
+            break;
         }
+//        if (requestCode == MetodosImagenes.REQUEST_IMAGE_GALLERY) {
+//            if (resultCode == Activity.RESULT_OK && data != null) {
+//                /**Obtenemos la ruta de la imagen*/
+//                Uri photo = data.getData();
+//                imgFotoMascota.setImageURI(photo);
+//                Log.i("TAG", "Result: " + photo);
+//            } else {
+//                Toast.makeText(this, "No seleccionó ninguna foto", Toast.LENGTH_LONG).show();
+//            }
+//        } else {
+//            if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA && resultCode== RESULT_OK) {
+//                //Bundle extras = data.getExtras();
+////                Bitmap imageBitmap = (Bitmap) extras.get("data");
+////                imgFotoMascota.setImageBitmap(imageBitmap);
+//                   // imgFotoMascota.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
+//                    Toast.makeText(getApplicationContext(), metodosImagenes.getRutaImagen(), Toast.LENGTH_LONG).show();
+//            }
+//        }
     }
 
 
