@@ -22,6 +22,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -37,23 +38,30 @@ public class Vacunas extends AppCompatActivity {
 
     MetodosImagenes metodosImagenes = new MetodosImagenes();
 
-    ImageButton buscarImagen;
-    ImageButton btnTomarFotos;
-    ImageView imgFotoVacuna;
-    Button ok;
+    private ImageView imgFotoVacuna;
+    private ImageButton btnTomarFotos;
+    private ImageButton buscarImagen;
+    private EditText edtNombreVacuna;
+    private EditText edtFechaVacuna;
+    private EditText edtDescripVacuna;
+    private Button ok;
+    private Button btnCancel;
+    private Button btnProxima;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacunas);
 
+        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
         btnTomarFotos = findViewById(R.id.imgbtnTomarFotosV);
-        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
-
-        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
         buscarImagen = findViewById(R.id.imgbtnBuscarFotosV);
-
+        edtNombreVacuna = findViewById(R.id.edtNombreVacuna);
+        edtFechaVacuna = findViewById(R.id.edtFechaAplicacionVacuna);
+        edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
         ok = findViewById(R.id.btnListoVacunas);
+        btnCancel = findViewById(R.id.btnCancelarVacuna);
+        btnProxima = findViewById(R.id.btnProximaVacuna);
 
         buscarImagen.setOnClickListener((v) -> {
             /**Aquí obtenemos los permisos para entrar a la GALERIA*/

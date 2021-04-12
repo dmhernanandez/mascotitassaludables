@@ -51,7 +51,7 @@
                     app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
-                    android:id="@+id/edtNombreDesparacitante"
+                    android:id="@+id/edtNombreDesparasitante"
                     android:layout_width="302dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="28dp"
@@ -70,7 +70,7 @@
                     app:layout_constraintVertical_bias="0.014" />
 
                 <EditText
-                    android:id="@+id/edtPesoDesparacitante"
+                    android:id="@+id/edtPesoDesparasitante"
                     android:layout_width="302dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="36dp"
@@ -83,7 +83,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparasitante" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -93,15 +93,15 @@
                     android:fontFamily="@font/questrial"
                     android:text="Ingrese Peso (kg):"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/edtPesoDesparacitante"
+                    app:layout_constraintBottom_toTopOf="@+id/edtPesoDesparasitante"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.179"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante"
+                    app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparasitante"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
-                    android:id="@+id/edtObservacionesDesparacitante"
+                    android:id="@+id/edtObservacionesDesparasitante"
                     android:layout_width="302dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="28dp"
@@ -116,7 +116,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparacitante"
+                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparasitante"
                     app:layout_constraintVertical_bias="0.015" />
 
                 <TextView
@@ -127,11 +127,11 @@
                     android:fontFamily="@font/questrial"
                     android:text="Ingrese Observaciones:"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintBottom_toTopOf="@+id/edtObservacionesDesparasitante"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.206"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparacitante"
+                    app:layout_constraintTop_toBottomOf="@+id/edtPesoDesparasitante"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
@@ -143,7 +143,7 @@
                     android:fontFamily="@font/questrial"
                     android:text="Ingrese Nombre del desparacitante:"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/edtNombreDesparacitante"
+                    app:layout_constraintBottom_toTopOf="@+id/edtNombreDesparasitante"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.296"
                     app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +162,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.452"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparasitante"
                     app:layout_constraintVertical_bias="0.55" />
 
                 <Button
@@ -176,7 +176,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante"
                     app:layout_constraintHorizontal_bias="0.518"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparasitante"
                     app:layout_constraintVertical_bias="0.158" />
 
                 <Button
@@ -190,7 +190,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.802"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
+                    app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparasitante"
                     app:layout_constraintVertical_bias="0.158" />
 
                 <androidx.constraintlayout.widget.Guideline

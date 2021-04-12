@@ -16,8 +16,6 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import java.util.ArrayList;
 
-import hn.healthypets.proyecto.CreacionPerfiles;
-import hn.healthypets.proyecto.MainActivity;
 import hn.healthypets.proyecto.MenuRegistro;
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.database.Entidades.Mascota;
@@ -46,7 +44,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txvNombrePerfil = itemView.findViewById(R.id.txvNombrePerfil);
+            txvNombrePerfil = itemView.findViewById(R.id.txvNombreMascota);
             txvNumeroChipPerfil = itemView.findViewById(R.id.txvNumeroChipPerfil);
             imgMascotaPerfil = itemView.findViewById(R.id.imgvMascotaPerfil);
             btnControlPerfil = itemView.findViewById(R.id.btnControlPerfil);

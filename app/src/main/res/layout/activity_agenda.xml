@@ -15,7 +15,7 @@
         tools:context=".Agenda">
 
         <Button
-            android:id="@+id/btnListoDesparacitante3"
+            android:id="@+id/btnListoDesparasitante"
             android:layout_width="113dp"
             android:layout_height="48dp"
             android:backgroundTint="@color/listo"
@@ -29,7 +29,7 @@
             app:layout_constraintVertical_bias="0.095" />
 
         <Button
-            android:id="@+id/btnCancelarDesparacitante3"
+            android:id="@+id/btnCancelDesparasitante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/cancelar"
@@ -38,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.215"
-            app:layout_constraintStart_toEndOf="@+id/btnListoDesparacitante3"
+            app:layout_constraintStart_toEndOf="@+id/btnListoDesparasitante"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento2"
             app:layout_constraintVertical_bias="0.095" />
 
@@ -62,7 +62,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
-            android:id="@+id/edtFechaMedicamento2"
+            android:id="@+id/edtFechaAgenda"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_marginStart="28dp"
@@ -79,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
         <EditText
-            android:id="@+id/edtHoraMedicamento2"
+            android:id="@+id/edtHoraMedicamento"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginEnd="76dp"
@@ -121,7 +121,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.172"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtFechaMedicamento2"
+            app:layout_constraintTop_toBottomOf="@+id/edtFechaAgenda"
             app:layout_constraintVertical_bias="0.053" />
 
         <TextView
@@ -136,7 +136,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.18"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spiRecordame"
+            app:layout_constraintTop_toBottomOf="@+id/spiRecordarme"
             app:layout_constraintVertical_bias="0.051" />
 
         <Spinner
@@ -165,11 +165,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.175"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNombreActivida"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreActividad"
             app:layout_constraintVertical_bias="0.029" />
 
         <Spinner
-            android:id="@+id/spiRecordame"
+            android:id="@+id/spiRecordarme"
             android:layout_width="302dp"
             android:layout_height="40dp"
             android:background="@drawable/input_gris"
@@ -183,7 +183,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
-            android:id="@+id/edtNombreActivida"
+            android:id="@+id/edtNombreActividad"
             android:layout_width="302dp"
             android:layout_height="40dp"
             android:background="@drawable/input_gris"
@@ -195,6 +195,7 @@
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20"
             app:layout_constraintVertical_bias="0.0" />
