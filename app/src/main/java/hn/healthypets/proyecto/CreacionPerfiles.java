@@ -186,7 +186,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
         btnSeleccionarFoto.setOnClickListener((v) -> {
             /**Aquí obtenemos los permisos para entrar a la GALERIA*/
-            if
+
         });
 
         btnTomarFotos.setOnClickListener((v) -> {
