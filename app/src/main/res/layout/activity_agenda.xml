@@ -15,7 +15,7 @@
         tools:context=".Agenda">
 
         <Button
-            android:id="@+id/btnListoDesparasitante"
+            android:id="@+id/btnListoDesparacitante3"
             android:layout_width="113dp"
             android:layout_height="48dp"
             android:backgroundTint="@color/listo"
@@ -29,7 +29,7 @@
             app:layout_constraintVertical_bias="0.095" />
 
         <Button
-            android:id="@+id/btnCancelDesparasitante"
+            android:id="@+id/btnCancelarDesparacitante3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/cancelar"
@@ -38,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.215"
-            app:layout_constraintStart_toEndOf="@+id/btnListoDesparasitante"
+            app:layout_constraintStart_toEndOf="@+id/btnListoDesparacitante3"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento2"
             app:layout_constraintVertical_bias="0.095" />
 
@@ -62,7 +62,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
-            android:id="@+id/edtFechaAgenda"
+            android:id="@+id/edtFechaMedicamento2"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_marginStart="28dp"
@@ -79,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
         <EditText
-            android:id="@+id/edtHoraMedicamento"
+            android:id="@+id/edtHoraMedicamento2"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginEnd="76dp"
@@ -104,7 +104,23 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.215"
+            app:layout_constraintHorizontal_bias="0.253"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spiTipoAgenda"
+            app:layout_constraintVertical_bias="0.046" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView22"
+            app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spiTipoAgenda"
             app:layout_constraintVertical_bias="0.043" />
@@ -121,7 +137,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.172"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtFechaAgenda"
+            app:layout_constraintTop_toBottomOf="@+id/edtFechaMedicamento2"
             app:layout_constraintVertical_bias="0.053" />
 
         <TextView
@@ -136,7 +152,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.18"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spiRecordarme"
+            app:layout_constraintTop_toBottomOf="@+id/spiRecordame"
             app:layout_constraintVertical_bias="0.051" />
 
         <Spinner
@@ -163,9 +179,25 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.175"
+            app:layout_constraintHorizontal_bias="0.206"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNombreActividad"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreActivida"
+            app:layout_constraintVertical_bias="0.028" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView21"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreActivida"
             app:layout_constraintVertical_bias="0.029" />
 
         <Spinner
@@ -211,7 +243,24 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.272"
+            app:layout_constraintHorizontal_bias="0.344"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView20"
+            app:layout_constraintHorizontal_bias="0.861"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.025" />
