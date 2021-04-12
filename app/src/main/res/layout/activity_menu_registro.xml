@@ -7,77 +7,86 @@
     android:layout_height="match_parent"
     tools:context=".MenuRegistro">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:fontFamily="@font/questrial"
+        android:gravity="center"
+        android:text="Menu De Registros"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.179" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="5dp">
+    <Button
+        android:id="@+id/btnDesparacitanteMenu"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/desparacitantes"
+        android:bottomLeftRadius="30dp"
+        android:bottomRightRadius="30dp"
+        android:drawableTop="@drawable/ic_desparacitante_negro"
+        android:text="desparasitante"
+        android:topLeftRadius="30dp"
+        android:topRightRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34"
+        app:layout_constraintVertical_bias="0.079" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/questrial"
-                android:text="Menu De Registros"
-                android:gravity="center"
-                android:textSize="25dp" />
-        </LinearLayout>
+    <Button
+        android:id="@+id/btnMedicamentoMenu"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/medicamento"
+        android:bottomLeftRadius="30dp"
+        android:bottomRightRadius="30dp"
+        android:drawableTop="@drawable/ic_informe_medico_negro"
+        android:text="Medicamento"
+        android:topLeftRadius="30dp"
+        android:topRightRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAgendaMenu"
+        app:layout_constraintVertical_bias="0.157" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnVacunasMenu"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/vacuna"
+        android:bottomLeftRadius="30dp"
+        android:bottomRightRadius="30dp"
+        android:drawableTop="@drawable/ic_vacuna_negro"
+        android:text="vacunas"
+        android:topLeftRadius="30dp"
+        android:topRightRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDesparacitanteMenu"
+        app:layout_constraintVertical_bias="0.157" />
 
-            <Button
-                android:id="@+id/btnVacunasMenu"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginRight="15dp"
-                android:backgroundTint="@color/vacuna"
-                android:drawableTop="@drawable/ic_vacuna_negro"
-                android:text="vacunas"/>
-
-            <Button
-                android:id="@+id/btnDesparacitanteMenu"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:backgroundTint="@color/desparacitantes"
-                android:drawableTop="@drawable/ic_desparacitante_negro"
-                android:text="desparasitante" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <Button
-                android:id="@+id/btnMedicamentoMenu"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginRight="15dp"
-                android:backgroundTint="@color/medicamento"
-                android:drawableTop="@drawable/ic_informe_medico_negro"
-                android:text="Medicamento" />
-
-            <Button
-                android:id="@+id/btnAgendaMenu"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:backgroundTint="@color/agenda"
-                android:drawableTop="@drawable/ic_cuaderno_negro"
-                android:text="Agenda" />
-        </LinearLayout>
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnAgendaMenu"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/agenda"
+        android:bottomLeftRadius="30dp"
+        android:bottomRightRadius="30dp"
+        android:drawableTop="@drawable/ic_cuaderno_negro"
+        android:text="Agenda"
+        android:topLeftRadius="30dp"
+        android:topRightRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34"
+        app:layout_constraintVertical_bias="0.079" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

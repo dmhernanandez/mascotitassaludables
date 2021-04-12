@@ -14,8 +14,6 @@ public class Desparacitante extends AppCompatActivity {
     private EditText edtObserDespa;
     private Button btnListo;
     private Button btnCancel;
-    private Button btnProxima;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +21,10 @@ public class Desparacitante extends AppCompatActivity {
         setContentView(R.layout.activity_desparacitante);
 
         edtFechaApliDesp=findViewById(R.id.edtFechaAplicacionDesparacitante);
-        edtNombreDespa=findViewById(R.id.edtNombreDesparasitante);
-        edtPesoDespa=findViewById(R.id.edtPesoDesparasitante);
-        edtObserDespa=findViewById(R.id.edtObservacionesDesparasitante);
+        edtNombreDespa=findViewById(R.id.edtNombreDesparacitante);
+        edtPesoDespa=findViewById(R.id.edtPesoDesparacitante);
+        edtObserDespa=findViewById(R.id.edtObservacionesDesparacitante);
         btnListo=findViewById(R.id.btnListoDesparacitante);
         btnCancel=findViewById(R.id.btnCancelarDesparacitante);
-        btnProxima=findViewById(R.id.btnProximamenteDesparacitante);
     }
 }
