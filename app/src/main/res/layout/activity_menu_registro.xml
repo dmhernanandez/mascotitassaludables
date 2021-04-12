@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,80 +7,77 @@
     android:layout_height="match_parent"
     tools:context=".MenuRegistro">
 
-    <Button
-        android:id="@+id/btnDesparacitanteMenu"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/botones_menu"
-        android:text="desparasitante"
-        app:icon="@drawable/ic_desparacitante_negro"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.434"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVacunasMenu"
-        app:layout_constraintVertical_bias="0.043" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnVacunasMenu"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/botones_menu"
-        android:text="vacunas"
-        android:textColor="@color/negro2"
-        app:icon="@drawable/ic_vacuna_negro"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="5dp">
 
-    <Button
-        android:id="@+id/btnMedicamentoMenu"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/botones_menu"
-        android:text="Medicamento"
-        app:icon="@drawable/ic_medicamentos_negro"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDesparacitanteMenu"
-        app:layout_constraintVertical_bias="0.054" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/questrial"
+                android:text="Menu De Registros"
+                android:gravity="center"
+                android:textSize="25dp" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnAgendaMenu"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/botones_menu"
-        android:text="Agenda"
-        app:icon="@drawable/ic_cuaderno_negro"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMedicamentoMenu"
-        app:layout_constraintVertical_bias="0.06" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    Button
-        android:id="@+id/btnHistorialMenu"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/botones_menu"
-        android:text="Historial"
-        app:icon="@drawable/ic_informe_medico_negro"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.434"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMedicamentoMenu"
-        app:layout_constraintVertical_bias="0.063" />
+            <Button
+                android:id="@+id/btnVacunasMenu"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="@color/vacuna"
+                android:drawableTop="@drawable/ic_vacuna_negro"
+                android:text="vacunas"/>
+
+            <Button
+                android:id="@+id/btnDesparacitanteMenu"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:backgroundTint="@color/desparacitantes"
+                android:drawableTop="@drawable/ic_desparacitante_negro"
+                android:text="desparasitante" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btnMedicamentoMenu"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="@color/medicamento"
+                android:drawableTop="@drawable/ic_informe_medico_negro"
+                android:text="Medicamento" />
+
+            <Button
+                android:id="@+id/btnAgendaMenu"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:backgroundTint="@color/agenda"
+                android:drawableTop="@drawable/ic_cuaderno_negro"
+                android:text="Agenda" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

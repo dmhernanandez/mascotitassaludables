@@ -22,7 +22,7 @@
             android:background="@drawable/input_descripciones"
             android:ems="10"
             android:fontFamily="@font/questrial"
-            android:hint="Se Receta porque el animal no tiene apetito"
+            android:hint="Ejem. Se Receta porque el animal no tiene apetito"
             android:inputType="textMultiLine"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
@@ -42,10 +42,10 @@
             app:icon="@drawable/ic_vector_listo"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante2"
-            app:layout_constraintHorizontal_bias="0.881"
+            app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
-            app:layout_constraintVertical_bias="0.333" />
+            app:layout_constraintVertical_bias="0.148" />
 
         <Button
             android:id="@+id/btnCancelarDesparacitante2"
@@ -56,10 +56,10 @@
             app:icon="@drawable/ic_vector_cancelar"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.754"
+            app:layout_constraintHorizontal_bias="0.798"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
-            app:layout_constraintVertical_bias="0.333" />
+            app:layout_constraintVertical_bias="0.148" />
 
         <EditText
             android:id="@+id/edtFechaMedicamento"
@@ -108,7 +108,25 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintHorizontal_bias="0.274"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.028" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView11"
+            app:layout_constraintHorizontal_bias="0.789"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.028" />
@@ -124,10 +142,26 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.173"
+            app:layout_constraintHorizontal_bias="0.21"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.152" />
+            app:layout_constraintVertical_bias="0.139" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView13"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante2"
+            app:layout_constraintVertical_bias="0.033" />
 
         <TextView
             android:id="@+id/textView14"
@@ -140,10 +174,61 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.205"
+            app:layout_constraintHorizontal_bias="0.261"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spiDosis"
-            app:layout_constraintVertical_bias="0.055" />
+            app:layout_constraintVertical_bias="0.05" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="256dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView14"
+            app:layout_constraintHorizontal_bias="0.906"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spiDosis"
+            app:layout_constraintVertical_bias="0.047" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="256dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView15"
+            app:layout_constraintHorizontal_bias="0.906"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
+            app:layout_constraintVertical_bias="0.071" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="256dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/questrial"
+            android:text="*"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView18"
+            app:layout_constraintHorizontal_bias="0.924"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtPorDosis"
+            app:layout_constraintVertical_bias="0.129" />
 
         <TextView
             android:id="@+id/textView16"
@@ -171,7 +256,7 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.217"
+            app:layout_constraintHorizontal_bias="0.286"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
             app:layout_constraintVertical_bias="0.033" />
@@ -186,10 +271,10 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.262"
+            app:layout_constraintHorizontal_bias="0.342"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtPorDosis"
-            app:layout_constraintVertical_bias="0.044" />
+            app:layout_constraintVertical_bias="0.048" />
 
         <TextView
             android:id="@+id/textView19"
@@ -290,7 +375,7 @@
             app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toEndOf="@+id/edtNumeroDosis"
             app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante2"
-            app:layout_constraintVertical_bias="0.078" />
+            app:layout_constraintVertical_bias="0.064" />
 
         <EditText
             android:id="@+id/edtHoraMedicamento"
