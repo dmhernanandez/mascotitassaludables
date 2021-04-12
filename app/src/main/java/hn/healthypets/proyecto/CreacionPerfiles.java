@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -136,9 +137,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                 });
 
 
-        //Hinabilitamos el Spinner de raza ya que esta depende de la especie y mientras no hay una seleccionada no tiene sentido estar habilidado
-        // disableSpinnerAndButton(spiRaza,agregarRaza);
-
 
         /** EVENTOS DE LOS COMPONENTES  **/
         agregarEspecie.setOnClickListener(new View.OnClickListener() {
@@ -246,6 +244,13 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
              imgFotoMascota.setImageBitmap(bitmap);
 
             break;
+            case MetodosImagenes.REQUEST_IMAGE_GALLERY:
+
+                Uri photo = data.getData();
+                imgFotoMascota.setImageURI(photo);
+
+
+                break;
         }
 //        if (requestCode == MetodosImagenes.REQUEST_IMAGE_GALLERY) {
 //            if (resultCode == Activity.RESULT_OK && data != null) {
