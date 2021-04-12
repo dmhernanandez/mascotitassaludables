@@ -90,20 +90,6 @@
             app:layout_constraintTop_toBottomOf="@+id/edtFechaAplicacionVacuna"
             app:layout_constraintVertical_bias="1.0" />
 
-        <Button
-            android:id="@+id/btnProximamenteVacuna"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/agendar"
-            android:text="Proxima"
-            app:icon="@drawable/ic_vector_proxima"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnListoVacunas"
-            app:layout_constraintVertical_bias="0.125" />
-
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
