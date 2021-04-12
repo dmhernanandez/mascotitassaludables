@@ -178,6 +178,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                 }
 
 
+
                 boolean validacion = Validacion.fieldsAreNotEmpty(edtNombreMascota.getText().toString(),
                         "perro", "");
                 if (validacion) {
@@ -209,19 +210,21 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         });
 
         btnTomarFotos.setOnClickListener((v) -> {
-            /**Aquí obtenemos los permisos para USAR la cámara del dispositivo*/
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
-                if (ActivityCompat.checkSelfPermission(CreacionPerfiles.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    metodosImagenes.goToCamera(CreacionPerfiles.this);
-                } else {
-                    ActivityCompat.requestPermissions(CreacionPerfiles.this, new String[]{Manifest.permission.CAMERA}, MetodosImagenes.REQUEST_PERMISSION_CAMERA);
-                }
-            } else {
-                metodosImagenes.goToCamera(CreacionPerfiles.this);
-            }
+//            /**Aquí obtenemos los permisos para USAR la cámara del dispositivo*/
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
+//                if (ActivityCompat.checkSelfPermission(CreacionPerfiles.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+//                    metodosImagenes.goToCamera(CreacionPerfiles.this);
+//                } else {
+//                    ActivityCompat.requestPermissions(CreacionPerfiles.this, new String[]{Manifest.permission.CAMERA}, MetodosImagenes.REQUEST_PERMISSION_CAMERA);
+//                }
+//            } else {
+//                metodosImagenes.goToCamera(CreacionPerfiles.this);
+//            }
+            metodosImagenes.checkPermissionCamera(CreacionPerfiles.this);
         });
     }//Fin de onCreate
 
+    /**Este metodo recive los valores de respuesta al solicitar los permisos*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         /**Acá abrimos el cuadro de dialogo para poder habilitar los permisos,
@@ -259,11 +262,12 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                 Toast.makeText(this, "No seleccionó ninguna foto", Toast.LENGTH_LONG).show();
             }
         } else {
-            if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA) {
-                if (resultCode == Activity.RESULT_OK) {
-                    imgFotoMascota.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
+            if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA && resultCode== RESULT_OK) {
+                //Bundle extras = data.getExtras();
+//                Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                imgFotoMascota.setImageBitmap(imageBitmap);
+                   // imgFotoMascota.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
                     Toast.makeText(getApplicationContext(), metodosImagenes.getRutaImagen(), Toast.LENGTH_LONG).show();
-                }
             }
         }
     }
@@ -384,7 +388,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
              break;
          }
     }// fin de onItemSelected
-
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
