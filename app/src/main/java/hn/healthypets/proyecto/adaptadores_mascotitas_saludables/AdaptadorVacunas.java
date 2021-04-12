@@ -12,42 +12,41 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import hn.healthypets.proyecto.R;
-import hn.healthypets.proyecto.modelos_mascotitas_saludables.ModeloVacunas;
 
-public class AdaptadorVacunas extends RecyclerView.Adapter<AdaptadorVacunas.ViewHolder> {
+public class AdaptadorVacunas  {
 
-    private final ArrayList<ModeloVacunas> vacunaArrayList;
-
-    @Override
-    public int getItemCount() {
-        return this.vacunaArrayList.size();
-    }
-
-    public AdaptadorVacunas(ArrayList<ModeloVacunas> vacunaArrayList) {
-        this.vacunaArrayList = vacunaArrayList;
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nombreVacuna;
-        ImageView fotoVacuna;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            nombreVacuna = itemView.findViewById(R.id.txvNombreVacuna);
-            fotoVacuna = itemView.findViewById(R.id.imgVacuna);
-        }
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //CREAMOS LA VISTA QUE CONTENDRA, EL DISENIO DE CADA ITEM
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vacunas, parent, false);
-        //RETORNAR INSTANCIA DE LA CLASE PERSONALIZADA PASANDO COMO ARGUMENTO LA VISTA CREADA
-        return new ViewHolder(vista);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    }
+//    private final ArrayList<ModeloVacunas> vacunaArrayList;
+//
+//    @Override
+//    public int getItemCount() {
+//        return this.vacunaArrayList.size();
+//    }
+//
+//    public AdaptadorVacunas(ArrayList<ModeloVacunas> vacunaArrayList) {
+//        this.vacunaArrayList = vacunaArrayList;
+//    }
+//
+//    public static class ViewHolder extends RecyclerView.ViewHolder {
+//        TextView nombreVacuna;
+//        ImageView fotoVacuna;
+//
+//        public ViewHolder(@NonNull View itemView) {
+//            super(itemView);
+//            nombreVacuna = itemView.findViewById(R.id.txvNombreVacuna);
+//            fotoVacuna = itemView.findViewById(R.id.imgVacuna);
+//        }
+//    }
+//
+//    @NonNull
+//    @Override
+//    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//        //CREAMOS LA VISTA QUE CONTENDRA, EL DISENIO DE CADA ITEM
+//        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vacunas, parent, false);
+//        //RETORNAR INSTANCIA DE LA CLASE PERSONALIZADA PASANDO COMO ARGUMENTO LA VISTA CREADA
+//        return new ViewHolder(vista);
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+//    }
 }

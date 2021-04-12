@@ -66,7 +66,7 @@ public class Vacunas extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     metodosImagenes.openGallery(Vacunas.this);
                 } else {
-                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MetodosImagenes.REQUEST_PERMISSION_CODE);
+                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MetodosImagenes.REQUEST_PERMISSION_GALLERY);
                 }
             } else {
                 metodosImagenes.openGallery(Vacunas.this);
@@ -98,7 +98,7 @@ public class Vacunas extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         /**Acá abrimos el cuadro de dialogo para poder habilitar los permisos,
          * Si el usuario acepta los permisos, habilitará la cámara o la galería*/
-        if (requestCode == MetodosImagenes.REQUEST_PERMISSION_CODE) {
+        if (requestCode == MetodosImagenes.REQUEST_PERMISSION_GALLERY) {
             if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 metodosImagenes.openGallery(Vacunas.this);
             } else {
