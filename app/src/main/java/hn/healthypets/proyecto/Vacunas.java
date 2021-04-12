@@ -59,7 +59,6 @@ public class Vacunas extends AppCompatActivity {
         edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
         ok = findViewById(R.id.btnListoVacunas);
         btnCancel = findViewById(R.id.btnCancelarVacuna);
-        btnProxima = findViewById(R.id.btnProximaVacuna);
 
         buscarImagen.setOnClickListener((v) -> {
             /**Aquí obtenemos los permisos para entrar a la GALERIA*/

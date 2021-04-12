@@ -44,8 +44,8 @@
 
             <TextView
                 android:id="@+id/txvNombreDesparasitante"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="337dp"
+                android:layout_height="51dp"
                 android:fontFamily="@font/questrial"
                 android:text="Nombre Producto"
                 android:textColor="@color/black"
@@ -53,74 +53,10 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.069"
+                app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
-                app:layout_constraintVertical_bias="0.25" />
-
-            <TextView
-                android:id="@+id/txvNombreDesparasitante2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/questrial"
-                android:text="2"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.473"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
-                app:layout_constraintVertical_bias="0.25" />
-
-            <TextView
-                android:id="@+id/txvDosisMeicamento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/questrial"
-                android:text="Unidad"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.586"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
-                app:layout_constraintVertical_bias="0.25" />
-
-            <TextView
-                android:id="@+id/txvCantidadMedicamento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/questrial"
-                android:text="2"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.473"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
-                app:layout_constraintVertical_bias="0.25" />
-
-            <TextView
-                android:id="@+id/txvPesoDesparacitante2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/questrial"
-                android:text="Peso: 21.5"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.052"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvNombreDesparasitante"
-                app:layout_constraintVertical_bias="0.269" />
+                app:layout_constraintVertical_bias="0.411" />
 
             <TextView
                 android:id="@+id/txvFechaAplicacionMedicamento"
@@ -135,7 +71,7 @@
                 app:layout_constraintHorizontal_bias="0.555"
                 app:layout_constraintStart_toEndOf="@+id/txvNombreMascotaMedicamento"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.143" />
+                app:layout_constraintVertical_bias="0.115" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
