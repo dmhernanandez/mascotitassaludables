@@ -69,12 +69,11 @@ public class Desparacitante extends AppCompatActivity {
                         1,
                         1
                 );
-                Toast.makeText(Desparacitante.this,"Guardo Desparasitante",Toast.LENGTH_LONG).show();
+                Toast.makeText(Desparacitante.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                 instanciaDB.getMedicamentoDAO().insertdewormer(desparasitante);
 
                 } else
-
-                Toast.makeText(Desparacitante.this, "Campo Obligatorio (*) esta Vacio", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Desparacitante.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
         });
 
 
