@@ -2,6 +2,7 @@ package hn.healthypets.proyecto.database.dao;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -20,7 +21,7 @@ public interface MascotaDAO {
 
     //Selecciona a todas Las mascotas y retorna un arreglo
     @Query("SELECT * FROM Mascota")
-    public List<Mascota> getAllPets();
+    public LiveData<List<Mascota>> getAllPets();
 
 
    @Query("SELECT count(*) FROM Mascota")

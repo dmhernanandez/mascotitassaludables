@@ -27,6 +27,11 @@ import hn.healthypets.proyecto.database.Entidades.Raza;
     @Query("Select nombreRaza from Raza")
     public NombreRaza[] getAllNamesBreeds();
 
+    @Query("SELECT razaId FROM Raza WHERE nombreRaza = :nombreRaza")
+    public int getIdRazaByName(String nombreRaza);
+
+    @Query("SELECT nombreRaza FROM Raza WHERE razaId = :idRaza")
+    public String getNameRazaById(int idRaza);
    @Transaction
    @Query("SELECT r.nombreRaza AS nombreRaza FROM Especie e JOIN Raza r on e.especieId= r.razaEspecieId WHERE e.especieNombre=:nombreRaza")
    public LiveData<List<NombreRaza>>  getAllBreedsFromSpecie(String nombreRaza);

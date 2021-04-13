@@ -1,20 +1,22 @@
 package hn.healthypets.proyecto;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import hn.healthypets.proyecto.Utilidades.Validacion;
 
 public class Agenda extends AppCompatActivity {
 
     private EditText edtNombreActividad;
     private Spinner spiTipAgenda;
-    private EditText edtFechaMedicamento;
-    private EditText edtHoraMedicamento;
+    private EditText edtFechaAgenda;
+    private EditText edtHoraAgenda;
     private Spinner spiRecordame;
-    private EditText edtIndicacionesMedicamento;
+    private EditText edtObservaionesAgenda;
     private Button btnListo;
     private Button btnCancel;
 
@@ -25,11 +27,30 @@ public class Agenda extends AppCompatActivity {
 
         edtNombreActividad=findViewById(R.id.edtNombreActividad);
         spiTipAgenda=findViewById(R.id.spiTipoAgenda);
-        edtFechaMedicamento=findViewById(R.id.edtFechaAgenda);
-        edtHoraMedicamento=findViewById(R.id.edtHoraMedicamento);
+        edtFechaAgenda =findViewById(R.id.edtFechaAgenda);
+        edtHoraAgenda=findViewById(R.id.edtHoraAgenda);
         spiRecordame=findViewById(R.id.spiRecordarme);
-        edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento2);
-        btnListo=findViewById(R.id.btnListoDesparasitante);
-        btnCancel=findViewById(R.id.btnCancelDesparasitante);
+        edtObservaionesAgenda =findViewById(R.id.edtObseracionesAgenda);
+        btnListo=findViewById(R.id.btnListoAgenda);
+        btnCancel=findViewById(R.id.btnCancelarAgenda);
+
+        /**
+         Validar Campos Vacios Con el Metodo */
+
+        btnListo.setOnClickListener(v -> {
+            Validacion.fieldsAreNotEmpty();
+            boolean comprobar=Validacion.fieldsAreNotEmpty(edtNombreActividad.getText().toString(),
+                                                            edtHoraAgenda.getText().toString(),
+                                                            edtFechaAgenda.getText().toString()
+                                                           );
+
+            if (comprobar){
+                Toast.makeText(Agenda.this,"Guardo Medicamento",Toast.LENGTH_LONG).show();
+//                LLAMAR METODO DAO
+            }else{
+                Toast.makeText(Agenda.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
+            }
+        });
     }
+
 }

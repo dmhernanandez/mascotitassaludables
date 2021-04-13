@@ -15,7 +15,7 @@ public class Mascota {
     @NonNull
     private String fechaNacimiento;
     private String rutaFoto;
-    private int numeroChip;
+    private String numeroChip;
    //Llave foranea de la tabla genero
     @NonNull
     private int generoMascotaId;
@@ -27,9 +27,9 @@ public class Mascota {
 
 
 
-    //Constructor
-    public Mascota(int mascotaId, @NonNull String nombre, @NonNull String fechaNacimiento, int generoMascotaId, int razaMascotaId, int mascotaEspecieId,String rutaFoto,int numeroChip) {
-        this.mascotaId = mascotaId;
+
+    public Mascota( int mascotaId,@NonNull String nombre, @NonNull String fechaNacimiento, int generoMascotaId, int razaMascotaId, int mascotaEspecieId,String rutaFoto,String numeroChip) {
+        this.mascotaId=mascotaId;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.generoMascotaId = generoMascotaId;
@@ -38,7 +38,6 @@ public class Mascota {
         this.rutaFoto=rutaFoto;
         this.numeroChip=numeroChip;
     }
-
     public int getMascotaId() {
         return mascotaId;
     }
@@ -97,11 +96,11 @@ public class Mascota {
         this.rutaFoto = rutaFoto;
     }
 
-    public int getNumeroChip() {
+    public String getNumeroChip() {
         return numeroChip;
     }
 
-    public void setNumeroChip(int numeroChip) {
+    public void setNumeroChip(String numeroChip) {
         this.numeroChip = numeroChip;
     }
 }

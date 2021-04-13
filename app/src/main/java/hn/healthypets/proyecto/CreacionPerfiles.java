@@ -18,6 +18,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +34,7 @@ import hn.healthypets.proyecto.Utilidades.DateTime;
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.Especie;
+import hn.healthypets.proyecto.database.Entidades.Mascota;
 import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.database.dao.EspecieDAO;
@@ -61,6 +66,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     private ArrayAdapter<String> adaptadorEspecie;
     private ArrayAdapter<String> adaptadorRaza;
     private SimpleDateFormat formatoFecha;
+    private EditText edtNumeroChip;
     private int dia, mes, anio;
     /**
      * Estas variables de utilizan para determinar la posicion en la que se encuentra un elemento cuando se esta actualizando
@@ -76,7 +82,13 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     private String especie = "";
     private String raza;
     private Bitmap bitmapImage;
-
+ /**Esta variable se utiliza para almacenar el valor que se devuelve de la solicitud de los permisos, esto quiere decir
+  * se coloca el nombre de permissionStorage ya que el unico momento en que se utilizara sera para validar si hay permisos de almacenamiento
+  *
+  * */
+    private boolean permissionStorgare;
+    /*Creamos un intent para tener acceso a los datos cuando sea una actualizacion a travez de los getExtras*/
+    Intent intentValues;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,9 +145,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                 });
 
 
-        //Hinabilitamos el Spinner de raza ya que esta depende de la especie y mientras no hay una seleccionada no tiene sentido estar habilidado
-        // disableSpinnerAndButton(spiRaza,agregarRaza);
-
 
         /** EVENTOS DE LOS COMPONENTES  **/
         agregarEspecie.setOnClickListener(new View.OnClickListener() {
@@ -160,18 +169,114 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Valida que los campos esten llenos
+             boolean fieldsFill = Validacion.fieldsAreNotEmpty(
+                     edtNombreMascota.getText().toString(),
+                      edtFechaNaciento.getText().toString());
+             //Valida que por lo menos un radio button este seleccionado
+              boolean radioButtonIsSelected=rbtnHembra.isSelected() || rbtnMacho.isSelected()?true:false;
+                if (fieldsFill && spiEspecie.getSelectedItemId()>0 && radioButtonIsSelected)
+                {
+                    String nombreImagen="";
+                    String genero = rbtnHembra.isChecked()?"Hembra":"Macho";
+                    Mascota mascota;
 
+                    /** Para las versiones menores que 4.4 se solicta el permiso, en caso que nuestro telefono se mayor
+                     * pasara de una solo vez almacenar*/
+                   if( metodosImagenes.checkPermissionStorage(CreacionPerfiles.this) || permissionStorgare)
+                   {
 
+                       switch (accion)
+                       {
+                           case Constantes.GUARDAR:
+                               /** Validamos que no haya una imagen vacia si esta vacia entonces se
+                                * la ruta se envia vacia, sino se guarda y se retorna el nombre de la imagen*/
+                               if(bitmapImage!=null)
+                               {
+                                   nombreImagen=metodosImagenes.savePhoto(CreacionPerfiles.this,
+                                           bitmapImage,
+                                           MetodosImagenes.PET_FOLDER,
+                                           metodosImagenes.generarNombre("img_pet_")+".jpeg");
+                               }
+                               mascota=new Mascota(
+                                       0,
+                                       edtNombreMascota.getText().toString(),
+                                       edtFechaNaciento.getText().toString(),
+                                       instanciaDB.getGeneroDAO().getIdGenderByName(genero),
+                                       instanciaDB.getRazaDAO().getIdRazaByName(spiRaza.getSelectedItem().toString()),
+                                       instanciaDB.getSpeciesDAO().getIdSpeciesByName(spiEspecie.getSelectedItem().toString()),
+                                               nombreImagen,
+                                               edtNumeroChip.getText().toString()
+                               );
+                             instanciaDB.getMascotaDAO().insertNewPet(mascota);
 
+                              Toast.makeText(CreacionPerfiles.this,"Guardado con exito",Toast.LENGTH_LONG).show();
+                               finish();
+                              break;
+                           case Constantes.ACTUALIZAR:
+                               /**
+                                * Si la imagen del bitmap esta vacia en y se esta actualizando siginifica que no se selecciono
+                                * una nueva imagen por lo tanto la ruta que se mandara sera la misma que tenia anteriormente,
+                                * estos se logra atravez de el intent que se envio al iniciar la actividad
+                                * */
+                               nombreImagen=intentValues.getStringExtra(Constantes.TAG_IMG_PATH);
+                               if(bitmapImage!=null)
+                               {
+                                   /** Si se selecciono una foto nueva entonces mandamos a llamar al metodo savePhoto para que
+                                    * guarde una nueva foto, pero si la ruta de la foto anterior esta vacia se genera un nuevo
+                                    * nombre y si no se envia el nombre de la foto actual para sustituir el archivo pero que con
+                                    * conserve el mismo nombre*/
+                                   if(nombreImagen.equals(""))
+                                   {
+                                       nombreImagen=metodosImagenes.savePhoto(CreacionPerfiles.this,
+                                               bitmapImage,
+                                               MetodosImagenes.PET_FOLDER,
+                                               metodosImagenes.generarNombre("img_pet_")+".jpeg");
+                                   }
+                                   else
+                                   {
+                                       nombreImagen=metodosImagenes.savePhoto(CreacionPerfiles.this,
+                                               bitmapImage,
+                                               MetodosImagenes.PET_FOLDER,
+                                               nombreImagen);
+                                   }
 
-                boolean validacion = Validacion.fieldsAreNotEmpty(edtNombreMascota.getText().toString(),
-                        "");
-                if (validacion) {
-                    metodosImagenes.checkPermissionStorage(CreacionPerfiles.this);
-                    Toast.makeText(CreacionPerfiles.this, "ESTAN TODOS LOS CAMPOS LLENAMOS", Toast.LENGTH_SHORT).show();
-                } else
+                               }
+                               mascota=new Mascota(
+                                       intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT),
+                                       edtNombreMascota.getText().toString(),
+                                       edtFechaNaciento.getText().toString(),
+                                       instanciaDB.getGeneroDAO().getIdGenderByName(genero),
+                                       instanciaDB.getRazaDAO().getIdRazaByName(spiRaza.getSelectedItem().toString()),
+                                       instanciaDB.getSpeciesDAO().getIdSpeciesByName(spiEspecie.getSelectedItem().toString()),
+                                       nombreImagen,
+                                       edtNumeroChip.getText().toString()
+                               );
+                               instanciaDB.getMascotaDAO().updatePet(mascota);
 
-                    Toast.makeText(CreacionPerfiles.this, "HAY campos vacios", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(CreacionPerfiles.this,"Actualizado con exito +",Toast.LENGTH_LONG).show();
+                               finish();
+                               break;
+                       }
+                   }
+                   else
+                   {
+                       Toast.makeText(CreacionPerfiles.this, "Permisos", Toast.LENGTH_SHORT).show();
+
+                       metodosImagenes.requestPermissionFromUser(
+                               CreacionPerfiles.this,
+                                  Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                  MetodosImagenes.REQUEST_PERMISION_WRITE_STORAGE);
+                   }
+
+                }
+                else
+                {
+                    Snackbar.make(v,
+                            "Debe llenar todos los campos obligatorios",
+                            Snackbar.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -217,8 +322,10 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         /** Se validan los permisos devueltos de la socilicitud y en caso de ser haber sido aceptados por el usuario
-         *  el metodo validateRequestPermissionCode envia a la actividad solicitada, de acuerdo con el identificador*/
-        metodosImagenes.validateRequestPermissionCode(requestCode,permissions,grantResults,CreacionPerfiles.this);
+         *  el metodo validateRequestPermissionCode envia a la actividad solicitada, de acuerdo con el identificador
+         *  tambie se alamcena el valor devuelto ya que se utilizara para determinar si hay permisos de almacenamiento,
+         *  los permisos de Camara y Galeria no hacen uso de esta variable unicamente*/
+       permissionStorgare=  metodosImagenes.validateRequestPermissionCode(requestCode,permissions,grantResults,CreacionPerfiles.this);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
@@ -245,6 +352,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                 {
                     bitmapImage= metodosImagenes.getBitmapFromUri(this,data.getData());
                     imgFotoMascota.setImageBitmap(bitmapImage);
+
                 }
 
 
@@ -292,8 +400,9 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
        **/
         if (!razaMascota.isEmpty())
         {
+            /*Obtenemos el nombre se la especie que esta seleccionada en este momento para optener su id*/
             instanciaDB.getRazaDAO().insertBreed(new Raza(razaMascota,
-            instanciaDB.getSpeciesDAO().getIdSpeciesByName(especie)));
+            instanciaDB.getSpeciesDAO().getIdSpeciesByName(spiEspecie.getSelectedItem().toString())));
 
         }
 
@@ -312,6 +421,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                  y no tiene ningun valor en la base de datos*/
                  if(position>0)
                  {
+
                        //Desbloqueamos la base el sepinner de razas
                      enableSpinnerAndButton(spiRaza,agregarRaza);
                      /**Establecemos un observador para obtener las razas por especie seleccianada, en esta caso este se encarga de actualizar
@@ -329,7 +439,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                                          for (RazaDAO.NombreRaza raza : nombreRazas) {
                                              arrayNombreRazas.add(raza.getNombreRaza());
                                          }
-                                         arrayNombreRazas.add(0, "Seleccione raza");
                                      }
                                      else if (accion == Constantes.ACTUALIZAR) {
                                          for(int i=0;i<nombreRazas.size();i++)
@@ -361,7 +470,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                  else
                  {
                      /**Se selecciona el valor po defecto*/
-                     spiRaza.setSelection(0);
+                     spiRaza.setSelection(postionItemRaza);
                      disableSpinnerAndButton(spiRaza,agregarRaza);
 
                  }
@@ -405,8 +514,9 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         rbgGrupoGenero =findViewById(R.id.rbgGrupoGenero);
         edtNombreMascota= findViewById(R.id.edtNombreMascota);
         rbtnMacho.setSelected(true);
-        metodosImagenes =new MetodosImagenes();
+        metodosImagenes =new MetodosImagenes(this);
         btnGuardar = findViewById(R.id.btnGuardarCP);
+        edtNumeroChip =findViewById(R.id.edtNumeroChip);
         especie = "";
         fechaHora = new DateTime();
 
@@ -429,35 +539,74 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
 
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
-        Intent intentValues= getIntent();
+        intentValues= getIntent();
         accion=intentValues.getIntExtra(Constantes.TAG_ACCION,Constantes.GUARDAR);
         if(accion==Constantes.GUARDAR){
             disableSpinnerAndButton(spiRaza,agregarRaza);
-
-            //Recuperamos el valor de la fecha por defecto que es la fecha actual
+             //Se carga la fecha por defecto que es la fecha actual
             dia=DateTime.diaDelMes;
             mes=DateTime.mes;
             anio=DateTime.anio;
-
+            /**Asignamos una foto de perfil por defecto*/
+            Glide.with(this)
+                    .load(R.drawable.default_credencial)
+                    .into(imgFotoMascota);
         }
+
+        /** Acciones a realizar si se la opcion es actualizar*/
         else if(accion==Constantes.ACTUALIZAR)
         {
-            String fecha1="15-03-2021";
+
             /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha
-             * para asignarlo y luego asignarla al input*/
-            String [] fecha=fecha1.split("-");;
+             * para dar formato y tomarla como fecha de refeencia*/
+            String [] fecha=intentValues.getStringExtra(Constantes.TAG_FECHA_NACIENTO).split("-");
             dia=Integer.parseInt(fecha[0]);
-            mes=Integer.parseInt(fecha[1])-1;
-            anio= Integer.parseInt(fecha[2]);
+            mes= Integer.parseInt(fecha[1]);
+            anio=Integer.parseInt(fecha[2]);
+            /**Se valida si al actualizar tenia una foto, ser asi se muestra, de lo contrario se carga una imagen por defecto*/
+            if(!intentValues.getStringExtra(Constantes.TAG_IMG_PATH).equals(""))
+            {
+                File filePhoto = new File(metodosImagenes.getRootPath()+"/"
+                        +MetodosImagenes.PET_FOLDER+"/"+
+                        intentValues.getStringExtra(Constantes.TAG_IMG_PATH));
+                Glide.with(this)
+                        .load(filePhoto)
+                        .into(imgFotoMascota);
+            }
+            else
+            {
+                /**Asignamos una foto de perfil por defecto*/
+                Glide.with(this)
+                        .load(R.drawable.default_credencial)
+                        .into(imgFotoMascota);
+            }
 
 
+
+            /** Se optiene el nombre del genero y se valida para seleccionar el radio button Correcto
+             * */
+            String genero = instanciaDB.getGeneroDAO().
+                    getGenderById(intentValues.getIntExtra(Constantes.TAG_GENERO,Constantes.DEFAULT));
+            if (genero.equals("Hembra")) {
+                rbgGrupoGenero.check(R.id.rbHembra);
+            } else {
+                rbgGrupoGenero.check(R.id.rbMacho);
+            }
+
+            edtNombreMascota.setText(intentValues.getStringExtra(Constantes.TAG_NOMBRE));
+            edtNumeroChip.setText(intentValues.getStringExtra(Constantes.TAG_NUMERO_CHIP));
+
+            /** Se optiene en nombre de la especie para seleccionarlo en el Spinner de especie, ya que este es
+             * el valor guardado por el usuario*/
+            raza= instanciaDB.getRazaDAO()
+                    .getNameRazaById(intentValues.getIntExtra(Constantes.TAG_RAZA,Constantes.DEFAULT));
+
+            /** Se obtiene el nombre de la raza para seleccionarlo en el Spinner*/
+            especie = instanciaDB.getSpeciesDAO()
+                    .getNameSpecieById(intentValues.getIntExtra(Constantes.TAG_ESPECIE,Constantes.DEFAULT));
 
         }
         edtFechaNaciento.setText(fechaHora.formato(dia,mes,anio));
-        accion=Constantes.ACTUALIZAR;
-        especie="Perro";
-        raza="Pitbull";
-        rbgGrupoGenero.check(R.id.rbMacho);
 
     }
 
@@ -480,5 +629,9 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         spinner.setEnabled(true);
     }
 
-    /**Con estos metodos llamamo*/
+    /** intent */
+    void goHome()
+    {
+//        Intent intent = new Intent
+    }
 }

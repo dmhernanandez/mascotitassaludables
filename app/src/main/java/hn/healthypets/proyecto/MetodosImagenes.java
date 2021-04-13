@@ -8,7 +8,6 @@ package hn.healthypets.proyecto;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -19,6 +18,7 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -40,10 +40,22 @@ public class MetodosImagenes {
     public static final int REQUEST_PERMISION_WRITE_STORAGE=104;
     public static final int REQUEST_IMAGE_GALLERY = 101;
     public static final int REQUEST_IMAGE_CAMERA = 103;
+    public static final String PET_FOLDER="Mascotas";
+    public static final String VACUNA_FOLDER="Vacunas";
 
-    private String rutaImagen;
+    private String rootPath;
     private Bitmap bitmap;
+    public MetodosImagenes(Activity activity)
+    {
 
+        /** Se obtiene la ruta principal del direcotorio de imagenes privado de la aplicación, de manera que no seran
+         * visibles en la galería*/
+        rootPath = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath();
+    }
+    public MetodosImagenes(Context context)
+    {
+        rootPath = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath();
+    }
     /**
      * Método para poder accesar a la galería del dispositivo
      */
@@ -68,55 +80,18 @@ public class MetodosImagenes {
      */
     public String generarNombre(String prefijo) {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(new Date());
-        return prefijo + timeStamp + "_"; //IMG_202104101111
+        return prefijo + timeStamp; //IMG_202104101111
     }
 
     /**
-     * Método para crear el archivo temporal de la cámara,
-     * para luego ser guardada en el dispositivo
+     * Devuelve la ruta de la carpeta raiz de la carpeta imagenes de nuestra aplicación
      */
-    public File crearImagen(Context context) throws IOException {
 
-        String imgFileName = generarNombre("IMG_CAMERA_");
-        File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imgFileName,
-                ".jpg",
-                storageDir
-        );
-        rutaImagen = image.getAbsolutePath();
-        return image;
+    public String getRootPath() {
+        return rootPath;
     }
 
-    public String getRutaImagen() {
-        return rutaImagen;
-    }
 
-    /**
-     * Método para guardar la imágen obtenida de la galería
-     * en el dispositivo
-     */
-    public String guardarImagen(Context context, Bitmap nombre, Bitmap imagen) {
-        ContextWrapper contextWrapper = new ContextWrapper(context);
-        /**Directorio donde se guardará la imágen*/
-        File dirImages = contextWrapper.getDir("Imagenes", Context.MODE_PRIVATE);
-        File myPath = new File(
-                        dirImages,
-                  generarNombre("IMG_GALLERY_")
-                        + ".jpg");
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(myPath);
-            imagen.compress(Bitmap.CompressFormat.JPEG, 50, fos);
-            fos.flush();
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return myPath.getAbsolutePath();
-
-    }
 
     /** Con este metodo validamos si ya se otorgraron los permisos de la camara de ser así se retorna un valor booleano*/
     public boolean checkPermissionCamera(Activity activity)
@@ -147,21 +122,20 @@ public class MetodosImagenes {
     public boolean checkPermissionStorage(Activity activity)
     {
         boolean permissionStorage=false;
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                /** Valida que si los permisos ya estan habilitados, si ya estan habilitados entoces permissionStorage = true
-                 * de lo contrario  el permissionStorage = false
-                 * foto*/
-                if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-                {
-                   permissionStorage=true;
-                }
-                else
-                {
-                   permissionStorage=false;
-                }
-            }
 
+        if (Build.VERSION.SDK_INT <=Build.VERSION_CODES.JELLY_BEAN_MR2)
+        {
+            /** Valida que si los permisos ya estan habilitados, si ya estan habilitados entoces permissionStorage = true
+             * de lo contrario  el permissionStorage = false
+             * foto*/
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+            {
+               permissionStorage=true;
+            }
+            else
+            {
+               permissionStorage=false;
+            }
         }
         else/** Si la version es inferior los permisos fueron aceptados al descargar la aplicación*/
         {
@@ -193,23 +167,20 @@ public class MetodosImagenes {
         return  permissionGallery;
     }
 
-    private void savePhoto(Activity activity,Bitmap bitmap) {
-
-        /** Se obtiene la ruta principal del direcotorio de imagenes privado de la aplicación, de manera que no seran
-         * visibles en la galería*/
-        String path = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath();
+    public String savePhoto(Activity activity,Bitmap bitmap,String carpeta,String nameImage) {
+        String nombreImagen="";
         OutputStream fOut = null;
 
         /** Con este archivo se crea el directoria ni no existe*/
-        File fileFolder = new File(path, "Camera");
+        File fileFolder = new File(rootPath, carpeta);
         /** Si el archivo no se creo, se intenta creearlo nuevamente*/
         if (!fileFolder.exists()) {
             fileFolder.mkdirs();
         }
 
-        rutaImagen= "IMG_20210412_11-42-50_.jpeg";
+
         /** Se crea un archivo al cual se mandaran los bits por medio de FileOutputStream*/
-        File filePhoto = new File(fileFolder,rutaImagen );
+        File filePhoto = new File(fileFolder,nameImage);
 
         try {
             /** Se crea una secuencia de salida de archivo para escribir en el archivo representado por el objeto especificado
@@ -224,9 +195,12 @@ public class MetodosImagenes {
          * estableciendo el formato de compresion, la calidad y la secuencia de salida de bytes, "fOut"
          * acepta bytes de salida enviados por el metodo "compress".
          *
-         * se crea una variable booleana para para  determinar si se guardo correctamente
+         * Se valida si se guardo la foto de ser asi se retorna el nombre de la foto
          * */
-       boolean a=  bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+          if(bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut))
+          {
+            nombreImagen=nameImage;
+          }
 
         try {
             /** Vacía la secuencia de salida "fOut" y obliga a escribir los bytes de salida almacenados en búfer.*/
@@ -237,6 +211,7 @@ public class MetodosImagenes {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return nombreImagen;
     }
 
     /** Este metodo se utiliza se invoca en le mtedo onRequestPermisionCode*/
@@ -307,27 +282,19 @@ public class MetodosImagenes {
         }
         return image ;
     }
-//    private void setPic(ImageView imageView) {
-//        // Se optienen las dimensiones del imageview
-//        int targetW = imageView.getWidth();
-//        int targetH = imageView.getHeight();
-//
-//        //
-//        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-//        bmOptions.inJustDecodeBounds = true;
-//
-//        int photoW = bmOptions.outWidth;
-//        int photoH = bmOptions.outHeight;
-//
-//        // Determine how much to scale down the image
-//        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-//
-//        // Decode the image file into a Bitmap sized to fill the View
-//        bmOptions.inJustDecodeBounds = false;
-//        bmOptions.inSampleSize = scaleFactor;
-//        bmOptions.inPurgeable = true;
-//
-//        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
-//        imageView.setImageBitmap(bitmap);
-//    }
+    public Bitmap createScaledBitmap(ImageView imageView,Bitmap bitMap) {
+
+        /**Se obtienen las dimenciones del del bitmap*/
+        int originalWidth = bitMap.getWidth();
+        int originalHeight = bitMap.getHeight();
+
+        /**Se optiene la dimencion del */
+        int newWidth = imageView.getWidth();
+        int ivHeight = imageView.getHeight();
+
+       int newHeight = (int) Math.floor((double) originalHeight *( (double) newWidth / (double) originalWidth));
+        Log.i("dimenciones",String.valueOf(newWidth) +" x "+String.valueOf(newHeight));
+       return Bitmap.createScaledBitmap(bitMap, newWidth, newHeight, true);
+
+    }
 }

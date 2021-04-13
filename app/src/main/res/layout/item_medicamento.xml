@@ -43,7 +43,7 @@
                 app:layout_constraintVertical_bias="0.118" />
 
             <TextView
-                android:id="@+id/txvNombreDesparasitante"
+                android:id="@+id/txvRecetaMedicamento"
                 android:layout_width="337dp"
                 android:layout_height="51dp"
                 android:fontFamily="@font/questrial"
