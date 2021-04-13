@@ -49,6 +49,7 @@ public class Medicamento extends AppCompatActivity {
         //Inicializamos todos los elementos
         init();
 
+
         edtFechaMedicamento.setOnClickListener((v)->{
             //Utilizamos este metodo par obtenener los datos
             DatePickerDialog dialogoFecha = new DatePickerDialog(Medicamento.this, (view, year, month, dayOfMonth) ->
