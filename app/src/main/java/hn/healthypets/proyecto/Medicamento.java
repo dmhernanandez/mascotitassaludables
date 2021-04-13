@@ -58,14 +58,11 @@ public class Medicamento extends AppCompatActivity {
         arrayNombreTipoDosis.add("Seleccione Dosis");
         startSpinnerValues(spiDosis,arrayNombreTipoDosis,adaptadorTipoDosis);
 
-
         //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
 
         accion=Constantes.GUARDAR;
         postionItemEspecie=0;
-
-
 
         instanciaDB.getTipoDosisDAO().insertDoseTypes(new TipoDosis("Media Pastilla"),
                 new TipoDosis("Tableta"),
@@ -133,10 +130,10 @@ public class Medicamento extends AppCompatActivity {
                         1,
                         instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
                 );
-                Toast.makeText(Medicamento.this,"Guardo Medicamento",Toast.LENGTH_LONG).show();
+                Toast.makeText(Medicamento.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                 instanciaDB.getMedicamentoDAO().insertMedicine(medicamento);
             }else{
-                Toast.makeText(Medicamento.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
+                Toast.makeText(Medicamento.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
             }
         });
     }

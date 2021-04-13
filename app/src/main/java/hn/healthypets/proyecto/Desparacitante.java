@@ -62,10 +62,10 @@ public class Desparacitante extends AppCompatActivity {
                     edtPesoDespa.getText().toString());
             if (validacion) {
                 metodosImagenes.checkPermissionStorage(Desparacitante.this);
-                Toast.makeText(Desparacitante.this, "ESTAN TODOS LOS CAMPOS LLENAMOS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Desparacitante.this, "Información guardada exitosamente ;)", Toast.LENGTH_SHORT).show();
             } else
 
-                Toast.makeText(Desparacitante.this, "HAY campos vacios", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Desparacitante.this, "Campos OBLIGATORIOS(*) vacios", Toast.LENGTH_SHORT).show();
         });
 
 

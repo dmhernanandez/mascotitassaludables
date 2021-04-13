@@ -162,7 +162,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
 
-
                 /**Aquí usamos el método que creamos para obtener la imágen*/
                 Bitmap imagen = ((BitmapDrawable) imgFotoMascota.getDrawable()).getBitmap();
                 if(imagen!=null && rutaImagen.isEmpty())
@@ -176,13 +175,11 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                         "HOLA", "JFAFJAF");
                 if (validacion) {
                     metodosImagenes.checkPermissionStorage(CreacionPerfiles.this);
-                    Toast.makeText(CreacionPerfiles.this, "ESTAN TODOS LOS CAMPOS LLENAMOS", Toast.LENGTH_SHORT).show();
                 } else
 
-                    Toast.makeText(CreacionPerfiles.this, "HAY campos vacios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreacionPerfiles.this, "Campos OBLIGATORIOS(*) vacios", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         btnSeleccionarFoto.setOnClickListener((v) -> {
             /** Se valida que tenga permisos para acceder a la galeria de ser asi lo envia a la galeria*/
@@ -202,7 +199,8 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
         });
 
-        btnTomarFotos.setOnClickListener((v) -> {
+        btnTomarFotos.setOnClickListener((v) ->
+        {
             /** Se valida que tenga permisos para tomar fotos de ser asi lo envia a la camara*/
          if(metodosImagenes.checkPermissionCamera(CreacionPerfiles.this))
          {
@@ -210,13 +208,12 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
          }
          /**De lo contrario los solicita y luego se valida en el metodo on onRequestPermissonCode*/
          else
-         {
-             metodosImagenes.requestPermissionFromUser(
-                     CreacionPerfiles.this,
-                     Manifest.permission.CAMERA,
-                     MetodosImagenes.REQUEST_PERMISSION_CAMERA
-             );
-         }
+            {
+                 metodosImagenes.requestPermissionFromUser(
+                         CreacionPerfiles.this,
+                         Manifest.permission.CAMERA,
+                         MetodosImagenes.REQUEST_PERMISSION_CAMERA);
+            }
 
         });
     }//Fin de onCreate
@@ -243,8 +240,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                     bitmapImage =(Bitmap) data.getExtras().get("data");
                     imgFotoMascota.setImageBitmap(bitmapImage);
                 }
-
-
             break;
             case MetodosImagenes.REQUEST_IMAGE_GALLERY:
 
@@ -254,16 +249,9 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                     bitmapImage= metodosImagenes.getBitmapFromUri(this,data.getData());
                     imgFotoMascota.setImageBitmap(bitmapImage);
                 }
-
-
                 break;
         }
-
-
     }
-
-
-
 
     //Abre el dialogo para recibir una nueva especie
     public void abrirDialogoEspecie() {
@@ -289,7 +277,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     public void abrirDialogoRaza() {
         ModalDialogoRaza modalDialogoRaza = new ModalDialogoRaza();
         modalDialogoRaza.show(getSupportFragmentManager(), "Seleccione una raza");
-
     }
 
     @Override
@@ -302,9 +289,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         {
             instanciaDB.getRazaDAO().insertBreed(new Raza(razaMascota,
             instanciaDB.getSpeciesDAO().getIdSpeciesByName(especie)));
-
         }
-
     }
 
 
@@ -371,11 +356,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                      /**Se selecciona el valor po defecto*/
                      spiRaza.setSelection(0);
                      disableSpinnerAndButton(spiRaza,agregarRaza);
-
                  }
-
-
-
              break;
          }
     }// fin de onItemSelected
@@ -384,7 +365,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
     /**
      * Con este metodo llenamos los Spinners pasando la lista de valores que vamos agregar y el adaptador que los
@@ -424,7 +404,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         /** Se obtiene una instancia de la base de datos*/
         instanciaDB = SingletonDB.getDatabase(this);
 
-
         /** Se asigna al Spinner de raza un evento de escucha, un array con la list**/
         spiRaza.setOnItemSelectedListener(this);
         arrayNombreRazas.add("Seleccione raza");
@@ -435,13 +414,11 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         arrayNombreEspecies.add("Seleccione especie");
         startSpinnerValues(spiEspecie,arrayNombreEspecies,adaptadorEspecie);
 
-
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
         Intent intentValues= getIntent();
         accion=intentValues.getIntExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
         if(accion==Constantes.GUARDAR){
             disableSpinnerAndButton(spiRaza,agregarRaza);
-
             //Recuperamos el valor de la fecha por defecto que es la fecha actual
             dia=DateTime.diaDelMes;
             mes=DateTime.mes;
@@ -457,16 +434,12 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
             dia=Integer.parseInt(fecha[0]);
             mes=Integer.parseInt(fecha[1])-1;
             anio= Integer.parseInt(fecha[2]);
-
         }
         edtFechaNaciento.setText(fechaHora.formato(dia,mes,anio));
         accion=Constantes.ACTUALIZAR;
         especie="Perro";
         raza="Pitbull";
     }
-
-
-
 
     /**
      * disableSpinnerAndButton() y enableSpinnerAndButton()

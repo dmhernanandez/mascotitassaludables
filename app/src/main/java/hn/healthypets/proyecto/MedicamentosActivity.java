@@ -64,10 +64,10 @@ public class MedicamentosActivity extends AppCompatActivity {
                     edtFechaMedicamento.getText().toString());
             if (validacion) {
                 metodosImagenes.checkPermissionStorage(MedicamentosActivity.this);
-                Toast.makeText(MedicamentosActivity.this, "ESTAN TODOS LOS CAMPOS LLENAMOS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MedicamentosActivity.this, "Información guardada exitosamente ;)", Toast.LENGTH_LONG).show();
             } else
 
-                Toast.makeText(MedicamentosActivity.this, "HAY campos vacios", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MedicamentosActivity.this, "Campos OBLIGATORIOS(*) vacios", Toast.LENGTH_LONG).show();
         });
     }
     private void init()
@@ -88,14 +88,12 @@ public class MedicamentosActivity extends AppCompatActivity {
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
         Intent intentValues= getIntent();
         accion=intentValues.getIntExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
-        if(accion==Constantes.GUARDAR){
-
-
+        if(accion==Constantes.GUARDAR)
+        {
             //Recuperamos el valor de la fecha por defecto que es la fecha actual
             dia=DateTime.diaDelMes;
             mes=DateTime.mes;
             anio=DateTime.anio;
-
         }
         else if(accion==Constantes.ACTUALIZAR)
         {
@@ -106,7 +104,6 @@ public class MedicamentosActivity extends AppCompatActivity {
             dia=Integer.parseInt(fecha[0]);
             mes=Integer.parseInt(fecha[1])-1;
             anio= Integer.parseInt(fecha[2]);
-
         }
         edtFechaMedicamento.setText(fechaHora.formato(dia,mes,anio));
         accion=Constantes.ACTUALIZAR;

@@ -47,8 +47,6 @@ public class Vacunas extends AppCompatActivity {
     private DateTime fechaHora;
     private int dia, mes, anio;
 
-
-
     /**
      * Se utilizan para validar que tipo de accion se realizara en la actividad, estos datos se reciben del intent
      **/
@@ -78,30 +76,24 @@ public class Vacunas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 /**Aquí usamos el método que creamos para obtener la imágen*/
                 Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
                 if(imagen!=null && rutaImagen.isEmpty())
                 {
                     String ruta = metodosImagenes.guardarImagen(getApplicationContext(), imagen, imagen);
                 }
-
-
-
                 boolean validacion = Validacion.fieldsAreNotEmpty(
                         edtNombreVacuna.getText().toString(),
                         edtDescripVacuna.getText().toString(),
                         edtFechaVacuna.getText().toString());
                 if (validacion) {
                     metodosImagenes.checkPermissionStorage(Vacunas.this);
-                    Toast.makeText(Vacunas.this, "ESTAN TODOS LOS CAMPOS LLENAMOS", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Vacunas.this, "Información guardada exitosamente ;)", Toast.LENGTH_SHORT).show();
                 } else
 
-                    Toast.makeText(Vacunas.this, "HAY campos vacios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Vacunas.this, "Campos OBLIGATORIOS(*) vacios", Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
         btnSeleccionarFoto.setOnClickListener((v) -> {
             /** Se valida que tenga permisos para acceder a la galeria de ser asi lo envia a la galeria*/
@@ -115,10 +107,8 @@ public class Vacunas extends AppCompatActivity {
                 metodosImagenes.requestPermissionFromUser(
                         Vacunas.this,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-                        MetodosImagenes.REQUEST_PERMISSION_GALLERY
-                );
+                        MetodosImagenes.REQUEST_PERMISSION_GALLERY);
             }
-
         });
 
         btnTomarFotos.setOnClickListener((v) -> {
@@ -136,9 +126,7 @@ public class Vacunas extends AppCompatActivity {
                         MetodosImagenes.REQUEST_PERMISSION_CAMERA
                 );
             }
-
         });
-
     }
 
     /**Este metodo recive los valores de respuesta al solicitar los permisos*/
@@ -149,7 +137,6 @@ public class Vacunas extends AppCompatActivity {
         metodosImagenes.validateRequestPermissionCode(requestCode,permissions,grantResults,Vacunas.this);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 
     private void init()
     {
@@ -163,24 +150,18 @@ public class Vacunas extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancelarVacuna);
         fechaHora = new DateTime();
 
-
-
         /** Se obtiene una instancia de la base de datos*/
         instanciaDB = SingletonDB.getDatabase(this);
-
-
 
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
         Intent intentValues= getIntent();
         accion=intentValues.getIntExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
-        if(accion==Constantes.GUARDAR){
-
-
+        if(accion==Constantes.GUARDAR)
+        {
             //Recuperamos el valor de la fecha por defecto que es la fecha actual
             dia=DateTime.diaDelMes;
             mes=DateTime.mes;
             anio=DateTime.anio;
-
         }
         else if(accion==Constantes.ACTUALIZAR)
         {
@@ -191,14 +172,10 @@ public class Vacunas extends AppCompatActivity {
             dia=Integer.parseInt(fecha[0]);
             mes=Integer.parseInt(fecha[1])-1;
             anio= Integer.parseInt(fecha[2]);
-
         }
         edtFechaVacuna.setText(fechaHora.formato(dia,mes,anio));
         accion=Constantes.ACTUALIZAR;
-
     }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -213,8 +190,6 @@ public class Vacunas extends AppCompatActivity {
                     bitmapImage =(Bitmap) data.getExtras().get("data");
                     imgFotoVacuna.setImageBitmap(bitmapImage);
                 }
-
-
                 break;
             case MetodosImagenes.REQUEST_IMAGE_GALLERY:
 
@@ -224,11 +199,7 @@ public class Vacunas extends AppCompatActivity {
                     bitmapImage= metodosImagenes.getBitmapFromUri(this,data.getData());
                     imgFotoVacuna.setImageBitmap(bitmapImage);
                 }
-
-
                 break;
         }
-
-
     }
 }
