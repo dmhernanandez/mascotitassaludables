@@ -2,20 +2,20 @@ package hn.healthypets.proyecto.database.Entidades;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 /**
  * Esta entidad contiene campos para guardar valores macho y hembra
  * */
-@Entity
+@Entity(indices = {@Index(value = "genero",unique = true)})
 public class Genero {
     @PrimaryKey(autoGenerate = true)
     private int generoId;
     @NonNull
     private String genero;
    //Constructor
-    public Genero(int generoId, @NonNull String genero) {
-        this.generoId = generoId;
+    public Genero( @NonNull String genero) {
         this.genero = genero;
     }
 

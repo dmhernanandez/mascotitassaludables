@@ -17,12 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hn.healthypets.proyecto.Utilidades.DateTime;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.database.dao.TipoDosisDAO;
+import hn.healthypets.proyecto.database.dao.MedicamentoDAO;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class Medicamentos extends AppCompatActivity {

@@ -70,14 +70,14 @@
             android:textSize="12sp"
             app:icon="@drawable/ic_vector_control"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgbtnModificarPerfil"
+            app:layout_constraintEnd_toStartOf="@+id/btnActualizarMascota"
             app:layout_constraintHorizontal_bias="0.932"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txvNumeroChipPerfil"
             app:layout_constraintVertical_bias="0.675" />
 
         <ImageButton
-            android:id="@+id/imgbtnModificarPerfil"
+            android:id="@+id/btnActualizarMascota"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/btn_redondo_celeste"

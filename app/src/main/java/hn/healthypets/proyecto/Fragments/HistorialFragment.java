@@ -5,13 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorPerfil;
 import hn.healthypets.proyecto.database.Entidades.Mascota;
@@ -26,18 +25,16 @@ public class HistorialFragment extends Fragment {
 
         RecyclerView recyclerView=vista.findViewById(R.id.rvHistorial);
 
-        //Enlazamos los datos al Recicler View
-        RecyclerView recyclerViewPerfiles=vista.findViewById(R.id.rvCredencial);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerViewPerfiles.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         //datos que vamos a enviar
-        Mascota mascota=new Mascota(1,
+        Mascota mascota=new Mascota(0,"rocky",
                 "Rocky Prueba",
-                "15/Junio/2020",
                 1,
                 1,
-                1);
+                1,
+                "1","");
 
 
         //Creamos el Array o lista de lo que vamos a enviar

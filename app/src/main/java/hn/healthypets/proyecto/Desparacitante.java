@@ -21,7 +21,7 @@ import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class Desparacitante extends AppCompatActivity {
 
-    MetodosImagenes metodosImagenes = new MetodosImagenes();
+    MetodosImagenes metodosImagenes;
     private EditText edtFechaApliDesp;
     private EditText edtNombreDespa;
     private EditText edtPesoDespa;
@@ -88,6 +88,8 @@ public class Desparacitante extends AppCompatActivity {
         btnListo = findViewById(R.id.btnListoDesparacitante);
         btnCancel = findViewById(R.id.btnCancelarDesparacitante);
         fechaHora = new DateTime();
+        metodosImagenes = new MetodosImagenes(this);
+
 //Se obtiene una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
 

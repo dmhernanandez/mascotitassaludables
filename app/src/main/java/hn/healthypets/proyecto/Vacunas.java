@@ -1,26 +1,15 @@
 package hn.healthypets.proyecto;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -34,7 +23,7 @@ import androidx.core.app.ActivityCompat;
 
 public class Vacunas extends AppCompatActivity {
 
-    MetodosImagenes metodosImagenes = new MetodosImagenes();
+    MetodosImagenes metodosImagenes;
 
     private ImageView imgFotoVacuna;
     private ImageButton btnTomarFotos;
@@ -59,8 +48,7 @@ public class Vacunas extends AppCompatActivity {
         edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
         ok = findViewById(R.id.btnListoVacunas);
         btnCancel = findViewById(R.id.btnCancelarVacuna);
-
-
+        metodosImagenes = new MetodosImagenes(this);
         buscarImagen.setOnClickListener((v) -> {
             /**Aquí obtenemos los permisos para entrar a la GALERIA*/
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
@@ -90,7 +78,7 @@ public class Vacunas extends AppCompatActivity {
         ok.setOnClickListener((v) -> {
             /**Aquí usamos el método que creamos para obtener la imágen*/
             Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
-            String ruta = metodosImagenes.guardarImagen(getApplicationContext(), imagen, imagen);
+//
             Toast.makeText(getApplicationContext(), "Imagen obtenida con éxito :)", Toast.LENGTH_LONG).show();
         });
     }
@@ -134,7 +122,7 @@ public class Vacunas extends AppCompatActivity {
         } else {
             if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA) {
                 if (resultCode == Activity.RESULT_OK) {
-                    imgFotoVacuna.setImageURI(Uri.parse(metodosImagenes.getRutaImagen()));
+                    imgFotoVacuna.setImageURI(Uri.parse(metodosImagenes.getRootPath()));
                     Toast.makeText(getApplicationContext(), "Fotografía tomada con éxito :)", Toast.LENGTH_LONG).show();
                 }
             }
