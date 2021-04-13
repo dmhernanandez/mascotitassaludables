@@ -5,16 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
 import hn.healthypets.proyecto.CreacionPerfiles;
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorPerfil;
@@ -47,12 +45,14 @@ public class CredencialesFragment extends Fragment {
         recyclerViewPerfiles.setLayoutManager(linearLayoutManager);
 
         //datos que vamos a enviar
-        Mascota mascota=new Mascota(1,
+        Mascota mascota= new Mascota(1,
                 "Rocky Prueba",
                 "15/Junio/2020",
                 1,
                 1,
-                1);
+                1,
+                 "",
+                  122);
 
 
         //Creamos el Array o lista de lo que vamos a enviar

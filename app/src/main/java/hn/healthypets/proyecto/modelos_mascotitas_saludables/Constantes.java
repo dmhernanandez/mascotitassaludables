@@ -10,5 +10,13 @@ public class Constantes {
     public static final String TAG_GUARDAR="guardar";
     public static final String TAG_ACTUALIZAR="actualizar";
     public static final String TAG_ACCION="accion";
+    public static final String TAG_ID_MASCOTA = "idMascota";
+    public static final String TAG_NOMBRE="nombreMascota";
+    public static final String TAG_FECHA_NACIENTO="fechaNacimiento";
+    public static final String TAG_NUMERO_CHIP ="numeroChip";
+    public static final String TAG_GENERO="genero";
+    public static final String TAG_ESPECIE="especie";
+    public static final String TAG_RAZA="raza";
+
 
 }

@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,7 +53,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
     private DateTime fechaHora;
     private RadioButton rbtnMacho;
     private RadioButton rbtnHembra;
-    private RadioGroup rgpGrupoGenero;
+    private RadioGroup rbgGrupoGenero;
     private Button btnGuardar;
     private MetodosImagenes metodosImagenes;
     private static ArrayList<String> arrayNombreRazas;
@@ -163,17 +162,10 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {
 
 
-                /**Aquí usamos el método que creamos para obtener la imágen*/
-                Bitmap imagen = ((BitmapDrawable) imgFotoMascota.getDrawable()).getBitmap();
-                if(imagen!=null && rutaImagen.isEmpty())
-                {
-                    String ruta = metodosImagenes.guardarImagen(getApplicationContext(), imagen, imagen);
-                }
-
 
 
                 boolean validacion = Validacion.fieldsAreNotEmpty(edtNombreMascota.getText().toString(),
-                        "HOLA", "JFAFJAF");
+                        "");
                 if (validacion) {
                     metodosImagenes.checkPermissionStorage(CreacionPerfiles.this);
                     Toast.makeText(CreacionPerfiles.this, "ESTAN TODOS LOS CAMPOS LLENAMOS", Toast.LENGTH_SHORT).show();
@@ -410,7 +402,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         edtFechaNaciento=findViewById(R.id.edtFechaNacimiento);
         rbtnHembra=findViewById(R.id.rbHembra);
         rbtnMacho = findViewById(R.id.rbMacho);
-        rgpGrupoGenero=findViewById(R.id.rbgGrupoGenero);
+        rbgGrupoGenero =findViewById(R.id.rbgGrupoGenero);
         edtNombreMascota= findViewById(R.id.edtNombreMascota);
         rbtnMacho.setSelected(true);
         metodosImagenes =new MetodosImagenes();
@@ -438,7 +430,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
         Intent intentValues= getIntent();
-        accion=intentValues.getIntExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
+        accion=intentValues.getIntExtra(Constantes.TAG_ACCION,Constantes.GUARDAR);
         if(accion==Constantes.GUARDAR){
             disableSpinnerAndButton(spiRaza,agregarRaza);
 
@@ -458,11 +450,15 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
             mes=Integer.parseInt(fecha[1])-1;
             anio= Integer.parseInt(fecha[2]);
 
+
+
         }
         edtFechaNaciento.setText(fechaHora.formato(dia,mes,anio));
         accion=Constantes.ACTUALIZAR;
         especie="Perro";
         raza="Pitbull";
+        rbgGrupoGenero.check(R.id.rbMacho);
+
     }
 
 

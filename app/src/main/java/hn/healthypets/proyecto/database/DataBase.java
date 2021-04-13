@@ -1,9 +1,6 @@
 package hn.healthypets.proyecto.database;
 
-import android.content.Context;
-
 import androidx.room.Database;
-import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import hn.healthypets.proyecto.database.Entidades.AgendaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.AgendaVisita;
@@ -17,6 +14,7 @@ import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 import hn.healthypets.proyecto.database.Entidades.UnidadesMedida;
 import hn.healthypets.proyecto.database.dao.CategoriaMedicamentoDAO;
 import hn.healthypets.proyecto.database.dao.EspecieDAO;
+import hn.healthypets.proyecto.database.dao.GeneroDAO;
 import hn.healthypets.proyecto.database.dao.MascotaDAO;
 import hn.healthypets.proyecto.database.dao.RazaDAO;
 
@@ -31,7 +29,7 @@ import hn.healthypets.proyecto.database.dao.RazaDAO;
                       Raza.class,
                       TipoDosis.class,
                       UnidadesMedida.class
-},version = 1,exportSchema = false)
+},version = 2,exportSchema = false)
 //Creamos un patron singleton para nuestra base de datos
 public abstract class DataBase extends RoomDatabase {
 
@@ -39,4 +37,5 @@ public abstract class DataBase extends RoomDatabase {
   public abstract CategoriaMedicamentoDAO getCategoriaMedicamentoDADO();
   public  abstract EspecieDAO getSpeciesDAO();
   public abstract RazaDAO getRazaDAO();
+  public abstract GeneroDAO getGeneroDAO();
 }

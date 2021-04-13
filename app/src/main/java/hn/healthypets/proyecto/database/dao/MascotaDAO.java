@@ -15,7 +15,7 @@ public interface MascotaDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertNewPet(Mascota mascota);
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.IGNORE)
     public void updatePet(Mascota mascota);
 
     //Selecciona a todas Las mascotas y retorna un arreglo
