@@ -1,14 +1,10 @@
 package hn.healthypets.proyecto;
 
-import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-
-import hn.healthypets.proyecto.Fragments.HistorialFragment;
 
 public class MenuRegistro extends AppCompatActivity {
 
@@ -33,7 +29,7 @@ public class MenuRegistro extends AppCompatActivity {
         });
 
         medicamento.setOnClickListener(v -> {
-            Intent intent3 = new Intent(this,Medicamento.class);
+            Intent intent3 = new Intent(this, Medicamento.class);
             startActivity(intent3);
         });
 

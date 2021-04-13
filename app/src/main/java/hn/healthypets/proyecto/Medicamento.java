@@ -1,25 +1,26 @@
 package hn.healthypets.proyecto;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
-import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import hn.healthypets.proyecto.Utilidades.DateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.TipoDosisDAO;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class Medicamento extends AppCompatActivity {
-
-    MetodosImagenes metodosImagenes = new MetodosImagenes();
     private EditText edtNombreMedicamento;
     private EditText edtNumeroDosis;
     private Spinner spiDosis;
@@ -31,89 +32,119 @@ public class Medicamento extends AppCompatActivity {
     private Button btnListo;
     private Button btnCancel;
     private DataBase instanciaDB;
-    private DateTime fechaHora;
-    private int dia, mes, anio;
+    private Integer accion;
+    private ArrayAdapter<String> adaptadorTipoDosis;
+    private Integer postionItemEspecie;
 
-    /**
-     * Se utilizan para validar que tipo de accion se realizara en la actividad, estos datos se reciben del intent
-     **/
-    private int accion;
-    private String especie = "";
-    private String raza;
-    private Bitmap bitmapImage;
+    private static ArrayList<String> arrayNombreTipoDosis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicamento);
-        //Inicializamos todos los elementos
-        init();
 
-
-        edtFechaMedicamento.setOnClickListener((v)->{
-            //Utilizamos este metodo par obtenener los datos
-            DatePickerDialog dialogoFecha = new DatePickerDialog(Medicamento.this, (view, year, month, dayOfMonth) ->
-                    edtFechaMedicamento.setText(fechaHora.formato(dayOfMonth, month, year)), anio, mes, dia);
-            dialogoFecha.show();
-        });
-
-        btnListo.setOnClickListener((v) -> {
-            boolean validacion = Validacion.fieldsAreNotEmpty(
-                    edtNombreMedicamento.getText().toString(),
-                    edtNumeroDosis.getText().toString(),
-//                    spiDosis.getText().toString(),
-                    edtCadaDosis.getText().toString(),
-                    edtPorDosis.getText().toString(),
-                    edtFechaMedicamento.getText().toString(),
-                    edtHoraMedicamento.getText().toString());
-            if (validacion) {
-                metodosImagenes.checkPermissionStorage(Medicamento.this);
-                Toast.makeText(Medicamento.this, "ESTAN TODOS LOS CAMPOS LLENAMOS", Toast.LENGTH_SHORT).show();
-            } else
-
-                Toast.makeText(Medicamento.this, "HAY campos vacios", Toast.LENGTH_SHORT).show();
-        });
-    }
-    private void init()
-    {
-        edtNombreMedicamento =findViewById(R.id.edtNombreMedicamento);
+        edtNombreMedicamento=findViewById(R.id.edtNombreMedicamento);
         edtNumeroDosis=findViewById(R.id.edtNumeroDosis);
         spiDosis=findViewById(R.id.spiDosis);
         edtCadaDosis=findViewById(R.id.edtCadaDosis);
         edtPorDosis=findViewById(R.id.edtPorDosis);
         edtFechaMedicamento=findViewById(R.id.edtFechaMedicamento);
-        edtHoraMedicamento=findViewById(R.id.edtHoraMedicamento);
         edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
         btnListo=findViewById(R.id.btnListoMedicamento);
         btnCancel=findViewById(R.id.btnCancelarMedicamento);
-        fechaHora = new DateTime();
+        arrayNombreTipoDosis=new ArrayList<>();
 
-        /** Se obtiene una instancia de la base de datos*/
+        //se le agrega el adaptador al spinner
+        arrayNombreTipoDosis.add("Seleccione Dosis");
+        startSpinnerValues(spiDosis,arrayNombreTipoDosis,adaptadorTipoDosis);
+
+
+        //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
-        /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
-        Intent intentValues= getIntent();
-        accion=intentValues.getIntExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
-        if(accion==Constantes.GUARDAR){
+
+        accion=Constantes.GUARDAR;
+        postionItemEspecie=0;
 
 
-            //Recuperamos el valor de la fecha por defecto que es la fecha actual
-            dia=DateTime.diaDelMes;
-            mes=DateTime.mes;
-            anio=DateTime.anio;
 
-        }
-        else if(accion==Constantes.ACTUALIZAR)
-        {
-            String fecha1="15-03-2021";
-            /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha
-             * para asignarlo y luego asignarla al input*/
-            String [] fecha=fecha1.split("-");
-            dia=Integer.parseInt(fecha[0]);
-            mes=Integer.parseInt(fecha[1])-1;
-            anio= Integer.parseInt(fecha[2]);
+        instanciaDB.getTipoDosisDAO().insertDoseTypes(new TipoDosis("Media Pastilla"),
+                new TipoDosis("Tableta"),
+                new TipoDosis("Gotero"),
+                new TipoDosis("ml"),
+                new TipoDosis("Gotas"));
 
-        }
-        edtFechaMedicamento.setText(fechaHora.formato(dia,mes,anio));
-        accion=Constantes.ACTUALIZAR;
+        instanciaDB.getTipoDosisDAO().getAllDoseTypes().observe(Medicamento.this,
+                new Observer<List<TipoDosisDAO.NombreDosis>>() {
+                    @Override
+                    public void onChanged(List<TipoDosisDAO.NombreDosis> nombreDosis) {
+                        /** Evaluamos que tipo de accion se realiza para  seleccionar el dato que se esta actualizando o
+                         * simplemente llenar el espiner en caso de querer guardar una nueva mascota*/
+                        arrayNombreTipoDosis.clear();
+
+                        switch (accion) {
+                            case Constantes.GUARDAR:
+                                for (int i = 0; i < nombreDosis.size(); i++) {
+                                    arrayNombreTipoDosis.add(i, nombreDosis.get(i).getDosisNombre());
+                                }
+                                break;
+
+                            case Constantes.ACTUALIZAR:
+                                /**En caso de ser una actualización se busca el valor que coincide con la lista para
+                                 * seleccionarlo y asi asegurarnos que el usuario vea el valor que tenia guardado previamente
+                                 * */
+                                for (int i = 0; i < nombreDosis.size(); i++) {
+                                    if (nombreDosis.get(i).getDosisNombre().equals("Cualquier")) {
+                                        postionItemEspecie = i + 1; //Obtenemos el id del item
+                                    }
+                                    arrayNombreTipoDosis.add(i, nombreDosis.get(i).getDosisNombre());
+                                }
+                                break;
+                        }
+
+                        /**Independientemente si es una actualizacion o un se esta guardando una nueva mascota siempre se agrega
+                         * un valor por defecto en la primera posicion del array. Adememas  positionItemEspecie  se utiliza para
+                         * seleccionar un elemente en caso de que la accion se guardar el valor de este es de 0*/
+                        arrayNombreTipoDosis.add(0, "Seleccione");
+
+                        /**Al utilizar este metodo se ejecuta el llamado a onItemSelected utilizado par determinar, las razas de las
+                         * especies
+                         * */
+                        spiDosis.setSelection(0);
+
+                    }//Fin de metodo onChanged
+                });
+
+        btnListo.setOnClickListener(v -> {
+            Validacion.fieldsAreNotEmpty();
+            boolean comprobar=Validacion.fieldsAreNotEmpty(edtNombreMedicamento.getText().toString(),
+                                                            edtNumeroDosis.getText().toString(),
+                                                            edtCadaDosis.getText().toString(),
+                                                            edtPorDosis.getText().toString(),
+                                                            edtFechaMedicamento.getText().toString());
+
+            if (comprobar && spiDosis.getSelectedItemPosition()>0){
+                //                LLAMAR METODO DAO
+                hn.healthypets.proyecto.database.Entidades.Medicamento medicamento =new hn.healthypets.proyecto.database.Entidades.Medicamento(
+                        edtNombreMedicamento.getText().toString(),
+                        edtFechaMedicamento.getText().toString(),
+                        "",
+                        0,
+                        edtIndicacionesMedicamento.getText().toString(),
+                        1,
+                        instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
+                );
+                Toast.makeText(Medicamento.this,"Guardo Medicamento",Toast.LENGTH_LONG).show();
+                instanciaDB.getMedicamentoDAO().insertMedicine(medicamento);
+            }else{
+                Toast.makeText(Medicamento.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void startSpinnerValues(Spinner spinner, ArrayList<String> valores, ArrayAdapter<String> adapter)
+    {
+        //Inicializamos el adaptador y lo agregamos al Spinner
+        adapter=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,valores);
+        spinner.setAdapter(adapter);
     }
 }
