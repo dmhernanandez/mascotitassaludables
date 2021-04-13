@@ -52,7 +52,7 @@ public class Medicamentos extends AppCompatActivity {
         edtFechaMedicamento=findViewById(R.id.edtFechaMedicamento);
         edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
         btnListo=findViewById(R.id.btnListoMedicamento);
-        btnCancel=findViewById(R.id.btnCancelarDesparacitante2);
+        btnCancel=findViewById(R.id.btnCancelarMedicamento);
         arrayNombreTipoDosis=new ArrayList<>();
 
         //se le agrega el adaptador al spinner
@@ -66,7 +66,7 @@ public class Medicamentos extends AppCompatActivity {
         accion=Constantes.GUARDAR;
         postionItemEspecie=0;
 
-
+//        Guardo Los Datos del Select
 
         instanciaDB.getTipoDosisDAO().insertDoseTypes(new TipoDosis("Media Pastilla"),
                 new TipoDosis("Tableta"),
@@ -114,6 +114,7 @@ public class Medicamentos extends AppCompatActivity {
 
                     }//Fin de metodo onChanged
                 });
+
 
         btnListo.setOnClickListener(v -> {
             Validacion.fieldsAreNotEmpty();

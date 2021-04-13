@@ -12,4 +12,6 @@ public interface MedicamentoDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertMedicine(Medicamento medicamento);
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    public void insertdewormer(Medicamento medicamento);
 }

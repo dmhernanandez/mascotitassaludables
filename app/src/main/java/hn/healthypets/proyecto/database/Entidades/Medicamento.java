@@ -17,7 +17,7 @@ public class Medicamento {
     @NonNull
     private String fechaAplicacion;
     private String rutaFotoComprobante;
-    private int pesoKilogramo;
+    private float pesoKilogramo;
     private String observacion;
 
     //Esta es la llave foranea de la mascota a la que se asigno la medicina
@@ -26,7 +26,7 @@ public class Medicamento {
     //Llave foranea de categoria del medicamento
     private int medicamentoCatMedicamentoId;
 
-    public Medicamento( @NonNull String descripcion, @NonNull String fechaAplicacion, String rutaFotoComprobante, int pesoKilogramo, String observacion, int mascotaMedicadaId, int medicamentoCatMedicamentoId) {
+    public Medicamento( @NonNull String descripcion, @NonNull String fechaAplicacion, String rutaFotoComprobante, float pesoKilogramo, String observacion, int mascotaMedicadaId, int medicamentoCatMedicamentoId) {
         this.descripcion = descripcion;
         this.fechaAplicacion = fechaAplicacion;
         this.rutaFotoComprobante = rutaFotoComprobante;
@@ -70,11 +70,11 @@ public class Medicamento {
         this.rutaFotoComprobante = rutaFotoComprobante;
     }
 
-    public int getPesoKilogramo() {
+    public float getPesoKilogramo() {
         return pesoKilogramo;
     }
 
-    public void setPesoKilogramo(int pesoKilogramo) {
+    public void setPesoKilogramo(float pesoKilogramo) {
         this.pesoKilogramo = pesoKilogramo;
     }
 
