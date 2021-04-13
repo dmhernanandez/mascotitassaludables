@@ -46,7 +46,7 @@ public class Agenda extends AppCompatActivity {
                                                            );
 
             if (comprobar){
-                Toast.makeText(Agenda.this,"Guardo Medicamento",Toast.LENGTH_LONG).show();
+                Toast.makeText(Agenda.this,"Guardo Medicamentos",Toast.LENGTH_LONG).show();
 //                LLAMAR METODO DAO
             }else{
                 Toast.makeText(Agenda.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();

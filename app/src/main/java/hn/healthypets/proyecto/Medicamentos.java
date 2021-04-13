@@ -15,12 +15,13 @@ import java.util.List;
 
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.database.dao.TipoDosisDAO;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
-public class Medicamento extends AppCompatActivity {
+public class Medicamentos extends AppCompatActivity {
     private EditText edtNombreMedicamento;
     private EditText edtNumeroDosis;
     private Spinner spiDosis;
@@ -52,19 +53,20 @@ public class Medicamento extends AppCompatActivity {
         edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
         btnListo=findViewById(R.id.btnListoMedicamento);
         btnCancel=findViewById(R.id.btnCancelarDesparacitante2);
+        arrayNombreTipoDosis=new ArrayList<>();
 
         //se le agrega el adaptador al spinner
         arrayNombreTipoDosis.add("Seleccione Dosis");
         startSpinnerValues(spiDosis,arrayNombreTipoDosis,adaptadorTipoDosis);
 
-        accion=Constantes.GUARDAR;
-        postionItemEspecie=0;
-        arrayNombreTipoDosis=new ArrayList<>();
-
-
 
         //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
+
+        accion=Constantes.GUARDAR;
+        postionItemEspecie=0;
+
+
 
         instanciaDB.getTipoDosisDAO().insertDoseTypes(new TipoDosis("Media Pastilla"),
                 new TipoDosis("Tableta"),
@@ -72,7 +74,7 @@ public class Medicamento extends AppCompatActivity {
                 new TipoDosis("ml"),
                 new TipoDosis("Gotas"));
 
-        instanciaDB.getTipoDosisDAO().getAllDoseTypes().observe(Medicamento.this,
+        instanciaDB.getTipoDosisDAO().getAllDoseTypes().observe(Medicamentos.this,
                 new Observer<List<TipoDosisDAO.NombreDosis>>() {
                     @Override
                     public void onChanged(List<TipoDosisDAO.NombreDosis> nombreDosis) {
@@ -113,7 +115,6 @@ public class Medicamento extends AppCompatActivity {
                     }//Fin de metodo onChanged
                 });
 
-
         btnListo.setOnClickListener(v -> {
             Validacion.fieldsAreNotEmpty();
             boolean comprobar=Validacion.fieldsAreNotEmpty(edtNombreMedicamento.getText().toString(),
@@ -122,11 +123,21 @@ public class Medicamento extends AppCompatActivity {
                                                             edtPorDosis.getText().toString(),
                                                             edtFechaMedicamento.getText().toString());
 
-            if (comprobar){
-                Toast.makeText(Medicamento.this,"Guardo Medicamento",Toast.LENGTH_LONG).show();
-//                LLAMAR METODO DAO
+            if (comprobar && spiDosis.getSelectedItemPosition()>0){
+                //                LLAMAR METODO DAO
+                Medicamento medicamentos =new Medicamento(
+                        edtNombreMedicamento.getText().toString(),
+                        edtFechaMedicamento.getText().toString(),
+                        "",
+                        0,
+                        edtIndicacionesMedicamento.getText().toString(),
+                        1,
+                        instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
+                );
+                Toast.makeText(Medicamentos.this,"Guardo Medicamentos",Toast.LENGTH_LONG).show();
+                instanciaDB.getMedicamentoDAO().insertMedicine(medicamentos);
             }else{
-                Toast.makeText(Medicamento.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
+                Toast.makeText(Medicamentos.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
             }
         });
     }

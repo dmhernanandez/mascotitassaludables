@@ -2,12 +2,13 @@ package hn.healthypets.proyecto.database.Entidades;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 /**
  * Contiene los campos que tienen los valores de
  * */
-@Entity
+@Entity(indices = {@Index( value = "descripcion",unique = true)})
 public class Medicamento {
     @PrimaryKey(autoGenerate = true)
     private int medicamentoId;
@@ -25,8 +26,7 @@ public class Medicamento {
     //Llave foranea de categoria del medicamento
     private int medicamentoCatMedicamentoId;
 
-    public Medicamento(int medicamentoId, @NonNull String descripcion, @NonNull String fechaAplicacion, String rutaFotoComprobante, int pesoKilogramo, String observacion, int mascotaMedicadaId, int medicamentoCatMedicamentoId) {
-        this.medicamentoId = medicamentoId;
+    public Medicamento( @NonNull String descripcion, @NonNull String fechaAplicacion, String rutaFotoComprobante, int pesoKilogramo, String observacion, int mascotaMedicadaId, int medicamentoCatMedicamentoId) {
         this.descripcion = descripcion;
         this.fechaAplicacion = fechaAplicacion;
         this.rutaFotoComprobante = rutaFotoComprobante;

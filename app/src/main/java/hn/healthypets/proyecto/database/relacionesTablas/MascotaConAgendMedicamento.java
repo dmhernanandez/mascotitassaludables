@@ -6,7 +6,7 @@ import androidx.room.Embedded;
 import androidx.room.Relation;
 import hn.healthypets.proyecto.database.Entidades.AgendaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Mascota;
-//Union de la tabla Mascota con Agenda Medicamento, para agendar
+//Union de la tabla Mascota con Agenda Medicamentos, para agendar
 public class MascotaConAgendMedicamento {
     @Embedded public Mascota mascota;
     @Relation(parentColumn = "mascotaId",
