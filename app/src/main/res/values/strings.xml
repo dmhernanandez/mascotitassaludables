@@ -26,11 +26,11 @@
         <item>Piquines</item>
     </string-array>
 
-    <string-array name="dosis_items">
-        <item>Seleccione</item>
-        <item>Tableta</item>
-        <item>Gotero</item>
-    </string-array>
+<!--    <string-array name="dosis_items">-->
+<!--        <item>Seleccione</item>-->
+<!--        <item>Tableta</item>-->
+<!--        <item>Gotero</item>-->
+<!--    </string-array>-->
 
     <string-array name="hora_items">
         <item>Seleccione</item>

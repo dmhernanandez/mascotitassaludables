@@ -15,7 +15,7 @@
         tools:context=".Agenda">
 
         <Button
-            android:id="@+id/btnListoDesparacitante3"
+            android:id="@+id/btnListoAgenda"
             android:layout_width="113dp"
             android:layout_height="48dp"
             android:backgroundTint="@color/listo"
@@ -25,11 +25,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.241"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento2"
+            app:layout_constraintTop_toBottomOf="@+id/edtObseracionesAgenda"
             app:layout_constraintVertical_bias="0.095" />
 
         <Button
-            android:id="@+id/btnCancelarDesparacitante3"
+            android:id="@+id/btnCancelarAgenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/cancelar"
@@ -38,12 +38,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.215"
-            app:layout_constraintStart_toEndOf="@+id/btnListoDesparacitante3"
-            app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento2"
+            app:layout_constraintStart_toEndOf="@+id/btnListoAgenda"
+            app:layout_constraintTop_toBottomOf="@+id/edtObseracionesAgenda"
             app:layout_constraintVertical_bias="0.095" />
 
         <EditText
-            android:id="@+id/edtIndicacionesMedicamento2"
+            android:id="@+id/edtObseracionesAgenda"
             android:layout_width="301dp"
             android:layout_height="97dp"
             android:layout_marginStart="28dp"
@@ -73,13 +73,13 @@
             android:inputType="date"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
-            app:layout_constraintEnd_toStartOf="@+id/edtHoraMedicamento2"
+            app:layout_constraintEnd_toStartOf="@+id/edtHoraAgenda"
             app:layout_constraintHorizontal_bias="0.771"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
         <EditText
-            android:id="@+id/edtHoraMedicamento2"
+            android:id="@+id/edtHoraAgenda"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginEnd="76dp"

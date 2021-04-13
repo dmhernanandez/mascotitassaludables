@@ -43,7 +43,7 @@
                 app:layout_constraintVertical_bias="0.118" />
 
             <TextView
-                android:id="@+id/txvNombreDesparasitante"
+                android:id="@+id/txvRecetaMedicamento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/questrial"
@@ -70,7 +70,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvNombreDesparasitante"
+                app:layout_constraintTop_toBottomOf="@+id/txvRecetaMedicamento"
                 app:layout_constraintVertical_bias="0.142" />
 
             <TextView

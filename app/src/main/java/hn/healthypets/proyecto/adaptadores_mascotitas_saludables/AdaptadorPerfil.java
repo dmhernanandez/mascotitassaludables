@@ -75,6 +75,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
                 .transform(new CircleCrop())
                 .into(holder.imgMascotaPerfil);
 
+//        Abrir El menu desde el boton registro
         holder.btnControlPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
