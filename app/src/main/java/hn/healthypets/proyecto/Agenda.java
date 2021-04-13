@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import hn.healthypets.proyecto.Utilidades.Validacion;
 
 public class Agenda extends AppCompatActivity {
 
@@ -34,22 +32,28 @@ public class Agenda extends AppCompatActivity {
         btnListo=findViewById(R.id.btnListoAgenda);
         btnCancel=findViewById(R.id.btnCancelarAgenda);
 
+
+
         /**
          Validar Campos Vacios Con el Metodo */
 
         btnListo.setOnClickListener(v -> {
-            Validacion.fieldsAreNotEmpty();
-            boolean comprobar=Validacion.fieldsAreNotEmpty(edtNombreActividad.getText().toString(),
-                                                            edtHoraAgenda.getText().toString(),
-                                                            edtFechaAgenda.getText().toString()
-                                                           );
 
-            if (comprobar){
-                Toast.makeText(Agenda.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
-//                LLAMAR METODO DAO
-            }else{
-                Toast.makeText(Agenda.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
-            }
+
+
+
+//            Validacion.fieldsAreNotEmpty();
+//            boolean comprobar=Validacion.fieldsAreNotEmpty(edtNombreActividad.getText().toString(),
+//                    edtHoraAgenda.getText().toString(),
+//                    edtFechaAgenda.getText().toString()
+//            );
+//
+//            if (comprobar){
+//                Toast.makeText(Agenda.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
+////                LLAMAR METODO DAO
+//            }else{
+//                Toast.makeText(Agenda.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
+//            }
         });
     }
 
