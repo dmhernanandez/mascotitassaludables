@@ -53,12 +53,15 @@ public class Medicamento extends AppCompatActivity {
         btnListo=findViewById(R.id.btnListoMedicamento);
         btnCancel=findViewById(R.id.btnCancelarDesparacitante2);
 
+        //se le agrega el adaptador al spinner
+        arrayNombreTipoDosis.add("Seleccione Dosis");
+        startSpinnerValues(spiDosis,arrayNombreTipoDosis,adaptadorTipoDosis);
+
         accion=Constantes.GUARDAR;
         postionItemEspecie=0;
         arrayNombreTipoDosis=new ArrayList<>();
 
-        //se le agrega el adaptador al spinner
-        startSpinnerValues(spiDosis,arrayNombreTipoDosis,adaptadorTipoDosis);
+
 
         //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
