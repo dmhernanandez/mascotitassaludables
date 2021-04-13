@@ -59,27 +59,26 @@
             android:id="@+id/imgbtnAgregarNuevaRaza"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="56dp"
+            android:layout_marginEnd="48dp"
 
-            android:layout_marginBottom="204dp"
+            android:layout_marginBottom="188dp"
             android:background="@drawable/btn_redondo_celeste"
             android:src="@drawable/ic_vector_nuevoregistro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgbtnAgregarNuevaEspecie2"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.85" />
 
         <ImageButton
             android:id="@+id/imgbtnAgregarNuevaEspecie2"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="56dp"
-            android:layout_marginBottom="260dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="248dp"
             android:background="@drawable/btn_redondo_celeste"
             android:src="@drawable/ic_vector_nuevoregistro"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.892" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/txvNombreCP"
@@ -250,7 +249,7 @@
             app:layout_constraintHorizontal_bias="0.162"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txvGenero"
-            app:layout_constraintVertical_bias="0.032" />
+            app:layout_constraintVertical_bias="0.068" />
 
         <TextView
             android:id="@+id/txvEspecie2"
@@ -266,7 +265,7 @@
             app:layout_constraintHorizontal_bias="0.116"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txvGenero"
-            app:layout_constraintVertical_bias="0.033" />
+            app:layout_constraintVertical_bias="0.069" />
 
         <Spinner
             android:id="@+id/spiEspecie"
@@ -292,10 +291,10 @@
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaRaza"
-            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintHorizontal_bias="0.716"
             app:layout_constraintStart_toEndOf="@+id/txvRaza"
             app:layout_constraintTop_toBottomOf="@+id/spiEspecie"
-            app:layout_constraintVertical_bias="0.08" />
+            app:layout_constraintVertical_bias="0.081" />
 
         <TextView
             android:id="@+id/txvRaza"
@@ -315,30 +314,14 @@
             android:id="@+id/btnGuardarCP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/aniadir"
-            android:text="añadir"
-            app:icon="@drawable/ic_vector_aniadir"
+            android:backgroundTint="@color/listo"
+            android:text="guardar"
+            app:icon="@drawable/ic_vector_nuevoregistro"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnCancelarVacuna"
-            app:layout_constraintHorizontal_bias="0.575"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spiRaza"
             app:layout_constraintVertical_bias="0.125" />
-
-        <Button
-            android:id="@+id/btnCancelarVacuna"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
-            android:backgroundTint="@color/cancelar"
-            android:text="cancelar"
-            app:icon="@drawable/ic_vector_cancelar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.794"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spiRaza"
-            app:layout_constraintVertical_bias="0.756" />
 
         <EditText
             android:id="@+id/edtFechaNacimiento"
