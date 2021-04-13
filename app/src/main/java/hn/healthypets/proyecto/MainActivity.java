@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         medicamento.setOnClickListener(v -> {
-            Intent intent7 = new Intent(this, Medicamento.class);
+            Intent intent7 = new Intent(this, MedicamentosActivity.class);
             startActivity(intent7);
         });
         agenda.setOnClickListener(v -> {

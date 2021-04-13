@@ -29,7 +29,7 @@ public class MenuRegistro extends AppCompatActivity {
         });
 
         medicamento.setOnClickListener(v -> {
-            Intent intent3 = new Intent(this, Medicamento.class);
+            Intent intent3 = new Intent(this, MedicamentosActivity.class);
             startActivity(intent3);
         });
 
