@@ -34,21 +34,21 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/btnListoDesparacitante2"
+            android:id="@+id/btnListoMedicamento"
             android:layout_width="113dp"
             android:layout_height="48dp"
             android:backgroundTint="@color/listo"
             android:text="Listo"
             app:icon="@drawable/ic_vector_listo"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante2"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancelarMedicamento"
             app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
             app:layout_constraintVertical_bias="0.148" />
 
         <Button
-            android:id="@+id/btnCancelarDesparacitante2"
+            android:id="@+id/btnCancelarMedicamento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/cancelar"
@@ -68,9 +68,11 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/input_gris"
             android:ems="10"
-            android:fontFamily="@font/questrial"
-            android:hint="31/03/2021"
             android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            android:maxLines="1"
+            android:hint="31/03/2021"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +81,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <EditText
-            android:id="@+id/edtNombreDesparacitante2"
+            android:id="@+id/edtNombreMedicamento"
             android:layout_width="302dp"
             android:layout_height="40dp"
             android:background="@drawable/input_gris"
@@ -160,7 +162,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView13"
             app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante2"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreMedicamento"
             app:layout_constraintVertical_bias="0.033" />
 
         <TextView
@@ -375,7 +377,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toEndOf="@+id/edtNumeroDosis"
-            app:layout_constraintTop_toBottomOf="@+id/edtNombreDesparacitante2"
+            app:layout_constraintTop_toBottomOf="@+id/edtNombreMedicamento"
             app:layout_constraintVertical_bias="0.064" />
 
         <EditText
