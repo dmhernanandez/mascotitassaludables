@@ -57,22 +57,23 @@ public class Desparacitante extends AppCompatActivity {
                     edtFechaApliDesp.getText().toString(),
                     edtNombreDespa.getText().toString(),
                     edtPesoDespa.getText().toString());
-            if (validacion) {
 
+            if (validacion)
+            {
 //                LLAMAR METODO DAO
                 Medicamento desparasitante =new Medicamento(
-                        edtNombreDespa.getText().toString(),
-                        edtFechaApliDesp.getText().toString(),
-                        "",
-                        Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
-                        edtObserDespa.getText().toString(),
-                        1,
-                        1
+                                    edtNombreDespa.getText().toString(),
+                                    edtFechaApliDesp.getText().toString(),
+                                    "",
+                                    Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
+                                    edtObserDespa.getText().toString(),
+                                    1,
+                                    1
                 );
+
                 Toast.makeText(Desparacitante.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                 instanciaDB.getMedicamentoDAO().insertdewormer(desparasitante);
-
-                } else
+            } else
                 Toast.makeText(Desparacitante.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
         });
 

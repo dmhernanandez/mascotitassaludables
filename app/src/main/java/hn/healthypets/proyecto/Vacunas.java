@@ -60,6 +60,7 @@ public class Vacunas extends AppCompatActivity {
         ok = findViewById(R.id.btnListoVacunas);
         btnCancel = findViewById(R.id.btnCancelarVacuna);
 
+
         buscarImagen.setOnClickListener((v) -> {
             /**Aquí obtenemos los permisos para entrar a la GALERIA*/
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
