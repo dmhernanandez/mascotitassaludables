@@ -19,7 +19,7 @@ import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class MedicamentosActivity extends AppCompatActivity {
 
-    MetodosImagenes metodosImagenes = new MetodosImagenes();
+    MetodosImagenes metodosImagenes = new MetodosImagenes(this);
     private EditText edtNombreMedicamento;
     private EditText edtNumeroDosis;
     private Spinner spiDosis;

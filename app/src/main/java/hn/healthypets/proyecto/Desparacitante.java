@@ -26,7 +26,7 @@ import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class Desparacitante extends AppCompatActivity {
 
-    MetodosImagenes metodosImagenes = new MetodosImagenes();
+    MetodosImagenes metodosImagenes = new MetodosImagenes(this);
     private EditText edtFechaApliDesp;
     private EditText edtNombreDespa;
     private EditText edtPesoDespa;
