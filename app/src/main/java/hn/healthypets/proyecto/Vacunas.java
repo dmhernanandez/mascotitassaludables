@@ -31,7 +31,7 @@ import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class Vacunas extends AppCompatActivity {
 
-    MetodosImagenes metodosImagenes = new MetodosImagenes();
+    MetodosImagenes metodosImagenes = new MetodosImagenes(this);
 
     private ImageView imgFotoVacuna;
     private ImageButton btnTomarFotos;
@@ -80,7 +80,7 @@ public class Vacunas extends AppCompatActivity {
                 Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
                 if(imagen!=null && rutaImagen.isEmpty())
                 {
-                    String ruta = metodosImagenes.guardarImagen(getApplicationContext(), imagen, imagen);
+//                    String ruta = metodosImagenes.rutaImagen(getApplicationContext(), imagen, imagen);
                 }
                 boolean validacion = Validacion.fieldsAreNotEmpty(
                         edtNombreVacuna.getText().toString(),

@@ -1,15 +1,13 @@
 package hn.healthypets.proyecto.database.dao;
 
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-
-import java.util.List;
-
-import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 
 @Dao

@@ -23,6 +23,9 @@ public interface EspecieDAO {
     @Query("SELECT especieNombre AS nombreEspecie from Especie")
     public LiveData<List<NombreEspecie>> getAllNameSpecies();
 
+    //Se obtiene el nombre de una especie de acuerdo a su id
+    @Query("SELECT especieNombre as nombreEspecie FROM Especie WHERE especieId = :idEspecie")
+    public String getNameSpecieById(int idEspecie);
 
    @Query("SELECT especieId FROM especie WHERE especieNombre = :nombreEspecie")
    public int getIdSpeciesByName(String nombreEspecie);

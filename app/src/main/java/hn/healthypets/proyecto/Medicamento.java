@@ -1,8 +1,5 @@
 package hn.healthypets.proyecto;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,6 +10,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.TipoDosis;
@@ -51,20 +50,19 @@ public class Medicamento extends AppCompatActivity {
         edtFechaMedicamento=findViewById(R.id.edtFechaMedicamento);
         edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
         btnListo=findViewById(R.id.btnListoMedicamento);
-        btnCancel=findViewById(R.id.btnCancelarMedicamento);
         arrayNombreTipoDosis=new ArrayList<>();
-
         //se le agrega el adaptador al spinner
         arrayNombreTipoDosis.add("Seleccione Dosis");
         startSpinnerValues(spiDosis,arrayNombreTipoDosis,adaptadorTipoDosis);
 
-        //Obtenemos una instancia de la base de datos
-        instanciaDB = SingletonDB.getDatabase(this);
-
         accion=Constantes.GUARDAR;
         postionItemEspecie=0;
 
-//        Guardo Los Datos del Select
+
+
+
+        //Obtenemos una instancia de la base de datos
+        instanciaDB = SingletonDB.getDatabase(this);
 
         instanciaDB.getTipoDosisDAO().insertDoseTypes(new TipoDosis("Media Pastilla"),
                 new TipoDosis("Tableta"),
@@ -122,21 +120,11 @@ public class Medicamento extends AppCompatActivity {
                                                             edtPorDosis.getText().toString(),
                                                             edtFechaMedicamento.getText().toString());
 
-            if (comprobar && spiDosis.getSelectedItemPosition()>0){
-                //                LLAMAR METODO DAO
-                hn.healthypets.proyecto.database.Entidades.Medicamento medicamento =new hn.healthypets.proyecto.database.Entidades.Medicamento(
-                        edtNombreMedicamento.getText().toString(),
-                        edtFechaMedicamento.getText().toString(),
-                        "",
-                        0,
-                        edtIndicacionesMedicamento.getText().toString(),
-                        1,
-                        instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
-                );
-                Toast.makeText(Medicamento.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
-                instanciaDB.getMedicamentoDAO().insertMedicine(medicamento);
+            if (comprobar){
+                Toast.makeText(Medicamento.this,"Guardo Medicamento",Toast.LENGTH_LONG).show();
+//                LLAMAR METODO DAO
             }else{
-                Toast.makeText(Medicamento.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
+                Toast.makeText(Medicamento.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
             }
         });
     }
