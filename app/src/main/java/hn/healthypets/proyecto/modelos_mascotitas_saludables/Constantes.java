@@ -18,6 +18,4 @@ public class Constantes {
     public static final String TAG_ESPECIE="especie";
     public static final String TAG_RAZA="raza";
     public  static final String TAG_IMG_PATH="rutaImagen";
-
-
 }

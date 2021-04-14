@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Genero;
 import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
@@ -38,6 +39,11 @@ public class MenuLateral extends AppCompatActivity {
         /*** Aqui se crean todos los valores valores por defecto de la base de datos*/
         instanciaDB = SingletonDB.getDatabase(MenuLateral.this);
         instanciaDB.getGeneroDAO().insertGenders(new Genero("Hembra"), new Genero("Macho"));
+        instanciaDB.getCategoriaMedicamentoDAO().insertMedicinesCategories(
+                new CategoriaMedicamento(0, "Vacuna"),
+                new CategoriaMedicamento(0, "Desparasitante"),
+                new CategoriaMedicamento(0, "Medicamento")
+        );
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,

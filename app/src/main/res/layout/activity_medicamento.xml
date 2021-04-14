@@ -56,7 +56,22 @@
             android:text="Listo"
             app:icon="@drawable/ic_vector_listo"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancelarMedicamento"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
+            app:layout_constraintVertical_bias="0.102" />
+
+        <Button
+            android:id="@+id/btnCancelarMedicamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/cancelar"
+            android:text="cancelar"
+            app:icon="@drawable/ic_vector_cancelar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.805"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
             app:layout_constraintVertical_bias="0.102" />
@@ -65,6 +80,7 @@
             android:id="@+id/edtFechaMedicamento"
             android:layout_width="302dp"
             android:layout_height="40dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/input_gris"
             android:ems="10"
             android:fontFamily="@font/questrial"
@@ -77,11 +93,10 @@
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18"
-            app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.0" />
         <EditText
             android:id="@+id/edtNombreMedicamento"
             android:layout_width="302dp"
@@ -110,6 +125,7 @@
             android:fontFamily="@font/questrial"
             android:text="Ingrese Nombre del Medicamento:"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.274"
@@ -254,17 +270,16 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="256dp"
             android:backgroundTint="@color/black"
-            android:fontFamily="@font/questrial"
-            android:text="*"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView15"
-            app:layout_constraintHorizontal_bias="0.909"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
-            app:layout_constraintVertical_bias="0.07" />
-
+        android:fontFamily="@font/questrial"
+        android:text="*"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView15"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
+        app:layout_constraintVertical_bias="0.07" />
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
@@ -345,13 +360,13 @@
             android:fontFamily="@font/questrial"
             android:text="Días"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.108"
-            app:layout_constraintStart_toEndOf="@+id/edtPorDosis"
-            app:layout_constraintTop_toBottomOf="@+id/textView15"
-            app:layout_constraintVertical_bias="0.059" />
 
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toEndOf="@+id/edtPorDosis"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.059" />
         <Spinner
             android:id="@+id/spiDosis"
             android:layout_width="165dp"

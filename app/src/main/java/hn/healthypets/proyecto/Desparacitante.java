@@ -31,7 +31,9 @@ public class Desparacitante extends AppCompatActivity {
     private DateTime fechaHora;
     private int dia, mes, anio;
 
-    // Se utilizan para validar que tipo de accion se realizara en la actividad, estos datos se reciben del intent
+    /**
+     * Se utilizan para validar que tipo de accion se realizara en la actividad, estos datos se reciben del intent
+     **/
     private int accion;
 
     @Override
@@ -61,17 +63,20 @@ public class Desparacitante extends AppCompatActivity {
             {
 //                LLAMAR METODO DAO
                 Medicamento desparasitante =new Medicamento(
+                        0,
                                     edtNombreDespa.getText().toString(),
                                     edtFechaApliDesp.getText().toString(),
                                     "",
                                     Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
                                     edtObserDespa.getText().toString(),
                                     1,
-                                    1
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Desparasitante")
                 );
-
-                Toast.makeText(Desparacitante.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                 instanciaDB.getMedicamentoDAO().insertdewormer(desparasitante);
+                Toast.makeText(Desparacitante.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
+                finish();
+
+
             } else
                 Toast.makeText(Desparacitante.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
         });

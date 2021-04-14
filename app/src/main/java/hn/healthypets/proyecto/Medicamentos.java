@@ -45,33 +45,41 @@ public class Medicamentos extends AppCompatActivity {
     private ArrayAdapter<String> adaptadorTipoDosis;
     private Integer postionItemEspecie;
 
+    private Intent intentValues;
     private static ArrayList<String> arrayNombreTipoDosis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicamento);
         init();
+
+        edtFechaMedicamento.setOnClickListener((v) -> {
+            //Utilizamos este metodo par obtenener los datos
+            DatePickerDialog dialogoFecha = new DatePickerDialog(Medicamentos.this, (view, year, month, dayOfMonth) ->
+                    edtFechaMedicamento.setText(fechaHora.formato(dayOfMonth, month, year)), anio, mes, dia);
+            dialogoFecha.show();
+        });
         arrayNombreTipoDosis=new ArrayList<>();
 
         //se le agrega el adaptador al spinner
         arrayNombreTipoDosis.add("Seleccione Dosis");
         startSpinnerValues(spiDosis,arrayNombreTipoDosis,adaptadorTipoDosis);
 
-        //Obtenemos una instancia de la base de datos
-        instanciaDB = SingletonDB.getDatabase(this);
+
         accion=Constantes.GUARDAR;
         postionItemEspecie=0;
 
-        edtFechaMedicamento.setOnClickListener(v ->  {
 
-                //Utilizamos este metodo par obtenener los datos
-                DatePickerDialog dialogoFecha = new DatePickerDialog(Medicamentos.this, (view, year, month, dayOfMonth) ->
-                        edtFechaMedicamento.setText(fechaHora.formato(dayOfMonth, month, year)), anio, mes, dia);
-                dialogoFecha.show();
 
-        });
 
+
+        //Obtenemos una instancia de la base de datos
+        instanciaDB = SingletonDB.getDatabase(this);
+
+        accion=Constantes.GUARDAR;
+        postionItemEspecie=0;
 
 //        Guardo Los Datos del Select
 
@@ -123,6 +131,7 @@ public class Medicamentos extends AppCompatActivity {
                 });
 
 
+
         btnListo.setOnClickListener(v -> {
             Validacion.fieldsAreNotEmpty();
             boolean comprobar=Validacion.fieldsAreNotEmpty(edtNombreMedicamento.getText().toString(),
@@ -134,31 +143,24 @@ public class Medicamentos extends AppCompatActivity {
             if (comprobar && spiDosis.getSelectedItemPosition()>0){
                 //                LLAMAR METODO DAO
                 Medicamento medicamentos =new Medicamento(
+                        0,
                         edtNombreMedicamento.getText().toString(),
                         edtFechaMedicamento.getText().toString(),
                         "",
                         0,
                         edtIndicacionesMedicamento.getText().toString(),
-                        1,
+                        0,
                         instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
                 );
-                Toast.makeText(Medicamentos.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                 instanciaDB.getMedicamentoDAO().insertMedicine(medicamentos);
+                Toast.makeText(Medicamentos.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
+                finish();
+
             }else{
-                Toast.makeText(Medicamentos.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
+                Toast.makeText(Medicamentos.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
             }
         });
-
-
-}
-
-    private void startSpinnerValues(Spinner spinner, ArrayList<String> valores, ArrayAdapter<String> adapter)
-    {
-        //Inicializamos el adaptador y lo agregamos al Spinner
-        adapter=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,valores);
-        spinner.setAdapter(adapter);
     }
-
     private void init() {
         edtNombreMedicamento=findViewById(R.id.edtNombreMedicamento);
         edtNumeroDosis=findViewById(R.id.edtNumeroDosis);
@@ -169,21 +171,16 @@ public class Medicamentos extends AppCompatActivity {
         edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
         btnListo=findViewById(R.id.btnListoMedicamento);
         fechaHora = new DateTime();
-
-
         //FECHA
-
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
         Intent intentValues = getIntent();
+        intentValues= getIntent();
         accion = intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.ACTUALIZAR);
         if (accion == Constantes.GUARDAR) {
-
-
             //Recuperamos el valor de la fecha por defecto que es la fecha actual
             dia = DateTime.diaDelMes;
             mes = DateTime.mes;
             anio = DateTime.anio;
-
         } else if (accion == Constantes.ACTUALIZAR) {
             String fecha1 = "15-03-2021";
             //Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha para asignarlo y luego asignarla al input*/
@@ -191,10 +188,15 @@ public class Medicamentos extends AppCompatActivity {
             dia = Integer.parseInt(fecha[0]);
             mes = Integer.parseInt(fecha[1]) - 1;
             anio = Integer.parseInt(fecha[2]);
-
         }
-
         edtFechaMedicamento.setText(fechaHora.formato(dia, mes, anio));
         accion = Constantes.ACTUALIZAR;
+    }
+
+    private void startSpinnerValues(Spinner spinner, ArrayList<String> valores, ArrayAdapter<String> adapter)
+    {
+        //Inicializamos el adaptador y lo agregamos al Spinner
+        adapter=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,valores);
+        spinner.setAdapter(adapter);
     }
 }

@@ -19,10 +19,10 @@ public interface CategoriaMedicamentoDAO {
      * lo ignore, se dejo de esta manera porque estos datos ya estaran predeterminados
      */
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void insertarCategoriaMedicamento(CategoriaMedicamento catMedicamento);
+    public void insertMedicinesCategorie(CategoriaMedicamento catMedicamento);
 
     //En este caso podemos mandar a guardar varios categorias de medicamentos como un arreglo
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertMedicinesCategories(CategoriaMedicamento... categoriaMedicamentos);
 
     @Update
@@ -31,7 +31,7 @@ public interface CategoriaMedicamentoDAO {
     @Query("SELECT tipoDosisId FROM tipodosis WHERE dosisNombre = :tipoDosis")
     public int getIdDosisByName(String tipoDosis);
 
-    //Selecciona todas las filas de Categoria Medicamentos
+    //Selecciona todas las filas de Categoria Medicamento
     @Query("SELECT * FROM CategoriaMedicamento")
     public List<CategoriaMedicamento> geAlltMedicineCategory();
 

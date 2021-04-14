@@ -1,5 +1,10 @@
 package hn.healthypets.proyecto;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -18,42 +23,64 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 
 import hn.healthypets.proyecto.Utilidades.DateTime;
+import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
+import hn.healthypets.proyecto.database.Entidades.Mascota;
+import hn.healthypets.proyecto.database.Entidades.Medicamento;
+import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class Vacunas extends AppCompatActivity {
 
-    MetodosImagenes metodosImagenes;
+    private MetodosImagenes metodosImagenes;
 
     private ImageView imgFotoVacuna;
     private ImageButton btnTomarFotos;
-    private ImageButton buscarImagen;
+    private ImageButton btnSeleccionarFoto;
+    private String rutaImagen;
     private EditText edtNombreVacuna;
     private EditText edtFechaVacuna;
     private EditText edtDescripVacuna;
-    private Button btnListo;
+    private Button btnGuardar;
+    private Button btnCancel;
+    private Button btnProxima;
+    private SimpleDateFormat formatoFecha;
     private DataBase instanciaDB;
     private DateTime fechaHora;
     private int dia, mes, anio;
+
+    /**
+     * Se utilizan para validar que tipo de accion se realizara en la actividad, estos datos se reciben del intent
+     **/
     private int accion;
+    private String especie = "";
+    private String raza;
+    private Bitmap bitmapImage;
+
+    /**Esta variable se utiliza para almacenar el valor que se devuelve de la solicitud de los permisos, esto quiere decir
+     * se coloca el nombre de permissionStorage ya que el unico momento en que se utilizara sera para validar si hay permisos de almacenamiento
+     *
+     * */
+    private boolean permissionStorgare;
+    /*Creamos un intent para tener acceso a los datos cuando sea una actualizacion a travez de los getExtras*/
     Intent intentValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacunas);
-
+        //Inicializamos todos los elementos
         init();
+
+
 
         edtFechaVacuna.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,137 +92,234 @@ public class Vacunas extends AppCompatActivity {
             }
         });
 
-        buscarImagen.setOnClickListener((v) -> {
-            /**Aquí obtenemos los permisos para entrar a la GALERIA*/
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
-                if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    metodosImagenes.openGallery(Vacunas.this);
-                } else {
-                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MetodosImagenes.REQUEST_PERMISSION_GALLERY);
+        btnGuardar.setOnClickListener((v)-> {
+            //Valida que los campos esten llenos
+            boolean fieldsFill = Validacion.fieldsAreNotEmpty(
+                    edtNombreVacuna.getText().toString(),
+                    edtFechaVacuna.getText().toString());
+            //Valida que por lo menos un radio button este seleccionado
+            if (fieldsFill) {
+
+                String nombreImagen = "";
+                Medicamento medicamento;
+
+                /** Para las versiones menores que 4.4 se solicta el permiso, en caso que nuestro telefono se mayor
+                 * pasara de una solo vez almacenar*/
+                if (metodosImagenes.checkPermissionStorage(Vacunas.this) || permissionStorgare) {
+
+                    switch (accion) {
+                        case Constantes.GUARDAR:
+                            /** Validamos que no haya una imagen vacia si esta vacia entonces se
+                             * la ruta se envia vacia, sino se guarda y se retorna el nombre de la imagen*/
+                            if (bitmapImage != null) {
+                                nombreImagen = metodosImagenes.savePhoto(Vacunas.this,
+                                        bitmapImage,
+                                        MetodosImagenes.VACUNA_FOLDER,
+                                        metodosImagenes.generarNombre("img_pet_") + ".jpeg");
+                            }
+                            Medicamento vacuna = new Medicamento(
+                                    0,
+                                    edtNombreVacuna.getText().toString(),
+                                    edtFechaVacuna.getText().toString(),
+                                    nombreImagen,
+                                    0,
+                                    edtDescripVacuna.getText().toString(),
+                                    intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Vacuna")
+                            );
+                            instanciaDB.getMedicamentoDAO().insertMedicine(vacuna);
+
+                            Toast.makeText(Vacunas.this, "Guardado con exito", Toast.LENGTH_LONG).show();
+                            finish();
+                            break;
+                        case Constantes.ACTUALIZAR:
+                            /**
+                             * Si la imagen del bitmap esta vacia en y se esta actualizando siginifica que no se selecciono
+                             * una nueva imagen por lo tanto la ruta que se mandara sera la misma que tenia anteriormente,
+                             * estos se logra atravez de el intent que se envio al iniciar la actividad
+                             * */
+                            nombreImagen = intentValues.getStringExtra(Constantes.TAG_IMG_PATH);
+                            if (bitmapImage != null) {
+                                /** Si se selecciono una foto nueva entonces mandamos a llamar al metodo savePhoto para que
+                                 * guarde una nueva foto, pero si la ruta de la foto anterior esta vacia se genera un nuevo
+                                 * nombre y si no se envia el nombre de la foto actual para sustituir el archivo pero que con
+                                 * conserve el mismo nombre*/
+                                if (nombreImagen.equals(""))
+                                {
+                                    nombreImagen = metodosImagenes.savePhoto(Vacunas.this,
+                                            bitmapImage,
+                                            MetodosImagenes.VACUNA_FOLDER,
+                                            metodosImagenes.generarNombre("img_vac_") + ".jpeg");
+                                }
+                                else
+                                {
+                                    nombreImagen = metodosImagenes.savePhoto(Vacunas.this,
+                                            bitmapImage,
+                                            MetodosImagenes.VACUNA_FOLDER,
+                                            nombreImagen);
+                                }
+
+                            }
+                            vacuna = new Medicamento(
+                                    0,
+                                    edtNombreVacuna.getText().toString(),
+                                    edtFechaVacuna.getText().toString(),
+                                    nombreImagen,
+                                    0,
+                                    edtDescripVacuna.getText().toString(),
+                                    intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Vacuna")
+                            );
+                            instanciaDB.getMedicamentoDAO().insertMedicine(vacuna);
+
+
+                            Toast.makeText(Vacunas.this, "Actualizado con exito +", Toast.LENGTH_LONG).show();
+                            finish();
+                            break;
+                    }
                 }
-            } else {
+                else
+                {
+                    Toast.makeText(Vacunas.this, "Permisos", Toast.LENGTH_SHORT).show();
+
+                    metodosImagenes.requestPermissionFromUser(
+                            Vacunas.this,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            MetodosImagenes.REQUEST_PERMISION_WRITE_STORAGE);
+                }
+
+            }
+          else
+            {
+                Toast.makeText(Vacunas.this, "Debe llenar todos los campos obligatorios", Toast.LENGTH_LONG).show();
+            }
+    });
+
+
+        btnSeleccionarFoto.setOnClickListener((v) -> {
+            /** Se valida que tenga permisos para acceder a la galeria de ser asi lo envia a la galeria*/
+            if(metodosImagenes.checkPermissionGallery(Vacunas.this))
+            {
                 metodosImagenes.openGallery(Vacunas.this);
+            }
+            /**De lo contrario los solicita y luego se valida en el metodo on onRequestPermissonCode*/
+            else
+            {
+                metodosImagenes.requestPermissionFromUser(
+                        Vacunas.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        MetodosImagenes.REQUEST_PERMISSION_GALLERY);
             }
         });
 
         btnTomarFotos.setOnClickListener((v) -> {
-            /**Aquí obtenemos los permisos para USAR la cámara del dispositivo*/
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
-                if (ActivityCompat.checkSelfPermission(Vacunas.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    metodosImagenes.goToCamera(Vacunas.this);
-                } else {
-                    ActivityCompat.requestPermissions(Vacunas.this, new String[]{Manifest.permission.CAMERA}, MetodosImagenes.REQUEST_PERMISSION_CAMERA);
-                }
-            } else {
+            /** Se valida que tenga permisos para tomar fotos de ser asi lo envia a la camara*/
+            if(metodosImagenes.checkPermissionCamera(Vacunas.this))
+            {
                 metodosImagenes.goToCamera(Vacunas.this);
             }
-        });
-
-        btnListo.setOnClickListener((v) -> {
-            /**Aquí usamos el método que creamos para obtener la imágen*/
-            Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
-//
-            Toast.makeText(getApplicationContext(), "Imagen obtenida con éxito :)", Toast.LENGTH_LONG).show();
-        });
-    }
-
-    private void init() {
-        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
-        btnTomarFotos = findViewById(R.id.imgbtnTomarFotosV);
-        buscarImagen = findViewById(R.id.imgbtnBuscarFotosV);
-        edtNombreVacuna = findViewById(R.id.edtNombreVacuna);
-        edtFechaVacuna = findViewById(R.id.edtFechaAplicacionVacuna);
-        edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
-        btnListo = findViewById(R.id.btnListoVacunas);
-        metodosImagenes = new MetodosImagenes(this);
-        fechaHora = new DateTime();
-
-
-        /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
-        intentValues = getIntent();
-        accion = intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.GUARDAR);
-        if (accion == Constantes.GUARDAR) {
-            //Se carga la fecha por defecto que es la fecha actual
-            dia = DateTime.diaDelMes;
-            mes = DateTime.mes;
-            anio = DateTime.anio;
-            /**Asignamos una foto de perfil por defecto*/
-            Glide.with(this)
-                    .load(R.drawable.default_imagen)
-                    .into(imgFotoVacuna);
-        }
-
-        /** Acciones a realizar si se la opcion es actualizar*/
-        else if (accion == Constantes.ACTUALIZAR) {
-
-            /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha
-             * para dar formato y tomarla como fecha de refeencia*/
-            String[] fecha = intentValues.getStringExtra(Constantes.TAG_FECHA_NACIENTO).split("-");
-            dia = Integer.parseInt(fecha[0]);
-            mes = Integer.parseInt(fecha[1]);
-            anio = Integer.parseInt(fecha[2]);
-            /**Se valida si al actualizar tenia una foto, ser asi se muestra, de lo contrario se carga una imagen por defecto*/
-            if (!intentValues.getStringExtra(Constantes.TAG_IMG_PATH).equals("")) {
-                File filePhoto = new File(metodosImagenes.getRootPath() + "/"
-                        + MetodosImagenes.PET_FOLDER + "/" +
-                        intentValues.getStringExtra(Constantes.TAG_IMG_PATH));
-                Glide.with(this)
-                        .load(filePhoto)
-                        .into(imgFotoVacuna);
-            } else {
-                /**Asignamos una foto de perfil por defecto*/
-                Glide.with(this)
-                        .load(R.drawable.default_credencial)
-                        .into(imgFotoVacuna);
+            /**De lo contrario los solicita y luego se valida en el metodo on onRequestPermissonCode*/
+            else
+            {
+                metodosImagenes.requestPermissionFromUser(
+                        Vacunas.this,
+                        Manifest.permission.CAMERA,
+                        MetodosImagenes.REQUEST_PERMISSION_CAMERA
+                );
             }
-        }
-        edtFechaVacuna.setText(fechaHora.formato(dia, mes, anio));
-
+        });
     }
 
+    /**Este metodo recive los valores de respuesta al solicitar los permisos*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        /**Acá abrimos el cuadro de dialogo para poder habilitar los permisos,
-         * Si el usuario acepta los permisos, habilitará la cámara o la galería*/
-        if (requestCode == MetodosImagenes.REQUEST_PERMISSION_GALLERY) {
-            if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                metodosImagenes.openGallery(Vacunas.this);
-            } else {
-                Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
-            }
-        }
-        if (requestCode == MetodosImagenes.REQUEST_PERMISSION_CAMERA) {
-            if (permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                metodosImagenes.goToCamera(Vacunas.this);
-            } else {
-                Toast.makeText(this, "Es necesario habilitar todos los permisos", Toast.LENGTH_LONG).show();
-            }
-        }
+        /** Se validan los permisos devueltos de la socilicitud y en caso de ser haber sido aceptados por el usuario
+         *  el metodo validateRequestPermissionCode envia a la actividad solicitada, de acuerdo con el identificador*/
+        metodosImagenes.validateRequestPermissionCode(requestCode,permissions,grantResults,Vacunas.this);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /**Verificar si los permisos son correctos.
-         * En esta parte lo que hacemos es crear la ruta
-         * para guardar la imágen*/
-        if (requestCode == MetodosImagenes.REQUEST_IMAGE_GALLERY) {
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                /**Obtenemos la ruta de la imagen*/
-                Uri photo = data.getData();
-                imgFotoVacuna.setImageURI(photo);
-                Log.i("TAG", "Result: " + photo);
-            } else {
-                Toast.makeText(this, "No seleccionó ninguna foto", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            if (requestCode == MetodosImagenes.REQUEST_IMAGE_CAMERA) {
-                if (resultCode == Activity.RESULT_OK) {
-                    imgFotoVacuna.setImageURI(Uri.parse(metodosImagenes.getRootPath()));
-                    Toast.makeText(getApplicationContext(), "Fotografía tomada con éxito :)", Toast.LENGTH_LONG).show();
+        /** Cuando se ejecuta el metodo startActivyForResult deposita los resultados en este metodo*/
+        switch (requestCode)
+        {
+            case MetodosImagenes.REQUEST_IMAGE_CAMERA:
+                /** Se obtiene le bitmap par mostrarlo pero sin guardarlo aun*/
+                if (resultCode == RESULT_OK && data != null)
+                {
+                    bitmapImage =(Bitmap) data.getExtras().get("data");
+                    imgFotoVacuna.setImageBitmap(bitmapImage);
                 }
+                break;
+            case MetodosImagenes.REQUEST_IMAGE_GALLERY:
+
+                /** Primero convertimos el recurso pasado obtennido por medio de un URI*/
+                if(resultCode == RESULT_OK && data != null)
+                {
+                    bitmapImage= metodosImagenes.getBitmapFromUri(this,data.getData());
+                    imgFotoVacuna.setImageBitmap(bitmapImage);
+                }
+                break;
+        }
+    }
+    private void init()
+    {
+        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
+        btnTomarFotos = findViewById(R.id.imgbtnTomarFotosV);
+        btnSeleccionarFoto = findViewById(R.id.imgbtnBuscarFotosV);
+        edtNombreVacuna = findViewById(R.id.edtNombreVacuna);
+        edtFechaVacuna = findViewById(R.id.edtFechaAplicacionVacuna);
+        edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
+        btnGuardar = findViewById(R.id.btnListoVacunas);
+        fechaHora = new DateTime();
+        metodosImagenes = new MetodosImagenes(this);
+
+        /** Se obtiene una instancia de la base de datos*/
+        instanciaDB = SingletonDB.getDatabase(this);
+
+        /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
+        intentValues= getIntent();
+        accion=intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.GUARDAR);
+        if(accion==Constantes.GUARDAR)
+        {
+            //Recuperamos el valor de la fecha por defecto que es la fecha actual
+            dia=DateTime.diaDelMes;
+            mes=DateTime.mes;
+            anio=DateTime.anio;
+            /**Asignamos una foto de perfil por defecto*/
+            Glide.with(this)
+                    .load(R.drawable.default_credencial)
+                    .into(imgFotoVacuna);
+        }
+        /** Acciones a realizar si se la opcion es actualizar*/
+        else if(accion==Constantes.ACTUALIZAR)
+        {
+            /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha
+             * para asignarlo y luego asignarla al input*/
+            String [] fecha=intentValues.getStringExtra(Constantes.TAG_FECHA_NACIENTO).split("-");
+            dia=Integer.parseInt(fecha[0]);
+            mes=Integer.parseInt(fecha[1]);
+            anio= Integer.parseInt(fecha[2]);
+            /**Se valida si al actualizar tenia una foto, ser asi se muestra, de lo contrario se carga una imagen por defecto*/
+            if(!intentValues.getStringExtra(Constantes.TAG_IMG_PATH).equals(""))
+            {
+                File filePhoto = new File(metodosImagenes.getRootPath()+"/"
+                        +MetodosImagenes.VACUNA_FOLDER+"/"+
+                        intentValues.getStringExtra(Constantes.TAG_IMG_PATH));
+                Glide.with(this)
+                        .load(filePhoto)
+                        .into(imgFotoVacuna);
+            }
+            else
+            {
+                /**Asignamos una foto de perfil por defecto*/
+                Glide.with(this)
+                        .load(R.drawable.default_credencial)
+                        .into(imgFotoVacuna);
             }
         }
+        edtFechaVacuna.setText(fechaHora.formato(dia,mes,anio));
     }
 }
