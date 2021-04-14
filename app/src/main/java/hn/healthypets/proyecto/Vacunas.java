@@ -117,7 +117,7 @@ public class Vacunas extends AppCompatActivity {
                                         MetodosImagenes.VACUNA_FOLDER,
                                         metodosImagenes.generarNombre("img_pet_") + ".jpeg");
                             }
-                            medicamento = new Medicamento(
+                            Medicamento vacuna = new Medicamento(
                                     0,
                                     edtNombreVacuna.getText().toString(),
                                     edtFechaVacuna.getText().toString(),
@@ -127,7 +127,7 @@ public class Vacunas extends AppCompatActivity {
                                     intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
                                     instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Vacuna")
                             );
-                            instanciaDB.getMedicamentoDAO().insertMedicine(medicamento);
+                            instanciaDB.getMedicamentoDAO().insertMedicine(vacuna);
 
                             Toast.makeText(Vacunas.this, "Guardado con exito", Toast.LENGTH_LONG).show();
                             finish();
@@ -160,7 +160,7 @@ public class Vacunas extends AppCompatActivity {
                                 }
 
                             }
-                            medicamento = new Medicamento(
+                            vacuna = new Medicamento(
                                     0,
                                     edtNombreVacuna.getText().toString(),
                                     edtFechaVacuna.getText().toString(),
@@ -170,7 +170,7 @@ public class Vacunas extends AppCompatActivity {
                                     intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
                                     instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Vacuna")
                             );
-                            instanciaDB.getMedicamentoDAO().insertMedicine(medicamento);
+                            instanciaDB.getMedicamentoDAO().insertMedicine(vacuna);
 
 
                             Toast.makeText(Vacunas.this, "Actualizado con exito +", Toast.LENGTH_LONG).show();
