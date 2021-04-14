@@ -2,6 +2,7 @@ package hn.healthypets.proyecto;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -21,6 +23,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.bumptech.glide.Glide;
+
+import java.io.File;
+
+import hn.healthypets.proyecto.Utilidades.DateTime;
+import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
+
 public class Vacunas extends AppCompatActivity {
 
     MetodosImagenes metodosImagenes;
@@ -31,24 +41,30 @@ public class Vacunas extends AppCompatActivity {
     private EditText edtNombreVacuna;
     private EditText edtFechaVacuna;
     private EditText edtDescripVacuna;
-    private Button ok;
-    private Button btnCancel;
-    private Button btnProxima;
+    private Button btnListo;
+    private DataBase instanciaDB;
+    private DateTime fechaHora;
+    private int dia, mes, anio;
+    private int accion;
+    Intent intentValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacunas);
 
-        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
-        btnTomarFotos = findViewById(R.id.imgbtnTomarFotosV);
-        buscarImagen = findViewById(R.id.imgbtnBuscarFotosV);
-        edtNombreVacuna = findViewById(R.id.edtNombreVacuna);
-        edtFechaVacuna = findViewById(R.id.edtFechaAplicacionVacuna);
-        edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
-        ok = findViewById(R.id.btnListoVacunas);
-        btnCancel = findViewById(R.id.btnCancelarVacuna);
-        metodosImagenes = new MetodosImagenes(this);
+        init();
+
+        edtFechaVacuna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Utilizamos este metodo par obtenener los datos
+                DatePickerDialog dialogoFecha = new DatePickerDialog(Vacunas.this, (view, year, month, dayOfMonth) ->
+                        edtFechaVacuna.setText(fechaHora.formato(dayOfMonth, month, year)), anio, mes, dia);
+                dialogoFecha.show();
+            }
+        });
+
         buscarImagen.setOnClickListener((v) -> {
             /**Aquí obtenemos los permisos para entrar a la GALERIA*/
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { /**En esta línea se verifica el permiso para la versión de android en el dispositivo en tiempo de ejecución*/
@@ -75,12 +91,66 @@ public class Vacunas extends AppCompatActivity {
             }
         });
 
-        ok.setOnClickListener((v) -> {
+        btnListo.setOnClickListener((v) -> {
             /**Aquí usamos el método que creamos para obtener la imágen*/
             Bitmap imagen = ((BitmapDrawable) imgFotoVacuna.getDrawable()).getBitmap();
 //
             Toast.makeText(getApplicationContext(), "Imagen obtenida con éxito :)", Toast.LENGTH_LONG).show();
         });
+    }
+
+    private void init() {
+        imgFotoVacuna = findViewById(R.id.imgComprobacionVacunas);
+        btnTomarFotos = findViewById(R.id.imgbtnTomarFotosV);
+        buscarImagen = findViewById(R.id.imgbtnBuscarFotosV);
+        edtNombreVacuna = findViewById(R.id.edtNombreVacuna);
+        edtFechaVacuna = findViewById(R.id.edtFechaAplicacionVacuna);
+        edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
+        btnListo = findViewById(R.id.btnListoVacunas);
+        metodosImagenes = new MetodosImagenes(this);
+        fechaHora = new DateTime();
+
+
+        /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
+        intentValues = getIntent();
+        accion = intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.GUARDAR);
+        if (accion == Constantes.GUARDAR) {
+            //Se carga la fecha por defecto que es la fecha actual
+            dia = DateTime.diaDelMes;
+            mes = DateTime.mes;
+            anio = DateTime.anio;
+            /**Asignamos una foto de perfil por defecto*/
+            Glide.with(this)
+                    .load(R.drawable.default_imagen)
+                    .into(imgFotoVacuna);
+        }
+
+        /** Acciones a realizar si se la opcion es actualizar*/
+        else if (accion == Constantes.ACTUALIZAR) {
+
+            /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha
+             * para dar formato y tomarla como fecha de refeencia*/
+            String[] fecha = intentValues.getStringExtra(Constantes.TAG_FECHA_NACIENTO).split("-");
+            dia = Integer.parseInt(fecha[0]);
+            mes = Integer.parseInt(fecha[1]);
+            anio = Integer.parseInt(fecha[2]);
+            /**Se valida si al actualizar tenia una foto, ser asi se muestra, de lo contrario se carga una imagen por defecto*/
+            if (!intentValues.getStringExtra(Constantes.TAG_IMG_PATH).equals("")) {
+                File filePhoto = new File(metodosImagenes.getRootPath() + "/"
+                        + MetodosImagenes.PET_FOLDER + "/" +
+                        intentValues.getStringExtra(Constantes.TAG_IMG_PATH));
+                Glide.with(this)
+                        .load(filePhoto)
+                        .into(imgFotoVacuna);
+            } else {
+                /**Asignamos una foto de perfil por defecto*/
+                Glide.with(this)
+                        .load(R.drawable.default_credencial)
+                        .into(imgFotoVacuna);
+            }
+        }
+        edtFechaVacuna.setText(fechaHora.formato(dia, mes, anio));
+
     }
 
     @Override

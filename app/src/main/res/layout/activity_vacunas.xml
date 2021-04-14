@@ -12,42 +12,41 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fondo_vacuna"
-        tools:context=".Vacunas">
+        tools:context=".Vacunas"
+        android:background="@drawable/fondo_vacuna">
 
 
         <ImageView
             android:id="@+id/imgComprobacionVacunas"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_imagen"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.311"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.032"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageButton
             android:id="@+id/imgbtnTomarFotosV"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/btn_redondo_aqua"
             android:src="@drawable/ic_camera_li"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
+            app:layout_constraintHorizontal_bias="0.232"
             app:layout_constraintStart_toEndOf="@+id/imgComprobacionVacunas"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.068" />
+            app:layout_constraintVertical_bias="0.058" />
 
         <ImageButton
             android:id="@+id/imgbtnBuscarFotosV"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/btn_redondo_aqua"
             android:src="@drawable/ic_subir_imagen"
@@ -70,7 +69,7 @@
             android:inputType="textPersonName"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,7 +150,7 @@
             android:inputType="textMultiLine"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,27 +180,11 @@
             android:backgroundTint="@color/listo"
             android:text="Listo"
             app:icon="@drawable/ic_vector_listo"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.211"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna"
-            app:layout_constraintVertical_bias="0.004" />
-
-        <Button
-            android:id="@+id/btnCancelarVacuna"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/cancelar"
-            android:text="cancelar"
-            app:icon="@drawable/ic_vector_cancelar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.432"
-            app:layout_constraintStart_toEndOf="@+id/btnListoVacunas"
-            app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.048" />
 
         <EditText
             android:id="@+id/edtFechaAplicacionVacuna"
@@ -209,18 +192,28 @@
             android:layout_height="40dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/input_gris"
+            android:clickable="true"
             android:ems="10"
+            android:focusable="false"
             android:fontFamily="@font/questrial"
             android:hint="31/03/2021"
             android:inputType="date"
+            android:maxLines="1"
             android:padding="10dp"
             android:textColorHint="#9E9C9C"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNombreVacuna"
             app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="663dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

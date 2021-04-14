@@ -176,25 +176,10 @@
             android:text="Listo"
             app:icon="@drawable/ic_vector_listo"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnCancelarDesparacitante"
-            app:layout_constraintHorizontal_bias="0.581"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
             app:layout_constraintVertical_bias="0.121" />
-
-        <Button
-            android:id="@+id/btnCancelarDesparacitante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/cancelar"
-            android:text="cancelar"
-            app:icon="@drawable/ic_vector_cancelar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.816"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtObservacionesDesparacitante"
-            app:layout_constraintVertical_bias="0.118" />
 
         <TextView
             android:id="@+id/txvGenero6"

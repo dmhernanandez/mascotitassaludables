@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="16dp">
+
     <!--        CARD VIEW PARA LAS VACUNAS-->
     <androidx.cardview.widget.CardView
         android:id="@+id/crdvVacunaHistorial"

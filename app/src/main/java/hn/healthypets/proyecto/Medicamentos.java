@@ -38,7 +38,6 @@ public class Medicamentos extends AppCompatActivity {
     private EditText edtHoraMedicamento;
     private EditText edtIndicacionesMedicamento;
     private Button btnListo;
-    private Button btnCancel;
     private DataBase instanciaDB;
     private Integer accion;
     private DateTime fechaHora;
@@ -169,7 +168,6 @@ public class Medicamentos extends AppCompatActivity {
         edtFechaMedicamento=findViewById(R.id.edtFechaMedicamento);
         edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
         btnListo=findViewById(R.id.btnListoMedicamento);
-        btnCancel=findViewById(R.id.btnCancelarMedicamento);
         fechaHora = new DateTime();
 
 

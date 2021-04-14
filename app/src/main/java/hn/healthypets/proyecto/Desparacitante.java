@@ -27,7 +27,6 @@ public class Desparacitante extends AppCompatActivity {
     private EditText edtPesoDespa;
     private EditText edtObserDespa;
     private Button btnListo;
-    private Button btnCancel;
     private DataBase instanciaDB;
     private DateTime fechaHora;
     private int dia, mes, anio;
@@ -86,7 +85,6 @@ public class Desparacitante extends AppCompatActivity {
         edtPesoDespa = findViewById(R.id.edtPesoDesparacitante);
         edtObserDespa = findViewById(R.id.edtObservacionesDesparacitante);
         btnListo = findViewById(R.id.btnListoDesparacitante);
-        btnCancel = findViewById(R.id.btnCancelarDesparacitante);
         fechaHora = new DateTime();
         metodosImagenes = new MetodosImagenes(this);
 

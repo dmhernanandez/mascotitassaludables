@@ -23,32 +23,7 @@ public class HistorialFragment extends Fragment {
 
         View vista = inflater.inflate(R.layout.fragment_historial, container, false);
 
-        RecyclerView recyclerView=vista.findViewById(R.id.rvHistorial);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        //datos que vamos a enviar
-        Mascota mascota=new Mascota(0,"rocky",
-                "Rocky Prueba",
-                1,
-                1,
-                1,
-                "1","");
-
-
-        //Creamos el Array o lista de lo que vamos a enviar
-        ArrayList<Mascota> arrayElementos = new ArrayList<>();
-
-        //añadimos los datos al array lista
-        arrayElementos.add(mascota);
-        //pasamos al adapator el array y este se encarga de manipulamos
-        AdaptadorPerfil adaptador = new AdaptadorPerfil(arrayElementos);
-
-        /*
-         *Por ultimo agregamos a nuestro ReciclerView el adaptador para que pueda mostarlas
-         */
-        recyclerView.setAdapter(adaptador);
         return vista;
     }
 }

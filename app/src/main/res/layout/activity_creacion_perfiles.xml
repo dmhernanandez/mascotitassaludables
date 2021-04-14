@@ -14,6 +14,7 @@
         android:background="@drawable/fondo_creacion_perfiles"
         tools:context=".CreacionPerfiles2">
 
+
         <ImageView
             android:id="@+id/imgCreacionPerfiles"
             android:layout_width="145dp"
@@ -21,30 +22,29 @@
             android:src="@drawable/ic_imagen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.327"
+            app:layout_constraintHorizontal_bias="0.345"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.026"
+            app:layout_constraintVertical_bias="0.006"
             tools:srcCompat="@tools:sample/avatars" />
-
 
         <ImageButton
             android:id="@+id/imgbtnTomarFotosCP"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/btn_redondo_aqua"
             android:src="@drawable/ic_camera_li"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.187"
+            app:layout_constraintHorizontal_bias="0.186"
             app:layout_constraintStart_toEndOf="@+id/imgCreacionPerfiles"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.059" />
+            app:layout_constraintVertical_bias="0.039" />
 
         <ImageButton
             android:id="@+id/imgbtnBuscarFotosV"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="580dp"
             android:background="@drawable/btn_redondo_aqua"
             android:src="@drawable/ic_subir_imagen"

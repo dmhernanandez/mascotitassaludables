@@ -57,7 +57,6 @@ public class Perfiles extends AppCompatActivity {
         rbtnHembra=findViewById(R.id.rbHembra);
         rbtnMacho = findViewById(R.id.rbMacho);
         btnListo = findViewById(R.id.btnGuardarCP);
-        btnCancel = findViewById(R.id.btnCancelarVacuna);
         rgpGrupoGenero=findViewById(R.id.rbgGrupoGenero);
 
 
