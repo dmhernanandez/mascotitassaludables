@@ -64,6 +64,7 @@ public class Desparacitante extends AppCompatActivity {
             {
 //                LLAMAR METODO DAO
                 Medicamento desparasitante =new Medicamento(
+                        0,
                                     edtNombreDespa.getText().toString(),
                                     edtFechaApliDesp.getText().toString(),
                                     "",

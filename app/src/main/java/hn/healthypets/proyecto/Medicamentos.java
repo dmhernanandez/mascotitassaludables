@@ -53,6 +53,13 @@ public class Medicamentos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicamento);
         init();
+
+        edtFechaMedicamento.setOnClickListener((v) -> {
+            //Utilizamos este metodo par obtenener los datos
+            DatePickerDialog dialogoFecha = new DatePickerDialog(Medicamentos.this, (view, year, month, dayOfMonth) ->
+                    edtFechaMedicamento.setText(fechaHora.formato(dayOfMonth, month, year)), anio, mes, dia);
+            dialogoFecha.show();
+        });
         arrayNombreTipoDosis=new ArrayList<>();
 
         //se le agrega el adaptador al spinner
@@ -135,6 +142,7 @@ public class Medicamentos extends AppCompatActivity {
             if (comprobar && spiDosis.getSelectedItemPosition()>0){
                 //                LLAMAR METODO DAO
                 Medicamento medicamentos =new Medicamento(
+                        0,
                         edtNombreMedicamento.getText().toString(),
                         edtFechaMedicamento.getText().toString(),
                         "",

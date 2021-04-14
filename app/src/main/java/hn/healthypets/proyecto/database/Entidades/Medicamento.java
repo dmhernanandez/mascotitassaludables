@@ -26,7 +26,8 @@ public class Medicamento {
     //Llave foranea de categoria del medicamento
     private int medicamentoCatMedicamentoId;
 
-    public Medicamento( @NonNull String descripcion, @NonNull String fechaAplicacion, String rutaFotoComprobante, float pesoKilogramo, String observacion, int mascotaMedicadaId, int medicamentoCatMedicamentoId) {
+    public Medicamento( int medicamentoId, @NonNull String descripcion, @NonNull String fechaAplicacion, String rutaFotoComprobante, float pesoKilogramo, String observacion, int mascotaMedicadaId, int medicamentoCatMedicamentoId) {
+        this.medicamentoId = medicamentoId;
         this.descripcion = descripcion;
         this.fechaAplicacion = fechaAplicacion;
         this.rutaFotoComprobante = rutaFotoComprobante;
