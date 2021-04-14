@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import hn.healthypets.proyecto.Utilidades.DateTime;
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Mascota;
 import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.SingletonDB;
@@ -124,7 +125,7 @@ public class Vacunas extends AppCompatActivity {
                                     0,
                                     edtDescripVacuna.getText().toString(),
                                     intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
-                                    0
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Vacuna")
                             );
                             instanciaDB.getMedicamentoDAO().insertMedicine(medicamento);
 
@@ -167,7 +168,7 @@ public class Vacunas extends AppCompatActivity {
                                     0,
                                     edtDescripVacuna.getText().toString(),
                                     intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
-                                    0
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Vacuna")
                             );
                             instanciaDB.getMedicamentoDAO().insertMedicine(medicamento);
 

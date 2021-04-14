@@ -46,7 +46,9 @@ public class Medicamentos extends AppCompatActivity {
     private ArrayAdapter<String> adaptadorTipoDosis;
     private Integer postionItemEspecie;
 
+    private Intent intentValues;
     private static ArrayList<String> arrayNombreTipoDosis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +150,7 @@ public class Medicamentos extends AppCompatActivity {
                         "",
                         0,
                         edtIndicacionesMedicamento.getText().toString(),
-                        1,
+                        intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
                         instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
                 );
                 Toast.makeText(Medicamentos.this,"Guardo Medicamentos",Toast.LENGTH_LONG).show();
@@ -171,6 +173,7 @@ public class Medicamentos extends AppCompatActivity {
         //FECHA
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
         Intent intentValues = getIntent();
+        intentValues= getIntent();
         accion = intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.ACTUALIZAR);
         if (accion == Constantes.GUARDAR) {
             //Recuperamos el valor de la fecha por defecto que es la fecha actual

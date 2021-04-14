@@ -19,10 +19,10 @@ public interface CategoriaMedicamentoDAO {
      * lo ignore, se dejo de esta manera porque estos datos ya estaran predeterminados
      */
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void insertarCategoriaMedicamento(CategoriaMedicamento catMedicamento);
+    public void insertMedicinesCategorie(CategoriaMedicamento catMedicamento);
 
     //En este caso podemos mandar a guardar varios categorias de medicamentos como un arreglo
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertMedicinesCategories(CategoriaMedicamento... categoriaMedicamentos);
 
     @Update

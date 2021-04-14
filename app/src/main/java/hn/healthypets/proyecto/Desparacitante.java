@@ -71,7 +71,7 @@ public class Desparacitante extends AppCompatActivity {
                                     Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
                                     edtObserDespa.getText().toString(),
                                     1,
-                                    1
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Desparasitante")
                 );
 
                 Toast.makeText(Desparacitante.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
