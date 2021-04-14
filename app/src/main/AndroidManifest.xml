@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="hn.healthypets.proyecto">
 
     <queries />
@@ -31,6 +32,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotitasSaludables">
+<!--        Declaramos nuestro recepto y lo habilitamos-->
+        <receiver android:name=".Utilidades.AlarmReceiver"
+            android:enabled="true"/>
+        <service
+            android:name=".Utilidades.NotificationService"
+            android:enabled="true"
+          />
+
         <activity android:name=".item_medicamento"></activity>
         <activity android:name=".item_desparaitante" />
         <activity
@@ -83,7 +92,7 @@
             android:name=".Historial"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Medicamentos"
+            android:name=".MedicamentosActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".MainActivity" />
 

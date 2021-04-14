@@ -31,7 +31,7 @@ public interface CategoriaMedicamentoDAO {
     @Query("SELECT tipoDosisId FROM tipodosis WHERE dosisNombre = :tipoDosis")
     public int getIdDosisByName(String tipoDosis);
 
-    //Selecciona todas las filas de Categoria Medicamentos
+    //Selecciona todas las filas de Categoria Medicamento
     @Query("SELECT * FROM CategoriaMedicamento")
     public List<CategoriaMedicamento> geAlltMedicineCategory();
 

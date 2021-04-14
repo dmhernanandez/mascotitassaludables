@@ -7,14 +7,11 @@
     android:fillViewport="true"
     tools:layout_editor_absoluteX="207dp"
     tools:layout_editor_absoluteY="671dp">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fondo_medicamento"
-        tools:context=".Medicamentos">
-
-
+        tools:context=".MedicamentosActivity">
         <EditText
             android:id="@+id/edtIndicacionesMedicamento"
             android:layout_width="302dp"
@@ -32,7 +29,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19"
             app:layout_constraintVertical_bias="0.0" />
-
         <TextView
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
@@ -47,7 +43,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtFechaMedicamento"
             app:layout_constraintVertical_bias="0.043" />
-
         <Button
             android:id="@+id/btnListoMedicamento"
             android:layout_width="113dp"
@@ -61,7 +56,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
             app:layout_constraintVertical_bias="0.102" />
-
         <Button
             android:id="@+id/btnCancelarMedicamento"
             android:layout_width="wrap_content"
@@ -75,16 +69,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtIndicacionesMedicamento"
             app:layout_constraintVertical_bias="0.102" />
-
         <EditText
             android:id="@+id/edtFechaMedicamento"
             android:layout_width="302dp"
             android:layout_height="40dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/input_gris"
             android:ems="10"
-            android:fontFamily="@font/questrial"
-            android:hint="31/03/2021"
             android:inputType="date"
+            android:hint="31/03/2021"
             android:padding="10dp"
             android:focusable="false"
             android:clickable="true"
@@ -92,11 +85,10 @@
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18"
-            app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.0" />
         <EditText
             android:id="@+id/edtNombreMedicamento"
             android:layout_width="302dp"
@@ -114,7 +106,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             app:layout_constraintVertical_bias="0.0" />
-
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
@@ -131,7 +122,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.028" />
-
         <TextView
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
@@ -149,7 +139,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.028" />
-
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
@@ -164,7 +153,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNombreMedicamento"
             app:layout_constraintVertical_bias="0.033" />
-
         <TextView
             android:id="@+id/textView27"
             android:layout_width="wrap_content"
@@ -179,8 +167,8 @@
             app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtNombreMedicamento"
-            app:layout_constraintVertical_bias="0.033" />
 
+        app:layout_constraintVertical_bias="0.033" />
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
@@ -196,7 +184,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spiDosis"
             app:layout_constraintVertical_bias="0.05" />
-
         <TextView
             android:id="@+id/textView28"
             android:layout_width="wrap_content"
@@ -213,7 +200,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spiDosis"
             app:layout_constraintVertical_bias="0.047" />
-
         <TextView
             android:id="@+id/textView30"
             android:layout_width="wrap_content"
@@ -230,7 +216,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtPorDosis"
             app:layout_constraintVertical_bias="0.071" />
-
         <TextView
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
@@ -247,7 +232,6 @@
             app:layout_constraintStart_toEndOf="@+id/edtCadaDosis"
             app:layout_constraintTop_toBottomOf="@+id/textView14"
             app:layout_constraintVertical_bias="0.062" />
-
         <TextView
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
@@ -262,24 +246,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
             app:layout_constraintVertical_bias="0.032" />
-
         <TextView
             android:id="@+id/textView29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="256dp"
             android:backgroundTint="@color/black"
-            android:fontFamily="@font/questrial"
-            android:text="*"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView15"
-            app:layout_constraintHorizontal_bias="0.909"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
-            app:layout_constraintVertical_bias="0.07" />
-
+        android:fontFamily="@font/questrial"
+        android:text="*"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView15"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtCadaDosis"
+        app:layout_constraintVertical_bias="0.07" />
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
@@ -294,7 +276,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtPorDosis"
             app:layout_constraintVertical_bias="0.035" />
-
         <EditText
             android:id="@+id/edtNumeroDosis"
             android:layout_width="50dp"
@@ -312,7 +293,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:layout_constraintVertical_bias="0.001" />
-
         <EditText
             android:id="@+id/edtCadaDosis"
             android:layout_width="50dp"
@@ -331,7 +311,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14"
             app:layout_constraintVertical_bias="0.0" />
-
         <EditText
             android:id="@+id/edtPorDosis"
             android:layout_width="50dp"
@@ -349,7 +328,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView15"
             app:layout_constraintVertical_bias="0.0" />
-
         <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
@@ -360,19 +338,18 @@
             android:fontFamily="@font/questrial"
             android:text="Días"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.108"
-            app:layout_constraintStart_toEndOf="@+id/edtPorDosis"
-            app:layout_constraintTop_toBottomOf="@+id/textView15"
-            app:layout_constraintVertical_bias="0.059" />
 
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toEndOf="@+id/edtPorDosis"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.059" />
         <Spinner
             android:id="@+id/spiDosis"
             android:layout_width="165dp"
             android:layout_height="40dp"
             android:background="@drawable/input_gris"
-
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -380,6 +357,5 @@
             app:layout_constraintStart_toEndOf="@+id/edtNumeroDosis"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:layout_constraintVertical_bias="0.0" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

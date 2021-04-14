@@ -9,15 +9,18 @@ public class DateTime  {
     public static int anio = calendario.get(Calendar.YEAR);
     public static  int mes=calendario.get(Calendar.MONTH);
     public static int diaDelMes=calendario.get(Calendar.DAY_OF_MONTH);
-    private final String CERO="0";
-    private final String GUION ="-";
+    public static int  hora=calendario.get(Calendar.HOUR_OF_DAY);
+    public static int minuto= calendario.get(Calendar.MINUTE);
+    private static final String CERO="0";
+    private static final String GUION ="-";
+    private static final String DOS_PUNTOS = ":";
 
 
     public String getDate(){
         return "";
     }
 
-    public String formato(int dia,int mes, int year){
+    public static String formatoFecha(int dia, int mes, int year){
         mes = mes + 1;
         //Formateo el día obtenido: antepone el 0 si son menores de 10
         String diaFormateado = (dia < 10)? CERO + String.valueOf(dia):String.valueOf(dia);
@@ -26,9 +29,23 @@ public class DateTime  {
         return diaFormateado + GUION + mesFormateado + GUION + year;
    }
 
-
+    public static String formatoHora(int hourOfDay, int minuto){
+        //Formateo de la hora obtenida: antepone el 0 si son menores de 10
+        String horaFormateada =  (hourOfDay < 10)? String.valueOf(CERO + hourOfDay) : String.valueOf(hourOfDay);
+        //Formateo el minuto obtenido: antepone el 0 si son menores de 10
+        String minutoFormateado = (minuto < 10)? String.valueOf(CERO + minuto):String.valueOf(minuto);
+        //Obtengo el valor a.m. o p.m., dependiendo de la selección del usuario
+        String AM_PM;
+        if(hourOfDay < 12) {
+            AM_PM = "a.m.";
+        } else {
+            AM_PM = "p.m.";
+        }
+        //Retorna la hora con el formato deseado
+       return horaFormateada + DOS_PUNTOS + minutoFormateado + " " + AM_PM;
+    }
    /** Este metedo solo se usa para crear una concatenacion de datos*/
-    public String formato(String dia,String mes, String year){
+    public String formatoFecha(String dia, String mes, String year){
 
         return dia + GUION + mes + GUION + anio;
     }

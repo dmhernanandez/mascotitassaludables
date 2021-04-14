@@ -161,7 +161,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {
                 //Utilizamos este metodo par obtenener los datos
                 DatePickerDialog dialogoFecha = new DatePickerDialog(CreacionPerfiles.this, (view, year, month, dayOfMonth) ->
-                        edtFechaNaciento.setText(fechaHora.formato(dayOfMonth, month, year)), anio, mes, dia);
+                        edtFechaNaciento.setText(fechaHora.formatoFecha(dayOfMonth, month, year)), anio, mes, dia);
                 dialogoFecha.show();
             }
         });
@@ -606,7 +606,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                     .getNameSpecieById(intentValues.getIntExtra(Constantes.TAG_ESPECIE,Constantes.DEFAULT));
 
         }
-        edtFechaNaciento.setText(fechaHora.formato(dia,mes,anio));
+        edtFechaNaciento.setText(fechaHora.formatoFecha(dia,mes,anio));
 
     }
 
