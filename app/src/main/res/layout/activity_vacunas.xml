@@ -188,20 +188,6 @@
             app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna"
             app:layout_constraintVertical_bias="0.004" />
 
-        <Button
-            android:id="@+id/btnCancelarVacuna"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/cancelar"
-            android:text="cancelar"
-            app:icon="@drawable/ic_vector_cancelar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.432"
-            app:layout_constraintStart_toEndOf="@+id/btnListoVacunas"
-            app:layout_constraintTop_toBottomOf="@+id/edtDescripcionVacuna"
-            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/edtFechaAplicacionVacuna"

@@ -17,6 +17,13 @@ import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
+import hn.healthypets.proyecto.Utilidades.DateTime;
+import hn.healthypets.proyecto.Utilidades.Validacion;
+import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.Medicamento;
+import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
+
 public class Desparacitante extends AppCompatActivity {
 
     MetodosImagenes metodosImagenes = new MetodosImagenes();
@@ -35,8 +42,6 @@ public class Desparacitante extends AppCompatActivity {
      **/
     private int accion;
     private String especie = "";
-    private String raza;
-    private Bitmap bitmapImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +72,6 @@ public class Desparacitante extends AppCompatActivity {
 
                 Toast.makeText(Desparacitante.this, "Campos OBLIGATORIOS(*) vacios", Toast.LENGTH_SHORT).show();
         });
-
 
     }
     private void init()

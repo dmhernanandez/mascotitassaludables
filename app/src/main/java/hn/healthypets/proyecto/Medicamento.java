@@ -64,6 +64,8 @@ public class Medicamento extends AppCompatActivity {
         accion=Constantes.GUARDAR;
         postionItemEspecie=0;
 
+//        Guardo Los Datos del Select
+
         instanciaDB.getTipoDosisDAO().insertDoseTypes(new TipoDosis("Media Pastilla"),
                 new TipoDosis("Tableta"),
                 new TipoDosis("Gotero"),
@@ -110,6 +112,7 @@ public class Medicamento extends AppCompatActivity {
 
                     }//Fin de metodo onChanged
                 });
+
 
         btnListo.setOnClickListener(v -> {
             Validacion.fieldsAreNotEmpty();
