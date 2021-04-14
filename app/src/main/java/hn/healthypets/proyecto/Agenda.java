@@ -32,7 +32,6 @@ public class Agenda extends AppCompatActivity {
         spiRecordame=findViewById(R.id.spiRecordarme);
         edtObservaionesAgenda =findViewById(R.id.edtObseracionesAgenda);
         btnListo=findViewById(R.id.btnListoAgenda);
-        btnCancel=findViewById(R.id.btnCancelarAgenda);
 
         /**
          Validar Campos Vacios Con el Metodo */
