@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fondo_medicamento"
-        tools:context=".MedicamentosActivity">
+        tools:context=".Medicamentos">
         <EditText
             android:id="@+id/edtIndicacionesMedicamento"
             android:layout_width="302dp"
@@ -77,11 +77,11 @@
             android:background="@drawable/input_gris"
             android:ems="10"
             android:inputType="date"
+            android:hint="31/03/2021"
+            android:padding="10dp"
             android:focusable="false"
             android:clickable="true"
             android:maxLines="1"
-            android:hint="31/03/2021"
-            android:padding="10dp"
             android:textColorHint="#9E9C9C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

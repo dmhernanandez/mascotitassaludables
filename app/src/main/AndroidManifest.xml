@@ -75,7 +75,7 @@
             android:name=".Historial"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MedicamentosActivity"
+            android:name=".Medicamentos"
             android:screenOrientation="portrait" />
         <activity android:name=".MainActivity" />
 

@@ -5,18 +5,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/fondo_credenciales"
+    >
     <androidx.core.widget.NestedScrollView
         android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="70dp"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/fondo_credenciales"
             tools:context=".Fragments.CredencialesFragment">
+
+
+            <!--            <ImageButton-->
+<!--                android:id="@+id/btnAniadirCredencial"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="@drawable/btn_redondo_azul"-->
+<!--                android:scaleType="centerInside"-->
+<!--                android:src="@drawable/ic_aniadir"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.886"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.864" />-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCredencial"
@@ -25,21 +42,25 @@
                 android:layout_gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <ImageButton
-                android:id="@+id/btnAniadirCredencial"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/btn_redondo_azul"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_aniadir"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.886"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.864" />
+                app:layout_constraintVertical_bias="1.0" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAniadirCredencial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:backgroundTint="@color/agendar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.045"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_aniadir"
+                tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

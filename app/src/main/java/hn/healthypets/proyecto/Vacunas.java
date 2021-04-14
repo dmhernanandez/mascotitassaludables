@@ -31,7 +31,7 @@ import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class Vacunas extends AppCompatActivity {
 
-    MetodosImagenes metodosImagenes = new MetodosImagenes(this);
+    MetodosImagenes metodosImagenes;
 
     private ImageView imgFotoVacuna;
     private ImageButton btnTomarFotos;
@@ -147,8 +147,8 @@ public class Vacunas extends AppCompatActivity {
         edtFechaVacuna = findViewById(R.id.edtFechaAplicacionVacuna);
         edtDescripVacuna = findViewById(R.id.edtDescripcionVacuna);
         btnGuardar = findViewById(R.id.btnListoVacunas);
-        btnCancel = findViewById(R.id.btnCancelarVacuna);
         fechaHora = new DateTime();
+        metodosImagenes = new MetodosImagenes(this);
 
         /** Se obtiene una instancia de la base de datos*/
         instanciaDB = SingletonDB.getDatabase(this);

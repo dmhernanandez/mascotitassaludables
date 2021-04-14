@@ -1,9 +1,11 @@
 package hn.healthypets.proyecto;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import androidx.navigation.ui.NavigationUI;
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.Genero;
 import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class MenuLateral extends AppCompatActivity {
 

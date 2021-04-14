@@ -1,6 +1,12 @@
 package hn.healthypets.proyecto;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,16 +16,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import hn.healthypets.proyecto.Utilidades.DateTime;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.database.dao.TipoDosisDAO;
+import hn.healthypets.proyecto.database.dao.MedicamentoDAO;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
-public class Medicamento extends AppCompatActivity {
+public class Medicamentos extends AppCompatActivity {
     private EditText edtNombreMedicamento;
     private EditText edtNumeroDosis;
     private Spinner spiDosis;
@@ -32,6 +41,8 @@ public class Medicamento extends AppCompatActivity {
     private Button btnCancel;
     private DataBase instanciaDB;
     private Integer accion;
+    private DateTime fechaHora;
+    private int dia, mes, anio;
     private ArrayAdapter<String> adaptadorTipoDosis;
     private Integer postionItemEspecie;
 
@@ -41,19 +52,13 @@ public class Medicamento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicamento);
-
-        edtNombreMedicamento=findViewById(R.id.edtNombreMedicamento);
-        edtNumeroDosis=findViewById(R.id.edtNumeroDosis);
-        spiDosis=findViewById(R.id.spiDosis);
-        edtCadaDosis=findViewById(R.id.edtCadaDosis);
-        edtPorDosis=findViewById(R.id.edtPorDosis);
-        edtFechaMedicamento=findViewById(R.id.edtFechaMedicamento);
-        edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
-        btnListo=findViewById(R.id.btnListoMedicamento);
+        init();
         arrayNombreTipoDosis=new ArrayList<>();
+
         //se le agrega el adaptador al spinner
         arrayNombreTipoDosis.add("Seleccione Dosis");
         startSpinnerValues(spiDosis,arrayNombreTipoDosis,adaptadorTipoDosis);
+
 
         accion=Constantes.GUARDAR;
         postionItemEspecie=0;
@@ -61,8 +66,14 @@ public class Medicamento extends AppCompatActivity {
 
 
 
+
         //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
+
+        accion=Constantes.GUARDAR;
+        postionItemEspecie=0;
+
+//        Guardo Los Datos del Select
 
         instanciaDB.getTipoDosisDAO().insertDoseTypes(new TipoDosis("Media Pastilla"),
                 new TipoDosis("Tableta"),
@@ -70,7 +81,7 @@ public class Medicamento extends AppCompatActivity {
                 new TipoDosis("ml"),
                 new TipoDosis("Gotas"));
 
-        instanciaDB.getTipoDosisDAO().getAllDoseTypes().observe(Medicamento.this,
+        instanciaDB.getTipoDosisDAO().getAllDoseTypes().observe(Medicamentos.this,
                 new Observer<List<TipoDosisDAO.NombreDosis>>() {
                     @Override
                     public void onChanged(List<TipoDosisDAO.NombreDosis> nombreDosis) {
@@ -112,6 +123,7 @@ public class Medicamento extends AppCompatActivity {
                 });
 
 
+
         btnListo.setOnClickListener(v -> {
             Validacion.fieldsAreNotEmpty();
             boolean comprobar=Validacion.fieldsAreNotEmpty(edtNombreMedicamento.getText().toString(),
@@ -120,13 +132,53 @@ public class Medicamento extends AppCompatActivity {
                                                             edtPorDosis.getText().toString(),
                                                             edtFechaMedicamento.getText().toString());
 
-            if (comprobar){
-                Toast.makeText(Medicamento.this,"Guardo Medicamento",Toast.LENGTH_LONG).show();
-//                LLAMAR METODO DAO
+            if (comprobar && spiDosis.getSelectedItemPosition()>0){
+                //                LLAMAR METODO DAO
+                Medicamento medicamentos =new Medicamento(
+                        edtNombreMedicamento.getText().toString(),
+                        edtFechaMedicamento.getText().toString(),
+                        "",
+                        0,
+                        edtIndicacionesMedicamento.getText().toString(),
+                        1,
+                        instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
+                );
+                Toast.makeText(Medicamentos.this,"Guardo Medicamentos",Toast.LENGTH_LONG).show();
+                instanciaDB.getMedicamentoDAO().insertMedicine(medicamentos);
             }else{
-                Toast.makeText(Medicamento.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
+                Toast.makeText(Medicamentos.this,"Campo Obligatorio (*) esta Vacio",Toast.LENGTH_LONG).show();
             }
         });
+    }
+    private void init() {
+        edtNombreMedicamento=findViewById(R.id.edtNombreMedicamento);
+        edtNumeroDosis=findViewById(R.id.edtNumeroDosis);
+        spiDosis=findViewById(R.id.spiDosis);
+        edtCadaDosis=findViewById(R.id.edtCadaDosis);
+        edtPorDosis=findViewById(R.id.edtPorDosis);
+        edtFechaMedicamento=findViewById(R.id.edtFechaMedicamento);
+        edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
+        btnListo=findViewById(R.id.btnListoMedicamento);
+        fechaHora = new DateTime();
+        //FECHA
+        /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
+        Intent intentValues = getIntent();
+        accion = intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.ACTUALIZAR);
+        if (accion == Constantes.GUARDAR) {
+            //Recuperamos el valor de la fecha por defecto que es la fecha actual
+            dia = DateTime.diaDelMes;
+            mes = DateTime.mes;
+            anio = DateTime.anio;
+        } else if (accion == Constantes.ACTUALIZAR) {
+            String fecha1 = "15-03-2021";
+            //Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha para asignarlo y luego asignarla al input*/
+            String[] fecha = fecha1.split("-");
+            dia = Integer.parseInt(fecha[0]);
+            mes = Integer.parseInt(fecha[1]) - 1;
+            anio = Integer.parseInt(fecha[2]);
+        }
+        edtFechaMedicamento.setText(fechaHora.formato(dia, mes, anio));
+        accion = Constantes.ACTUALIZAR;
     }
 
     private void startSpinnerValues(Spinner spinner, ArrayList<String> valores, ArrayAdapter<String> adapter)
