@@ -1,15 +1,12 @@
 package hn.healthypets.proyecto.database.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.room.Dao;
-import androidx.room.Index;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
-
 import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
 
 @Dao
@@ -28,8 +25,8 @@ public interface CategoriaMedicamentoDAO {
     @Update
     public void actualizarCategoriaMedicamento(CategoriaMedicamento categoriaMedicamento);
 
-    @Query("SELECT tipoDosisId FROM tipodosis WHERE dosisNombre = :tipoDosis")
-    public int getIdDosisByName(String tipoDosis);
+    @Query("SELECT * FROM categoriamedicamento WHERE nombreCategoria = :nombreCategoria")
+    public int getIdCategoryMedicineByName(String nombreCategoria);
 
     //Selecciona todas las filas de Categoria Medicamento
     @Query("SELECT * FROM CategoriaMedicamento")

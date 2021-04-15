@@ -243,7 +243,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
 
                                }
                                mascota=new Mascota(
-                                       intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT),
+                                       intentValues.getIntExtra(Constantes.TAG_ID,Constantes.DEFAULT),
                                        edtNombreMascota.getText().toString(),
                                        edtFechaNaciento.getText().toString(),
                                        instanciaDB.getGeneroDAO().getIdGenderByName(genero),

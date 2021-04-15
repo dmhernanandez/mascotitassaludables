@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -29,7 +30,14 @@ public class NotificationService extends IntentService {
     private static int NOTIFICATION_ID = 1;
     Notification notification;
     public NotificationService(String name) {
+
         super(name);
+    }
+
+    public NotificationService()
+    {
+        super("Hola");
+
     }
 
     @Override
@@ -45,7 +53,7 @@ public class NotificationService extends IntentService {
         /**Obtngo la notificacion que hay por defecto*/
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        String message = "Este es un mensaje";
+        String message = intent.getStringExtra("ID");
 
         /** Se valida la versión del telefono ya que en versiones anteoriores a Oreo no se pueden utilizar los
          * chanels*/
@@ -74,6 +82,7 @@ public class NotificationService extends IntentService {
             }
 
 
+            Toast.makeText(getApplicationContext(),intent.getStringExtra("ID"),Toast.LENGTH_LONG).show();
             builder = new NotificationCompat.Builder(context, id);
             mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             pendingIntent = PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -81,7 +90,7 @@ public class NotificationService extends IntentService {
                     .setSmallIcon(R.drawable.amor)   // required
                     .setContentText(message)
                     .setDefaults(Notification.DEFAULT_ALL)
-                    .setAutoCancel(false)
+                    .setAutoCancel(true)
                     .setSound(soundUri)
                     .setContentIntent(pendingIntent)
                     .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
@@ -93,7 +102,9 @@ public class NotificationService extends IntentService {
             startForeground(1, notification);
 
         } else {
+
             pendingIntent = PendingIntent.getActivity(context, 1, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
             notification = new NotificationCompat.Builder(this)
                     .setContentIntent(pendingIntent)
                     .setSmallIcon(R.drawable.amor)

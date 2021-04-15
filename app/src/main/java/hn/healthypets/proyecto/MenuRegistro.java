@@ -1,10 +1,11 @@
 package hn.healthypets.proyecto;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class MenuRegistro extends AppCompatActivity {
 
@@ -36,6 +37,9 @@ public class MenuRegistro extends AppCompatActivity {
 
         agenda.setOnClickListener(v -> {
             Intent intent5 = new Intent(this,Agenda.class);
+            /**Vuelvo a enviar el ID del perro que lo recibi por medio de un intent*/
+            intent5.putExtra(Constantes.TAG_ID,Constantes.DEFAULT);
+            intent5.putExtra(Constantes.TAG_ACCION,Constantes.GUARDAR);
             startActivity(intent5);
         });
     }

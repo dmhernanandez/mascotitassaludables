@@ -1,5 +1,9 @@
 package hn.healthypets.proyecto.Utilidades;
 
+import android.util.Log;
+
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Calendar;
 
 public class DateTime  {
@@ -14,7 +18,7 @@ public class DateTime  {
     private static final String CERO="0";
     private static final String GUION ="-";
     private static final String DOS_PUNTOS = ":";
-
+    private static Calendar calendarioAux = Calendar.getInstance();
 
     public String getDate(){
         return "";
@@ -48,6 +52,22 @@ public class DateTime  {
     public String formatoFecha(String dia, String mes, String year){
 
         return dia + GUION + mes + GUION + anio;
+    }
+
+    /** Se genera un numero aleatorio*/
+    public static int generateNumber() {
+        int numero = 0;
+        SecureRandom secureRandom = null;
+        try {
+            secureRandom = SecureRandom.getInstance("SHA1PRNG");
+            numero = secureRandom.nextInt();
+
+        } catch (NoSuchAlgorithmException e) {
+            Log.i("semilla", e.getMessage());
+            numero = 0;
+            e.printStackTrace();
+        }
+        return numero;
     }
 }
 

@@ -37,11 +37,12 @@
             android:enabled="true"/>
         <service
             android:name=".Utilidades.NotificationService"
-            android:enabled="true"
-          />
+             />
 
         <activity android:name=".item_medicamento"></activity>
+
         <activity android:name=".item_desparaitante" />
+
         <activity
             android:name=".MenuRegistro"
             android:screenOrientation="portrait" />

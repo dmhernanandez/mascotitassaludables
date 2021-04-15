@@ -1,6 +1,5 @@
 package hn.healthypets.proyecto.adaptadores_mascotitas_saludables;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +35,8 @@ public class AdaptadorMedicamento extends RecyclerView.Adapter<AdaptadorMedicame
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txvNombreMascotaMedicamento = itemView.findViewById(R.id.txvNombreMascotaMedicamento);
-            txvFechaAplicacionMedicamento = itemView.findViewById(R.id.txvNumeroChipPerfil);
+            txvNombreMascotaMedicamento = itemView.findViewById(R.id.txvNombrePerfil);
+            txvFechaAplicacionMedicamento = itemView.findViewById(R.id.txtFechaNacimiento);
             txvRecetaMedicamento = itemView.findViewById(R.id.txvRecetaMedicamento);
              }
     }

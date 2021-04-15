@@ -27,7 +27,7 @@
 
 
             <TextView
-                android:id="@+id/txvNombreMascotaMedicamento"
+                android:id="@+id/txvNombrePerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/questrial"
@@ -55,7 +55,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
+                app:layout_constraintTop_toBottomOf="@+id/txvNombrePerfil"
                 app:layout_constraintVertical_bias="0.411" />
 
             <TextView
@@ -69,7 +69,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.555"
-                app:layout_constraintStart_toEndOf="@+id/txvNombreMascotaMedicamento"
+                app:layout_constraintStart_toEndOf="@+id/txvNombrePerfil"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.115" />
 

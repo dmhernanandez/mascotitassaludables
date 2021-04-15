@@ -19,6 +19,7 @@ public interface GeneroDAO {
     //Optiene todos los campos de la tabla especie
     @Query("SELECT * FROM genero")
     public List<Genero> getAllGenders();
+
     /*Obtiene id del genero por el nombre*/
     @Query("SELECT generoId FROM genero WHERE genero = :nombreGenero")
     public int getIdGenderByName(String nombreGenero);

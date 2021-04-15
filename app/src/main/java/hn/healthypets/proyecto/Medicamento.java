@@ -127,7 +127,7 @@ public class Medicamento extends AppCompatActivity {
                         0,
                         edtIndicacionesMedicamento.getText().toString(),
                         1,
-                        instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
+                        instanciaDB.getCategoriaMedicamentoDAO().getIdCategoryMedicineByName(spiDosis.getSelectedItem().toString())
                 );
                 Toast.makeText(Medicamento.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                 instanciaDB.getMedicamentoDAO().insertMedicine(medicamento);
