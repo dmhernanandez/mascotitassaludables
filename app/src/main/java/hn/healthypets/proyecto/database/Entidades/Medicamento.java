@@ -26,7 +26,10 @@ public class Medicamento {
     //Llave foranea de categoria del medicamento
     private int medicamentoCatMedicamentoId;
 
-    public Medicamento( int medicamentoId, @NonNull String descripcion, @NonNull String fechaAplicacion, String rutaFotoComprobante, float pesoKilogramo, String observacion, int mascotaMedicadaId, int medicamentoCatMedicamentoId) {
+    //Llave foranea de TipoDosis
+    private int tipoDosisId;
+
+    public Medicamento(int medicamentoId, @NonNull String descripcion, @NonNull String fechaAplicacion, String rutaFotoComprobante, float pesoKilogramo, String observacion, int mascotaMedicadaId, int medicamentoCatMedicamentoId, int tipoDosisId) {
         this.medicamentoId = medicamentoId;
         this.descripcion = descripcion;
         this.fechaAplicacion = fechaAplicacion;
@@ -35,6 +38,8 @@ public class Medicamento {
         this.observacion = observacion;
         this.mascotaMedicadaId = mascotaMedicadaId;
         this.medicamentoCatMedicamentoId = medicamentoCatMedicamentoId;
+        this.tipoDosisId=tipoDosisId;
+
     }
 
     public int getMedicamentoId() {
@@ -101,5 +106,13 @@ public class Medicamento {
 
     public void setMedicamentoCatMedicamentoId(int medicamentoCatMedicamentoId) {
         this.medicamentoCatMedicamentoId = medicamentoCatMedicamentoId;
+    }
+
+    public int getTipoDosisId() {
+        return tipoDosisId;
+    }
+
+    public void setTipoDosisId(int tipoDosisId) {
+        this.tipoDosisId = tipoDosisId;
     }
 }

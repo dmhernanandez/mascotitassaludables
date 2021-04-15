@@ -69,8 +69,9 @@ public class Desparacitante extends AppCompatActivity {
                                     "",
                                     Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
                                     edtObserDespa.getText().toString(),
-                                    1,
-                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Desparasitante")
+                                     getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT),
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName("Desparasitante"),
+                                    0
                 );
                 instanciaDB.getMedicamentoDAO().insertdewormer(desparasitante);
                 Toast.makeText(Desparacitante.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
@@ -112,7 +113,7 @@ public class Desparacitante extends AppCompatActivity {
             //Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha para asignarlo y luego asignarla al input*/
             String[] fecha = fecha1.split("-");
             dia = Integer.parseInt(fecha[0]);
-            mes = Integer.parseInt(fecha[1]) - 1;
+            mes = Integer.parseInt(fecha[1]);
             anio = Integer.parseInt(fecha[2]);
 
         }

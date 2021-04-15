@@ -15,6 +15,7 @@ import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.Entidades.Raza;
 import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 import hn.healthypets.proyecto.database.Entidades.UnidadesMedida;
+import hn.healthypets.proyecto.database.dao.AgendaMedicamentoDAO;
 import hn.healthypets.proyecto.database.dao.CategoriaMedicamentoDAO;
 import hn.healthypets.proyecto.database.dao.EspecieDAO;
 import hn.healthypets.proyecto.database.dao.GeneroDAO;
@@ -45,5 +46,5 @@ public abstract class DataBase extends RoomDatabase {
   public abstract TipoDosisDAO getTipoDosisDAO();
   public abstract MedicamentoDAO getMedicamentoDAO();
   public abstract GeneroDAO getGeneroDAO();
-
+  public abstract AgendaMedicamentoDAO getAgendaMedicamentoDAO();
 }

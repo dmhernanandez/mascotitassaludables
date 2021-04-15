@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
+
 public class MenuRegistro extends AppCompatActivity {
 
     @Override
@@ -20,16 +22,19 @@ public class MenuRegistro extends AppCompatActivity {
 
         vacuna.setOnClickListener(v -> {
             Intent intent = new Intent(this, Vacunas.class);
+            intent.putExtra(Constantes.TAG_ID_MASCOTA,getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT));
             startActivity(intent);
         });
 
         desparacitante.setOnClickListener(v -> {
             Intent intent2 = new Intent(this,Desparacitante.class);
+            intent2.putExtra(Constantes.TAG_ID_MASCOTA,getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT));
             startActivity(intent2);
         });
 
         medicamento.setOnClickListener(v -> {
             Intent intent3 = new Intent(this, Medicamentos.class);
+            intent3.putExtra(Constantes.TAG_ID_MASCOTA,getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT));
             startActivity(intent3);
         });
 

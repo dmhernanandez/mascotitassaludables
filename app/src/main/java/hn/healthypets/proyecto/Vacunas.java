@@ -124,8 +124,9 @@ public class Vacunas extends AppCompatActivity {
                                     nombreImagen,
                                     0,
                                     edtDescripVacuna.getText().toString(),
-                                    intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
-                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Vacuna")
+                                    getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT),
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName("Vacuna"),
+                                    0
                             );
                             instanciaDB.getMedicamentoDAO().insertMedicine(vacuna);
 
@@ -168,11 +169,12 @@ public class Vacunas extends AppCompatActivity {
                                     0,
                                     edtDescripVacuna.getText().toString(),
                                     intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
-                                    instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName("Vacuna")
+                                    instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName("Vacuna"),
+                                    0
                             );
                             instanciaDB.getMedicamentoDAO().insertMedicine(vacuna);
 
-
+                            Log.i("spiner ",String.valueOf(intentValues.getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT)));
                             Toast.makeText(Vacunas.this, "Actualizado con exito +", Toast.LENGTH_LONG).show();
                             finish();
                             break;
@@ -281,6 +283,7 @@ public class Vacunas extends AppCompatActivity {
 
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
         intentValues= getIntent();
+
         accion=intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.GUARDAR);
         if(accion==Constantes.GUARDAR)
         {

@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.AgendaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.Entidades.TipoDosis;
 import hn.healthypets.proyecto.database.SingletonDB;
@@ -46,6 +48,7 @@ public class Medicamentos extends AppCompatActivity {
     private Integer postionItemEspecie;
 
     private Intent intentValues;
+
     private static ArrayList<String> arrayNombreTipoDosis;
 
 
@@ -70,8 +73,6 @@ public class Medicamentos extends AppCompatActivity {
 
         accion=Constantes.GUARDAR;
         postionItemEspecie=0;
-
-
 
 
 
@@ -134,6 +135,7 @@ public class Medicamentos extends AppCompatActivity {
 
         btnListo.setOnClickListener(v -> {
             Validacion.fieldsAreNotEmpty();
+
             boolean comprobar=Validacion.fieldsAreNotEmpty(edtNombreMedicamento.getText().toString(),
                                                             edtNumeroDosis.getText().toString(),
                                                             edtCadaDosis.getText().toString(),
@@ -142,17 +144,23 @@ public class Medicamentos extends AppCompatActivity {
 
             if (comprobar && spiDosis.getSelectedItemPosition()>0){
                 //                LLAMAR METODO DAO
-                Medicamento medicamentos =new Medicamento(
+                AgendaMedicamento agendaMedicamento =new AgendaMedicamento(
                         0,
                         edtNombreMedicamento.getText().toString(),
+                        Integer.parseInt(edtNumeroDosis.getText().toString()),
+                        instanciaDB.getTipoDosisDAO().getIdDoseTypeByName(spiDosis.getSelectedItem().toString()),
+                        Integer.parseInt(edtCadaDosis.getText().toString()),
+                        Integer.parseInt(edtPorDosis.getText().toString()),
                         edtFechaMedicamento.getText().toString(),
-                        "",
-                        0,
                         edtIndicacionesMedicamento.getText().toString(),
+                        true,
+                        getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT),
                         0,
-                        instanciaDB.getCategoriaMedicamentoDAO().getIdDosisByName(spiDosis.getSelectedItem().toString())
+                        0
                 );
-                instanciaDB.getMedicamentoDAO().insertMedicine(medicamentos);
+
+                instanciaDB.getAgendaMedicamentoDAO().insertMedicinesSchedule(agendaMedicamento);
+
 
                 Toast.makeText(Medicamentos.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                 finish();
@@ -174,8 +182,8 @@ public class Medicamentos extends AppCompatActivity {
         fechaHora = new DateTime();
         //FECHA
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
-        Intent intentValues = getIntent();
-        intentValues= getIntent();
+        intentValues = getIntent();
+
         accion = intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.ACTUALIZAR);
         if (accion == Constantes.GUARDAR) {
             //Recuperamos el valor de la fecha por defecto que es la fecha actual
@@ -187,7 +195,7 @@ public class Medicamentos extends AppCompatActivity {
             //Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha para asignarlo y luego asignarla al input*/
             String[] fecha = fecha1.split("-");
             dia = Integer.parseInt(fecha[0]);
-            mes = Integer.parseInt(fecha[1]) - 1;
+            mes = Integer.parseInt(fecha[1]);
             anio = Integer.parseInt(fecha[2]);
         }
         edtFechaMedicamento.setText(fechaHora.formato(dia, mes, anio));

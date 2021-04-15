@@ -47,9 +47,11 @@ public class MenuLateral extends AppCompatActivity {
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
-                R.id.nav_perfiles,
+                R.id.nav_historialVacuna,
+                R.id.nav_historialDesparacitante,
+                R.id.nav_historialMedicamento,
                 R.id.nav_actividades,
-                R.id.nav_historial,
+                R.id.nav_informacion,
                 R.id.nav_credencial)
                 .setDrawerLayout(drawer)
                 .build();

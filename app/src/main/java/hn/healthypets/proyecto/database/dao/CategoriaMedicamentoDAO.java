@@ -28,8 +28,8 @@ public interface CategoriaMedicamentoDAO {
     @Update
     public void actualizarCategoriaMedicamento(CategoriaMedicamento categoriaMedicamento);
 
-    @Query("SELECT tipoDosisId FROM tipodosis WHERE dosisNombre = :tipoDosis")
-    public int getIdDosisByName(String tipoDosis);
+    @Query("SELECT categoriaMedicamentoId FROM categoriamedicamento WHERE nombreCategoria = :nombreCategoria")
+    public int getIdMedicinesCategoriesByName(String nombreCategoria);
 
     //Selecciona todas las filas de Categoria Medicamento
     @Query("SELECT * FROM CategoriaMedicamento")

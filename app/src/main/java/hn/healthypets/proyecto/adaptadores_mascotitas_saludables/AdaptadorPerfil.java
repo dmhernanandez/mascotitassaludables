@@ -53,7 +53,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
             metodosImagenes = new MetodosImagenes(itemView.getContext());
             txvNombrePerfil = itemView.findViewById(R.id.txvNombreMascotaMedicamento);
             txvNumeroChipPerfil = itemView.findViewById(R.id.txvNumeroChipPerfil);
-            imgMascotaPerfil = itemView.findViewById(R.id.imgvMascotaPerfil);
+            imgMascotaPerfil = itemView.findViewById(R.id.imgvVacuna);
             btnControlPerfil = itemView.findViewById(R.id.btnControlPerfil);
             btnActualizar= itemView.findViewById(R.id.btnActualizarMascota);
 

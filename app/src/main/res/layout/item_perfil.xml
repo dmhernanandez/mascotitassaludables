@@ -30,12 +30,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
-            app:layout_constraintStart_toEndOf="@+id/imgvMascotaPerfil"
+            app:layout_constraintStart_toEndOf="@+id/imgvVacuna"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.204" />
 
         <ImageView
-            android:id="@+id/imgvMascotaPerfil"
+            android:id="@+id/imgvVacuna"
             android:layout_width="131dp"
             android:layout_height="127dp"
             android:soundEffectsEnabled="true"
@@ -59,7 +59,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.054"
-            app:layout_constraintStart_toEndOf="@+id/imgvMascotaPerfil"
+            app:layout_constraintStart_toEndOf="@+id/imgvVacuna"
             app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
             app:layout_constraintVertical_bias="0.25" />
 

@@ -10,19 +10,32 @@
             android:title="Actividades"
             />
 
-<!--        <item-->
-<!--            android:id="@+id/nav_perfiles"-->
-<!--            android:icon="@drawable/ic_amor_negro"-->
-<!--            android:title="Perfiles" />-->
-
-        <item
-            android:id="@+id/nav_historial"
-            android:icon="@drawable/ic_informe_medico_negro"
-            android:title="Historial" />
-
         <item
             android:id="@+id/nav_credencial"
             android:icon="@drawable/ic_tarjeta_de_identificacion_negro"
             android:title="Credencial" />
+
+        <item
+            android:id="@+id/nav_historialVacuna"
+            android:icon="@drawable/ic_vacuna_negro"
+            android:title="Historial Vacunas" />
+
+        <item
+            android:id="@+id/nav_historialDesparacitante"
+            android:icon="@drawable/ic_desparacitante_negro"
+            android:title="Historial Desparasitante" />
+
+        <item
+            android:id="@+id/nav_historialMedicamento"
+            android:icon="@drawable/ic_medicamentos_negro"
+            android:title="Historial Medicamento" />
+
+        <item
+            android:id="@+id/nav_informacion"
+            android:icon="@drawable/ic_vector_informacion"
+            android:title="información" />
+
+
+
     </group>
 </menu>
