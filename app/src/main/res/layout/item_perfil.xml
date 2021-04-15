@@ -67,7 +67,7 @@
             android:id="@+id/btnControlPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registros"
+            android:text="Control"
             android:textSize="12sp"
             app:icon="@drawable/ic_vector_control"
             app:layout_constraintBottom_toBottomOf="parent"

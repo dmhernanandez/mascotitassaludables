@@ -1,366 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:layout_editor_absoluteX="207dp"
-    tools:layout_editor_absoluteY="671dp">
+    android:background="@drawable/fondo_creacion_perfiles">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fondo_creacion_perfiles"
-        tools:context=".CreacionPerfiles2">
+        android:layout_marginBottom="55dp"
+        android:fillViewport="true"
+        tools:layout_editor_absoluteX="207dp"
+        tools:layout_editor_absoluteY="671dp">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".CreacionPerfiles2">
 
-        <ImageView
-            android:id="@+id/imgCreacionPerfiles"
-            android:layout_width="145dp"
-            android:layout_height="158dp"
-            android:src="@drawable/ic_imagen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.345"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.006"
-            tools:srcCompat="@tools:sample/avatars" />
+            <ImageView
+                android:id="@+id/imgCreacionPerfiles"
+                android:layout_width="145dp"
+                android:layout_height="158dp"
+                android:src="@drawable/ic_imagen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.345"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.006"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        <ImageButton
-            android:id="@+id/imgbtnTomarFotosCP"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/btn_redondo_aqua"
-            android:src="@drawable/ic_camera_li"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.186"
-            app:layout_constraintStart_toEndOf="@+id/imgCreacionPerfiles"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.039" />
+            <ImageButton
+                android:id="@+id/imgbtnTomarFotosCP"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_redondo_aqua"
+                android:src="@drawable/ic_camera_li"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.186"
+                app:layout_constraintStart_toEndOf="@+id/imgCreacionPerfiles"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.039" />
 
-        <ImageButton
-            android:id="@+id/imgbtnBuscarFotosV"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="580dp"
-            android:background="@drawable/btn_redondo_aqua"
-            android:src="@drawable/ic_subir_imagen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.187"
-            app:layout_constraintStart_toEndOf="@+id/imgCreacionPerfiles"
-            app:layout_constraintTop_toBottomOf="@+id/imgbtnTomarFotosCP"
-            app:layout_constraintVertical_bias="0.466" />
+            <ImageButton
+                android:id="@+id/imgbtnBuscarFotosV"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="580dp"
+                android:background="@drawable/btn_redondo_aqua"
+                android:src="@drawable/ic_subir_imagen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.187"
+                app:layout_constraintStart_toEndOf="@+id/imgCreacionPerfiles"
+                app:layout_constraintTop_toBottomOf="@+id/imgbtnTomarFotosCP"
+                app:layout_constraintVertical_bias="0.466" />
 
-        <ImageButton
-            android:id="@+id/imgbtnAgregarNuevaRaza"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="36dp"
+            <ImageButton
+                android:id="@+id/imgbtnAgregarNuevaRaza"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="36dp"
 
-            android:layout_marginBottom="160dp"
-            android:background="@drawable/btn_redondo_celeste"
-            android:src="@drawable/ic_vector_nuevoregistro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+                android:layout_marginBottom="160dp"
+                android:background="@drawable/btn_redondo_celeste"
+                android:src="@drawable/ic_vector_nuevoregistro"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageButton
-            android:id="@+id/imgbtnAgregarNuevaEspecie2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginBottom="220dp"
-            android:background="@drawable/btn_redondo_celeste"
-            android:src="@drawable/ic_vector_nuevoregistro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <ImageButton
+                android:id="@+id/imgbtnAgregarNuevaEspecie2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="36dp"
+                android:layout_marginBottom="220dp"
+                android:background="@drawable/btn_redondo_celeste"
+                android:src="@drawable/ic_vector_nuevoregistro"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/txvNombreCP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/questrial"
-            android:text="Ingrese Nombre :"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/edtNombreMascota"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.208"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/txvNombreCP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/questrial"
+                android:text="Ingrese Nombre :"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/edtNombreMascota"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.208"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/txvNombreCP2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/questrial"
-            android:text="*"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/edtNombreMascota"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.116"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
-            app:layout_constraintVertical_bias="1.0" />
+            <TextView
+                android:id="@+id/txvNombreCP2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/questrial"
+                android:text="*"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/edtNombreMascota"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.116"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgCreacionPerfiles"
+                app:layout_constraintVertical_bias="1.0" />
 
-        <EditText
-            android:id="@+id/edtNombreMascota"
-            android:layout_width="302dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="512dp"
-            android:background="@drawable/input_gris"
-            android:ems="10"
-            android:hint="Doggy"
-            android:inputType="textPersonName"
-            android:padding="15dp"
-            android:textColorHint="#9E9C9C"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.431"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas"
-            app:layout_constraintVertical_bias="0.06" />
+            <EditText
+                android:id="@+id/edtNombreMascota"
+                android:layout_width="302dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="512dp"
+                android:background="@drawable/input_gris"
+                android:ems="10"
+                android:hint="Doggy"
+                android:inputType="textPersonName"
+                android:padding="15dp"
+                android:textColorHint="#9E9C9C"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.431"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgComprobacionVacunas"
+                app:layout_constraintVertical_bias="0.06" />
 
-        <TextView
-            android:id="@+id/txvFechaNacimientoCP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/questrial"
-            android:text="Ingrese Fecha Nacimiento:"
-            android:textColor="#0B0B0B"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/edtFechaNacimiento"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.275"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNombreMascota"
-            app:layout_constraintVertical_bias="1.0" />
+            <TextView
+                android:id="@+id/txvFechaNacimientoCP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/questrial"
+                android:text="Ingrese Fecha Nacimiento:"
+                android:textColor="#0B0B0B"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/edtFechaNacimiento"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.275"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtNombreMascota"
+                app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/txvFechaNacimientoCP2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/questrial"
-            android:text="*"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toTopOf="@+id/edtFechaNacimiento"
-            app:layout_constraintEnd_toStartOf="@+id/txvFechaNacimientoCP"
-            app:layout_constraintHorizontal_bias="0.94"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNombreMascota"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/txvFechaNacimientoCP2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/questrial"
+                android:text="*"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toTopOf="@+id/edtFechaNacimiento"
+                app:layout_constraintEnd_toStartOf="@+id/txvFechaNacimientoCP"
+                app:layout_constraintHorizontal_bias="0.94"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtNombreMascota"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/txvNumeroChipCP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/questrial"
-            android:text="Numero Chip :"
-            android:textColor="#0B0B0B"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/edtNumeroChip"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.146"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtFechaNacimiento"
-            app:layout_constraintVertical_bias="1.0" />
-
-
-        <TextView
-            android:id="@+id/txvGenero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/questrial"
-            android:text="Genero:"
-            android:textColor="#0B0B0B"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.16"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
-            app:layout_constraintVertical_bias="0.088" />
-
-        <TextView
-            android:id="@+id/txvGenero2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/questrial"
-            android:text="*"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.113"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
-            app:layout_constraintVertical_bias="0.091" />
-
-        <RadioGroup
-            android:id="@+id/rbgGrupoGenero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:orientation="horizontal"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.294"
-            app:layout_constraintStart_toEndOf="@+id/txvGenero"
-            app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
-            app:layout_constraintVertical_bias="0.0">
-
-            <RadioButton
-                android:id="@+id/rbHembra"
+            <TextView
+                android:id="@+id/txvNumeroChipCP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/questrial"
-                android:text="Hembra"
-                android:textSize="16sp" />
+                android:text="Número Chip :"
+                android:textColor="#0B0B0B"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/edtNumeroChip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.146"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtFechaNacimiento"
+                app:layout_constraintVertical_bias="1.0" />
 
-            <RadioButton
-                android:id="@+id/rbMacho"
+
+            <TextView
+                android:id="@+id/txvGenero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
                 android:fontFamily="@font/questrial"
-                android:text="Macho"
-                android:textSize="16sp" />
-        </RadioGroup>
+                android:text="Género:"
+                android:textColor="#0B0B0B"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
+                app:layout_constraintVertical_bias="0.088" />
 
-        <TextView
-            android:id="@+id/txvEspecie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:fontFamily="@font/questrial"
-            android:text="Especie:"
-            android:textColor="#0B0B0B"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.153"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txvGenero"
-            app:layout_constraintVertical_bias="0.062" />
+            <TextView
+                android:id="@+id/txvGenero2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/questrial"
+                android:text="*"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.113"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
+                app:layout_constraintVertical_bias="0.091" />
 
-        <TextView
-            android:id="@+id/txvEspecie2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:fontFamily="@font/questrial"
-            android:text="*"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.113"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txvGenero"
-            app:layout_constraintVertical_bias="0.059" />
+            <RadioGroup
+                android:id="@+id/rbgGrupoGenero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal"
 
-        <Spinner
-            android:id="@+id/spiEspecie"
-            android:layout_width="165dp"
-            android:layout_height="50dp"
-            android:background="@drawable/input_gris"
-            android:entries="@array/especie_items"
-            android:padding="10dp"
-            android:prompt="@string/especie_promts"
-            android:spinnerMode="dialog"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaEspecie2"
-            app:layout_constraintStart_toEndOf="@+id/txvEspecie"
-            app:layout_constraintTop_toBottomOf="@+id/rbgGrupoGenero"
-            app:layout_constraintVertical_bias="0.079" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.294"
+                app:layout_constraintStart_toEndOf="@+id/txvGenero"
+                app:layout_constraintTop_toBottomOf="@+id/edtNumeroChip"
+                app:layout_constraintVertical_bias="0.0">
 
-        <Spinner
-            android:id="@+id/spiRaza"
-            android:layout_width="165dp"
-            android:layout_height="50dp"
-            android:background="@drawable/input_gris"
-            android:entries="@array/raza_items"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaRaza"
-            app:layout_constraintHorizontal_bias="0.666"
-            app:layout_constraintStart_toEndOf="@+id/txvRaza"
-            app:layout_constraintTop_toBottomOf="@+id/spiEspecie"
-            app:layout_constraintVertical_bias="0.065" />
+                <RadioButton
+                    android:id="@+id/rbHembra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/questrial"
+                    android:text="Hembra"
+                    android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/txvRaza"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/questrial"
-            android:text="Raza:"
-            android:textColor="#0B0B0B"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.125"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txvEspecie"
-            app:layout_constraintVertical_bias="0.189" />
+                <RadioButton
+                    android:id="@+id/rbMacho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="Macho"
+                    android:textSize="16sp" />
+            </RadioGroup>
 
-        <Button
-            android:id="@+id/btnGuardarCP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/listo"
-            android:text="guardar"
-            app:icon="@drawable/ic_vector_nuevoregistro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spiRaza"
-            app:layout_constraintVertical_bias="0.125" />
+            <TextView
+                android:id="@+id/txvEspecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/questrial"
+                android:text="Especie:"
+                android:textColor="#0B0B0B"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.153"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvGenero"
+                app:layout_constraintVertical_bias="0.062" />
 
-        <EditText
-            android:id="@+id/edtFechaNacimiento"
-            android:layout_width="302dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/input_gris"
-            android:clickable="true"
-            android:ems="10"
-            android:focusable="false"
-            android:hint="31/03/2021"
-            android:inputType="date"
-            android:maxLines="1"
-            android:padding="15dp"
-            android:textColorHint="#9E9C9C"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.431"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNombreMascota" />
+            <TextView
+                android:id="@+id/txvEspecie2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/questrial"
+                android:text="*"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.113"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvGenero"
+                app:layout_constraintVertical_bias="0.059" />
 
-        <EditText
-            android:id="@+id/edtNumeroChip"
-            android:layout_width="302dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/input_gris"
-            android:ems="10"
-            android:hint="00000"
-            android:inputType="number"
-            android:padding="15dp"
-            android:textColorHint="#9E9C9C"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.431"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtFechaNacimiento" />
+            <Spinner
+                android:id="@+id/spiEspecie"
+                android:layout_width="165dp"
+                android:layout_height="50dp"
+                android:background="@drawable/input_gris"
+                android:entries="@array/especie_items"
+                android:padding="10dp"
+                android:prompt="@string/especie_promts"
+                android:spinnerMode="dialog"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaEspecie2"
+                app:layout_constraintStart_toEndOf="@+id/txvEspecie"
+                app:layout_constraintTop_toBottomOf="@+id/rbgGrupoGenero"
+                app:layout_constraintVertical_bias="0.079" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+            <Spinner
+                android:id="@+id/spiRaza"
+                android:layout_width="165dp"
+                android:layout_height="50dp"
+                android:background="@drawable/input_gris"
+                android:entries="@array/raza_items"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaRaza"
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintStart_toEndOf="@+id/txvRaza"
+                app:layout_constraintTop_toBottomOf="@+id/spiEspecie"
+                app:layout_constraintVertical_bias="0.065" />
+
+            <TextView
+                android:id="@+id/txvRaza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/questrial"
+                android:text="Raza:"
+                android:textColor="#0B0B0B"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvEspecie"
+                app:layout_constraintVertical_bias="0.189" />
+
+            <Button
+                android:id="@+id/btnGuardarCP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/listo"
+                android:text="guardar"
+                app:icon="@drawable/ic_vector_nuevoregistro"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spiRaza"
+                app:layout_constraintVertical_bias="0.267" />
+
+            <EditText
+                android:id="@+id/edtFechaNacimiento"
+                android:layout_width="302dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/input_gris"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="31/03/2021"
+                android:inputType="date"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:textColorHint="#9E9C9C"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.431"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtNombreMascota" />
+
+            <EditText
+                android:id="@+id/edtNumeroChip"
+                android:layout_width="302dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/input_gris"
+                android:ems="10"
+                android:hint="00000"
+                android:inputType="number"
+                android:padding="15dp"
+                android:textColorHint="#9E9C9C"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.431"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtFechaNacimiento" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
