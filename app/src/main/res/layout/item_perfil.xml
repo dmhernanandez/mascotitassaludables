@@ -7,17 +7,16 @@
     android:layout_height="180dp"
     android:layout_marginHorizontal="20dp"
     android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
     app:cardCornerRadius="20dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
-            android:id="@+id/txvNombrePerfil"
+            android:id="@+id/txvNombreMascotaMedicamento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/questrial"
@@ -29,12 +28,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
-            app:layout_constraintStart_toEndOf="@+id/imgvMascotaPerfil"
+            app:layout_constraintStart_toEndOf="@+id/imgvVacuna"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.204" />
-
         <ImageView
-            android:id="@+id/imgvMascotaPerfil"
+            android:id="@+id/imgvVacuna"
             android:layout_width="131dp"
             android:layout_height="127dp"
             android:soundEffectsEnabled="true"
@@ -45,9 +43,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.301"
             tools:srcCompat="@tools:sample/avatars" />
-
         <TextView
-            android:id="@+id/txtFechaNacimiento"
+            android:id="@+id/txvNumeroChipPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/questrial"
@@ -58,24 +55,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.054"
-            app:layout_constraintStart_toEndOf="@+id/imgvMascotaPerfil"
-            app:layout_constraintTop_toBottomOf="@+id/txvNombrePerfil"
+            app:layout_constraintStart_toEndOf="@+id/imgvVacuna"
+            app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
             app:layout_constraintVertical_bias="0.25" />
-
         <Button
             android:id="@+id/btnControlPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registros"
+            android:text="Control"
             android:textSize="12sp"
             app:icon="@drawable/ic_vector_control"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnActualizarMascota"
             app:layout_constraintHorizontal_bias="0.932"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtFechaNacimiento"
+            app:layout_constraintTop_toBottomOf="@+id/txvNumeroChipPerfil"
             app:layout_constraintVertical_bias="0.675" />
-
         <ImageButton
             android:id="@+id/btnActualizarMascota"
             android:layout_width="50dp"
@@ -88,7 +83,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.9" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.cardview.widget.CardView>

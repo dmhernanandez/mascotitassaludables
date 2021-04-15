@@ -3,6 +3,7 @@ package hn.healthypets.proyecto.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +17,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import hn.healthypets.proyecto.CreacionPerfiles;
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorPerfil;
@@ -29,6 +33,7 @@ public class CredencialesFragment extends Fragment {
      private  RecyclerView recyclerViewPerfiles;
      private LinearLayoutManager linearLayoutManager;
      private DataBase instanciaDB;
+
     //Creamos el Array o lista de lo que vamos a enviar
     ArrayList<Mascota> arrayElementos ;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,6 +41,7 @@ public class CredencialesFragment extends Fragment {
 
         View vista = inflater.inflate(R.layout.fragment_credenciales, container, false);
         RecyclerView  recyclerView=vista.findViewById(R.id.rvCredencial);
+
         ImageButton nuevo=vista.findViewById(R.id.btnAniadirCredencial);
         //Obtenemos una instancia de la base de datos
         instanciaDB= SingletonDB.getDatabase(getContext());
@@ -80,7 +86,7 @@ public class CredencialesFragment extends Fragment {
           }
       });
 
-
         return vista;
     }
+
 }

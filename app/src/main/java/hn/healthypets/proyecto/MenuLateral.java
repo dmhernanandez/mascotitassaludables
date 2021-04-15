@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Genero;
 import hn.healthypets.proyecto.database.SingletonDB;
 
@@ -35,12 +36,19 @@ public class MenuLateral extends AppCompatActivity {
         /*** Aqui se crean todos los valores valores por defecto de la base de datos*/
         instanciaDB = SingletonDB.getDatabase(MenuLateral.this);
         instanciaDB.getGeneroDAO().insertGenders(new Genero("Hembra"), new Genero("Macho"));
+        instanciaDB.getCategoriaMedicamentoDAO().insertMedicinesCategories(
+                new CategoriaMedicamento(0, "Vacuna"),
+                new CategoriaMedicamento(0, "Desparasitante"),
+                new CategoriaMedicamento(0, "Medicamento")
+        );
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
-                R.id.nav_perfiles,
+                R.id.nav_historialVacuna,
+                R.id.nav_historialDesparacitante,
+                R.id.nav_historialMedicamento,
                 R.id.nav_actividades,
-                R.id.nav_historial,
+                R.id.nav_informacion,
                 R.id.nav_credencial)
                 .setDrawerLayout(drawer)
                 .build();
@@ -61,7 +69,7 @@ public class MenuLateral extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lateral, menu);
+//        getMenuInflater().inflate(R.menu.menu_lateral, menu);
         return true;
     }
 

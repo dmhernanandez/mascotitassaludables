@@ -79,7 +79,6 @@ public class MedicamentosActivity extends AppCompatActivity {
         edtFechaMedicamento=findViewById(R.id.edtFechaMedicamento);
         edtIndicacionesMedicamento=findViewById(R.id.edtIndicacionesMedicamento);
         btnListo=findViewById(R.id.btnListoMedicamento);
-        btnCancel=findViewById(R.id.btnCancelarMedicamento);
         fechaHora = new DateTime();
         metodosImagenes = new MetodosImagenes(this);
 

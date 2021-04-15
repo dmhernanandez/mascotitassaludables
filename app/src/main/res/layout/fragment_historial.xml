@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@drawable/fondo_historial"
     tools:layout_editor_absoluteX="207dp"
     tools:layout_editor_absoluteY="671dp">
 
@@ -13,7 +14,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fondo_historial"
         tools:context=".Fragments.HistorialFragment">
 
         <Spinner
@@ -50,8 +50,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHistorial"
+            android:layout_marginTop="55dp"
             android:layout_width="match_parent"
-            android:layout_height="685dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="55dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner"
             app:layout_constraintVertical_bias="0.0"

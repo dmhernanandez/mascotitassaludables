@@ -40,7 +40,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txvNombrePerfil;
-        TextView txvFechaNaciento;
+        TextView txvNumeroChipPerfil;
         ImageView imgMascotaPerfil;
         Button btnControlPerfil;
         ImageButton btnActualizar;
@@ -51,11 +51,11 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             metodosImagenes = new MetodosImagenes(itemView.getContext());
-            txvNombrePerfil = itemView.findViewById(R.id.txvNombrePerfil);
-            txvFechaNaciento = itemView.findViewById(R.id.txtFechaNacimiento);
-            imgMascotaPerfil = itemView.findViewById(R.id.imgvMascotaPerfil);
-            btnActualizar = itemView.findViewById(R.id.btnActualizarMascota);
+            txvNombrePerfil = itemView.findViewById(R.id.txvNombreMascotaMedicamento);
+            txvNumeroChipPerfil = itemView.findViewById(R.id.txvNumeroChipPerfil);
+            imgMascotaPerfil = itemView.findViewById(R.id.imgvVacuna);
             btnControlPerfil = itemView.findViewById(R.id.btnControlPerfil);
+            btnActualizar= itemView.findViewById(R.id.btnActualizarMascota);
 
         }
     }
@@ -75,7 +75,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
 
         Mascota mascota = mascotaArrayList.get(position);
         holder.txvNombrePerfil.setText("Nombre: " + mascota.getNombre());
-        holder.txvFechaNaciento.setText("Fecha: " +     mascota.getFechaNacimiento());
+        holder.txvNumeroChipPerfil.setText("Fecha: " +     mascota.getFechaNacimiento());
 
         //Se valida que la ruta de la foto no se nula ni esta vacia, para cargarla
        if(!mascota.getRutaFoto().equals(""))
@@ -103,7 +103,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), MenuRegistro.class);
                 //Envio el id de la mascota para usaro en cualquie
-                intent.putExtra(Constantes.TAG_ID,mascota.getMascotaId());
+                intent.putExtra(Constantes.TAG_ID_MASCOTA,mascota.getMascotaId());
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -116,7 +116,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
                 //Envio el id de la mascota para usaro en cualquie
                 intent.putExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
 
-                intent.putExtra(Constantes.TAG_ID,mascota.getMascotaId());
+                intent.putExtra(Constantes.TAG_ID_MASCOTA,mascota.getMascotaId());
                 intent.putExtra(Constantes.TAG_NOMBRE,mascota.getNombre());
                 intent.putExtra(Constantes.TAG_FECHA_NACIENTO,mascota.getFechaNacimiento());
                 intent.putExtra(Constantes.TAG_NUMERO_CHIP,mascota.getNumeroChip());

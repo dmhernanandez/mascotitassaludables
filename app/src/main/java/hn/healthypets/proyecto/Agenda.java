@@ -34,7 +34,6 @@ public class Agenda extends AppCompatActivity {
     private Spinner spiRecordame;
     private EditText edtObservaionesAgenda;
     private Button btnListo;
-    private Button btnCancel;
 
     //Calendario para obtener fecha & hora
     public final Calendar c = Calendar.getInstance();
@@ -57,12 +56,11 @@ public class Agenda extends AppCompatActivity {
         setContentView(R.layout.activity_agenda);
         edtNombreActividad = findViewById(R.id.edtNombreActividad);
         spiTipAgenda = findViewById(R.id.spiTipoAgenda);
-        edtFechaAgenda = findViewById(R.id.edtFechaAgenda1);
+        edtFechaAgenda = findViewById(R.id.edtFechaAgendaVisita);
         edtHoraAgenda = findViewById(R.id.edtHoraAgenda);
         spiRecordame = findViewById(R.id.spiRecordarme);
         edtObservaionesAgenda = findViewById(R.id.edtObseracionesAgenda);
         btnListo = findViewById(R.id.btnListoAgenda);
-        btnCancel = findViewById(R.id.btnCancelarAgenda);
          instanciaDB= SingletonDB.getDatabase(this);
         /** Obtengo los intent para validar los datos que se reciben*/
         intentRecibido= getIntent();
@@ -120,12 +118,7 @@ public class Agenda extends AppCompatActivity {
                 dialogoFecha.show();
             }
         });
-       btnCancel.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               cancelAlarm(0,Agenda.this);
-           }
-       });
+
         btnListo.setOnClickListener(v -> {
             boolean comprobar = Validacion.fieldsAreNotEmpty(edtNombreActividad.getText().toString(),
                     edtHoraAgenda.getText().toString(),
@@ -142,7 +135,7 @@ public class Agenda extends AppCompatActivity {
                  edtObservaionesAgenda.getText().toString(),
                  DateTime.generateNumber(),
                  intentRecibido.getIntExtra(Constantes.TAG_ID,Constantes.DEFAULT),
-                 instanciaDB.getCategoriaMedicamentoDAO().getIdCategoryMedicineByName(spiTipAgenda.getSelectedItem().toString()),
+                 instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName(spiTipAgenda.getSelectedItem().toString()),
                  Constantes.ACTIVO);
                 instanciaDB.getAgendaVisitaDAO().inertNewTask(task);
 

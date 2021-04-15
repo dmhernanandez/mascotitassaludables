@@ -23,10 +23,13 @@ public interface TipoDosisDAO {
     @Query("Select * from TipoDosis")
     public List<TipoDosis> getAllDoseTypes1();
 
-    /**el LIVEDATA */
+
     @Query("SELECT dosisNombre AS dosisNombre FROM TipoDosis")
     public LiveData<List<NombreDosis>> getAllDoseTypes();
 
+    /*Obtiene id del genero por el nombre*/
+    @Query("SELECT tipoDosisId FROM TipoDosis WHERE dosisNombre = :dosisNombre")
+    public int getIdDoseTypeByName(String dosisNombre);
 
     public class NombreDosis {
         private String dosisNombre;
