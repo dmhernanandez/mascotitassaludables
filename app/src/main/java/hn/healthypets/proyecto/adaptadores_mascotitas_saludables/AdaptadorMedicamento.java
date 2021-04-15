@@ -65,7 +65,7 @@ public class AdaptadorMedicamento extends RecyclerView.Adapter<AdaptadorMedicame
 
         holder.txvNombreMascotaMedicamento.setText("Nombre: " + id);
         holder.txvFechaAplicacionMedicamento.setText("Fecha: " + fecha);
-        holder.txvRecetaMedicamento.setText("Se dara "+nombre+"\n la Cantidad de "+dosis+"- "+dosisid+ "\n Por " +dias+ " Dias,\n Cada " +intervalo+ " Horas");
+        holder.txvRecetaMedicamento.setText("Se dará "+nombre+"\n la Cantidad de "+dosis+"- "+dosisid+ "\n Por " +dias+ " Dias,\n Cada " +intervalo+ " Horas");
 
     }
 }

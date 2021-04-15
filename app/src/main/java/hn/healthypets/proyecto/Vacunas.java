@@ -130,7 +130,7 @@ public class Vacunas extends AppCompatActivity {
                             );
                             instanciaDB.getMedicamentoDAO().insertMedicine(vacuna);
 
-                            Toast.makeText(Vacunas.this, "Guardado con exito", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Vacunas.this, "Información guardada exitosamente ;)", Toast.LENGTH_LONG).show();
                             finish();
                             break;
                         case Constantes.ACTUALIZAR:

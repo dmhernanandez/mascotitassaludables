@@ -46,7 +46,7 @@
             android:id="@+id/txvRecetaMedicamento"
             android:layout_width="337dp"
             android:layout_height="100dp"
-            android:fontFamily="@font/questrial"
+            android:fontFamily="@font/caveat_brush"
             android:padding="10dp"
             android:text="Nombre Producto"
             android:textAlignment="center"
