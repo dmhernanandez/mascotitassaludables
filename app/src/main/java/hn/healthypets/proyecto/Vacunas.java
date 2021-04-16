@@ -160,7 +160,7 @@ public class Vacunas extends AppCompatActivity {
 
                             instanciaDB.getMedicamentoDAO().updateMedicine(vacuna);
 
-                            Toast.makeText(Vacunas.this, "Actualizado con exito +", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Vacunas.this, "Informacion Actualizada con exitosamente ;)", Toast.LENGTH_LONG).show();
                             finish();
                             break;
                     }

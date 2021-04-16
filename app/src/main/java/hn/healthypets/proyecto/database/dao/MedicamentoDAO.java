@@ -24,7 +24,7 @@ public interface MedicamentoDAO {
     public void updateMedicine(Medicamento medicamento);
 
     //select Para la busqueda de CATEGORIA MEDICAMENTO VACUNA
-    @Query("select medicamentoId,nombre, descripcion,fechaAplicacion,rutaFotoComprobante,observacion  from Medicamento INNER JOIN Mascota ON mascotaMedicadaId=mascotaId WHERE mascotaMedicadaId=mascotaId & medicamentoCatMedicamentoId=1")
+    @Query("select medicamentoId,nombre, descripcion,fechaAplicacion,rutaFotoComprobante,observacion  from Medicamento INNER JOIN Mascota ON mascotaMedicadaId=mascotaId WHERE  medicamentoCatMedicamentoId=1")
     public  LiveData<List<Vacunacard>> getMedicinesScheduleByVacuna();
 
     @Query("select mascotaMedicadaId,nombre, fechaAplicacion,descripcion,pesoKilogramo,observacion  from Medicamento INNER JOIN Mascota ON mascotaId= mascotaMedicadaId WHERE  medicamentoCatMedicamentoId=2")

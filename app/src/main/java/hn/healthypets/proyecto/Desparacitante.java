@@ -88,7 +88,7 @@ public class Desparacitante extends AppCompatActivity {
                                 instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName("Desparasitante"),
                                 0);
                         instanciaDB.getMedicamentoDAO().updateMedicine(desparasitante);
-                        Toast.makeText(Desparacitante.this, "Información Actualizada con exito ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Desparacitante.this, "Informacion Actualizada con exitosamente ;)", Toast.LENGTH_LONG).show();
                         finish();
                         break;
                 }
