@@ -96,6 +96,21 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         //Inicializamos todos los elementos
         init();
 
+        instanciaDB.getSpeciesDAO().insertSpecies(new Especie("Perro"));
+        instanciaDB.getSpeciesDAO().insertSpecies(new Especie("Gato"));
+
+        instanciaDB.getRazaDAO().insertBreeds(
+                new Raza("Desconocida", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+                , new Raza("Angora", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato")),
+                new Raza("Sphynx", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+        );
+
+        instanciaDB.getRazaDAO().insertBreeds(
+                new Raza("Mestizo", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro"))
+                , new Raza("Pitbull", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro")),
+                new Raza("Boxer", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro"))
+        );
+
         /**
          * ESTE METODO SE EJECUTA DESPUES DE QUE LA APLICACION PASA AL ESTADO RESUMED Y QUE ES UNA CONSULTA ASINCRONA Y NO SE REALIZA
          * EN EL HILO PRINCIPAL O EN LA EJECUCI0N DEL onCreate
@@ -391,6 +406,8 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         modalDialogoRaza.show(getSupportFragmentManager(), "Seleccione una raza");
 
     }
+
+
 
     @Override
     public void applyTextRaza(String razaMascota) {

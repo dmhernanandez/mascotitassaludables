@@ -127,8 +127,9 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Agenda.cancelAlarm(agenda.getAlarmId(),holder.itemView.getContext());
                         holder.instanciaDB.getAgendaVisitaDAO().deleteTask(agenda.getAgendaVisitaId());
+                        Agenda.cancelAlarm(agenda.getAlarmId(),holder.itemView.getContext());
+
                     }
                 });
                 builder.setNegativeButton("Cancelar", null);

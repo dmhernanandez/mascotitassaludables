@@ -43,7 +43,7 @@ public class MenuRegistro extends AppCompatActivity {
         agenda.setOnClickListener(v -> {
             Intent intent5 = new Intent(this,Agenda.class);
             /**Vuelvo a enviar el ID del perro que lo recibi por medio de un intent*/
-            intent5.putExtra(Constantes.TAG_ID_MASCOTA,getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT));
+            intent5.putExtra(Constantes.TAG_ID,getIntent().getIntExtra(Constantes.TAG_ID, Constantes.DEFAULT));
             intent5.putExtra(Constantes.TAG_ACCION,Constantes.GUARDAR);
             startActivity(intent5);
         });
