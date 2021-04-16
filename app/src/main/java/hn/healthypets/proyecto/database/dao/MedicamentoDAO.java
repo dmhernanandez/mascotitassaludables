@@ -21,7 +21,7 @@ public interface MedicamentoDAO {
     public void insertdewormer(Medicamento medicamento);
 
 //select Para la busqueda de CATEGORIA MEDICAMENTO VACUNA
-    @Query("select nombre, descripcion,fechaAplicacion,rutaFotoComprobante  from Medicamento INNER JOIN Mascota ON mascotaMedicadaId=mascotaId WHERE mascotaMedicadaId=mascotaId & medicamentoCatMedicamentoId=1")
+    @Query("select medicamentoId,nombre, descripcion,fechaAplicacion,rutaFotoComprobante  from Medicamento INNER JOIN Mascota ON mascotaMedicadaId=mascotaId WHERE mascotaMedicadaId=mascotaId & medicamentoCatMedicamentoId=1")
     public  LiveData<List<Vacunacard>> getMedicinesScheduleByVacuna();
 
     @Query("SELECT * FROM Medicamento WHERE medicamentoCatMedicamentoId = 2")
@@ -32,6 +32,17 @@ public interface MedicamentoDAO {
     public LiveData<List<Medicamento>> geAllMedicines();
 
     static class Vacunacard{
+
+
+        public int getMedicamentoId() {
+            return medicamentoId;
+        }
+
+        public void setMedicamentoId(int medicamentoId) {
+            this.medicamentoId = medicamentoId;
+        }
+
+        private int medicamentoId;
         private String nombre;
         private String descripcion;
         private String fechaAplicacion;
