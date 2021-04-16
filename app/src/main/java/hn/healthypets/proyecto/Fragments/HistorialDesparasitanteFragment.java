@@ -19,6 +19,7 @@ import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorDespar
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.MedicamentoDAO;
 
 public class HistorialDesparasitanteFragment extends Fragment {
 
@@ -27,7 +28,7 @@ public class HistorialDesparasitanteFragment extends Fragment {
     private DataBase instanciaDB;
 
     //Creamos el Array o lista de lo que vamos a enviar
-    ArrayList<Medicamento> arrayElementos;
+    ArrayList<MedicamentoDAO.Desparacitantecard> arrayElementos;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,14 +45,14 @@ public class HistorialDesparasitanteFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewPerfiles.setLayoutManager(linearLayoutManager);
 
-        instanciaDB.getMedicamentoDAO().getMedicinesScheduleByDesparasitante().observe(getActivity(), new Observer<List<Medicamento>>()
+        instanciaDB.getMedicamentoDAO().getMedicinesScheduleByDesparasitante().observe(getActivity(), new Observer<List<MedicamentoDAO.Desparacitantecard>>()
         {
             @Override
-            public void onChanged(List<Medicamento> medicamentos)
+            public void onChanged(List<MedicamentoDAO.Desparacitantecard> medicamentos)
             {
                 /** Cada vez que agregamos una nueva mascota limpiamos el array*/
                 arrayElementos.clear();
-                for (Medicamento medicamento : medicamentos)
+                for (MedicamentoDAO.Desparacitantecard medicamento : medicamentos)
                 {
                     //añadimos los datos al array lista
                     arrayElementos.add(medicamento);

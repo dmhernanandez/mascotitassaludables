@@ -15,18 +15,19 @@ import java.util.ArrayList;
 import hn.healthypets.proyecto.Desparacitante;
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.database.Entidades.Medicamento;
+import hn.healthypets.proyecto.database.dao.MedicamentoDAO;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class AdaptadorDesparacitante extends RecyclerView.Adapter<AdaptadorDesparacitante.ViewHolder> {
 
-    private ArrayList<Medicamento> desparasitanteArrayList;
+    private ArrayList<MedicamentoDAO.Desparacitantecard> desparasitanteArrayList;
 
     @Override
     public int getItemCount() {
         return this.desparasitanteArrayList.size();
     }
 
-    public AdaptadorDesparacitante(ArrayList<Medicamento> desparacitanteArrayList) {
+    public AdaptadorDesparacitante(ArrayList<MedicamentoDAO.Desparacitantecard> desparacitanteArrayList) {
         this.desparasitanteArrayList = desparacitanteArrayList;
     }
 
@@ -64,8 +65,8 @@ public class AdaptadorDesparacitante extends RecyclerView.Adapter<AdaptadorDespa
 
     @Override
     public void onBindViewHolder(@NonNull AdaptadorDesparacitante.ViewHolder holder, int position) {
-        Medicamento desparasitante = desparasitanteArrayList.get(position);
-        holder.txvNombreMascotaDesparasitante.setText("Mascota: " + desparasitante.getMascotaMedicadaId());
+        MedicamentoDAO.Desparacitantecard desparasitante = desparasitanteArrayList.get(position);
+        holder.txvNombreMascotaDesparasitante.setText("Mascota: " + desparasitante.getNombre());
         holder.txvNombreDesparasitante.setText("Nombre Producto: " + desparasitante.getDescripcion());
         holder.txvPesoDesparasitante.setText("Peso: " + desparasitante.getPesoKilogramo());
         holder.txvFechaAplicacionDesparasitante.setText("Fecha: " + desparasitante.getFechaAplicacion());
@@ -75,7 +76,8 @@ public class AdaptadorDesparacitante extends RecyclerView.Adapter<AdaptadorDespa
             //Envio el id de la mascota para usaro en cualquie
             intent.putExtra(Constantes.TAG_ACCION, Constantes.ACTUALIZAR);
 
-            intent.putExtra(Constantes.TAG_ID, desparasitante.getMedicamentoId());
+            intent.putExtra(Constantes.TAG_ID, desparasitante.getMascotaMedicadaId());
+
             intent.putExtra(Constantes.TAG_FECHA_APLICACION, desparasitante.getFechaAplicacion());
             intent.putExtra(Constantes.TAG_NOMBRE, desparasitante.getDescripcion());
             intent.putExtra(Constantes.TAG_PESO, desparasitante.getPesoKilogramo());

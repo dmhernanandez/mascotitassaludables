@@ -27,8 +27,8 @@ public interface MedicamentoDAO {
     @Query("select medicamentoId,nombre, descripcion,fechaAplicacion,rutaFotoComprobante,observacion  from Medicamento INNER JOIN Mascota ON mascotaMedicadaId=mascotaId WHERE mascotaMedicadaId=mascotaId & medicamentoCatMedicamentoId=1")
     public  LiveData<List<Vacunacard>> getMedicinesScheduleByVacuna();
 
-    @Query("SELECT * FROM Medicamento WHERE medicamentoCatMedicamentoId = 2")
-    public  LiveData<List<Medicamento>>getMedicinesScheduleByDesparasitante();
+    @Query("select mascotaMedicadaId,nombre, fechaAplicacion,descripcion,pesoKilogramo,observacion  from Medicamento INNER JOIN Mascota ON mascotaId= mascotaMedicadaId WHERE  medicamentoCatMedicamentoId=2")
+    public  LiveData<List<Desparacitantecard>>getMedicinesScheduleByDesparasitante();
 
     //Selecciona todas las filas de Categoria Medicamento
     @Query("SELECT * FROM Medicamento ")
@@ -36,6 +36,12 @@ public interface MedicamentoDAO {
 
     static class Vacunacard{
 
+        private int medicamentoId;
+        private String nombre;
+        private String descripcion;
+        private String fechaAplicacion;
+        private String observacion;
+        private String rutaFotoComprobante;
 
         public int getMedicamentoId() {
             return medicamentoId;
@@ -44,13 +50,6 @@ public interface MedicamentoDAO {
         public void setMedicamentoId(int medicamentoId) {
             this.medicamentoId = medicamentoId;
         }
-
-        private int medicamentoId;
-        private String nombre;
-        private String descripcion;
-        private String fechaAplicacion;
-        private String observacion;
-        private String rutaFotoComprobante;
 
         public String getObservacion() {
             return observacion;
@@ -92,6 +91,64 @@ public interface MedicamentoDAO {
 
         public void setFechaAplicacion(String fechaAplicacion) {
             this.fechaAplicacion = fechaAplicacion;
+        }
+    }
+
+    static class Desparacitantecard{
+
+        private int mascotaMedicadaId;
+        private String nombre;
+        private String descripcion;
+        private String fechaAplicacion;
+        private String observacion;
+        private String pesoKilogramo;
+
+        public int getMascotaMedicadaId() {
+            return mascotaMedicadaId;
+        }
+
+        public void setMascotaMedicadaId(int mascotaMedicadaId) {
+            this.mascotaMedicadaId = mascotaMedicadaId;
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
+
+        public String getDescripcion() {
+            return descripcion;
+        }
+
+        public void setDescripcion(String descripcion) {
+            this.descripcion = descripcion;
+        }
+
+        public String getFechaAplicacion() {
+            return fechaAplicacion;
+        }
+
+        public void setFechaAplicacion(String fechaAplicacion) {
+            this.fechaAplicacion = fechaAplicacion;
+        }
+
+        public String getObservacion() {
+            return observacion;
+        }
+
+        public void setObservacion(String observacion) {
+            this.observacion = observacion;
+        }
+
+        public String getPesoKilogramo() {
+            return pesoKilogramo;
+        }
+
+        public void setPesoKilogramo(String pesoKilogramo) {
+            this.pesoKilogramo = pesoKilogramo;
         }
     }
 

@@ -107,6 +107,21 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
          * Se obtiene una Array de todas las especies de la base de datos y se guarda el nombre en un arreglo.
          * Ademas se agrega un Observer que notificara cuano hayan cambios para que la interfaz se recarga automaticamente cada vez que exista un cambio
          * */
+        instanciaDB.getSpeciesDAO().insertSpecies(new Especie("Perro"));
+        instanciaDB.getSpeciesDAO().insertSpecies(new Especie("Gato"));
+
+        instanciaDB.getRazaDAO().insertBreeds(
+                new Raza("Mestizo", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+                , new Raza("Angora", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato")),
+                new Raza("Siames", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+        );
+
+        instanciaDB.getRazaDAO().insertBreeds(
+                new Raza("Sin pedigree", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro"))
+                , new Raza("Pitbull", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro")),
+                new Raza("Boxer", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro"))
+        );
+
         instanciaDB.getSpeciesDAO().getAllNameSpecies().observe(CreacionPerfiles.this,
                 new Observer<List<EspecieDAO.NombreEspecie>>() {
                     @Override
@@ -251,7 +266,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                                 );
                                 instanciaDB.getMascotaDAO().updatePet(mascota);
 
-                                Toast.makeText(CreacionPerfiles.this, "Información guardada exitosamente ;)", Toast.LENGTH_LONG).show();
+                                Toast.makeText(CreacionPerfiles.this, "Información Actualizada exitosamente ;)", Toast.LENGTH_LONG).show();
                                 finish();
                                 break;
                         }
