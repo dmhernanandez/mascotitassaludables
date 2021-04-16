@@ -11,10 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.database.Entidades.AgendaMedicamento;
+import hn.healthypets.proyecto.database.dao.AgendaMedicamentoDAO;
 
 public class AdaptadorMedicamento extends RecyclerView.Adapter<AdaptadorMedicamento.ViewHolder> {
 
-    private ArrayList<AgendaMedicamento> agendaMedicamentoArrayList;
+    private ArrayList<AgendaMedicamentoDAO.RecetaMascota> agendaMedicamentoArrayList;
 
     @Override
     public int getItemCount() {
@@ -22,7 +23,7 @@ public class AdaptadorMedicamento extends RecyclerView.Adapter<AdaptadorMedicame
         return this.agendaMedicamentoArrayList.size();
     }
 
-    public AdaptadorMedicamento(ArrayList<AgendaMedicamento> agendaMedicamentoArrayList) {
+    public AdaptadorMedicamento(ArrayList<AgendaMedicamentoDAO.RecetaMascota> agendaMedicamentoArrayList) {
         this.agendaMedicamentoArrayList = agendaMedicamentoArrayList;
     }
 
@@ -35,8 +36,8 @@ public class AdaptadorMedicamento extends RecyclerView.Adapter<AdaptadorMedicame
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txvNombreMascotaMedicamento = itemView.findViewById(R.id.txvNombreMascotaMedicamento);
-            txvFechaAplicacionMedicamento = itemView.findViewById(R.id.txvFechaAplicacionMedicamento);
-            txvRecetaMedicamento = itemView.findViewById(R.id.txvRecetaMedicamento);
+            txvFechaAplicacionMedicamento = itemView.findViewById(R.id.txvFechaAplicacionDesparasitante);
+            txvRecetaMedicamento = itemView.findViewById(R.id.txvNombreDesparasitante);
              }
     }
 
@@ -51,19 +52,20 @@ public class AdaptadorMedicamento extends RecyclerView.Adapter<AdaptadorMedicame
 
     @Override
     public void onBindViewHolder(@NonNull AdaptadorMedicamento.ViewHolder holder, int position) {
-        AgendaMedicamento agendaMedicamento = agendaMedicamentoArrayList.get(position);
+        AgendaMedicamentoDAO.RecetaMascota agendaMedicamento = agendaMedicamentoArrayList.get(position);
 
-        int id=agendaMedicamento.getMascotaMedicamentoId();
-        String nombre = agendaMedicamento.getNombreMedicamento();
+        String nombre = agendaMedicamento.getNombre();
+        String nombremedicamento=agendaMedicamento.getNombreMedicamento();
         String fecha=agendaMedicamento.getFechaHoraInicio();
         int dosis = agendaMedicamento.getDosisCantidad();
-        int dosisid=agendaMedicamento.getDosisId();
+        String dosisid=agendaMedicamento.getDosisNombre();
         int intervalo=agendaMedicamento.getIntervaloTiempo();
         int dias=agendaMedicamento.getNumeroDosis();
+        String horaFechaInicioProxima=agendaMedicamento.getHoraFechaProximaDosis();
 
-        holder.txvNombreMascotaMedicamento.setText("Nombre: " + id);
+        holder.txvNombreMascotaMedicamento.setText("Mascota: " + nombre);
         holder.txvFechaAplicacionMedicamento.setText("Fecha: " + fecha);
-        holder.txvRecetaMedicamento.setText("Se dará "+nombre+"\n la Cantidad de "+dosis+"- "+dosisid+ "\n Por " +dias+ " Dias,\n Cada " +intervalo+ " Horas");
+        holder.txvRecetaMedicamento.setText("Se dará "+nombremedicamento+"\n la Cantidad de "+dosis+"- "+dosisid+ "\n Por " +dias+ " Dias,\n Cada " +intervalo+ " Horas");
 
     }
 }

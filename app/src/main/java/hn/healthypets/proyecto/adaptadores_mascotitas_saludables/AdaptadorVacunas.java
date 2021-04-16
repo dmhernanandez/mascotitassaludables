@@ -17,17 +17,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import hn.healthypets.proyecto.MetodosImagenes;
 import hn.healthypets.proyecto.R;
-import hn.healthypets.proyecto.database.Entidades.Medicamento;
+import hn.healthypets.proyecto.database.dao.MedicamentoDAO;
 
 public class AdaptadorVacunas extends RecyclerView.Adapter<AdaptadorVacunas.ViewHolder>   {
-   private ArrayList<Medicamento> vacunaArrayList;
+   private ArrayList<MedicamentoDAO.Vacunacard> vacunaArrayList;
 
     @Override
     public int getItemCount() {
         return this.vacunaArrayList.size();
     }
 
-    public AdaptadorVacunas(ArrayList<Medicamento> vacunaArrayList) {
+    public AdaptadorVacunas(ArrayList<MedicamentoDAO.Vacunacard> vacunaArrayList) {
         this.vacunaArrayList = vacunaArrayList;
     }
 
@@ -65,8 +65,8 @@ public class AdaptadorVacunas extends RecyclerView.Adapter<AdaptadorVacunas.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Medicamento vacuna = vacunaArrayList.get(position);
-        holder.txvNombreMascota.setText("Mascota: " + vacuna.getMascotaMedicadaId());
+        MedicamentoDAO.Vacunacard vacuna = vacunaArrayList.get(position);
+        holder.txvNombreMascota.setText("Mascota: " + vacuna.getNombre());
         holder.txvNombreVacuna.setText("Vacuna: " +     vacuna.getDescripcion());
         holder.txvFechaAplicacionVacuna.setText("Fecha: " +     vacuna.getFechaAplicacion());
 

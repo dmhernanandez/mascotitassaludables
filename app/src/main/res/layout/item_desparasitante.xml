@@ -22,7 +22,7 @@
 
 
             <TextView
-                android:id="@+id/txvNombrePerfil"
+                android:id="@+id/txvNombreMascotaDesparasitante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/questrial"
@@ -38,7 +38,7 @@
                 app:layout_constraintVertical_bias="0.118" />
 
             <TextView
-                android:id="@+id/txvRecetaMedicamento"
+                android:id="@+id/txvNombreDesparasitante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/questrial"
@@ -49,7 +49,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvNombrePerfil"
+                app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaDesparasitante"
                 app:layout_constraintVertical_bias="0.25" />
 
             <TextView
@@ -65,11 +65,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvRecetaMedicamento"
+                app:layout_constraintTop_toBottomOf="@+id/txvNombreDesparasitante"
                 app:layout_constraintVertical_bias="0.142" />
 
             <TextView
-                android:id="@+id/txvFechaAplicacionMedicamento"
+                android:id="@+id/txvFechaAplicacionDesparasitante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/questrial"

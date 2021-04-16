@@ -47,7 +47,7 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txvNombreActividad = itemView.findViewById(R.id.txtFechaNacimiento);
-            txvNombreMascota = itemView.findViewById(R.id.txvNombrePerfil);
+            txvNombreMascota = itemView.findViewById(R.id.txvNombreMascotaDesparasitante);
             txvFechaHoraAgenda= itemView.findViewById(R.id.txvFechaHoraAgenda);
             btnActualizarAgenda = itemView.findViewById(R.id.btnActualizarAgenda);
             btnEliminarAgenda = itemView.findViewById(R.id.btnElimnarAgenda);

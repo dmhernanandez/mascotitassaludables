@@ -26,6 +26,7 @@ import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.Mascota;
 import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.MedicamentoDAO;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class HistorialVacunaFragment extends Fragment {
@@ -35,7 +36,7 @@ public class HistorialVacunaFragment extends Fragment {
     private DataBase instanciaDB;
 
     //Creamos el Array o lista de lo que vamos a enviar
-    ArrayList<Medicamento> arrayElementos;
+    ArrayList<MedicamentoDAO.Vacunacard> arrayElementos;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -52,12 +53,12 @@ public class HistorialVacunaFragment extends Fragment {
         recyclerViewPerfiles.setLayoutManager(linearLayoutManager);
 
 
-        instanciaDB.getMedicamentoDAO().getMedicinesScheduleByVacuna().observe(getActivity(), new Observer<List<Medicamento>>() {
+        instanciaDB.getMedicamentoDAO().getMedicinesScheduleByVacuna().observe(getActivity(), new Observer<List<MedicamentoDAO.Vacunacard>>() {
             @Override
-            public void onChanged(List<Medicamento> medicamentos) {
+            public void onChanged(List<MedicamentoDAO.Vacunacard> medicamentos) {
                 /** Cada vez que agregamos una nueva mascota limpiamos el array*/
                 arrayElementos.clear();
-                for(Medicamento medicamento: medicamentos)
+                for(MedicamentoDAO.Vacunacard medicamento: medicamentos)
                 {
                     //añadimos los datos al array lista
                     arrayElementos.add(medicamento);

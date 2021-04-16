@@ -31,7 +31,7 @@ public class HistorialMedicamentoFragment extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private DataBase instanciaDB;
 
-    ArrayList<AgendaMedicamento> arrayElementos;
+    ArrayList<AgendaMedicamentoDAO.RecetaMascota> arrayElementos;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -48,12 +48,12 @@ public class HistorialMedicamentoFragment extends Fragment {
         recyclerViewPerfiles.setLayoutManager(linearLayoutManager);
 
 
-        instanciaDB.getAgendaMedicamentoDAO().getAllMedicinesSchedule().observe(getActivity(), new Observer<List<AgendaMedicamento>>() {
+        instanciaDB.getAgendaMedicamentoDAO().getAllMedicinesSchedule().observe(getActivity(), new Observer<List<AgendaMedicamentoDAO.RecetaMascota>>() {
             @Override
-            public void onChanged(List<AgendaMedicamento> agendaMedicamentos) {
+            public void onChanged(List<AgendaMedicamentoDAO.RecetaMascota> agendaMedicamentos) {
                 /** Cada vez que agregamos una nueva mascota limpiamos el array*/
                 arrayElementos.clear();
-                for(AgendaMedicamento agendaMedicamento: agendaMedicamentos)
+                for(AgendaMedicamentoDAO.RecetaMascota agendaMedicamento: agendaMedicamentos)
                 {
                     //añadimos los datos al array lista
                     arrayElementos.add(agendaMedicamento);

@@ -16,7 +16,7 @@ public class Actividades extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividades);
 
-        txvNombreMascota=findViewById(R.id.txvNombrePerfil);
+        txvNombreMascota=findViewById(R.id.txvNombreMascotaDesparasitante);
         txvNombreActividad=findViewById(R.id.txvNombreActividad);
         txvFechaHora=findViewById(R.id.txvFechaHora);
     }
