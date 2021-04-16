@@ -185,7 +185,7 @@ public class Agenda extends AppCompatActivity {
                                     0,
                                     edtObservaionesAgenda.getText().toString(), 
                                     idAlarma,
-                                    intentRecibido.getIntExtra(Constantes.TAG_ID,Constantes.DEFAULT),
+                                    intentRecibido.getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT),
                                     instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName(spiTipAgenda.getSelectedItem().toString()),
                                     Constantes.ACTIVO);
                             //Inserta la nueva agenda

@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/questrial"
             android:text="NombreMascota"
-            android:textColor="@color/black"
+            android:textColor="@color/azul"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,7 @@
             app:layout_constraintVertical_bias="0.118" />
 
         <TextView
-            android:id="@+id/txvRecetaMedicamento"
+            android:id="@+id/txvNombreDesparasitante"
             android:layout_width="337dp"
             android:layout_height="100dp"
             android:fontFamily="@font/questrial"
@@ -61,7 +61,7 @@
             app:layout_constraintVertical_bias="0.411" />
 
         <TextView
-            android:id="@+id/txvFechaAplicacionMedicamento"
+            android:id="@+id/txvFechaAplicacionDesparasitante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/questrial"
@@ -73,7 +73,7 @@
             app:layout_constraintHorizontal_bias="0.555"
             app:layout_constraintStart_toEndOf="@+id/txvNombreMascotaMedicamento"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.115" />
+            app:layout_constraintVertical_bias="0.143" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -115,7 +115,6 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
                 Intent intent = new Intent(holder.itemView.getContext(), CreacionPerfiles.class);
                 //Envio el id de la mascota para usaro en cualquie
                 intent.putExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
-
                 intent.putExtra(Constantes.TAG_ID_MASCOTA,mascota.getMascotaId());
                 intent.putExtra(Constantes.TAG_NOMBRE,mascota.getNombre());
                 intent.putExtra(Constantes.TAG_FECHA_NACIENTO,mascota.getFechaNacimiento());

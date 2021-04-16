@@ -5,15 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_credencial"
+            android:icon="@drawable/ic_tarjeta_de_identificacion_negro"
+            android:title="Mascotas" />
+        <item
             android:id="@+id/nav_actividades"
             android:icon="@drawable/ic_evento_negro"
             android:title="Actividades"
             />
-
-        <item
-            android:id="@+id/nav_credencial"
-            android:icon="@drawable/ic_tarjeta_de_identificacion_negro"
-            android:title="Credencial" />
 
         <item
             android:id="@+id/nav_historialVacuna"

@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/nav_credencial"
         android:name="hn.healthypets.proyecto.Fragments.CredencialesFragment"
-        android:label="Credencial"
+        android:label="Tus Mascotas"
         tools:layout="@layout/fragment_credenciales" />
 
     <fragment

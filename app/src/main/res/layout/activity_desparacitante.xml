@@ -149,7 +149,7 @@
                 android:background="@drawable/input_descripciones"
                 android:ems="10"
                 android:fontFamily="@font/questrial"
-                android:hint="Eje. Se aplico la vacuna para prevenir la rabia"
+                android:hint="Eje. Se colocó el desparasitante para los parásitos del corazón  "
                 android:inputType="textMultiLine"
                 android:padding="10dp"
                 android:textColorHint="#9E9C9C"

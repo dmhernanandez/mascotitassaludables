@@ -22,8 +22,8 @@ public class AdaptadorDesparacitante extends RecyclerView.Adapter<AdaptadorDespa
         return this.desparasitanteArrayList.size();
     }
 
-    public AdaptadorDesparacitante(ArrayList<Medicamento> vacunaArrayList) {
-        this.desparasitanteArrayList = vacunaArrayList;
+    public AdaptadorDesparacitante(ArrayList<Medicamento> desparacitanteArrayList) {
+        this.desparasitanteArrayList = desparacitanteArrayList;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -37,10 +37,10 @@ public class AdaptadorDesparacitante extends RecyclerView.Adapter<AdaptadorDespa
          */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txvNombreMascotaDesparasitante = itemView.findViewById(R.id.txvNombreMascotaMedicamento);
-            txvNombreDesparasitante = itemView.findViewById(R.id.txvRecetaMedicamento);
+            txvNombreMascotaDesparasitante = itemView.findViewById(R.id.txvNombreMascotaDesparasitante);
+            txvNombreDesparasitante = itemView.findViewById(R.id.txvNombreDesparasitante);
             txvPesoDesparasitante = itemView.findViewById(R.id.txvPesoDesparasitante);
-            txvFechaAplicacionDesparasitante = itemView.findViewById(R.id.txvFechaAplicacionMedicamento);
+            txvFechaAplicacionDesparasitante = itemView.findViewById(R.id.txvFechaAplicacionDesparasitante);
            
         }
 
