@@ -311,7 +311,6 @@ public class Agenda extends AppCompatActivity {
         alarmIntent.putExtra(Constantes.TAG_NOMBRE_TIPO_ACTIVIDAD,tipoActividad);
         alarmIntent.putExtra(Constantes.TAG_NOMBRE_MASCOTA,nombreMascota);
         alarmIntent.putExtra(Constantes.TAG_COMENTARIO,comentario);
-
         PendingIntent pendingIntent;
         pendingIntent = PendingIntent.getBroadcast(context, idAlarma, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.set(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);

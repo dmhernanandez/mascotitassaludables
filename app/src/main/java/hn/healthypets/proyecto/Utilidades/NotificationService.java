@@ -107,9 +107,8 @@ public class NotificationService extends IntentService {
             mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             pendingIntent = PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentTitle(getString(R.string.app_name)).setCategory(Notification.CATEGORY_SERVICE)
-                    .setSmallIcon(R.drawable.amor)   // required
-                     .setContentTitle("HOLA")
-                    .setContentText(titulo)
+                    .setSmallIcon(R.mipmap.ic_launcher)   // required
+                    .setContentTitle(titulo)
                     .setStyle(new NotificationCompat.BigTextStyle()
                             .bigText(message))
                     .setDefaults(Notification.DEFAULT_ALL)
