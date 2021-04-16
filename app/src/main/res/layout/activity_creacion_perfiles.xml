@@ -10,7 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="80dp"
         android:fillViewport="true"
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="671dp">
@@ -61,23 +61,11 @@
                 app:layout_constraintVertical_bias="0.466" />
 
             <ImageButton
-                android:id="@+id/imgbtnAgregarNuevaRaza"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="36dp"
-
-                android:layout_marginBottom="160dp"
-                android:background="@drawable/btn_redondo_celeste"
-                android:src="@drawable/ic_vector_nuevoregistro"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <ImageButton
                 android:id="@+id/imgbtnAgregarNuevaEspecie2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="36dp"
-                android:layout_marginBottom="220dp"
+                android:layout_marginBottom="212dp"
                 android:background="@drawable/btn_redondo_celeste"
                 android:src="@drawable/ic_vector_nuevoregistro"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -299,10 +287,22 @@
                 android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imgbtnAgregarNuevaRaza"
-                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintHorizontal_bias="0.689"
                 app:layout_constraintStart_toEndOf="@+id/txvRaza"
                 app:layout_constraintTop_toBottomOf="@+id/spiEspecie"
-                app:layout_constraintVertical_bias="0.065" />
+                app:layout_constraintVertical_bias="0.146" />
+
+            <ImageButton
+                android:id="@+id/imgbtnAgregarNuevaRaza"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="36dp"
+
+                android:layout_marginBottom="140dp"
+                android:background="@drawable/btn_redondo_celeste"
+                android:src="@drawable/ic_vector_nuevoregistro"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/txvRaza"
@@ -314,10 +314,10 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.125"
+                app:layout_constraintHorizontal_bias="0.137"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txvEspecie"
-                app:layout_constraintVertical_bias="0.189" />
+                app:layout_constraintVertical_bias="0.255" />
 
             <Button
                 android:id="@+id/btnGuardarCP"
@@ -337,7 +337,7 @@
                 android:id="@+id/edtFechaNacimiento"
                 android:layout_width="302dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/input_gris"
                 android:clickable="true"
                 android:ems="10"
@@ -356,7 +356,7 @@
                 android:id="@+id/edtNumeroChip"
                 android:layout_width="302dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/input_gris"
                 android:ems="10"
                 android:hint="00000"

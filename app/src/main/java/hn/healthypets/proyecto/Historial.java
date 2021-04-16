@@ -21,7 +21,7 @@ public class Historial extends AppCompatActivity {
 
         spi=findViewById(R.id.spinner);
         imgMascota=findViewById(R.id.imgvVacuna);
-        txvNombreMascota=findViewById(R.id.txvNombreMascotaMedicamento);
+        txvNombreMascota=findViewById(R.id.txvNombreMascotaDesparasitante);
         txvFechaAplic=findViewById(R.id.txvFechaAplicacionDesparasitante);
     }
 }

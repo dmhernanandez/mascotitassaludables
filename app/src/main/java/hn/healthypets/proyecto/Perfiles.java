@@ -1,7 +1,5 @@
 package hn.healthypets.proyecto;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
@@ -37,19 +37,18 @@ public class Perfiles extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfiles);
-        ImageView poster =findViewById(R.id.imgvVacuna);
+        ImageView poster = findViewById(R.id.imgvVacuna);
         btnTomarFotos = findViewById(R.id.imgbtnTomarFotosCP);
         imgFotoMascota = findViewById(R.id.imgCreacionPerfiles);
         agregarEspecie = findViewById(R.id.imgbtnAgregarNuevaEspecie2);
         agregarRaza = findViewById(R.id.imgbtnAgregarNuevaRaza);
         spiEspecie = findViewById(R.id.spiEspecie);
         spiRaza = findViewById(R.id.spiRaza);
-        edtFechaNaciento=findViewById(R.id.edtFechaNacimiento);
-        rbtnHembra=findViewById(R.id.rbHembra);
+        edtFechaNaciento = findViewById(R.id.edtFechaNacimiento);
+        rbtnHembra = findViewById(R.id.rbHembra);
         rbtnMacho = findViewById(R.id.rbMacho);
         btnListo = findViewById(R.id.btnGuardarCP);
-        rgpGrupoGenero=findViewById(R.id.rbgGrupoGenero);
-
+        rgpGrupoGenero = findViewById(R.id.rbgGrupoGenero);
 
         Glide.with(this)
                 .load(R.drawable.golden2)

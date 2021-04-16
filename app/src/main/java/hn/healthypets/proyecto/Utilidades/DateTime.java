@@ -25,13 +25,13 @@ public class DateTime  {
     }
 
     public static String formatoFecha(int dia, int mes, int year){
-        mes = mes + 1;
+        mes = mes ;
         //Formateo el día obtenido: antepone el 0 si son menores de 10
-        String diaFormateado = (dia < 10)? CERO + String.valueOf(dia):String.valueOf(dia);
+        String diaFormateado = (dia < 10) ? CERO + String.valueOf(dia) : String.valueOf(dia);
         //Formateo el mes obtenido: antepone el 0 si son menores de 10
-        String mesFormateado = (mes < 10)? CERO + String.valueOf(mes):String.valueOf(mes);
+        String mesFormateado = (mes < 10) ? CERO + String.valueOf(mes) : String.valueOf(mes);
         return diaFormateado + GUION + mesFormateado + GUION + year;
-   }
+    }
 
     public static String formatoHora(int hourOfDay, int minuto){
         //Formateo de la hora obtenida: antepone el 0 si son menores de 10

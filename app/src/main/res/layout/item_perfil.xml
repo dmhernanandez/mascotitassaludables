@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/txvNombreMascotaMedicamento"
+            android:id="@+id/txvNombreMascotaDesparasitante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/questrial"
@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.054"
             app:layout_constraintStart_toEndOf="@+id/imgvVacuna"
-            app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
+            app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaDesparasitante"
             app:layout_constraintVertical_bias="0.25" />
         <Button
             android:id="@+id/btnControlPerfil"

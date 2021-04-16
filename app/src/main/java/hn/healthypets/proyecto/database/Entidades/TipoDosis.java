@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey;
 
 /**
  * Esta contiene campos con respecto a las diferentes presentaciones y medidas por ejemplo ml, tableta, capsula
- * */
-@Entity(indices = {@Index( value = "dosisNombre",unique = true)})
+ */
+@Entity(indices = {@Index(value = "dosisNombre", unique = true)})
 public class TipoDosis {
     @PrimaryKey(autoGenerate = true)
     private int tipoDosisId;
@@ -16,7 +16,7 @@ public class TipoDosis {
     @NonNull
     private String dosisNombre;
 
-    public TipoDosis( @NonNull String dosisNombre) {
+    public TipoDosis(@NonNull String dosisNombre) {
         this.dosisNombre = dosisNombre;
     }
 

@@ -11,7 +11,7 @@ public class Constantes {
     public static final String TAG_ACTUALIZAR="actualizar";
     public static final String TAG_ACCION="accion";
     public static final String TAG_ID = "id";
-    public static final String TAG_NOMBRE="nombreMascota";
+    public static final String TAG_NOMBRE="nombre";
     public static final String TAG_FECHA_NACIENTO="fechaNacimiento";
     public static final String TAG_NUMERO_CHIP ="numeroChip";
     public static final String TAG_GENERO="genero";
@@ -34,4 +34,16 @@ public class Constantes {
     public static final int ACTIVO=1;
     public static final int ATRASADA=0;
 
+    /**
+     * Flags para pasar los datos clave valor
+     */
+    public static final String TAG_OBSERVACION = "observaciones";
+     public static final String TAG_FECHA_APLICACION = "fechaAplicacion";
+    public static final String TAG_NOMBRE_MEDICAMENTO = "nombreMedicamento";
+    public static final String TAG_INTERVALO_TIEMPO = "intervaloTiempo";
+    public static final String TAG_HORA_FECHA_PROXIMA_DOSIS = "horaFechaProximaDosis";
+    public static final String TAG_PESO = "peso";
+    public static final String TAG_CADA = "dosisCantidad";
+    public static final String TAG_POR = "numeroDosis";
+    public static final String TAG_DOSIS = "dosis";
 }

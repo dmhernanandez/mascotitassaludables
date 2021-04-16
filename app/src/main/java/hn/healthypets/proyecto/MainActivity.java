@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.Especie;
 import hn.healthypets.proyecto.database.Entidades.Raza;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Button medicamento = findViewById(R.id.btnMedicamentoMenu);
         Button agenda = findViewById(R.id.btnAgenda);
         Button actividades = findViewById(R.id.btnActividades);
-        Button menu=findViewById(R.id.btnMenuLateral);
+        Button menu = findViewById(R.id.btnMenuLateral);
 
         //Obtenemos una instancia de la base de datos
         instanciaDB = SingletonDB.getDatabase(this);
@@ -53,9 +54,6 @@ public class MainActivity extends AppCompatActivity {
                     , new Raza("Angora", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato")),
                     new Raza("Sphynx", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
             );
-
-
-
 
             Intent intent2 = new Intent(this, Director.class);
             startActivity(intent2);

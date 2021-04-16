@@ -27,7 +27,7 @@
 
 
         <TextView
-            android:id="@+id/txvNombreMascotaMedicamento"
+            android:id="@+id/txvNombreMascotaDesparasitante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/questrial"
@@ -57,7 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaMedicamento"
+            app:layout_constraintTop_toBottomOf="@+id/txvNombreMascotaDesparasitante"
             app:layout_constraintVertical_bias="0.411" />
 
         <TextView
@@ -71,9 +71,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toEndOf="@+id/txvNombreMascotaMedicamento"
+            app:layout_constraintStart_toEndOf="@+id/txvNombreMascotaDesparasitante"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.143" />
+
+        <ImageButton
+            android:id="@+id/btnActualizarMedicamento"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_redondo_celeste"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.943"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.894" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
