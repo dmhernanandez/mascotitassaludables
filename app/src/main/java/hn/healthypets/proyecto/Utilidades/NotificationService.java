@@ -129,7 +129,7 @@ public class NotificationService extends IntentService {
 
             notification = new NotificationCompat.Builder(this)
                     .setContentIntent(pendingIntent)
-                    .setSmallIcon(R.drawable.amor)
+                    .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.amor))
                     .setSound(soundUri)
                     .setAutoCancel(true)
