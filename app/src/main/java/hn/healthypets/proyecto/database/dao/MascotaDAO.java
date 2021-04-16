@@ -1,5 +1,7 @@
 package hn.healthypets.proyecto.database.dao;
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -24,7 +26,10 @@ public interface MascotaDAO {
     @Query("SELECT * FROM Mascota")
     public LiveData<List<Mascota>> getAllPets();
 
-    @Query("SELECT count(*) FROM Mascota")
+    @Query("SELECT nombre FROM Mascota WHERE mascotaId=:idMascota")
+    public String getNamePetById(int idMascota);
+
+   @Query("SELECT count(*) FROM Mascota")
     public int getNumbersPets();
 
     //Esta clase se utiliza  para devolver la cantidad de filas de la tabla mascotas
@@ -44,4 +49,5 @@ public interface MascotaDAO {
             this.numberPets = numberPets;
         }
     }
+
 }

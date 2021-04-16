@@ -16,15 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorAgenda;
 import hn.healthypets.proyecto.database.DataBase;
-import hn.healthypets.proyecto.database.Entidades.AgendaVisita;
 import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.AgendaVisitaDAO;
 
 public class ActividadesFragment extends Fragment {
     DataBase instanciaDB;
     private  RecyclerView recyclerViewAgenda;
     private LinearLayoutManager linearLayoutManager;
     //Creamos el Array o lista de lo que vamos a enviar
-    ArrayList<AgendaVisita> arrayElementos ;
+    ArrayList<AgendaVisitaDAO.AgendaNombre> arrayElementos ;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -41,15 +41,15 @@ public class ActividadesFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewAgenda.setLayoutManager(linearLayoutManager);
 
-        instanciaDB.getAgendaVisitaDAO().getAllActivities().observe(getActivity(), new Observer<List<AgendaVisita>>() {
+        instanciaDB.getAgendaVisitaDAO().getAllAgendaDetails().observe(getActivity(), new Observer<List<AgendaVisitaDAO.AgendaNombre>>() {
             @Override
-            public void onChanged(List<AgendaVisita> mascotas) {
+            public void onChanged(List<AgendaVisitaDAO.AgendaNombre> mascotas) {
                 /** Cada vez que agregamos una nueva mascota limpiamos el array*/
                 arrayElementos.clear();
-                for(AgendaVisita tarea: mascotas)
+                for(AgendaVisitaDAO.AgendaNombre agendaNombre: mascotas)
                 {
                     //añadimos los datos al array lista
-                    arrayElementos.add(tarea);
+                    arrayElementos.add(agendaNombre);
                 }
                 //pasamos al adapator el array y este se encarga de manipulamos
                 AdaptadorAgenda adaptador = new AdaptadorAgenda(arrayElementos);

@@ -18,6 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import hn.healthypets.proyecto.MenuLateral;
 import hn.healthypets.proyecto.R;
+import hn.healthypets.proyecto.database.DataBase;
+import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.AgendaVisitaDAO;
+import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class NotificationService extends IntentService {
     /**
@@ -29,6 +33,8 @@ public class NotificationService extends IntentService {
     private PendingIntent pendingIntent;
     private static int NOTIFICATION_ID = 1;
     Notification notification;
+    private AgendaVisitaDAO.AgendaNombre actividad;
+    DataBase instanciaDB;
     public NotificationService(String name) {
 
         super(name);
@@ -42,6 +48,19 @@ public class NotificationService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        instanciaDB = SingletonDB.getDatabase(getApplicationContext());
+        /** Obtenemos el detalle de la actividad que esta iniciando la aplicación*/
+
+        /** Creamos un nuevo formato para establecer dar formato a la fecha */
+      String titulo= intent.getStringExtra(Constantes.TAG_NOMBRE_TIPO_ACTIVIDAD)+ " - "+
+              intent.getStringExtra(Constantes.TAG_NOMBRE_MASCOTA);
+
+
+        String message = "Tipo de actividad: "+intent.getStringExtra(Constantes.TAG_NOMBRE_TIPO_ACTIVIDAD)+"\n";
+        if(!intent.getStringExtra(Constantes.TAG_COMENTARIO).equals(""))
+            message+="\n"+intent.getStringExtra(Constantes.TAG_COMENTARIO);
+       // String message = "Tipo de actividad: "+intent.getIntExtra(Constantes.TAG_ID_ALARM,Constantes.DEFAULT);
+
 
         String NOTIFICATION_CHANNEL_ID = getApplicationContext().getString(R.string.app_name);
         Context context = this.getApplicationContext();
@@ -50,10 +69,11 @@ public class NotificationService extends IntentService {
         Intent mIntent = new Intent(this, MenuLateral.class);
         Resources res = this.getResources();
 
+
         /**Obtngo la notificacion que hay por defecto*/
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        String message = intent.getStringExtra("ID");
+
 
         /** Se valida la versión del telefono ya que en versiones anteoriores a Oreo no se pueden utilizar los
          * chanels*/
@@ -88,7 +108,10 @@ public class NotificationService extends IntentService {
             pendingIntent = PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentTitle(getString(R.string.app_name)).setCategory(Notification.CATEGORY_SERVICE)
                     .setSmallIcon(R.drawable.amor)   // required
-                    .setContentText(message)
+                     .setContentTitle("HOLA")
+                    .setContentText(titulo)
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText(message))
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setAutoCancel(true)
                     .setSound(soundUri)

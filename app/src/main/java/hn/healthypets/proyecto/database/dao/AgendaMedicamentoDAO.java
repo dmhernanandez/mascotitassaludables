@@ -12,9 +12,6 @@ import androidx.room.Update;
 import java.util.List;
 
 import hn.healthypets.proyecto.database.Entidades.AgendaMedicamento;
-import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
-import hn.healthypets.proyecto.database.Entidades.Medicamento;
-import hn.healthypets.proyecto.database.Entidades.Raza;
 
 
 @Dao
