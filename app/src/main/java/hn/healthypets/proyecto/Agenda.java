@@ -23,6 +23,7 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import hn.healthypets.proyecto.Utilidades.AlarmReceiver;
+import hn.healthypets.proyecto.Utilidades.Alertas;
 import hn.healthypets.proyecto.Utilidades.DateTime;
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
@@ -161,8 +162,8 @@ public class Agenda extends AppCompatActivity {
                  * [ mes + 1 ]  al mes se le suma una unidad ya que al tomarlo de DatePicker el valor del mes tiene una
                  * unidad menos ya que el mes de enero es 0 y diciembre 11
                  * */
-//                if(DateTime.isFutureDate(dia+"/"+(mes + 1)+"/"+anio+" "+hora+":"+minuto,"dd/MM/yyyy HH:mm"))
-//                {
+                if(DateTime.isFutureDate(dia+"/"+(mes + 1)+"/"+anio+" "+hora+":"+minuto,"dd/MM/yyyy HH:mm"))
+                {
                     today = Calendar.getInstance();
                     today.setTimeInMillis(System.currentTimeMillis());
                     today.set(Calendar.HOUR_OF_DAY, hora);
@@ -189,7 +190,7 @@ public class Agenda extends AppCompatActivity {
                                     Constantes.ACTIVO);
                             //Inserta la nueva agenda
                             instanciaDB.getAgendaVisitaDAO().inertNewTask(task);
-                            /** Establecemos la alarma para paa*/
+                            /** Establecemos la alarma para pa*/
                             setAlarm(idAlarma,today.getTimeInMillis(),this,
                                     edtNombreActividad.getText().toString(),
                                     instanciaDB.getMascotaDAO().getNamePetById(intentRecibido.getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT)),
@@ -229,13 +230,13 @@ public class Agenda extends AppCompatActivity {
                     }
 
 
-               // }
+                }
                 /** Si la fecha y la hora son menores que la actual envia una alerta notificando */
-//                else
-//                {
-//                    Alertas.showSingleAlert(this,"Fecha y hora antigua", "La fecha u hora seleccionada esta en el pasado. \n\n" +
-//                            "Por favor elija una fecha y hora que este despues de el actual");
-//                }
+                else
+                {
+                    Alertas.showSingleAlert(this,"Fecha y hora antigua", "La fecha u hora seleccionada esta en el pasado. \n\n" +
+                            "Por favor elija una fecha y hora que este despues de el actual");
+                }
 
             }
             else

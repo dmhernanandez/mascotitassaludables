@@ -52,7 +52,7 @@ public class NotificationService extends IntentService {
         /** Obtenemos el detalle de la actividad que esta iniciando la aplicación*/
 
         /** Creamos un nuevo formato para establecer dar formato a la fecha */
-      String titulo= intent.getStringExtra(Constantes.TAG_NOMBRE_TIPO_ACTIVIDAD)+ " - "+
+      String titulo= intent.getStringExtra(Constantes.TAG_NOMBRE_ACTIVIDAD)+ " - "+
               intent.getStringExtra(Constantes.TAG_NOMBRE_MASCOTA);
 
 
@@ -108,8 +108,7 @@ public class NotificationService extends IntentService {
             pendingIntent = PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentTitle(getString(R.string.app_name)).setCategory(Notification.CATEGORY_SERVICE)
                     .setSmallIcon(R.drawable.amor)   // required
-                     .setContentTitle("HOLA")
-                    .setContentText(titulo)
+                     .setContentTitle(titulo)
                     .setStyle(new NotificationCompat.BigTextStyle()
                             .bigText(message))
                     .setDefaults(Notification.DEFAULT_ALL)
