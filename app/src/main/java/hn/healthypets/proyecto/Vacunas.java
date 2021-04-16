@@ -173,7 +173,7 @@ public class Vacunas extends AppCompatActivity {
                             MetodosImagenes.REQUEST_PERMISION_WRITE_STORAGE);
                 }
             } else {
-                Toast.makeText(Vacunas.this, "Debe llenar todos los campos obligatorios", Toast.LENGTH_LONG).show();
+                Toast.makeText(Vacunas.this, "Campos OBLIGATORIOS(*) vacios", Toast.LENGTH_LONG).show();
             }
         });
 
