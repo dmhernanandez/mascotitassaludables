@@ -263,7 +263,7 @@ public class Vacunas extends AppCompatActivity {
         if (accion == Constantes.GUARDAR) {
             /**Recuperamos el valor de la fecha por defecto que es la fecha actual*/
             dia = DateTime.diaDelMes;
-            mes = DateTime.mes+1;
+            mes = DateTime.mes;
             anio = DateTime.anio;
             /**Asignamos una foto de perfil por defecto*/
             Glide.with(this)
@@ -278,7 +278,7 @@ public class Vacunas extends AppCompatActivity {
             edtDescripVacuna.setText(intentValues.getStringExtra(Constantes.TAG_OBSERVACION));
             String[] fecha = intentValues.getStringExtra(Constantes.TAG_FECHA_APLICACION).split("-");
             dia = Integer.parseInt(fecha[0]);
-            mes = Integer.parseInt(fecha[1]);
+            mes = Integer.parseInt(fecha[1])-1;
             anio = Integer.parseInt(fecha[2]);
             /**Se valida si al actualizar tenia una foto, ser asi se muestra, de lo contrario se carga una imagen por defecto*/
             if (!intentValues.getStringExtra(Constantes.TAG_IMG_PATH).equals("")) {

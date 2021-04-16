@@ -119,7 +119,7 @@ public class Desparacitante extends AppCompatActivity {
         if (accion == Constantes.GUARDAR) {
             /**Recuperamos el valor de la fecha por defecto que es la fecha actual*/
             dia = DateTime.diaDelMes;
-            mes = DateTime.mes+1;
+            mes = DateTime.mes;
             anio = DateTime.anio;
         } else if (accion == Constantes.ACTUALIZAR) {
             /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha
@@ -129,7 +129,7 @@ public class Desparacitante extends AppCompatActivity {
 //            //String fecha1 = "15-03-2021";
 //            String[] fecha = fecha1.split("-");
             dia = Integer.parseInt(fecha[0]);
-            mes = Integer.parseInt(fecha[1]);
+            mes = Integer.parseInt(fecha[1])-1;
             anio = Integer.parseInt(fecha[2]);
             edtFechaApliDesp.setText(intentValues.getStringExtra(Constantes.TAG_FECHA_APLICACION));
             edtNombreDespa.setText(intentValues.getStringExtra(Constantes.TAG_NOMBRE));

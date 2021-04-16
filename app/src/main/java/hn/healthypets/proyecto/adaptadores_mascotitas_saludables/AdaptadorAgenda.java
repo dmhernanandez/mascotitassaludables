@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,7 +156,9 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
                 intent.putExtra(Constantes.TAG_ID_ALARM,agenda.getAlarmId());
                 intent.putExtra(Constantes.TAG_ID_MASCOTA,agenda.getMascotaAgendaVisitaId());
                 intent.putExtra(Constantes.TAG_ESTADO,agenda.getEstado());
+                Log.i("TAG",Constantes.TAG_ID_MASCOTA);
                 holder.itemView.getContext().startActivity(intent);
+
             }
         });
     }

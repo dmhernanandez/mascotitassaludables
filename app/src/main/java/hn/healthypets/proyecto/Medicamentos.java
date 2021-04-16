@@ -189,14 +189,14 @@ public class Medicamentos extends AppCompatActivity {
         if (accion == Constantes.GUARDAR) {
             /**Recuperamos el valor de la fecha por defecto que es la fecha actual*/
             dia = DateTime.diaDelMes;
-            mes = DateTime.mes+1;
+            mes = DateTime.mes;
             anio = DateTime.anio;
         } else if (accion == Constantes.ACTUALIZAR) {
             /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha
              * para asignarlo y luego asignarla al input*/
             String[] fecha = intentValues.getStringExtra(Constantes.TAG_FECHA_APLICACION).split("-");
             dia = Integer.parseInt(fecha[0]);
-            mes = Integer.parseInt(fecha[1]);
+            mes = Integer.parseInt(fecha[1])-1;
             anio = Integer.parseInt(fecha[2]);
             edtNombreMedicamento.setText(intentValues.getStringExtra(Constantes.TAG_NOMBRE_MEDICAMENTO));
             edtNumeroDosis.setText(String.valueOf( intentValues.getIntExtra(Constantes.TAG_CADA,Constantes.DEFAULT)));
