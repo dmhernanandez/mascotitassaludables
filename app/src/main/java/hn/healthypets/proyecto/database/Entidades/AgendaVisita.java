@@ -6,14 +6,14 @@ import androidx.room.PrimaryKey;
 @Entity
 public class AgendaVisita {
     @PrimaryKey(autoGenerate = true)
-   private  int agendaVisitaId;
-   private String nombreActividad;
-   private String fechaVencimiento;
-   private  String horaVencimiento;
-   private  int tiempoAnticipacion;
-   private  String observación;
+    private int agendaVisitaId;
+    private String nombreActividad;
+    private String fechaVencimiento;
+    private String horaVencimiento;
+    private int tiempoAnticipacion;
+    private String observación;
 
-    public AgendaVisita( String nombreActividad, String fechaVencimiento, String horaVencimiento, int tiempoAnticipacion, String observación, int mascotaAgendaVisitaId, int visitaCatMedicamentoId) {
+    public AgendaVisita(String nombreActividad, String fechaVencimiento, String horaVencimiento, int tiempoAnticipacion, String observación, int mascotaAgendaVisitaId, int visitaCatMedicamentoId) {
         this.nombreActividad = nombreActividad;
         this.fechaVencimiento = fechaVencimiento;
         this.horaVencimiento = horaVencimiento;
@@ -88,8 +88,7 @@ public class AgendaVisita {
     }
 
     //llave foranea de la tabla mascota
-    private  int mascotaAgendaVisitaId;
-   //Llave foranea de la tabla Categoria
+    private int mascotaAgendaVisitaId;
+    //Llave foranea de la tabla Categoria
     private int visitaCatMedicamentoId;
-
 }

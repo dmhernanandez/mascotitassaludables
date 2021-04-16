@@ -12,7 +12,6 @@ import hn.healthypets.proyecto.R;
 
 public class AgendaFragment extends Fragment {
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

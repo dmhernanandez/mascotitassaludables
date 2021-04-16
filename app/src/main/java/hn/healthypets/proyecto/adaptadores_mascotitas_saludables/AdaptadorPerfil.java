@@ -9,6 +9,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
@@ -16,8 +19,6 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import java.io.File;
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import hn.healthypets.proyecto.CreacionPerfiles;
 import hn.healthypets.proyecto.MenuRegistro;
 import hn.healthypets.proyecto.MetodosImagenes;
@@ -44,7 +45,8 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
         ImageView imgMascotaPerfil;
         Button btnControlPerfil;
         ImageButton btnActualizar;
-        /**Este medoto se utiliza para obtener el la ruta del directorio raiz de la aplicion
+        /**
+         * Este medoto se utiliza para obtener el la ruta del directorio raiz de la aplicion
          */
         MetodosImagenes metodosImagenes;
 
@@ -55,8 +57,7 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
             txvNumeroChipPerfil = itemView.findViewById(R.id.txvNumeroChipPerfil);
             imgMascotaPerfil = itemView.findViewById(R.id.imgvVacuna);
             btnControlPerfil = itemView.findViewById(R.id.btnControlPerfil);
-            btnActualizar= itemView.findViewById(R.id.btnActualizarMascota);
-
+            btnActualizar = itemView.findViewById(R.id.btnActualizarMascota);
         }
     }
 
@@ -72,58 +73,57 @@ public class AdaptadorPerfil extends RecyclerView.Adapter<AdaptadorPerfil.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Mascota mascota = mascotaArrayList.get(position);
         holder.txvNombrePerfil.setText("Nombre: " + mascota.getNombre());
-        holder.txvNumeroChipPerfil.setText("Fecha: " +     mascota.getFechaNacimiento());
+        holder.txvNumeroChipPerfil.setText("Fecha: " + mascota.getFechaNacimiento());
 
         //Se valida que la ruta de la foto no se nula ni esta vacia, para cargarla
-       if(!mascota.getRutaFoto().equals(""))
-       {
-           File filePhoto = new File(holder.metodosImagenes.getRootPath()+"/"+MetodosImagenes.PET_FOLDER+"/"+mascota.getRutaFoto());
-           Glide.with(holder.itemView)
-                   .load(filePhoto)
+        if (!mascota.getRutaFoto().equals(""))
+        {
+            File filePhoto = new File(holder.metodosImagenes.getRootPath() + "/" + MetodosImagenes.PET_FOLDER + "/" + mascota.getRutaFoto());
+            Glide.with(holder.itemView)
+                    .load(filePhoto)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                   .skipMemoryCache(true)
-                   .transform(new CircleCrop())
-                   .into(holder.imgMascotaPerfil);
-       }
-       else//Si la ruta de la foto esta vacia se coloca una por defecto
-       {
-           Glide.with(holder.itemView)
-                   .load(R.drawable.default_credencial)
-                   .transform(new CircleCrop())
-                   .into(holder.imgMascotaPerfil);
-       }
-
+                    .skipMemoryCache(true)
+                    .transform(new CircleCrop())
+                    .into(holder.imgMascotaPerfil);
+        }
+        else//Si la ruta de la foto esta vacia se coloca una por defecto
+        {
+            Glide.with(holder.itemView)
+                    .load(R.drawable.default_credencial)
+                    .transform(new CircleCrop())
+                    .into(holder.imgMascotaPerfil);
+        }
 
 //        Abrir El menu desde el boton registro
         holder.btnControlPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(holder.itemView.getContext(), MenuRegistro.class);
                 //Envio el id de la mascota para usaro en cualquie
-                intent.putExtra(Constantes.TAG_ID_MASCOTA,mascota.getMascotaId());
+                intent.putExtra(Constantes.TAG_ID, mascota.getMascotaId());
                 holder.itemView.getContext().startActivity(intent);
             }
         });
 
-       /**Evento del boton actualizar*/
+        /**Evento del boton actualizar*/
         holder.btnActualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), CreacionPerfiles.class);
                 //Envio el id de la mascota para usaro en cualquie
-                intent.putExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
+                intent.putExtra(Constantes.TAG_ACCION, Constantes.ACTUALIZAR);
 
-                intent.putExtra(Constantes.TAG_ID_MASCOTA,mascota.getMascotaId());
-                intent.putExtra(Constantes.TAG_NOMBRE,mascota.getNombre());
-                intent.putExtra(Constantes.TAG_FECHA_NACIENTO,mascota.getFechaNacimiento());
-                intent.putExtra(Constantes.TAG_NUMERO_CHIP,mascota.getNumeroChip());
-                intent.putExtra(Constantes.TAG_GENERO,mascota.getGeneroMascotaId());
-                intent.putExtra(Constantes.TAG_ESPECIE,mascota.getMascotaEspecieId());
-                intent.putExtra(Constantes.TAG_RAZA,mascota.getRazaMascotaId());
-                intent.putExtra(Constantes.TAG_IMG_PATH,mascota.getRutaFoto());
+                intent.putExtra(Constantes.TAG_ID, mascota.getMascotaId());
+                intent.putExtra(Constantes.TAG_NOMBRE, mascota.getNombre());
+                intent.putExtra(Constantes.TAG_FECHA_NACIENTO, mascota.getFechaNacimiento());
+                intent.putExtra(Constantes.TAG_NUMERO_CHIP, mascota.getNumeroChip());
+                intent.putExtra(Constantes.TAG_GENERO, mascota.getGeneroMascotaId());
+                intent.putExtra(Constantes.TAG_ESPECIE, mascota.getMascotaEspecieId());
+                intent.putExtra(Constantes.TAG_RAZA, mascota.getRazaMascotaId());
+                intent.putExtra(Constantes.TAG_IMG_PATH, mascota.getRutaFoto());
                 holder.itemView.getContext().startActivity(intent);
             }
         });

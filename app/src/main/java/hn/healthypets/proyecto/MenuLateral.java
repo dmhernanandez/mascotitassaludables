@@ -1,12 +1,8 @@
 package hn.healthypets.proyecto;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,17 +11,20 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.navigation.NavigationView;
+
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
 import hn.healthypets.proyecto.database.Entidades.Genero;
 import hn.healthypets.proyecto.database.SingletonDB;
-import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class MenuLateral extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     DataBase instanciaDB;
     NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,18 +54,12 @@ public class MenuLateral extends AppCompatActivity {
                 R.id.nav_credencial)
                 .setDrawerLayout(drawer)
                 .build();
-         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        if(instanciaDB.getMascotaDAO().getNumbersPets()<=0)
-        {
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        if (instanciaDB.getMascotaDAO().getNumbersPets() <= 0) {
             navController.navigate(R.id.nav_home);
         }
-
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
-     //   instanciaDB.getGeneroDAO().insertGender(new Genero("Hembra"));
     }
 
     @Override
@@ -75,7 +68,6 @@ public class MenuLateral extends AppCompatActivity {
 //        getMenuInflater().inflate(R.menu.menu_lateral, menu);
         return true;
     }
-
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -87,14 +79,10 @@ public class MenuLateral extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i("entro","entro");
-        if(instanciaDB.getMascotaDAO().getNumbersPets()<=0)
-        {
+        Log.i("entro", "entro");
+        if (instanciaDB.getMascotaDAO().getNumbersPets() <= 0) {
             navController.navigate(R.id.nav_home);
-        }
-        else
+        } else
             navController.navigate(R.id.nav_credencial);
-
-
     }
 }

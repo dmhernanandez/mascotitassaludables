@@ -1,12 +1,13 @@
 package hn.healthypets.proyecto.database.dao;
 
-import java.util.List;
-
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import java.util.List;
+
 import hn.healthypets.proyecto.database.Entidades.Especie;
 
 @Dao
@@ -16,10 +17,10 @@ public interface EspecieDAO {
     public void insertSpecies(Especie especie);
 
     //Optiene todos los campos de la tabla especie
-   @Query("SELECT * FROM Especie")
+    @Query("SELECT * FROM Especie")
     public List<Especie> getAllSpecies();
 
-   //Obtiene solo el nombre del de la especie
+    //Obtiene solo el nombre del de la especie
     @Query("SELECT especieNombre AS nombreEspecie from Especie")
     public LiveData<List<NombreEspecie>> getAllNameSpecies();
 
@@ -27,12 +28,11 @@ public interface EspecieDAO {
     @Query("SELECT especieNombre as nombreEspecie FROM Especie WHERE especieId = :idEspecie")
     public String getNameSpecieById(int idEspecie);
 
-   @Query("SELECT especieId FROM especie WHERE especieNombre = :nombreEspecie")
-   public int getIdSpeciesByName(String nombreEspecie);
-
+    @Query("SELECT especieId FROM especie WHERE especieNombre = :nombreEspecie")
+    public int getIdSpeciesByName(String nombreEspecie);
 
     //Clase POJO para devolver un arreglo de String con el nombre la especie unicamente
-    static class NombreEspecie{
+    static class NombreEspecie {
         private String nombreEspecie;
 
         public String getNombreEspecie() {
@@ -43,5 +43,4 @@ public interface EspecieDAO {
             this.nombreEspecie = nombreEspecie;
         }
     }
-
 }

@@ -1,7 +1,9 @@
 package hn.healthypets.proyecto.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -9,24 +11,14 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import hn.healthypets.proyecto.CreacionPerfiles;
 import hn.healthypets.proyecto.R;
-import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorPerfil;
 import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorVacunas;
 import hn.healthypets.proyecto.database.DataBase;
-import hn.healthypets.proyecto.database.Entidades.Mascota;
 import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.SingletonDB;
-import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class HistorialVacunaFragment extends Fragment {
 
@@ -36,28 +28,31 @@ public class HistorialVacunaFragment extends Fragment {
 
     //Creamos el Array o lista de lo que vamos a enviar
     ArrayList<Medicamento> arrayElementos;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View vista = inflater.inflate(R.layout.fragment_historial_vacuna, container, false);
-        RecyclerView  recyclerView=vista.findViewById(R.id.rvHistorialVacuna);
+        RecyclerView recyclerView = vista.findViewById(R.id.rvHistorialVacuna);
 
         //Obtenemos una instancia de la base de datos
-        instanciaDB= SingletonDB.getDatabase(getContext());
+        instanciaDB = SingletonDB.getDatabase(getContext());
         arrayElementos = new ArrayList<>();
 
         //Enlazamos los datos al Recicler View
-        recyclerViewPerfiles=vista.findViewById(R.id.rvHistorialVacuna);
+        recyclerViewPerfiles = vista.findViewById(R.id.rvHistorialVacuna);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewPerfiles.setLayoutManager(linearLayoutManager);
 
 
-        instanciaDB.getMedicamentoDAO().getMedicinesScheduleByVacuna().observe(getActivity(), new Observer<List<Medicamento>>() {
+        instanciaDB.getMedicamentoDAO().getMedicinesScheduleByVacuna().observe(getActivity(), new Observer<List<Medicamento>>()
+        {
             @Override
-            public void onChanged(List<Medicamento> medicamentos) {
+            public void onChanged(List<Medicamento> medicamentos)
+            {
                 /** Cada vez que agregamos una nueva mascota limpiamos el array*/
                 arrayElementos.clear();
-                for(Medicamento medicamento: medicamentos)
+                for (Medicamento medicamento : medicamentos)
                 {
                     //añadimos los datos al array lista
                     arrayElementos.add(medicamento);
@@ -71,8 +66,6 @@ public class HistorialVacunaFragment extends Fragment {
                 recyclerView.setAdapter(adaptador);
             }
         });
-
         return vista;
     }
-
 }

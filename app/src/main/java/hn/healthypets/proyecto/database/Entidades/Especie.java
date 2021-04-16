@@ -6,15 +6,14 @@ import androidx.room.PrimaryKey;
 
 /**
  * Esta clase contiene campos para guardar datos de especie como ser gatos, perros, loros, etc
- * */
-@Entity(indices = {@Index( value = "especieNombre",unique = true)})
+ */
+@Entity(indices = {@Index(value = "especieNombre", unique = true)})
 public class Especie {
     @PrimaryKey(autoGenerate = true)
-    private  int especieId;
+    private int especieId;
     private String especieNombre;
 
-
-    public Especie( String especieNombre) {
+    public Especie(String especieNombre) {
         this.especieNombre = especieNombre;
     }
 

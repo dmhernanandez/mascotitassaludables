@@ -1,24 +1,21 @@
- package hn.healthypets.proyecto.database.Entidades;
-
-import java.sql.Time;
-import java.util.Date;
+package hn.healthypets.proyecto.database.Entidades;
 
 import androidx.room.Entity;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
- @Entity
+@Entity
 public class AgendaMedicamento {
-     //declaramos todos los campos de la tabla y establecemos como autoincrementable el campo id de Agenda medicamento
+    //declaramos todos los campos de la tabla y establecemos como autoincrementable el campo id de Agenda medicamento
     @PrimaryKey(autoGenerate = true)
     int id;
     private String nombreMedicamento;
-    private  int dosisCantidad;
+    private int dosisCantidad;
     private int dosisId;
     private int intervaloTiempo;
     private int numeroDosis;
     private String fechaHoraInicio;
     private String horaFechaProximaDosis;
+    //private String recetaMedicamento;
     private boolean estado;
 
     //Llave foranea de mascota en la Agenda de medicamento
@@ -28,116 +25,130 @@ public class AgendaMedicamento {
     private int unidadMedidaId;
 
     //LLave foranaea de la tabla tipo Dosis
-     private int medicamentoDosisId;
+    private int medicamentoDosisId;
 
-     public AgendaMedicamento(int id, String nombreMedicamento, int dosisCantidad, int dosisId, int intervaloTiempo, int numeroDosis, String fechaHoraInicio, String horaFechaProximaDosis, boolean estado, int mascotaMedicamentoId, int unidadMedidaId, int medicamentoDosisId) {
-         this.id = id;
-         this.nombreMedicamento = nombreMedicamento;
-         this.dosisCantidad = dosisCantidad;
-         this.dosisId = dosisId;
-         this.intervaloTiempo = intervaloTiempo;
-         this.numeroDosis = numeroDosis;
-         this.fechaHoraInicio = fechaHoraInicio;
-         this.horaFechaProximaDosis = horaFechaProximaDosis;
-         this.estado = estado;
-         this.mascotaMedicamentoId = mascotaMedicamentoId;
-         this.unidadMedidaId = unidadMedidaId;
-         this.medicamentoDosisId = medicamentoDosisId;
-     }
 
-     public void setId(int id) {
-         this.id = id;
-     }
+    public AgendaMedicamento(
+            int id,
+            String nombreMedicamento,
+            int dosisCantidad,
+            int dosisId,
+            int intervaloTiempo,
+            int numeroDosis,
+            String fechaHoraInicio,
+            String horaFechaProximaDosis,
+            boolean estado,
+            int mascotaMedicamentoId,
+            int unidadMedidaId,
+            int medicamentoDosisId)
+    {
+        this.id = id;
+        this.nombreMedicamento = nombreMedicamento;
+        this.dosisCantidad = dosisCantidad;
+        this.dosisId = dosisId;
+        this.intervaloTiempo = intervaloTiempo;
+        this.numeroDosis = numeroDosis;
+        this.fechaHoraInicio = fechaHoraInicio;
+        this.horaFechaProximaDosis = horaFechaProximaDosis;
+        this.estado = estado;
+        this.mascotaMedicamentoId = mascotaMedicamentoId;
+        this.unidadMedidaId = unidadMedidaId;
+        this.medicamentoDosisId = medicamentoDosisId;
+    }
 
-     public void setNombreMedicamento(String nombreMedicamento) {
-         this.nombreMedicamento = nombreMedicamento;
-     }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-     public void setDosisCantidad(int dosisCantidad) {
-         this.dosisCantidad = dosisCantidad;
-     }
+    public void setNombreMedicamento(String nombreMedicamento) {
+        this.nombreMedicamento = nombreMedicamento;
+    }
 
-     public void setDosisId(int dosisId) {
-         this.dosisId = dosisId;
-     }
+    public void setDosisCantidad(int dosisCantidad) {
+        this.dosisCantidad = dosisCantidad;
+    }
 
-     public void setIntervaloTiempo(int intervaloTiempo) {
-         this.intervaloTiempo = intervaloTiempo;
-     }
+    public void setDosisId(int dosisId) {
+        this.dosisId = dosisId;
+    }
 
-     public void setNumeroDosis(int numeroDosis) {
-         this.numeroDosis = numeroDosis;
-     }
+    public void setIntervaloTiempo(int intervaloTiempo) {
+        this.intervaloTiempo = intervaloTiempo;
+    }
 
-     public void setFechaHoraInicio(String fechaHoraInicio) {
-         this.fechaHoraInicio = fechaHoraInicio;
-     }
+    public void setNumeroDosis(int numeroDosis) {
+        this.numeroDosis = numeroDosis;
+    }
 
-     public void setHoraFechaProximaDosis(String horaFechaProximaDosis) {
-         this.horaFechaProximaDosis = horaFechaProximaDosis;
-     }
+    public void setFechaHoraInicio(String fechaHoraInicio) {
+        this.fechaHoraInicio = fechaHoraInicio;
+    }
 
-     public void setEstado(boolean estado) {
-         this.estado = estado;
-     }
+    public void setHoraFechaProximaDosis(String horaFechaProximaDosis) {
+        this.horaFechaProximaDosis = horaFechaProximaDosis;
+    }
 
-     public void setMascotaMedicamentoId(int mascotaMedicamentoId) {
-         this.mascotaMedicamentoId = mascotaMedicamentoId;
-     }
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 
-     public void setUnidadMedidaId(int unidadMedidaId) {
-         this.unidadMedidaId = unidadMedidaId;
-     }
+    public void setMascotaMedicamentoId(int mascotaMedicamentoId) {
+        this.mascotaMedicamentoId = mascotaMedicamentoId;
+    }
 
-     public void setMedicamentoDosisId(int medicamentoDosisId) {
-         this.medicamentoDosisId = medicamentoDosisId;
-     }
+    public void setUnidadMedidaId(int unidadMedidaId) {
+        this.unidadMedidaId = unidadMedidaId;
+    }
 
-     public int getId() {
-         return id;
-     }
+    public void setMedicamentoDosisId(int medicamentoDosisId) {
+        this.medicamentoDosisId = medicamentoDosisId;
+    }
 
-     public String getNombreMedicamento() {
-         return nombreMedicamento;
-     }
+    public int getId() {
+        return id;
+    }
 
-     public int getDosisCantidad() {
-         return dosisCantidad;
-     }
+    public String getNombreMedicamento() {
+        return nombreMedicamento;
+    }
 
-     public int getDosisId() {
-         return dosisId;
-     }
+    public int getDosisCantidad() {
+        return dosisCantidad;
+    }
 
-     public int getIntervaloTiempo() {
-         return intervaloTiempo;
-     }
+    public int getDosisId() {
+        return dosisId;
+    }
 
-     public int getNumeroDosis() {
-         return numeroDosis;
-     }
+    public int getIntervaloTiempo() {
+        return intervaloTiempo;
+    }
 
-     public String getFechaHoraInicio() {
-         return fechaHoraInicio;
-     }
+    public int getNumeroDosis() {
+        return numeroDosis;
+    }
 
-     public String getHoraFechaProximaDosis() {
-         return horaFechaProximaDosis;
-     }
+    public String getFechaHoraInicio() {
+        return fechaHoraInicio;
+    }
 
-     public boolean isEstado() {
-         return estado;
-     }
+    public String getHoraFechaProximaDosis() {
+        return horaFechaProximaDosis;
+    }
 
-     public int getMascotaMedicamentoId() {
-         return mascotaMedicamentoId;
-     }
+    public boolean isEstado() {
+        return estado;
+    }
 
-     public int getUnidadMedidaId() {
-         return unidadMedidaId;
-     }
+    public int getMascotaMedicamentoId() {
+        return mascotaMedicamentoId;
+    }
 
-     public int getMedicamentoDosisId() {
-         return medicamentoDosisId;
-     }
- }
+    public int getUnidadMedidaId() {
+        return unidadMedidaId;
+    }
+
+    public int getMedicamentoDosisId() {
+        return medicamentoDosisId;
+    }
+}

@@ -1,9 +1,10 @@
 package hn.healthypets.proyecto.database.relacionesTablas;
 
-import java.util.List;
-
 import androidx.room.Embedded;
 import androidx.room.Relation;
+
+import java.util.List;
+
 import hn.healthypets.proyecto.database.Entidades.Mascota;
 import hn.healthypets.proyecto.database.Entidades.Medicamento;
 
@@ -12,12 +13,12 @@ public class MascotasConMedicamentos {
 
     /**
      * En esta relación establecemos que por cada mascota se generará una lista con todas las vacunas aplicadas
-     * */
-  @Embedded public Mascota mascota;
+     */
+    @Embedded
+    public Mascota mascota;
     @Relation(
             parentColumn = "mascotaId",
             entityColumn = "mascotaMedicadaId"
     )
     public List<Medicamento> mascotaMedicada;
-
 }

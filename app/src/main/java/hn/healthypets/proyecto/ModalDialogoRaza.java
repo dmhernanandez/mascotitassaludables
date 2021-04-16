@@ -53,7 +53,7 @@ public class ModalDialogoRaza extends AppCompatDialogFragment {
         }
     }
 
-    public interface ModalDialogoRazaListener{
+    public interface ModalDialogoRazaListener {
         void applyTextRaza(String razaMascota);
     }
 }

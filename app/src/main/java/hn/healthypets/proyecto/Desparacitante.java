@@ -3,7 +3,6 @@ package hn.healthypets.proyecto;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,10 +25,11 @@ public class Desparacitante extends AppCompatActivity {
     private EditText edtNombreDespa;
     private EditText edtPesoDespa;
     private EditText edtObserDespa;
-    private Button btnListo;
+    private Button btnGuardar;
     private DataBase instanciaDB;
     private DateTime fechaHora;
     private int dia, mes, anio;
+    Intent intentValues;
 
     /**
      * Se utilizan para validar que tipo de accion se realizara en la actividad, estos datos se reciben del intent
@@ -53,36 +53,50 @@ public class Desparacitante extends AppCompatActivity {
             }
         });
 
-        btnListo.setOnClickListener((v) -> {
-            boolean validacion = Validacion.fieldsAreNotEmpty(
+        btnGuardar.setOnClickListener((v) -> {
+            boolean fieldsFill = Validacion.fieldsAreNotEmpty(
                     edtFechaApliDesp.getText().toString(),
                     edtNombreDespa.getText().toString(),
                     edtPesoDespa.getText().toString());
 
-            if (validacion)
-            {
-//                LLAMAR METODO DAO
-                Medicamento desparasitante =new Medicamento(
-                        0,
-                                    edtNombreDespa.getText().toString(),
-                                    edtFechaApliDesp.getText().toString(),
-                                    "",
-                                    Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
-                                    edtObserDespa.getText().toString(),
-                                     getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT),
-                                    instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName("Desparasitante"),
-                                    0
-                );
-                instanciaDB.getMedicamentoDAO().insertdewormer(desparasitante);
-                Toast.makeText(Desparacitante.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
-                finish();
-
-
-            } else
-                Toast.makeText(Desparacitante.this,"Campos OBLIGATORIOS(*) vacios",Toast.LENGTH_LONG).show();
+            if (fieldsFill) {
+                switch (accion) {
+                    case Constantes.GUARDAR:
+                        Medicamento desparasitante = new Medicamento(
+                                0,
+                                edtNombreDespa.getText().toString(),
+                                edtFechaApliDesp.getText().toString(),
+                                "",
+                                Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
+                                edtObserDespa.getText().toString(),
+                                getIntent().getIntExtra(Constantes.TAG_ID, Constantes.DEFAULT),
+                                instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName("Desparasitante"),
+                                0
+                        );
+                        instanciaDB.getMedicamentoDAO().insertdewormer(desparasitante);
+                        Toast.makeText(Desparacitante.this, "Información guardada exitosamente ;)", Toast.LENGTH_LONG).show();
+                        finish();
+                        break;
+                    case Constantes.ACTUALIZAR:
+                        desparasitante = new Medicamento(
+                                intentValues.getIntExtra(Constantes.TAG_ID, Constantes.DEFAULT),
+                                edtNombreDespa.getText().toString(),
+                                edtFechaApliDesp.getText().toString(),
+                                "",
+                                Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
+                                edtObserDespa.getText().toString(),
+                                getIntent().getIntExtra(Constantes.TAG_ID, Constantes.DEFAULT),
+                                instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName("Desparasitante"),
+                                0);
+                        instanciaDB.getMedicamentoDAO().updateMedicine(desparasitante);
+                        Toast.makeText(Desparacitante.this, "Información con exito +", Toast.LENGTH_LONG).show();
+                        finish();
+                        break;
+                }
+            } else {
+                Toast.makeText(Desparacitante.this, "Campos OBLIGATORIOS(*) vacios", Toast.LENGTH_LONG).show();
+            }
         });
-
-
     }
 
     private void init() {
@@ -90,34 +104,35 @@ public class Desparacitante extends AppCompatActivity {
         edtNombreDespa = findViewById(R.id.edtNombreDesparacitante);
         edtPesoDespa = findViewById(R.id.edtPesoDesparacitante);
         edtObserDespa = findViewById(R.id.edtObservacionesDesparacitante);
-        btnListo = findViewById(R.id.btnListoDesparacitante);
+        btnGuardar = findViewById(R.id.btnListoDesparacitante);
         fechaHora = new DateTime();
-        metodosImagenes = new MetodosImagenes(this);
+//        metodosImagenes = new MetodosImagenes(this);
 
-//Se obtiene una instancia de la base de datos
+        /**Se obtiene una instancia de la base de datos*/
         instanciaDB = SingletonDB.getDatabase(this);
 
         /**Obtemos datos del Intent y determinamos si es una actualizacion o una insercion, estos valores se optienen con el */
-        Intent intentValues = getIntent();
-        accion = intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.ACTUALIZAR);
+        intentValues = getIntent();
+        accion = intentValues.getIntExtra(Constantes.TAG_ACCION, Constantes.GUARDAR);
         if (accion == Constantes.GUARDAR) {
-
-
-            //Recuperamos el valor de la fecha por defecto que es la fecha actual
+            /**Recuperamos el valor de la fecha por defecto que es la fecha actual*/
             dia = DateTime.diaDelMes;
             mes = DateTime.mes;
             anio = DateTime.anio;
-
         } else if (accion == Constantes.ACTUALIZAR) {
-            String fecha1 = "15-03-2021";
-            //Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha para asignarlo y luego asignarla al input*/
-            String[] fecha = fecha1.split("-");
+            /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha
+             * para asignarlo y luego asignarla al input*/
+            String[] fecha = intentValues.getStringExtra(Constantes.TAG_FECHA_APLICACION).split("-");
+//            //String fecha1 = "15-03-2021";
+//            String[] fecha = fecha1.split("-");
             dia = Integer.parseInt(fecha[0]);
             mes = Integer.parseInt(fecha[1]);
             anio = Integer.parseInt(fecha[2]);
-
+            edtFechaApliDesp.setText(intentValues.getStringExtra(Constantes.TAG_FECHA_APLICACION));
+            edtNombreDespa.setText(intentValues.getStringExtra(Constantes.TAG_NOMBRE));
+            edtObserDespa.setText(intentValues.getStringExtra(Constantes.TAG_OBSERVACION));
+            edtPesoDespa.setText(intentValues.getStringExtra(Constantes.TAG_PESO));
         }
         edtFechaApliDesp.setText(fechaHora.formato(dia, mes, anio));
-        accion = Constantes.ACTUALIZAR;
     }
 }
