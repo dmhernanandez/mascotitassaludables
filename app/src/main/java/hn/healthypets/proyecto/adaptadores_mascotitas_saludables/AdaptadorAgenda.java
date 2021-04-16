@@ -3,6 +3,7 @@ package hn.healthypets.proyecto.adaptadores_mascotitas_saludables;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import hn.healthypets.proyecto.Agenda;
 import hn.healthypets.proyecto.R;
+import hn.healthypets.proyecto.Utilidades.DateTime;
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.AgendaVisita;
 import hn.healthypets.proyecto.database.SingletonDB;
@@ -79,9 +81,26 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
         calendar.set(Calendar.YEAR,agenda.getAnio());
         calendar.set(Calendar.HOUR_OF_DAY,agenda.getHora());
         calendar.set(Calendar.MINUTE,agenda.getMinuto());
+        /**Validamos si ya esta caducada la fecha de la actividad*/
+        if(agenda.getEstado()==Constantes.ATRASADA)
+        {
+            holder.itemView.setBackgroundColor(Color.parseColor("#F1948A"));
+        }
+       else   if(DateTime.isFutureDate(agenda.getDia()+"/"+(agenda.getMes() + 1)+"/"+agenda.getAnio()+" "+agenda.getHora()+":"+agenda.getMinuto(),"dd/MM/yyyy HH:mm"))
+        {
+            holder.itemView.setBackgroundColor(Color.parseColor("#D1F2EB"));
+        }
+
+        else
+        {
+            holder.itemView.setBackgroundColor(Color.parseColor("#F1948A"));
+            holder.instanciaDB.getAgendaVisitaDAO().updateState(agenda.getAgendaVisitaId(),Constantes.ATRASADA);
+        }
+
+
         Date fechaHora = new Date(calendar.getTimeInMillis());
-        SimpleDateFormat formato = new SimpleDateFormat("EEEE dd MMMM yyyy HH:mm ");
-        holder.txvNombreMascota.setText(formato.format(fechaHora));
+        SimpleDateFormat formato = new SimpleDateFormat("EEEE dd 'de' MMMM', 'yyyy ");
+        holder.txvNombreMascota.setText(formato.format(fechaHora)+ " a las "+ DateTime.formatoHora(agenda.getHora(),agenda.getMinuto(),true));
 
 
 
@@ -114,12 +133,10 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
                 intent.putExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
                 intent.putExtra(Constantes.TAG_ID,agenda.getAgendaVisitaId());
                 intent.putExtra(Constantes.TAG_NOMBRE_ACTIVIDAD,agenda.getNombreActividad());
+
                 intent.putExtra(Constantes.TAG_DIA,agenda.getDia());
                 intent.putExtra(Constantes.TAG_MES,agenda.getMes());
                 intent.putExtra(Constantes.TAG_ANIO,agenda.getAnio());
-                intent.putExtra(Constantes.TAG_HORA,agenda.getHora());
-                intent.putExtra(Constantes.TAG_MINUTO,agenda.getMinuto());
-                intent.putExtra(Constantes.TAG_COMENTARIO,agenda.getObservación());
                 intent.putExtra(Constantes.TAG_HORA,agenda.getHora());
                 intent.putExtra(Constantes.TAG_MINUTO,agenda.getMinuto());
                 intent.putExtra(Constantes.TAG_COMENTARIO,agenda.getObservación());

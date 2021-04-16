@@ -22,6 +22,9 @@ public interface AgendaVisitaDAO {
      @Query("DELETE FROM  AgendaVisita  WHERE agendaVisitaId=:idTask ")
     public void deleteTask(int idTask);
 
+     @Query("UPDATE  AgendaVisita SET estado= :estado WHERE agendaVisitaId=:idAgendaVisita")
+     public void updateState(int idAgendaVisita,int estado);
+
     //Optiene todos los campos de la tabla especie
     @Query("SELECT * FROM AgendaVisita ")
     public LiveData<List<AgendaVisita>> getAllActivities();

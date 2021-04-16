@@ -17,7 +17,7 @@ public class Constantes {
     public static final String TAG_GENERO="genero";
     public static final String TAG_ESPECIE="especie";
     public static final String TAG_RAZA="raza";
-    public  static final String TAG_IMG_PATH="rutaImagen";
+    public static final String TAG_IMG_PATH="rutaImagen";
     public static final String TAG_NOMBRE_ACTIVIDAD="actividad";
     public static final String TAG_ID_TIPO_TAREA="tipoTarea";
     public static final String TAG_HORA="hora";
@@ -25,10 +25,11 @@ public class Constantes {
     public static final String TAG_DIA="dia";
     public static final String TAG_MES="mes";
     public static final String TAG_ANIO="anio";
-    public static final String TAG_COMENTARIO="anio";
+    public static final String TAG_COMENTARIO="comentario";
     public static final String TAG_ID_MASCOTA="idMascota";
     public static final String TAG_ID_CAT_MEDICAMENTO="categoriaMedicamento";
     public static final String TAG_ESTADO="estado";
+    public static final String TAG_ID_ALARM="idAlarma";
 
     /** Constantes para manejar el estado*/
     public static final int ACTIVO=1;

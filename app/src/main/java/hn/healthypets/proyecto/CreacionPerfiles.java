@@ -629,9 +629,4 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         spinner.setEnabled(true);
     }
 
-    /** intent */
-    void goHome()
-    {
-//        Intent intent = new Intent
-    }
 }

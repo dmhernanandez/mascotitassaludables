@@ -7,12 +7,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
-
 import hn.healthypets.proyecto.database.Entidades.AgendaMedicamento;
-import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
-import hn.healthypets.proyecto.database.Entidades.Medicamento;
-import hn.healthypets.proyecto.database.Entidades.Raza;
 
 
 @Dao
@@ -28,7 +23,6 @@ public interface AgendaMedicamentoDAO {
     public int getIdMedicinesScheduleByName(String nombreMedicamento);
 
     //Selecciona todas las filas de Categoria Medicamento
-
       @Query("SELECT * FROM AgendaMedicamento")
     public LiveData<List<AgendaMedicamento>> getAllMedicinesSchedule();
 
