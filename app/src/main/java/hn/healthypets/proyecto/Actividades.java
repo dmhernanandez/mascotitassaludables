@@ -1,9 +1,9 @@
 package hn.healthypets.proyecto;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Actividades extends AppCompatActivity {
 
@@ -16,7 +16,7 @@ public class Actividades extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividades);
 
-        txvNombreMascota=findViewById(R.id.txvNombrePerfil);
+        txvNombreMascota=findViewById(R.id.txvDescripcion);
         txvNombreActividad=findViewById(R.id.txvNombreActividad);
         txvFechaHora=findViewById(R.id.txvFechaHora);
     }

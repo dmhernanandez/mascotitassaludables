@@ -30,6 +30,8 @@ public class Constantes {
     public static final String TAG_ID_CAT_MEDICAMENTO="categoriaMedicamento";
     public static final String TAG_ESTADO="estado";
     public static final String TAG_ID_ALARM="idAlarma";
+    public static final String TAG_NOMBRE_MASCOTA="nombreMascota";
+    public static final String TAG_NOMBRE_TIPO_ACTIVIDAD="nombreTipoActidiad";
 
     /** Constantes para manejar el estado*/
     public static final int ACTIVO=1;

@@ -21,39 +21,44 @@ import hn.healthypets.proyecto.Agenda;
 import hn.healthypets.proyecto.R;
 import hn.healthypets.proyecto.Utilidades.DateTime;
 import hn.healthypets.proyecto.database.DataBase;
-import hn.healthypets.proyecto.database.Entidades.AgendaVisita;
 import hn.healthypets.proyecto.database.SingletonDB;
+import hn.healthypets.proyecto.database.dao.AgendaVisitaDAO;
 import hn.healthypets.proyecto.modelos_mascotitas_saludables.Constantes;
 
 public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHolder> {
 
-    private ArrayList<AgendaVisita> agendaArrayList;
+    private ArrayList<AgendaVisitaDAO.AgendaNombre> agendaArrayList;
 
     @Override
     public int getItemCount() {
         return this.agendaArrayList.size();
     }
 
-    public AdaptadorAgenda(ArrayList<AgendaVisita> mascotaArrayList) {
+    public AdaptadorAgenda(ArrayList<AgendaVisitaDAO.AgendaNombre> mascotaArrayList) {
         this.agendaArrayList = mascotaArrayList;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txvNombreActividad;
-        TextView txvNombreMascota;
-        TextView txvFechaHoraAgenda;
+        TextView txvDescripcionAgenda;
+        TextView txvNotas;
+        TextView txvDescripcion;
+        TextView txvTipoActividad;
         Button btnActualizarAgenda;
         Button btnEliminarAgenda;
         DataBase instanciaDB;
-
+        static String tiempo;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txvNombreActividad = itemView.findViewById(R.id.txtFechaNacimiento);
-            txvNombreMascota = itemView.findViewById(R.id.txvNombrePerfil);
-            txvFechaHoraAgenda= itemView.findViewById(R.id.txvFechaHoraAgenda);
+            txvNombreActividad = itemView.findViewById(R.id.txvNombreAgendaActividad);
+            txvDescripcionAgenda = itemView.findViewById(R.id.txvDescripcion);
             btnActualizarAgenda = itemView.findViewById(R.id.btnActualizarAgenda);
             btnEliminarAgenda = itemView.findViewById(R.id.btnElimnarAgenda);
             instanciaDB= SingletonDB.getDatabase(itemView.getContext());
+            txvDescripcion=itemView.findViewById(R.id.txvDescripcion);
+            txvNotas= itemView.findViewById(R.id.txvNota);
+            txvTipoActividad=itemView.findViewById(R.id.txvTipoActividad);
+            tiempo="";
 
         }
     }
@@ -71,9 +76,9 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
     @Override
     public void onBindViewHolder(@NonNull AdaptadorAgenda.ViewHolder holder, int position) {
 
-        AgendaVisita agenda = agendaArrayList.get(position);
+        AgendaVisitaDAO.AgendaNombre agenda = agendaArrayList.get(position);
 
-        holder.txvNombreActividad.setText("Nombre: " + agenda.getNombreActividad());
+        holder.txvNombreActividad.setText(agenda.getNombreActividad());
         /** Todas las varibles de calendarios creadas se utilizan para dar un formato a la fecha*/
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH,agenda.getDia());
@@ -84,15 +89,18 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
         /**Validamos si ya esta caducada la fecha de la actividad*/
         if(agenda.getEstado()==Constantes.ATRASADA)
         {
+            holder.tiempo="tenía";
             holder.itemView.setBackgroundColor(Color.parseColor("#F1948A"));
         }
        else   if(DateTime.isFutureDate(agenda.getDia()+"/"+(agenda.getMes() + 1)+"/"+agenda.getAnio()+" "+agenda.getHora()+":"+agenda.getMinuto(),"dd/MM/yyyy HH:mm"))
         {
+            holder.tiempo="tiene";
             holder.itemView.setBackgroundColor(Color.parseColor("#D1F2EB"));
         }
 
         else
         {
+            holder.tiempo="tenía";
             holder.itemView.setBackgroundColor(Color.parseColor("#F1948A"));
             holder.instanciaDB.getAgendaVisitaDAO().updateState(agenda.getAgendaVisitaId(),Constantes.ATRASADA);
         }
@@ -100,9 +108,12 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
 
         Date fechaHora = new Date(calendar.getTimeInMillis());
         SimpleDateFormat formato = new SimpleDateFormat("EEEE dd 'de' MMMM', 'yyyy ");
-        holder.txvNombreMascota.setText(formato.format(fechaHora)+ " a las "+ DateTime.formatoHora(agenda.getHora(),agenda.getMinuto(),true));
+        /** Se crea la descricion*/
+        holder.txvDescripcionAgenda.setText(agenda.getNombre() +" "+holder.tiempo+" una actividad programada el dia "
+                +formato.format(fechaHora)+ " a las "+ DateTime.formatoHora(agenda.getHora(),agenda.getMinuto(),true));
+          holder.txvTipoActividad.setText("Tipo actividad: "+agenda.getNombreCategoria());
 
-
+        holder.txvNotas.setText("Nota: "+agenda.getObservación());
 
 //        Abrir El menu desde el boton registro
         holder.btnEliminarAgenda.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +126,7 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Agenda.cancelAlarm(agenda.getAlarmId(),holder.itemView.getContext());
                         holder.instanciaDB.getAgendaVisitaDAO().deleteTask(agenda.getAgendaVisitaId());
                     }
                 });
@@ -133,14 +145,15 @@ public class AdaptadorAgenda extends RecyclerView.Adapter<AdaptadorAgenda.ViewHo
                 intent.putExtra(Constantes.TAG_ACCION,Constantes.ACTUALIZAR);
                 intent.putExtra(Constantes.TAG_ID,agenda.getAgendaVisitaId());
                 intent.putExtra(Constantes.TAG_NOMBRE_ACTIVIDAD,agenda.getNombreActividad());
-
                 intent.putExtra(Constantes.TAG_DIA,agenda.getDia());
                 intent.putExtra(Constantes.TAG_MES,agenda.getMes());
                 intent.putExtra(Constantes.TAG_ANIO,agenda.getAnio());
                 intent.putExtra(Constantes.TAG_HORA,agenda.getHora());
                 intent.putExtra(Constantes.TAG_MINUTO,agenda.getMinuto());
                 intent.putExtra(Constantes.TAG_COMENTARIO,agenda.getObservación());
-                intent.putExtra(Constantes.TAG_ID_CAT_MEDICAMENTO,agenda.getVisitaCatMedicamentoId());
+                intent.putExtra(Constantes.TAG_ID_CAT_MEDICAMENTO,agenda.getNombreCategoria());
+                intent.putExtra(Constantes.TAG_ID_ALARM,agenda.getAlarmId());
+                intent.putExtra(Constantes.TAG_ID_MASCOTA,agenda.getMascotaAgendaVisitaId());
                 intent.putExtra(Constantes.TAG_ESTADO,agenda.getEstado());
                 holder.itemView.getContext().startActivity(intent);
             }

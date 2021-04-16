@@ -23,6 +23,8 @@ public interface MascotaDAO {
     @Query("SELECT * FROM Mascota")
     public LiveData<List<Mascota>> getAllPets();
 
+    @Query("SELECT nombre FROM Mascota WHERE mascotaId=:idMascota")
+    public String getNamePetById(int idMascota);
 
    @Query("SELECT count(*) FROM Mascota")
     public int getNumbersPets();

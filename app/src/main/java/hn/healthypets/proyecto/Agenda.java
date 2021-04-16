@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,7 +23,6 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import hn.healthypets.proyecto.Utilidades.AlarmReceiver;
-import hn.healthypets.proyecto.Utilidades.Alertas;
 import hn.healthypets.proyecto.Utilidades.DateTime;
 import hn.healthypets.proyecto.Utilidades.Validacion;
 import hn.healthypets.proyecto.database.DataBase;
@@ -97,6 +97,7 @@ public class Agenda extends AppCompatActivity {
         }
         else if(actionToPerform==Constantes.ACTUALIZAR)
         {
+            Log.i("idRicibido",""+intentRecibido.getIntExtra(Constantes.TAG_ID,Constantes.DEFAULT));
             edtNombreActividad.setText(intentRecibido.getStringExtra(Constantes.TAG_NOMBRE_ACTIVIDAD));
             edtObservaionesAgenda.setText(intentRecibido.getStringExtra(Constantes.TAG_COMENTARIO));
             dia=intentRecibido.getIntExtra(Constantes.TAG_DIA,Constantes.DEFAULT);
@@ -107,10 +108,9 @@ public class Agenda extends AppCompatActivity {
             minuto=intentRecibido.getIntExtra(Constantes.TAG_MINUTO,Constantes.DEFAULT);
             /**Se obtiene el nombre de la categoria o tipo accion que va realizar para
              * seleccionarla en el spinner*/
-            nombreCategoria= instanciaDB.getCategoriaMedicamentoDAO().getNameMedicinesCategoriesById(
-                    intentRecibido.getIntExtra(Constantes.TAG_ID_CAT_MEDICAMENTO,Constantes.DEFAULT));
+            nombreCategoria= intentRecibido.getStringExtra(Constantes.TAG_ID_CAT_MEDICAMENTO);
         }
-
+          
         edtFechaAgenda.setText(DateTime.formatoFecha(dia,mes,anio));
         edtHoraAgenda.setText(DateTime.formatoHora(hora,minuto,true));
 
@@ -146,7 +146,7 @@ public class Agenda extends AppCompatActivity {
                            dia=dayOfMonth;
                            mes=month;
                            anio=year;
-                        edtFechaAgenda.setText(DateTime.formatoFecha(dayOfMonth, month, year));}, anioActual, mesActual, diaActual);
+                         edtFechaAgenda.setText(DateTime.formatoFecha(dayOfMonth, month, year));}, anioActual, mesActual, diaActual);
                 dialogoFecha.show();
             }
         });
@@ -161,8 +161,8 @@ public class Agenda extends AppCompatActivity {
                  * [ mes + 1 ]  al mes se le suma una unidad ya que al tomarlo de DatePicker el valor del mes tiene una
                  * unidad menos ya que el mes de enero es 0 y diciembre 11
                  * */
-                if(DateTime.isFutureDate(dia+"/"+(mes + 1)+"/"+anio+" "+hora+":"+minuto,"dd/MM/yyyy HH:mm"))
-                {
+//                if(DateTime.isFutureDate(dia+"/"+(mes + 1)+"/"+anio+" "+hora+":"+minuto,"dd/MM/yyyy HH:mm"))
+//                {
                     today = Calendar.getInstance();
                     today.setTimeInMillis(System.currentTimeMillis());
                     today.set(Calendar.HOUR_OF_DAY, hora);
@@ -171,6 +171,7 @@ public class Agenda extends AppCompatActivity {
                     today.set(Calendar.DAY_OF_MONTH,dia);
                     today.set(Calendar.MONTH,mes);
                     today.set(Calendar.YEAR,anio);
+                    Log.i("horaAlarma",""+today.getTimeInMillis());
                     int idAlarma =DateTime.generateNumber();
                     //Se crea un switch para determinar que tipo de accion es que se esta realizando
                     switch (actionToPerform)
@@ -181,20 +182,25 @@ public class Agenda extends AppCompatActivity {
                                     edtNombreActividad.getText().toString(),
                                     dia, mes, anio,hora,minuto,
                                     0,
-                                    edtObservaionesAgenda.getText().toString(),
+                                    edtObservaionesAgenda.getText().toString(), 
                                     idAlarma,
                                     intentRecibido.getIntExtra(Constantes.TAG_ID,Constantes.DEFAULT),
                                     instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName(spiTipAgenda.getSelectedItem().toString()),
                                     Constantes.ACTIVO);
                             //Inserta la nueva agenda
                             instanciaDB.getAgendaVisitaDAO().inertNewTask(task);
-                            setAlarm(idAlarma,today.getTimeInMillis(),this,String.valueOf(idAlarma));
+                            /** Establecemos la alarma para paa*/
+                            setAlarm(idAlarma,today.getTimeInMillis(),this,
+                                    edtNombreActividad.getText().toString(),
+                                    instanciaDB.getMascotaDAO().getNamePetById(intentRecibido.getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT)),
+                                    spiTipAgenda.getSelectedItem().toString(),
+                                    edtObservaionesAgenda.getText().toString());
 
                             /** Cuando se guarda se envia a la actividad principal*/
-                            Toast.makeText(Agenda.this, "Información guardada eexitosamente", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(this,MenuLateral.class);
-                            startActivity(intent);
-
+                            Toast.makeText(Agenda.this, "Información guardada exitosamente", Toast.LENGTH_LONG).show();
+//                            Intent intent = new Intent(this,MenuLateral.class);
+//                            startActivity(intent);
+                                finish();
                             break;
                         case Constantes.ACTUALIZAR:
                             /**Creamos un ojeto de tipo ajenda y lo pasando nuestro id c*/
@@ -204,28 +210,32 @@ public class Agenda extends AppCompatActivity {
                                     dia, mes, anio,hora,minuto,
                                     0,
                                     edtObservaionesAgenda.getText().toString(),
-                                    DateTime.generateNumber(),
-                                    intentRecibido.getIntExtra(Constantes.TAG_ID,Constantes.DEFAULT),
+                                    intentRecibido.getIntExtra(Constantes.TAG_ID_ALARM,Constantes.DEFAULT),
+                                    intentRecibido.getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT),
                                     instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName(spiTipAgenda.getSelectedItem().toString()),
                                     Constantes.ACTIVO);
                             //Actualizamos la el valor la nueva agenda
-                            instanciaDB.getAgendaVisitaDAO().udateTak(updatedTask);
-
+                            instanciaDB.getAgendaVisitaDAO().updateTask(updatedTask);
+                            setAlarm(idAlarma,today.getTimeInMillis(),this,
+                                    edtNombreActividad.getText().toString(),
+                                    instanciaDB.getMascotaDAO().getNamePetById(intentRecibido.getIntExtra(Constantes.TAG_ID_MASCOTA,Constantes.DEFAULT)),
+                                    spiTipAgenda.getSelectedItem().toString(),
+                                    edtObservaionesAgenda.getText().toString());
                             /** Cuando se guarda se envia a la actividad principal*/
-                            Toast.makeText(Agenda.this, "Actidad actualizada xitosamente", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Agenda.this, "Actidad actualizada exitosamente", Toast.LENGTH_LONG).show();
                             finish();
 
                         break;
                     }
 
 
-                }
+               // }
                 /** Si la fecha y la hora son menores que la actual envia una alerta notificando */
-                else
-                {
-                    Alertas.showSingleAlert(this,"Fecha y hora antigua", "La fecha u hora seleccionada esta en el pasado. \n\n" +
-                            "Por favor elija una fecha y hora que este despues de el actual");
-                }
+//                else
+//                {
+//                    Alertas.showSingleAlert(this,"Fecha y hora antigua", "La fecha u hora seleccionada esta en el pasado. \n\n" +
+//                            "Por favor elija una fecha y hora que este despues de el actual");
+//                }
 
             }
             else
@@ -291,15 +301,19 @@ public class Agenda extends AppCompatActivity {
     }//Fin startSpinnerValues
 
 
-    public static void setAlarm(int idAlarma, Long timestamp, Context context,String identificador)
+    public static void setAlarm(int idAlarma, Long timestamp, Context context,String nombreActividad, String nombreMascota,String tipoActividad,String comentario)
     {
         /** Se crea una instancia del AlarmManager para crear nuestra Alarma*/
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-        alarmIntent.putExtra(Constantes.TAG_ID_ALARM,identificador);
+        alarmIntent.putExtra(Constantes.TAG_ID_ALARM,idAlarma);
+        alarmIntent.putExtra(Constantes.TAG_NOMBRE_ACTIVIDAD,nombreActividad);
+        alarmIntent.putExtra(Constantes.TAG_NOMBRE_TIPO_ACTIVIDAD,tipoActividad);
+        alarmIntent.putExtra(Constantes.TAG_NOMBRE_MASCOTA,nombreMascota);
+        alarmIntent.putExtra(Constantes.TAG_COMENTARIO,comentario);
+
         PendingIntent pendingIntent;
-        pendingIntent = PendingIntent.getBroadcast(context, idAlarma, alarmIntent, PendingIntent.FLAG_NO_CREATE);
-   //     alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
+        pendingIntent = PendingIntent.getBroadcast(context, idAlarma, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.set(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
     }
 
@@ -308,7 +322,7 @@ public class Agenda extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent alarmIntent = new Intent(context, AlarmReceiver.class);
         PendingIntent pendingIntent;
-        pendingIntent = PendingIntent.getBroadcast(context, idAlarma, alarmIntent, PendingIntent.FLAG_ONE_SHOT);
+        pendingIntent = PendingIntent.getBroadcast(context, idAlarma, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.cancel(pendingIntent);
     }
 
