@@ -4,6 +4,7 @@ package hn.healthypets.proyecto;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,6 +77,7 @@ public class Desparacitante extends AppCompatActivity {
                         Toast.makeText(Desparacitante.this, "Información guardada exitosamente ;)", Toast.LENGTH_LONG).show();
                         finish();
                         break;
+
                     case Constantes.ACTUALIZAR:
                         desparasitante = new Medicamento(
                                 intentValues.getIntExtra(Constantes.TAG_ID, Constantes.DEFAULT),
@@ -84,9 +86,10 @@ public class Desparacitante extends AppCompatActivity {
                                 "",
                                 Float.parseFloat(String.valueOf(edtPesoDespa.getText().toString())),
                                 edtObserDespa.getText().toString(),
-                                getIntent().getIntExtra(Constantes.TAG_ID, Constantes.DEFAULT),
+                                getIntent().getIntExtra(Constantes.TAG_ID_MASCOTA, Constantes.DEFAULT),
                                 instanciaDB.getCategoriaMedicamentoDAO().getIdMedicinesCategoriesByName("Desparasitante"),
                                 0);
+
                         instanciaDB.getMedicamentoDAO().updateMedicine(desparasitante);
                         Toast.makeText(Desparacitante.this, "Informacion Actualizada con exitosamente ;)", Toast.LENGTH_LONG).show();
                         finish();
@@ -116,7 +119,7 @@ public class Desparacitante extends AppCompatActivity {
         if (accion == Constantes.GUARDAR) {
             /**Recuperamos el valor de la fecha por defecto que es la fecha actual*/
             dia = DateTime.diaDelMes;
-            mes = DateTime.mes;
+            mes = DateTime.mes+1;
             anio = DateTime.anio;
         } else if (accion == Constantes.ACTUALIZAR) {
             /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha

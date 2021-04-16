@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 /**
  * Contiene los campos que tienen los valores de
  */
-@Entity(indices = {@Index(value = "descripcion", unique = true)})
+@Entity
 public class Medicamento {
     @PrimaryKey(autoGenerate = true)
     private int medicamentoId;

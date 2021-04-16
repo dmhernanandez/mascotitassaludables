@@ -263,7 +263,7 @@ public class Vacunas extends AppCompatActivity {
         if (accion == Constantes.GUARDAR) {
             /**Recuperamos el valor de la fecha por defecto que es la fecha actual*/
             dia = DateTime.diaDelMes;
-            mes = DateTime.mes;
+            mes = DateTime.mes+1;
             anio = DateTime.anio;
             /**Asignamos una foto de perfil por defecto*/
             Glide.with(this)

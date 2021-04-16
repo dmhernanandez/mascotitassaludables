@@ -189,7 +189,7 @@ public class Medicamentos extends AppCompatActivity {
         if (accion == Constantes.GUARDAR) {
             /**Recuperamos el valor de la fecha por defecto que es la fecha actual*/
             dia = DateTime.diaDelMes;
-            mes = DateTime.mes;
+            mes = DateTime.mes+1;
             anio = DateTime.anio;
         } else if (accion == Constantes.ACTUALIZAR) {
             /** Si es una actualización se debe parsear la fecha guadarda previamente para colocarla en variables de fecha

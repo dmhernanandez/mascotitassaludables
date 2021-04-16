@@ -1,6 +1,7 @@
 package hn.healthypets.proyecto.adaptadores_mascotitas_saludables;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,8 +76,8 @@ public class AdaptadorDesparacitante extends RecyclerView.Adapter<AdaptadorDespa
             Intent intent = new Intent(holder.itemView.getContext(), Desparacitante.class);
             //Envio el id de la mascota para usaro en cualquie
             intent.putExtra(Constantes.TAG_ACCION, Constantes.ACTUALIZAR);
-
-            intent.putExtra(Constantes.TAG_ID, desparasitante.getMascotaMedicadaId());
+            intent.putExtra(Constantes.TAG_ID, desparasitante.getMedicamentoId());
+            intent.putExtra(Constantes.TAG_ID_MASCOTA, desparasitante.getMascotaMedicadaId());
 
             intent.putExtra(Constantes.TAG_FECHA_APLICACION, desparasitante.getFechaAplicacion());
             intent.putExtra(Constantes.TAG_NOMBRE, desparasitante.getDescripcion());

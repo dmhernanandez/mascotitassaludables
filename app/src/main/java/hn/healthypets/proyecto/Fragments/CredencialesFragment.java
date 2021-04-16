@@ -57,13 +57,6 @@ public class CredencialesFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewPerfiles.setLayoutManager(linearLayoutManager);
 
-        //datos que vamos a enviar
-        Mascota mascota = new Mascota(0, "rocky",
-                "Rocky Prueba",
-                1,
-                1,
-                1,
-                "1", "");
 
         instanciaDB.getMascotaDAO().getAllPets().observe(getActivity(), new Observer<List<Mascota>>()
         {
