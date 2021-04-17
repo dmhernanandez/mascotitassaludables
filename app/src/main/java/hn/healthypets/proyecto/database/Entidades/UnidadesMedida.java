@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 /*Esta clase contiene campos que contendra valores para */
 @Entity
 public class UnidadesMedida {
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     private int medidaId;
     private String nombreMedidal;
 

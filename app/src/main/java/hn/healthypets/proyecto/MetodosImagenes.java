@@ -42,11 +42,9 @@ public class MetodosImagenes {
     public static final int REQUEST_IMAGE_CAMERA = 103;
     public static final String PET_FOLDER="Mascotas";
     public static final String VACUNA_FOLDER="Vacunas";
-
     private String rootPath;
     private Bitmap bitmap;
-    public MetodosImagenes(Activity activity)
-    {
+    public MetodosImagenes(Activity activity){
 
         /** Se obtiene la ruta principal del direcotorio de imagenes privado de la aplicación, de manera que no seran
          * visibles en la galería*/
@@ -90,8 +88,6 @@ public class MetodosImagenes {
     public String getRootPath() {
         return rootPath;
     }
-
-
 
     /** Con este metodo validamos si ya se otorgraron los permisos de la camara de ser así se retorna un valor booleano*/
     public boolean checkPermissionCamera(Activity activity)
@@ -255,7 +251,6 @@ public class MetodosImagenes {
         /** Esta variable se usa solo para validar si se dio el permiso de almacenar en cambio de los otros metdos si los
          * permisos se otorgaron los lleva directamente a las acciones*/
        return permissionRequest;
-
     }
 
 /** Este metodo se llama cuando se necesita pedir un permiso en caso que no este concedido*/
@@ -295,6 +290,5 @@ public class MetodosImagenes {
        int newHeight = (int) Math.floor((double) originalHeight *( (double) newWidth / (double) originalWidth));
         Log.i("dimenciones",String.valueOf(newWidth) +" x "+String.valueOf(newHeight));
        return Bitmap.createScaledBitmap(bitMap, newWidth, newHeight, true);
-
     }
 }

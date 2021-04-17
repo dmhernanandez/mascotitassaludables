@@ -9,10 +9,9 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.List;
+
 import hn.healthypets.proyecto.database.Entidades.AgendaMedicamento;
-import hn.healthypets.proyecto.database.Entidades.CategoriaMedicamento;
-import hn.healthypets.proyecto.database.Entidades.Medicamento;
-import hn.healthypets.proyecto.database.Entidades.Raza;
 
 
 @Dao
@@ -24,18 +23,22 @@ public interface AgendaMedicamentoDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertMedicinesSchedules(AgendaMedicamento agendaMedicamento);
 
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    public void updateAgendaMedicamento(AgendaMedicamento agendaMedicamento);
+
     @Query("SELECT id FROM AgendaMedicamento WHERE nombreMedicamento = :nombreMedicamento")
     public int getIdMedicinesScheduleByName(String nombreMedicamento);
 
     //Selecciona todas las filas de Categoria Medicamento
 
 
-     @Query("select  nombre, nombreMedicamento ,dosisCantidad, dosisNombre,intervaloTiempo,numeroDosis,fechaHoraInicio,horaFechaProximaDosis  from AgendaMedicamento INNER JOIN Mascota ON mascotaMedicamentoId=Mascota.mascotaId  INNER JOIN TipoDosis On tipoDosisId=TipoDosis.tipoDosisId  WHERE dosisId=tipoDosisId")
+     @Query("select id, nombre, nombreMedicamento ,dosisCantidad,dosisId, dosisNombre,intervaloTiempo,numeroDosis,fechaHoraInicio,horaFechaProximaDosis  from AgendaMedicamento INNER JOIN Mascota ON mascotaMedicamentoId=Mascota.mascotaId  INNER JOIN TipoDosis On tipoDosisId=TipoDosis.tipoDosisId  WHERE dosisId=tipoDosisId")
     public LiveData<List<RecetaMascota>> getAllMedicinesSchedule();
 
      static class RecetaMascota{
 
 
+         private int id;
          private String nombre;
          private String nombreMedicamento;
          private int dosisCantidad;
@@ -44,6 +47,24 @@ public interface AgendaMedicamentoDAO {
          private int numeroDosis;
          private String fechaHoraInicio;
          private String horaFechaProximaDosis;
+
+         public int getDosisId() {
+             return dosisId;
+         }
+
+         public void setDosisId(int dosisId) {
+             this.dosisId = dosisId;
+         }
+
+         private int dosisId;
+
+         public int getId() {
+             return id;
+         }
+
+         public void setId(int id) {
+             this.id = id;
+         }
 
          public String getNombre() {
              return nombre;

@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey;
 
 /**
  * Esta clase contiene atributos para almacenar razas de una especie.
- * */
-@Entity(indices = {@Index( value = "nombreRaza",unique = true)})
+ */
+@Entity(indices = {@Index(value = "nombreRaza", unique = true)})
 public class Raza {
     @PrimaryKey(autoGenerate = true)
     private int razaId;
@@ -17,7 +17,7 @@ public class Raza {
     //LLave foranea de la tabla
     private int razaEspecieId;
 
-    public Raza( @NonNull String nombreRaza, int razaEspecieId) {
+    public Raza(@NonNull String nombreRaza, int razaEspecieId) {
         this.nombreRaza = nombreRaza;
         this.razaEspecieId = razaEspecieId;
     }

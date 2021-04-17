@@ -8,6 +8,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import java.util.List;
+
 import hn.healthypets.proyecto.database.Entidades.Mascota;
 
 // Objeto de acceso a datos(MascotaDAO)
@@ -23,6 +26,8 @@ public interface MascotaDAO {
     @Query("SELECT * FROM Mascota")
     public LiveData<List<Mascota>> getAllPets();
 
+    @Query("SELECT nombre FROM Mascota WHERE mascotaId=:idMascota")
+    public String getNamePetById(int idMascota);
 
    @Query("SELECT count(*) FROM Mascota")
     public int getNumbersPets();
@@ -31,6 +36,7 @@ public interface MascotaDAO {
     static class NumberPets {
 
         private int numberPets;
+
         public NumberPets(int numberPets) {
             this.numberPets = numberPets;
         }

@@ -1,6 +1,9 @@
 package hn.healthypets.proyecto.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -8,22 +11,15 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import hn.healthypets.proyecto.R;
-import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorDesparacitante;
 import hn.healthypets.proyecto.adaptadores_mascotitas_saludables.AdaptadorMedicamento;
 import hn.healthypets.proyecto.database.DataBase;
 import hn.healthypets.proyecto.database.Entidades.AgendaMedicamento;
-import hn.healthypets.proyecto.database.Entidades.Medicamento;
 import hn.healthypets.proyecto.database.SingletonDB;
 import hn.healthypets.proyecto.database.dao.AgendaMedicamentoDAO;
-
 
 public class HistorialMedicamentoFragment extends Fragment {
 
@@ -36,14 +32,14 @@ public class HistorialMedicamentoFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View vista = inflater.inflate(R.layout.fragment_medicamento_historial, container, false);
-        RecyclerView  recyclerView=vista.findViewById(R.id.rvHistorialMedicamento);
+        RecyclerView recyclerView = vista.findViewById(R.id.rvHistorialMedicamento);
 
         //Obtenemos una instancia de la base de datos
-        instanciaDB= SingletonDB.getDatabase(getContext());
+        instanciaDB = SingletonDB.getDatabase(getContext());
         arrayElementos = new ArrayList<>();
 
         //Enlazamos los datos al Recicler View
-        recyclerViewPerfiles=vista.findViewById(R.id.rvHistorialMedicamento);
+        recyclerViewPerfiles = vista.findViewById(R.id.rvHistorialMedicamento);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerViewPerfiles.setLayoutManager(linearLayoutManager);
 
@@ -67,9 +63,6 @@ public class HistorialMedicamentoFragment extends Fragment {
                 recyclerView.setAdapter(adaptador);
             }
         });
-
         return vista;
     }
-
-
 }

@@ -96,6 +96,21 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         //Inicializamos todos los elementos
         init();
 
+        instanciaDB.getSpeciesDAO().insertSpecies(new Especie("Perro"));
+        instanciaDB.getSpeciesDAO().insertSpecies(new Especie("Gato"));
+
+        instanciaDB.getRazaDAO().insertBreeds(
+                new Raza("Desconocida", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+                , new Raza("Angora", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato")),
+                new Raza("Sphynx", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Gato"))
+        );
+
+        instanciaDB.getRazaDAO().insertBreeds(
+                new Raza("Mestizo", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro"))
+                , new Raza("Pitbull", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro")),
+                new Raza("Boxer", instanciaDB.getSpeciesDAO().getIdSpeciesByName("Perro"))
+        );
+
         /**
          * ESTE METODO SE EJECUTA DESPUES DE QUE LA APLICACION PASA AL ESTADO RESUMED Y QUE ES UNA CONSULTA ASINCRONA Y NO SE REALIZA
          * EN EL HILO PRINCIPAL O EN LA EJECUCI0N DEL onCreate
@@ -210,7 +225,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                                );
                              instanciaDB.getMascotaDAO().insertNewPet(mascota);
 
-                              Toast.makeText(CreacionPerfiles.this,"Guardado con exito",Toast.LENGTH_LONG).show();
+                              Toast.makeText(CreacionPerfiles.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                                finish();
                               break;
                            case Constantes.ACTUALIZAR:
@@ -254,7 +269,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                                );
                                instanciaDB.getMascotaDAO().updatePet(mascota);
 
-                               Toast.makeText(CreacionPerfiles.this,"Actualizado con exito +",Toast.LENGTH_LONG).show();
+                               Toast.makeText(CreacionPerfiles.this,"Información actualizada exitosamente ;)",Toast.LENGTH_LONG).show();
                                finish();
                                break;
                        }
@@ -391,6 +406,8 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         modalDialogoRaza.show(getSupportFragmentManager(), "Seleccione una raza");
 
     }
+
+
 
     @Override
     public void applyTextRaza(String razaMascota) {
@@ -581,8 +598,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                         .into(imgFotoMascota);
             }
 
-
-
             /** Se optiene el nombre del genero y se valida para seleccionar el radio button Correcto
              * */
             String genero = instanciaDB.getGeneroDAO().
@@ -609,9 +624,6 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
         edtFechaNaciento.setText(fechaHora.formatoFecha(dia,mes,anio));
 
     }
-
-
-
 
     /**
      * disableSpinnerAndButton() y enableSpinnerAndButton()

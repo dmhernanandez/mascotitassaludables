@@ -2,10 +2,12 @@ package hn.healthypets.proyecto.database.Entidades;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
 /**
  * Contien campos para almacenar los datos de la mascota
- * */
+ */
 @Entity
 public class Mascota {
     @PrimaryKey(autoGenerate = true)
@@ -16,7 +18,7 @@ public class Mascota {
     private String fechaNacimiento;
     private String rutaFoto;
     private String numeroChip;
-   //Llave foranea de la tabla genero
+    //Llave foranea de la tabla genero
     @NonNull
     private int generoMascotaId;
     //llave foranea de la tabla raza, para determinar la raza de la mascota
@@ -25,19 +27,17 @@ public class Mascota {
     //LLave foranea de la especie de la mascota, por ejemplo perro o gato
     private int mascotaEspecieId;
 
-
-
-
-    public Mascota( int mascotaId,@NonNull String nombre, @NonNull String fechaNacimiento, int generoMascotaId, int razaMascotaId, int mascotaEspecieId,String rutaFoto,String numeroChip) {
-        this.mascotaId=mascotaId;
+    public Mascota(int mascotaId, @NonNull String nombre, @NonNull String fechaNacimiento, int generoMascotaId, int razaMascotaId, int mascotaEspecieId, String rutaFoto, String numeroChip) {
+        this.mascotaId = mascotaId;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.generoMascotaId = generoMascotaId;
         this.razaMascotaId = razaMascotaId;
         this.mascotaEspecieId = mascotaEspecieId;
-        this.rutaFoto=rutaFoto;
-        this.numeroChip=numeroChip;
+        this.rutaFoto = rutaFoto;
+        this.numeroChip = numeroChip;
     }
+
     public int getMascotaId() {
         return mascotaId;
     }
