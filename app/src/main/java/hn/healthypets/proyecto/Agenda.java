@@ -198,7 +198,7 @@ public class Agenda extends AppCompatActivity {
                                     edtObservaionesAgenda.getText().toString());
 
                             /** Cuando se guarda se envia a la actividad principal*/
-                            Toast.makeText(Agenda.this, "Información guardada exitosamente", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Agenda.this, "Información guardada exitosamente ;)", Toast.LENGTH_LONG).show();
 //                            Intent intent = new Intent(this,MenuLateral.class);
 //                            startActivity(intent);
                                 finish();
@@ -223,7 +223,7 @@ public class Agenda extends AppCompatActivity {
                                     spiTipAgenda.getSelectedItem().toString(),
                                     edtObservaionesAgenda.getText().toString());
                             /** Cuando se guarda se envia a la actividad principal*/
-                            Toast.makeText(Agenda.this, "Actidad actualizada exitosamente", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Agenda.this, "Información actualizada exitosamente ;)", Toast.LENGTH_LONG).show();
                             finish();
 
                         break;

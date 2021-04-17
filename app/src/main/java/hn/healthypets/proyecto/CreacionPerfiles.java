@@ -210,7 +210,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                                );
                              instanciaDB.getMascotaDAO().insertNewPet(mascota);
 
-                              Toast.makeText(CreacionPerfiles.this,"Guardado con exito",Toast.LENGTH_LONG).show();
+                              Toast.makeText(CreacionPerfiles.this,"Información guardada exitosamente ;)",Toast.LENGTH_LONG).show();
                                finish();
                               break;
                            case Constantes.ACTUALIZAR:
@@ -254,7 +254,7 @@ public class CreacionPerfiles extends AppCompatActivity implements AdapterView.O
                                );
                                instanciaDB.getMascotaDAO().updatePet(mascota);
 
-                               Toast.makeText(CreacionPerfiles.this,"Actualizado con exito +",Toast.LENGTH_LONG).show();
+                               Toast.makeText(CreacionPerfiles.this,"Información actualizada exitosamente ;)",Toast.LENGTH_LONG).show();
                                finish();
                                break;
                        }
