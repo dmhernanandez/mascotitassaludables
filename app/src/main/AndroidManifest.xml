@@ -72,16 +72,7 @@
             android:name=".Vacunas"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Perfiles"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".CreacionPerfiles"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Director"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Actividades"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Agenda"
@@ -90,12 +81,8 @@
             android:name=".Desparacitante"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Historial"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Medicamentos"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

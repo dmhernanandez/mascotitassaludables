@@ -35,12 +35,6 @@
         tools:layout="@layout/fragment_historial_desparasitante" />
 
     <fragment
-        android:id="@+id/nav_agenda"
-        android:name="hn.healthypets.proyecto.Fragments.AgendaFragment"
-        android:label="Agenda"
-        tools:layout="@layout/fragment_agenda" />
-
-    <fragment
         android:id="@+id/nav_credencial"
         android:name="hn.healthypets.proyecto.Fragments.CredencialesFragment"
         android:label="Tus Mascotas"

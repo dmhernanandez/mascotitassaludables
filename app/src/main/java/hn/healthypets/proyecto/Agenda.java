@@ -71,7 +71,6 @@ public class Agenda extends AppCompatActivity {
         spiTipAgenda = findViewById(R.id.spiTipoAgenda);
         edtFechaAgenda = findViewById(R.id.edtFechaAgendaVisita);
         edtHoraAgenda = findViewById(R.id.edtHoraAgenda);
-        spiRecordame = findViewById(R.id.spiRecordarme);
         edtObservaionesAgenda = findViewById(R.id.edtObseracionesAgenda);
         btnListo = findViewById(R.id.btnListoAgenda);
         instanciaDB= SingletonDB.getDatabase(this);
